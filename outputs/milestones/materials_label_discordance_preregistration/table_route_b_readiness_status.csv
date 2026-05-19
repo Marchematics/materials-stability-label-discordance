@@ -4,4 +4,6 @@ Alexandria/alex-mp,independently downloaded local snapshot,pass,local alex_mp_20
 CHGNet,reproducible same-denominator scorer,pass,CHGNet local scorer previously generated scores for 270 exact-match structures,model_available
 MACE-MP,reproducible same-denominator scorer,pass,MACE-MP local scorer previously generated scores for 270 exact-match structures,model_available
 ALIGNN-FF,reproducible same-denominator scorer,fail,alignn.ff default_path attempted download v12.2.2024_dft_3d_307k but received non-zip artifact causing BadZipFile,primary_model_set_incomplete_do_not_run_or_claim_route_B_primary_endpoint
+ALIGNN-FF official model archives,legal arbitrary-structure ALIGNN-FF scorer,fail,official Figshare model URLs exposed by alignn package returned HTTP 403 for tested FF model names,does_not_fix_full_MP_Alex_same_denominator_scorer
+ALIGNN-FF WBM frozen predictions,frozen public ALIGNN-FF predictions with checksum,partial_pass,2023-07-11-alignn-ff-wbm-IS2RE.csv.gz has 256963 rows and sha256 dc75be97f3bce3ce724680065abf11a19bdc6a3928fdd77ccb42d3f62a02e593,WBM_denominator_only_not_full_MP_Alex_scorer
 Route B primary endpoint,ALIGNN-FF / CHGNet / MACE-MP same denominator,blocked,ALIGNN-FF required primary scorer unavailable under current environment,NMI_discordance_line_remains_closed_until_ALIGNN_FF_scorer_is_legally_available

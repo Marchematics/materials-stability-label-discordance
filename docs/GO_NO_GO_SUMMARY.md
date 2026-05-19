@@ -52,3 +52,25 @@ permanently closed.
 Current status: Route B is blocked before outcome generation because the
 same-denominator primary model set cannot yet be assembled with ALIGNN-FF.
 CHGNet/MACE-only is not an allowed substitute.
+
+## ALIGNN-FF Readiness Repair Attempt
+
+Status: partial only, not a full Route B fix.
+
+The installed `alignn` package exposes official ALIGNN-FF model archives via
+Figshare, but the tested model URLs currently return HTTP 403 in this
+environment. This leaves the arbitrary-structure ALIGNN-FF scorer blocked.
+
+A frozen Matbench Discovery / WBM ALIGNN-FF prediction table is available:
+
+| Item | Value |
+|---|---|
+| file | `2023-07-11-alignn-ff-wbm-IS2RE.csv.gz` |
+| rows | 256,963 |
+| SHA256 | `dc75be97f3bce3ce724680065abf11a19bdc6a3928fdd77ccb42d3f62a02e593` |
+
+Interpretation: the frozen prediction table can support WBM-denominator
+diagnostics, but it is not an arbitrary-structure scorer for a full MP-vs-Alex
+snapshot. Route B remains blocked unless a legal ALIGNN-FF scorer becomes
+available or the preregistered denominator can be satisfied by frozen public
+ALIGNN-FF predictions without changing the protocol.

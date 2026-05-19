@@ -69,6 +69,29 @@ def test_route_b_readiness_blocks_endpoint_without_alignn_ff() -> None:
     assert "ALIGNN" in endpoint["details"]
 
 
+def test_alignn_ff_readiness_attempt_records_partial_wbm_predictions() -> None:
+    attempts = pd.read_csv(MILESTONE / "table_alignn_ff_readiness_attempts.csv")
+
+    official = attempts[attempts["attempt_type"].eq("official_scorer_download")]
+    assert not official.empty
+    assert set(official["status"]) == {"blocked_403"}
+
+    frozen = attempts[attempts["attempt_id"].eq("alignn_ff_wbm_predictions")].iloc[0]
+    assert frozen["status"] == "available"
+    assert frozen["sha256_or_response"] == (
+        "dc75be97f3bce3ce724680065abf11a19bdc6a3928fdd77ccb42d3f62a02e593"
+    )
+    assert frozen["route_b_implication"] == (
+        "can_support_WBM_intersection_diagnostics_but_does_not_score_full_MP_Alex_snapshot"
+    )
+
+    closeout = (MILESTONE / "ALIGNN_FF_READINESS_FIX_ATTEMPT.md").read_text(
+        encoding="utf-8"
+    )
+    assert "not as a" in closeout and "complete fix" in closeout
+    assert "No Route B endpoint" in closeout
+
+
 def test_manifest_exists() -> None:
     assert (MILESTONE / "MANIFEST_SHA256.txt").exists()
     assert (ROOT / "MANIFEST_SHA256.txt").exists()
