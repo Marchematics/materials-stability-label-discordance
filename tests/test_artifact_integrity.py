@@ -42,6 +42,22 @@ def test_primary_downstream_endpoint_is_not_overclaimed() -> None:
     assert str(primary["top_model_flip"]).lower() == "false"
 
 
+def test_route_b_is_one_shot_and_keeps_endpoint_frozen() -> None:
+    text = (MILESTONE / "ROUTE_B_ONE_SHOT_RESCUE_PROTOCOL.md").read_text(encoding="utf-8")
+    assert "Run this rescue at most once" in text
+    assert "stable-class F1" in text
+    assert "n_common >= 200" in text
+    assert "discordance >= 0.40" in text
+    assert "permanently close the NMI discordance" in text
+
+    gate = pd.read_csv(MILESTONE / "table_route_b_rescue_gate.csv")
+    assert "one_shot_only" in set(gate["gate"])
+    assert "reopen_rule" in set(gate["gate"])
+    reopen = gate[gate["gate"].eq("reopen_rule")].iloc[0]
+    assert "discordance >= 0.40" in reopen["requirement"]
+    assert "stable-F1 ranking flip" in reopen["requirement"]
+
+
 def test_manifest_exists() -> None:
     assert (MILESTONE / "MANIFEST_SHA256.txt").exists()
     assert (ROOT / "MANIFEST_SHA256.txt").exists()

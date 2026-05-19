@@ -40,3 +40,11 @@ flip between WBM and alex-mp labels.
 Interpretation: the discordance signal is real on this probe, but the current
 primary downstream-consequence gate is not strong enough to launch an NMI
 paper by itself.
+
+## Route B: Final Rescue
+
+Only one rescue remains open: MP-vs-Alex full snapshot with strict
+StructureMatcher matches, `n_common >= 200`, and the same ALIGNN-FF / CHGNet /
+MACE-MP stable-class F1 endpoint. The line reopens only if both discordance is
+at least 0.40 and the frontier ranking flips. Otherwise the NMI line is
+permanently closed.

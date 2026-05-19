@@ -40,6 +40,29 @@ CHGNet stable-count: 16 -> 6
 MACE-MP stable-count: 15 -> 6
 ```
 
+## Route B One-Shot Rescue
+
+The only permitted rescue is a single MP-vs-Alex full-snapshot attempt:
+
+```text
+Materials Project API-derived public records
+vs independently downloaded Alexandria/alex-mp snapshot
+strict StructureMatcher denominator
+n_common >= 200
+same ALIGNN-FF / CHGNet / MACE-MP denominator
+stable-class F1 endpoint unchanged
+```
+
+The line reopens only if:
+
+```text
+discordance >= 0.40
+AND frontier stable-F1 ranking flip exists
+```
+
+If the full snapshot still lacks the ranking flip, the NMI discordance line is
+permanently closed.
+
 ## Claim Boundaries
 
 Allowed:
@@ -62,6 +85,7 @@ Forbidden:
 ```text
 outputs/milestones/materials_label_discordance_preregistration/
   DATA_ACCESS_GO_NO_GO.md
+  ROUTE_B_ONE_SHOT_RESCUE_PROTOCOL.md
   DISCORDANCE_STUDY_PREREGISTRATION.md
   MATERIALS_LABEL_DISCORDANCE_EXPERIMENT_CLOSEOUT.md
   protocol_discordance_study.yaml
