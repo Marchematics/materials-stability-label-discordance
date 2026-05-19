@@ -1,0 +1,67 @@
+trial_name: materials_label_discordance_go_no_go
+paper_role: new_independent_discordance_paper_preregistration
+primary_contribution: public_DFT_stability_label_reproducibility_and_downstream_consequence
+parc_role: optional_release_refuse_probe_only
+secret_policy:
+  api_keys: never_commit
+  materials_project_key: read_from_MP_API_KEY_environment_variable_only
+  raw_credentials_in_artifacts: forbidden
+week_one_gates:
+  step0_data_access:
+    pass: legally_accessible_two_source_snapshots
+    fail_action: stop_discordance_paper_route
+  step1_minimal_discordance_probe:
+    primary_threshold: discordance_ge_0.40
+    no_go_threshold: discordance_le_0.10
+    matched_n_floor: 200
+    pair_coverage_floor: 0.20
+  step2_downstream_conclusion_flip:
+    pass_any:
+      - model_ranking_flip
+      - discovered_stable_count_delta
+      - release_decision_flip_probe
+    primary_endpoint: public_model_ranking_flip
+    primary_metric: stable_class_F1
+    coprimary_metric: balanced_accuracy
+    discovery_consequence_metrics:
+      - precision_among_predicted_stable
+      - discovered_stable_count
+      - DAF_if_available
+    supporting_metrics:
+      - AUROC_if_continuous_scores_available
+    threshold_rule:
+      primary: top_5_percent_by_frozen_score
+      minimum_predicted_positives_guard: 20
+      sensitivity:
+        - top_10_percent
+        - top_20_percent
+    primary_model_set:
+      - ALIGNN-FF
+      - CHGNet
+      - MACE-MP
+    fallback_legacy_anchor: CGCNN
+    eligibility_rule: same_exact_match_denominator_and_frozen_or_reproducible_predictions
+    primary_common_denominator_floor: 200
+    primary_flip_rule: top_model_changes_or_adjacent_ordering_flips_with_abs_F1_delta_ge_0.05
+matching:
+  primary: exact_or_high_confidence_structure_match
+  formula_only: tag_only_never_primary
+  structure_matcher:
+    ltol: 0.2
+    stol: 0.3
+    angle_tol: 5
+    primitive_cell: true
+    scale: true
+    attempt_supercell: true
+labels:
+  primary_binary_stable: e_above_hull_le_0_eV_per_atom
+  sensitivity:
+    - tolerance_25_meV
+    - margin_excluded
+    - far_from_hull
+claim_boundaries:
+  forbidden:
+    - PARC_as_primary_contribution
+    - formula_only_discordance_headline
+    - external_databases_as_interchangeable_ground_truth
+    - NMI_discordance_claim_before_step0_1_2_pass
