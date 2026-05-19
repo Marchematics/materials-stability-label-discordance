@@ -1,0 +1,2 @@
+endpoint,models_required,models_eligible,n_common_floor,status,top_model_flip,ordering_flip,max_abs_F1_delta,go_no_go,claim_scope
+route_c_existing_probe_alternative_frontier_ranking,CHGNet|MACE-MP|M3GNet,CHGNet|MACE-MP|M3GNet,200,run_existing_probe_not_full_mp_alex_route_c,False,False,0.0673076923076923,NO_GO_existing_probe_no_material_F1_ranking_flip,existing_WBM_vs_alex_probe_only; not full MP-vs-Alex Route C primary

@@ -2,3 +2,4 @@ model_name,url_pattern,url,status_code,size_bytes,content_type,sha256,zip_ok,dec
 v12.2.2024_dft_3d_307k,direct_ndownloader,https://ndownloader.figshare.com/files/50904240,403,118,text/html,58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4,False,blocked_not_model_zip
 v12.2.2024_dft_3d_307k,figshare_ndownloader,https://figshare.com/ndownloader/files/50904240,403,118,text/html,58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4,False,blocked_not_model_zip
 v12.2.2024_dft_3d_307k,direct_ndownloader_query,https://ndownloader.figshare.com/files/50904240?download=1,403,118,text/html,58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4,False,blocked_not_model_zip
+v12.2.2024_dft_3d_307k,local_user_provided_archive,/root/v12.2.2024_dft_3d_307k.zip,local_file,549019,application/zip,ccc5c71e44e0213f8f5261a5e1df43df03129a4ec661a31c7a880cbf48b4e7b5,True,local_archive_zip_ok_public_source_pending

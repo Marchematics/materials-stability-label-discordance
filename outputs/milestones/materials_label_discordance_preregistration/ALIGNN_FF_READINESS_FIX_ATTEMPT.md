@@ -81,8 +81,8 @@ complete fix.
 Current status:
 
 ```text
-ALIGNN-FF arbitrary-structure scorer: blocked
+ALIGNN-FF arbitrary-structure scorer: local CPU smoke pass from user-provided archive
 ALIGNN-FF WBM frozen predictions: available with checksum
-Route B full-snapshot primary endpoint: still blocked
+Route B full-snapshot primary endpoint: still blocked pending MP snapshot and archive provenance freeze
 NMI discordance line: remains closed until the primary model-denominator gate is complete
 ```

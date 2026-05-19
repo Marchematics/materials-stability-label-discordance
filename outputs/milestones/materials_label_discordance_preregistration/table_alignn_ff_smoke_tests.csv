@@ -4,3 +4,7 @@ model_directory,best_model.pt and config.json,blocked,not available because zip 
 si_unrelaxed_energy,explicit local ALIGNN-FF model path,blocked,not run because model directory unavailable,readiness_not_cleared
 matched_structure_single,explicit local ALIGNN-FF model path plus one matched structure,blocked,not run because model directory unavailable,readiness_not_cleared
 matched_structure_batch10,explicit local ALIGNN-FF model path plus ten matched structures,blocked,not run because model directory unavailable,readiness_not_cleared
+local_zip_integrity,/root/v12.2.2024_dft_3d_307k.zip,pass,zip_ok True; size_bytes 549019; sha256 ccc5c71e44e0213f8f5261a5e1df43df03129a4ec661a31c7a880cbf48b4e7b5,local_archive_can_be_extracted
+local_model_directory,/root/alignn_ff_models/v12.2.2024_dft_3d_307k,pass,best_model.pt f47f3d231605d58c21538ee5a3d1fe5c7f7711d9cd31deb6964965e23f84b269; config.json ac194348870c6d584ab95da25c2e51b27856625326398de7d6dfe825295164cf,explicit_local_model_path_available
+si_unrelaxed_energy_cpu,explicit local ALIGNN-FF model path with device=cpu,pass,Si diamond natoms 2; energy_eV -7.9507317543029785; energy_per_atom -3.9753658771514893; max_abs_force 2.3259781301021576e-07,technical_scorer_smoke_passed
+matched_structure_single_cpu,explicit local ALIGNN-FF model path plus wbm-1-10155,pass,wbm-1-10155 Cl6 Mn2 natoms 8; energy_eV -17.957056045532227; energy_per_atom -2.2446320056915283,matched_structure_smoke_passed

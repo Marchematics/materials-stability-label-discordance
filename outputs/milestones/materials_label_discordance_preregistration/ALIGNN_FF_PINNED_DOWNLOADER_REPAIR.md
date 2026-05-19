@@ -64,3 +64,41 @@ environment. Route B remains blocked unless a legal ALIGNN-FF model archive is
 obtained and passes integrity plus smoke tests, or unless frozen public
 ALIGNN-FF predictions cover the full preregistered denominator without
 changing the protocol.
+
+## Local Archive Follow-Up
+
+A local archive was later provided at:
+
+```text
+/root/v12.2.2024_dft_3d_307k.zip
+```
+
+It passed zip integrity:
+
+```text
+size_bytes: 549019
+sha256: ccc5c71e44e0213f8f5261a5e1df43df03129a4ec661a31c7a880cbf48b4e7b5
+contains: best_model.pt, config.json, history_train.json, history_val.json
+```
+
+After extraction to `/root/alignn_ff_models/v12.2.2024_dft_3d_307k`, explicit
+local-path initialization worked with `device="cpu"`:
+
+```text
+Si diamond smoke:
+  natoms: 2
+  energy_eV: -7.9507317543029785
+  energy_per_atom: -3.9753658771514893
+  max_abs_force: 2.3259781301021576e-07
+
+matched-structure smoke:
+  material_id: wbm-1-10155
+  formula: Cl6 Mn2
+  natoms: 8
+  energy_eV: -17.957056045532227
+  energy_per_atom: -2.2446320056915283
+```
+
+This clears the local technical scorer smoke gate. It does not by itself
+establish public reproducibility of Route B until the archive provenance is
+publicly citable or otherwise archived with the artifact package.

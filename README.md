@@ -69,9 +69,12 @@ is not currently executable as a same-denominator scorer. A readiness-only
 repair attempt confirmed that the official `alignn.ff` Figshare model archives
 return HTTP 403 in this environment. The pinned direct-downloader workaround
 reported in upstream `usnistgov/alignn` issue #194 was also tried and still
-returned HTTP 403 here. A frozen WBM/Matbench ALIGNN-FF prediction table is
-available and checksummed, but it does not score arbitrary MP-vs-Alex snapshot
-structures. The endpoint is not relaxed to CHGNet/MACE-only.
+returned HTTP 403 here. A later user-provided local
+`v12.2.2024_dft_3d_307k.zip` archive passed zip integrity plus Si and
+matched-structure CPU smoke tests, so the local technical scorer gate is now
+partially repaired. Route B still requires frozen MP-vs-Alex denominator export
+and public/archive provenance for the local ALIGNN-FF model before any primary
+claim. The endpoint is not relaxed to CHGNet/MACE-only.
 
 ## Route C Alternative Frontier Panel
 
@@ -87,7 +90,10 @@ SevenNet / MatterSim / Orb / MatGL / M3GNet
 ```
 
 Route C is currently `protocol_only`; no Route C ranking outcomes have been
-inspected. Route B remains blocked and unconsumed.
+inspected for the full MP-vs-Alex denominator. A separate existing-probe
+diagnostic has been run on the older 270-row WBM-vs-alex exact-match
+denominator and is not a full Route C primary result. Route B remains
+unconsumed.
 
 ## Claim Boundaries
 
@@ -114,6 +120,8 @@ outputs/milestones/materials_label_discordance_preregistration/
   ROUTE_B_ONE_SHOT_RESCUE_PROTOCOL.md
   ROUTE_B_READINESS_CLOSEOUT.md
   ROUTE_C_ALTERNATIVE_FRONTIER_PANEL_PROTOCOL.md
+  ROUTE_C_EXISTING_PROBE_EXPERIMENT.md
+  ALIGNN_FF_ATOMGPTLAB_SOURCE_NOTE.md
   ALIGNN_FF_READINESS_FIX_ATTEMPT.md
   ALIGNN_FF_PINNED_DOWNLOADER_REPAIR.md
   DISCORDANCE_STUDY_PREREGISTRATION.md
@@ -124,6 +132,9 @@ outputs/milestones/materials_label_discordance_preregistration/
   table_alignn_ff_smoke_tests.csv
   table_route_c_frontier_panel_protocol.csv
   table_route_c_go_no_go_gate.csv
+  table_route_c_existing_probe_model_scores.csv
+  table_route_c_existing_probe_ranking_metrics.csv
+  table_route_c_existing_probe_flip_summary.csv
   table_data_access_smoke.csv
   table_minimal_discordance_probe.csv
   table_frontier_model_scores.csv

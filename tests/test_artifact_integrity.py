@@ -68,6 +68,10 @@ def test_route_b_readiness_blocks_endpoint_without_alignn_ff() -> None:
     assert endpoint["status"] == "blocked"
     assert "ALIGNN" in endpoint["details"]
 
+    local = status[status["component"].eq("ALIGNN-FF local explicit-path scorer")].iloc[0]
+    assert local["status"] == "partial_pass_public_source_pending"
+    assert "smoke tests" in local["details"]
+
 
 def test_alignn_ff_readiness_attempt_records_partial_wbm_predictions() -> None:
     attempts = pd.read_csv(MILESTONE / "table_alignn_ff_readiness_attempts.csv")
@@ -99,13 +103,21 @@ def test_alignn_ff_readiness_attempt_records_partial_wbm_predictions() -> None:
 def test_alignn_ff_pinned_downloader_repair_does_not_clear_gate() -> None:
     downloads = pd.read_csv(MILESTONE / "table_alignn_ff_download_integrity.csv")
     assert not downloads.empty
-    assert set(downloads["status_code"]) == {403}
-    assert set(downloads["zip_ok"].astype(str).str.lower()) == {"false"}
-    assert set(downloads["decision"]) == {"blocked_not_model_zip"}
+    remote = downloads[downloads["url_pattern"].ne("local_user_provided_archive")]
+    assert set(remote["status_code"].astype(str)) == {"403"}
+    assert set(remote["zip_ok"].astype(str).str.lower()) == {"false"}
+    assert set(remote["decision"]) == {"blocked_not_model_zip"}
+    local = downloads[downloads["url_pattern"].eq("local_user_provided_archive")].iloc[0]
+    assert str(local["zip_ok"]).lower() == "true"
+    assert local["sha256"] == "ccc5c71e44e0213f8f5261a5e1df43df03129a4ec661a31c7a880cbf48b4e7b5"
 
     smoke = pd.read_csv(MILESTONE / "table_alignn_ff_smoke_tests.csv")
     zip_row = smoke[smoke["smoke_test"].eq("zip_integrity")].iloc[0]
     assert zip_row["status"] == "fail"
+    si = smoke[smoke["smoke_test"].eq("si_unrelaxed_energy_cpu")].iloc[0]
+    assert si["status"] == "pass"
+    matched = smoke[smoke["smoke_test"].eq("matched_structure_single_cpu")].iloc[0]
+    assert matched["status"] == "pass"
     blocked = smoke[smoke["status"].eq("blocked")]
     assert len(blocked) >= 3
 
@@ -113,7 +125,7 @@ def test_alignn_ff_pinned_downloader_repair_does_not_clear_gate() -> None:
         encoding="utf-8"
     )
     assert "issue #194" in repair
-    assert "does not clear the Route B gate" in repair
+    assert "local technical scorer smoke gate" in repair
 
 
 def test_route_c_is_separate_protocol_not_route_b_modification() -> None:
@@ -137,6 +149,23 @@ def test_route_c_is_separate_protocol_not_route_b_modification() -> None:
     assert independence["current_status"] == "pass_protocol_frozen"
     ranking = gates[gates["gate"].eq("ranking_flip_gate")].iloc[0]
     assert "abs F1 delta >= 0.05" in ranking["requirement"]
+
+
+def test_route_c_existing_probe_completed_but_not_full_primary() -> None:
+    scores = pd.read_csv(MILESTONE / "table_route_c_existing_probe_model_scores.csv")
+    assert {"CHGNet", "MACE-MP", "M3GNet"}.issubset(set(scores["model"]))
+    assert scores.groupby("model")["material_id"].nunique().min() == 270
+
+    metrics = pd.read_csv(MILESTONE / "table_route_c_existing_probe_ranking_metrics.csv")
+    assert set(metrics["label_source"]) == {"WBM", "alex-mp"}
+    assert metrics["n_common"].min() == 270
+
+    summary = pd.read_csv(MILESTONE / "table_route_c_existing_probe_flip_summary.csv").iloc[0]
+    assert summary["status"] == "run_existing_probe_not_full_mp_alex_route_c"
+    assert str(summary["top_model_flip"]).lower() == "false"
+    assert str(summary["ordering_flip"]).lower() == "false"
+    assert summary["go_no_go"] == "NO_GO_existing_probe_no_material_F1_ranking_flip"
+    assert "not full MP-vs-Alex Route C primary" in summary["claim_scope"]
 
 
 def test_manifest_exists() -> None:

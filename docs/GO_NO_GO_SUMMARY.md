@@ -64,6 +64,12 @@ The direct downloader workaround reported in upstream `usnistgov/alignn` issue
 #194 was also tested and returns HTTP 403 here, so the pinned local model-path
 repair could not be completed.
 
+Follow-up: a local `/root/v12.2.2024_dft_3d_307k.zip` archive was provided and
+passed zip integrity plus explicit local-path CPU smoke tests for Si and one
+matched WBM structure. This clears the local technical scorer smoke gate, but
+Route B still needs public/archive provenance for that model archive and a
+frozen MP-vs-Alex denominator before the one-shot outcome can be claimed.
+
 A frozen Matbench Discovery / WBM ALIGNN-FF prediction table is available:
 
 | Item | Value |
@@ -80,7 +86,8 @@ ALIGNN-FF predictions without changing the protocol.
 
 ## Route C: Alternative Frontier Panel
 
-Status: protocol-only, no outcomes inspected.
+Status: protocol-only for full MP-vs-Alex Route C; existing-probe diagnostic
+completed on the older WBM-vs-alex denominator.
 
 Route C is allowed only as a separate protocol if ALIGNN-FF remains unavailable.
 It is not a modification of Route B, and Route B remains blocked and
@@ -98,3 +105,8 @@ denominator has `n_common >= 200`, binary exact-stability discordance remains
 at least 0.40, and the alternative-frontier stable-class F1 ranking flips with
 the preregistered effect-size rule. CHGNet/MACE-only results are reduced-panel
 diagnostics, not full primary frontier-panel evidence.
+
+Existing-probe outcome: CHGNet / MACE-MP / M3GNet all scored the same 270
+WBM-vs-alex exact-match structures, but stable-class F1 ranking did not flip.
+This is a diagnostic no-go for that existing denominator, not a full Route C
+full-snapshot result.

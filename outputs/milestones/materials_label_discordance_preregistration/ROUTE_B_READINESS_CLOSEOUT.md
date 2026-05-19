@@ -39,6 +39,13 @@ direct URL, the original `figshare.com/ndownloader/files/50904240` URL, and a
 download-query variant all returned `HTTP 403` HTML responses, not model zips.
 Therefore explicit local-path initialization cannot yet be smoke-tested.
 
+After that failed downloader attempt, a local archive was provided at
+`/root/v12.2.2024_dft_3d_307k.zip`. The archive passed zip integrity and
+explicit local-path CPU smoke tests for Si and one exact-match WBM structure.
+This clears the local technical scorer gate, but public/source provenance for
+the local archive still needs to be archived before Route B can be claimed as
+fully reproducible.
+
 A frozen Matbench Discovery / WBM ALIGNN-FF prediction table was found and
 checksummed:
 
@@ -53,9 +60,10 @@ arbitrary-structure scorer for the full MP-vs-Alex snapshot denominator. It is
 therefore recorded as partial readiness, not as a complete fix.
 
 Under the frozen Route B protocol, the endpoint cannot be replaced by
-CHGNet/MACE-only. Therefore Route B is blocked before the full rescue outcome.
-The NMI discordance line remains closed unless a legal, reproducible ALIGNN-FF
-scorer becomes available before the one-shot rescue is run.
+CHGNet/MACE-only. Route B remains blocked before the full rescue outcome until
+the MP full snapshot denominator and the ALIGNN-FF archive provenance are
+frozen. The NMI discordance line remains closed until the full Route B or Route
+C gates are run and pass.
 
 This closeout does not consume a full Route B outcome because the strict
 same-denominator primary model set could not be assembled.
