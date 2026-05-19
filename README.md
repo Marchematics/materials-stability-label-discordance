@@ -67,9 +67,11 @@ Current readiness: source access is available enough to attempt a future
 snapshot export, but the strict primary model set is blocked because ALIGNN-FF
 is not currently executable as a same-denominator scorer. A readiness-only
 repair attempt confirmed that the official `alignn.ff` Figshare model archives
-return HTTP 403 in this environment. A frozen WBM/Matbench ALIGNN-FF prediction
-table is available and checksummed, but it does not score arbitrary MP-vs-Alex
-snapshot structures. The endpoint is not relaxed to CHGNet/MACE-only.
+return HTTP 403 in this environment. The pinned direct-downloader workaround
+reported in upstream `usnistgov/alignn` issue #194 was also tried and still
+returned HTTP 403 here. A frozen WBM/Matbench ALIGNN-FF prediction table is
+available and checksummed, but it does not score arbitrary MP-vs-Alex snapshot
+structures. The endpoint is not relaxed to CHGNet/MACE-only.
 
 ## Claim Boundaries
 
@@ -96,10 +98,13 @@ outputs/milestones/materials_label_discordance_preregistration/
   ROUTE_B_ONE_SHOT_RESCUE_PROTOCOL.md
   ROUTE_B_READINESS_CLOSEOUT.md
   ALIGNN_FF_READINESS_FIX_ATTEMPT.md
+  ALIGNN_FF_PINNED_DOWNLOADER_REPAIR.md
   DISCORDANCE_STUDY_PREREGISTRATION.md
   MATERIALS_LABEL_DISCORDANCE_EXPERIMENT_CLOSEOUT.md
   protocol_discordance_study.yaml
   table_alignn_ff_readiness_attempts.csv
+  table_alignn_ff_download_integrity.csv
+  table_alignn_ff_smoke_tests.csv
   table_data_access_smoke.csv
   table_minimal_discordance_probe.csv
   table_frontier_model_scores.csv

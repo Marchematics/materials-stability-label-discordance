@@ -32,6 +32,13 @@ environment for the tested model names
 `v12.2.2024_dft_3d_307k`, `v10.30.2024_dft_3d_307k`,
 `v8.29.2024_dft_3d`, `alignnff_wt10`, and `alignnff_fmult`.
 
+After checking the upstream `usnistgov/alignn` issue #194, a pinned downloader
+repair was attempted with the reported direct downloader pattern
+`https://ndownloader.figshare.com/files/50904240`. In this environment the
+direct URL, the original `figshare.com/ndownloader/files/50904240` URL, and a
+download-query variant all returned `HTTP 403` HTML responses, not model zips.
+Therefore explicit local-path initialization cannot yet be smoke-tested.
+
 A frozen Matbench Discovery / WBM ALIGNN-FF prediction table was found and
 checksummed:
 

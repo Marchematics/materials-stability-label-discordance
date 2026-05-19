@@ -76,6 +76,10 @@ def test_alignn_ff_readiness_attempt_records_partial_wbm_predictions() -> None:
     assert not official.empty
     assert set(official["status"]) == {"blocked_403"}
 
+    pinned = attempts[attempts["attempt_type"].eq("pinned_downloader_repair")]
+    assert not pinned.empty
+    assert set(pinned["status"]) == {"blocked_403"}
+
     frozen = attempts[attempts["attempt_id"].eq("alignn_ff_wbm_predictions")].iloc[0]
     assert frozen["status"] == "available"
     assert frozen["sha256_or_response"] == (
@@ -90,6 +94,26 @@ def test_alignn_ff_readiness_attempt_records_partial_wbm_predictions() -> None:
     )
     assert "not as a" in closeout and "complete fix" in closeout
     assert "No Route B endpoint" in closeout
+
+
+def test_alignn_ff_pinned_downloader_repair_does_not_clear_gate() -> None:
+    downloads = pd.read_csv(MILESTONE / "table_alignn_ff_download_integrity.csv")
+    assert not downloads.empty
+    assert set(downloads["status_code"]) == {403}
+    assert set(downloads["zip_ok"].astype(str).str.lower()) == {"false"}
+    assert set(downloads["decision"]) == {"blocked_not_model_zip"}
+
+    smoke = pd.read_csv(MILESTONE / "table_alignn_ff_smoke_tests.csv")
+    zip_row = smoke[smoke["smoke_test"].eq("zip_integrity")].iloc[0]
+    assert zip_row["status"] == "fail"
+    blocked = smoke[smoke["status"].eq("blocked")]
+    assert len(blocked) >= 3
+
+    repair = (MILESTONE / "ALIGNN_FF_PINNED_DOWNLOADER_REPAIR.md").read_text(
+        encoding="utf-8"
+    )
+    assert "issue #194" in repair
+    assert "does not clear the Route B gate" in repair
 
 
 def test_manifest_exists() -> None:

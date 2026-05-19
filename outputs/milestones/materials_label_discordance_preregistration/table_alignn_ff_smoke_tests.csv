@@ -1,0 +1,6 @@
+smoke_test,required_input,status,result,route_b_implication
+zip_integrity,valid downloaded ALIGNN-FF model zip,fail,downloaded response was HTML HTTP 403 not zip,do_not_use_default_or_pinned_download_as_scorer
+model_directory,best_model.pt and config.json,blocked,not available because zip integrity failed,cannot_initialize_explicit_local_model_path
+si_unrelaxed_energy,explicit local ALIGNN-FF model path,blocked,not run because model directory unavailable,readiness_not_cleared
+matched_structure_single,explicit local ALIGNN-FF model path plus one matched structure,blocked,not run because model directory unavailable,readiness_not_cleared
+matched_structure_batch10,explicit local ALIGNN-FF model path plus ten matched structures,blocked,not run because model directory unavailable,readiness_not_cleared

@@ -29,6 +29,13 @@ the tested Figshare file URLs return `HTTP 403` HTML responses rather than zip
 archives. This reproduces the earlier `BadZipFile` readiness failure and leaves
 the locally executable arbitrary-structure ALIGNN-FF scorer unavailable.
 
+A follow-up pinned-downloader repair was also attempted after checking the
+upstream `usnistgov/alignn` issue #194, which reports the same `BadZipFile`
+failure and suggests the direct `ndownloader.figshare.com/files/...` URL form.
+In this environment, both the direct downloader form and the original
+`figshare.com/ndownloader/files/...` form still returned `HTTP 403` HTML
+responses, so no valid model archive was obtained.
+
 Tested official model names:
 
 ```text

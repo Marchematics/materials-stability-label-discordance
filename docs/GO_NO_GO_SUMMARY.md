@@ -60,6 +60,9 @@ Status: partial only, not a full Route B fix.
 The installed `alignn` package exposes official ALIGNN-FF model archives via
 Figshare, but the tested model URLs currently return HTTP 403 in this
 environment. This leaves the arbitrary-structure ALIGNN-FF scorer blocked.
+The direct downloader workaround reported in upstream `usnistgov/alignn` issue
+#194 was also tested and returns HTTP 403 here, so the pinned local model-path
+repair could not be completed.
 
 A frozen Matbench Discovery / WBM ALIGNN-FF prediction table is available:
 
