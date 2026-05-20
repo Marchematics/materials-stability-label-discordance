@@ -208,6 +208,48 @@ def test_route_b_public_provenance_unlock_requires_clean_hash_match() -> None:
     assert "Route B one-shot outcome: unconsumed" in text
 
 
+def test_route_b_runner_records_data_access_gate_without_credentials() -> None:
+    runner = ROOT / "scripts" / "run_route_b_full_snapshot_rescue.py"
+    assert runner.exists()
+    text = runner.read_text(encoding="utf-8")
+    assert "MP_API_KEY environment variable is required" in text
+    assert "credentials are not read from files" in text
+
+    failure = pd.read_csv(MILESTONE / "table_route_b_full_snapshot_data_access_failure.csv")
+    row = failure.iloc[0]
+    assert row["stage"] == "mp_api_fetch"
+    assert str(row["status"]).startswith("failed")
+    assert row["error_type"] == "RuntimeError"
+
+    closeout = (MILESTONE / "ROUTE_B_FULL_SNAPSHOT_RESCUE_CLOSEOUT.md").read_text(
+        encoding="utf-8"
+    )
+    assert (
+        "blocked at MP API data-access gate" in closeout
+        or "Status: completed diagnostic" in closeout
+    )
+
+
+def test_route_b_full_snapshot_diagnostic_keeps_nmi_line_closed() -> None:
+    summary = pd.read_csv(MILESTONE / "table_route_b_full_snapshot_summary.csv").iloc[0]
+    assert int(summary["n_common"]) >= 200
+    assert float(summary["discordance_rate"]) < 0.40
+    assert str(summary["top_model_flip"]).lower() == "false"
+    assert str(summary["ordering_flip"]).lower() == "false"
+    assert summary["go_no_go"] == "NO_GO_keep_NMI_line_closed"
+
+
+def test_selection_conditional_discordance_no_go() -> None:
+    top = pd.read_csv(MILESTONE / "table_selection_conditional_top_decile_summary.csv")
+    assert set(top["model"]) == {"ALIGNN-FF", "CHGNet", "MACE-MP"}
+    assert top["top_decile_discordance"].max() < 0.30
+    assert top["top_decile_enrichment"].max() < 2.0
+
+    go = pd.read_csv(MILESTONE / "table_selection_conditional_go_no_go.csv").iloc[0]
+    assert go["launch_gate"] == "NO_GO"
+    assert int(go["n_models_passing"]) == 0
+
+
 def test_manifest_exists() -> None:
     assert (MILESTONE / "MANIFEST_SHA256.txt").exists()
     assert (ROOT / "MANIFEST_SHA256.txt").exists()

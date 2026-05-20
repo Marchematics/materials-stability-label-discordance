@@ -99,6 +99,42 @@ diagnostic has been run on the older 270-row WBM-vs-alex exact-match
 denominator and is not a full Route C primary result. Route B remains
 unconsumed.
 
+## Route B Runner
+
+`scripts/run_route_b_full_snapshot_rescue.py` implements the frozen Route B
+experiment:
+
+```text
+MP API-derived records
+alex-mp snapshot
+strict StructureMatcher denominator
+ALIGNN-FF / CHGNet / MACE-MP same denominator
+stable-class F1 ranking endpoint
+```
+
+The first execution stopped at the MP API data-access gate because `MP_API_KEY`
+was not present in the environment. The script does not read credentials from
+files or artifacts. After setting `MP_API_KEY` in the shell, rerun:
+
+```bash
+python scripts/run_route_b_full_snapshot_rescue.py
+```
+
+Route B diagnostic outcome on the minimal `n_common >= 200` MP-vs-alex
+denominator:
+
+```text
+n_common: 287
+overall binary discordance: 0.108
+frontier stable-F1 ranking flip: false
+go/no-go: NO_GO_keep_NMI_line_closed
+```
+
+The refined selection-conditional hypothesis was also tested: discordance did
+not concentrate in the top-ranked candidate decile across ALIGNN-FF, CHGNet,
+and MACE-MP. This is a no-go for the NMI discordance line under the current
+data.
+
 ## Claim Boundaries
 
 Allowed:
@@ -144,6 +180,8 @@ outputs/milestones/materials_label_discordance_preregistration/
   table_route_c_existing_probe_model_scores.csv
   table_route_c_existing_probe_ranking_metrics.csv
   table_route_c_existing_probe_flip_summary.csv
+  ROUTE_B_FULL_SNAPSHOT_RESCUE_CLOSEOUT.md
+  table_route_b_full_snapshot_data_access_failure.csv
   table_data_access_smoke.csv
   table_minimal_discordance_probe.csv
   table_frontier_model_scores.csv

@@ -1,0 +1,2 @@
+stage,status,error_type,message
+mp_api_fetch,failed_before_credential_config,RuntimeError,MP_API_KEY environment variable is required; credentials are not read from files.

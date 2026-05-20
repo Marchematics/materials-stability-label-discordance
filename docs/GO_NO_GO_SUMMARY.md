@@ -118,3 +118,40 @@ Existing-probe outcome: CHGNet / MACE-MP / M3GNet all scored the same 270
 WBM-vs-alex exact-match structures, but stable-class F1 ranking did not flip.
 This is a diagnostic no-go for that existing denominator, not a full Route C
 full-snapshot result.
+
+## Route B Runner Status
+
+Status: runner implemented; first execution blocked at MP API data access.
+
+The Route B full-snapshot runner requires `MP_API_KEY` in the shell
+environment. This is intentional: credentials are not read from files and are
+not committed to artifacts. The first execution produced
+`table_route_b_full_snapshot_data_access_failure.csv` and did not consume the
+one-shot scientific outcome.
+
+After local credential configuration, the Route B diagnostic completed on a
+minimal qualified MP-vs-alex denominator:
+
+| Item | Value |
+|---|---:|
+| strict matches | 287 |
+| overall MP-vs-alex discordance | 0.108 |
+| stable-F1 ranking flip | false |
+| max absolute F1 delta | 0.0288 |
+
+Result: no-go for the original Route B launch rule.
+
+## Selection-Conditional Discordance
+
+Status: no-go.
+
+The refined hypothesis asked whether discordance concentrates in the
+model-selected high-confidence region. It does not on the Route B denominator:
+
+| Model | top-decile discordance | enrichment over baseline |
+|---|---:|---:|
+| ALIGNN-FF | 0.172 | 1.60 |
+| CHGNet | 0.103 | 0.96 |
+| MACE-MP | 0.103 | 0.96 |
+
+Gate result: `NO_GO`. The NMI discordance line remains closed.

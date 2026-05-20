@@ -1,0 +1,46 @@
+Retrieving SummaryDoc documents:   0%|          | 0/90 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 90/90 [00:00<00:00, 1715851.64it/s]
+fetched MP records 100/300
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1139756.52it/s]
+fetched MP records 200/300
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 912214.10it/s]
+fetched MP records 300/300
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/e3nn/o3/_wigner.py:10: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  _Jd, _W3j_flat, _W3j_indices = torch.load(os.path.join(os.path.dirname(__file__), 'constants.pt'))
+/root/miniconda3/lib/python3.12/site-packages/mace/calculators/mace.py:226: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=model_path, map_location=device)
+WARNING:root:Default dtype float32 does not match model dtype float64, converting models to float32.
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+CHGNet v0.3.0 initialized with 412,525 parameters
+CHGNet will run on cuda
+Using Materials Project MACE for MACECalculator with /root/.cache/mace/20231210mace128L0_energy_epoch249model
+Using float32 for MACECalculator, which is faster but less accurate. Recommended for MD. Use float64 for geometry optimization.
+resuming Route B scoring; completed structures: 177
+/root/miniconda3/lib/python3.12/site-packages/alignn/ff/calculators.py:306: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+  torch.tensor(atoms.cell)
+/root/miniconda3/lib/python3.12/site-packages/chgnet/model/model.py:898: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  volumes = torch.tensor(volumes, dtype=TORCH_DTYPE, device=atomic_numbers.device)
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+scored Route B structures 200/287
+scored Route B structures 225/287
+scored Route B structures 250/287
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+scored Route B structures 275/287
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
