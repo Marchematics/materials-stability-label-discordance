@@ -239,6 +239,45 @@ def test_route_b_full_snapshot_diagnostic_keeps_nmi_line_closed() -> None:
     assert summary["go_no_go"] == "NO_GO_keep_NMI_line_closed"
 
 
+def test_third_source_attempt_is_undercovered_not_positive_triangulation() -> None:
+    triangle = pd.read_csv(MILESTONE / "table_third_source_triangle_summary.csv")
+    mp_alex = triangle[triangle["comparison"].eq("MP_vs_Alex")].iloc[0]
+    assert int(mp_alex["n_common"]) == 287
+    assert float(mp_alex["discordance_rate"]) < 0.20
+    assert mp_alex["claim_scope"] == "completed_pairwise_baseline"
+
+    for comparison in ["MP_vs_OQMD", "Alex_vs_OQMD"]:
+        row = triangle[triangle["comparison"].eq(comparison)].iloc[0]
+        assert int(row["n_common"]) < 200
+        assert row["claim_scope"] == "blocked_or_undercovered_third_source"
+
+    closeout = (MILESTONE / "THIRD_SOURCE_AND_DISCORDANCE_DECOMPOSITION_CLOSEOUT.md").read_text(
+        encoding="utf-8"
+    )
+    assert "not a completed third-source measurement" in closeout
+
+
+def test_discordance_decomposition_localizes_to_near_hull_boundary() -> None:
+    near = pd.read_csv(MILESTONE / "table_discordance_near_hull_decomposition.csv")
+    either = near[near["band"].eq("either_near_hull_25meV")].iloc[0]
+    neither = near[near["band"].eq("neither_near_hull_25meV")].iloc[0]
+    assert int(either["discordant_n"]) > 0
+    assert float(either["discordance_rate"]) > float(neither["discordance_rate"])
+    assert int(neither["discordant_n"]) == 0
+
+    families = pd.read_csv(MILESTONE / "table_discordance_element_family.csv")
+    assert {"transition_metal", "alkali", "chalcogen"}.issubset(set(families["element_family"]))
+
+
+def test_wbm_alex_high_discordance_is_case_analysis_not_baseline() -> None:
+    cases = pd.read_csv(MILESTONE / "table_wbm_alex_case_comparison.csv")
+    wbm = cases[cases["case"].eq("WBM_vs_alex_existing_probe")].iloc[0]
+    route_b = cases[cases["case"].eq("MP_vs_alex_route_b_full_snapshot")].iloc[0]
+    assert float(wbm["discordance_rate"]) > float(route_b["discordance_rate"])
+    assert wbm["role"] == "case_analysis_high_discordance_source_selection_specific"
+    assert route_b["role"] == "full_snapshot_pairwise_baseline"
+
+
 def test_selection_conditional_discordance_no_go() -> None:
     top = pd.read_csv(MILESTONE / "table_selection_conditional_top_decile_summary.csv")
     assert set(top["model"]) == {"ALIGNN-FF", "CHGNet", "MACE-MP"}

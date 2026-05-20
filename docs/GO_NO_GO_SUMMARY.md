@@ -155,3 +155,55 @@ model-selected high-confidence region. It does not on the Route B denominator:
 | MACE-MP | 0.103 | 0.96 |
 
 Gate result: `NO_GO`. The NMI discordance line remains closed.
+
+## Third-Source Triangulation
+
+Status: attempted but undercovered.
+
+OQMD was added as a third-source exact-structure join attempt on the same
+MP-vs-Alex strict denominator. It does not support a completed three-source
+measurement:
+
+| Comparison | Exact common denominator | Claim scope |
+|---|---:|---|
+| MP vs Alex | 287 | completed pairwise baseline |
+| MP vs OQMD | 4 | blocked / undercovered third source |
+| Alex vs OQMD | 4 | blocked / undercovered third source |
+
+Interpretation: OQMD cannot currently be used as a third independent
+full-denominator measurement for this artifact. These rows must remain
+coverage-boundary diagnostics and cannot be used as positive triangulation.
+
+## Discordance Source Decomposition
+
+Status: completed MP-vs-Alex decomposition.
+
+The overall MP-vs-Alex discordance is modest, but it is concentrated at the
+stability boundary:
+
+| Band | n | Discordant | Discordance |
+|---|---:|---:|---:|
+| either source near hull within 25 meV/atom | 213 | 31 | 0.146 |
+| neither source near hull within 25 meV/atom | 74 | 0 | 0.000 |
+| MP near hull within 25 meV/atom | 198 | 29 | 0.146 |
+| Alex near hull within 25 meV/atom | 196 | 24 | 0.122 |
+
+Interpretation: the durable result is not an NMI-launching high-discordance
+finding. It is a more modest label-boundary result: binary stable/unstable
+calls disagree primarily near the hull, while the high-score ML selection
+amplification hypothesis remains a no-go.
+
+## WBM-vs-Alex Case Analysis
+
+Status: case-analysis contrast.
+
+The earlier WBM-vs-alex/PARC-style probe remains important because it explains
+why the stronger NMI hypothesis was plausible:
+
+| Case | n | Discordance | Role |
+|---|---:|---:|---|
+| WBM-vs-alex existing probe | 270 | 0.522 | high-discordance case analysis |
+| MP-vs-alex full snapshot | 287 | 0.108 | full-snapshot baseline |
+
+Interpretation: the 0.522 observation should be discussed openly as a
+selection/source-specific case, not hidden and not generalized.

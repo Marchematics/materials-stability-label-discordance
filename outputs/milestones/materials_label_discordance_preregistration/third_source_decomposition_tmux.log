@@ -1,0 +1,25 @@
+OQMD querying 249 chemical systems
+OQMD queried 25/249 chemical systems
+OQMD queried 50/249 chemical systems
+OQMD queried 75/249 chemical systems
+OQMD queried 100/249 chemical systems
+OQMD queried 125/249 chemical systems
+OQMD queried 150/249 chemical systems
+OQMD queried 175/249 chemical systems
+OQMD queried 200/249 chemical systems
+OQMD queried 225/249 chemical systems
+OQMD queried 249/249 chemical systems
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Wrote third-source/decomposition diagnostics
+EXIT:0

@@ -135,6 +135,29 @@ not concentrate in the top-ranked candidate decile across ALIGNN-FF, CHGNet,
 and MACE-MP. This is a no-go for the NMI discordance line under the current
 data.
 
+Third-source triangulation was attempted with OQMD on the same strict
+MP-vs-Alex denominator. The exact-structure common denominator was too small to
+support a three-source claim:
+
+```text
+MP-vs-OQMD exact common denominator: 4
+Alex-vs-OQMD exact common denominator: 4
+claim scope: blocked_or_undercovered_third_source
+```
+
+The completed decomposition result is therefore within the MP-vs-Alex
+denominator:
+
+```text
+overall MP-vs-Alex discordance: 0.108
+either-source near-hull 25 meV discordance: 0.146
+neither-source near-hull 25 meV discordance: 0.000
+```
+
+This localizes the modest full-snapshot discordance at the stability decision
+boundary. The earlier WBM-vs-alex/PARC-style 0.522 discordance is retained as a
+case-analysis contrast, not as the full-snapshot baseline.
+
 ## Claim Boundaries
 
 Allowed:
@@ -143,6 +166,8 @@ Allowed:
   exact-stability label discordance.”
 - “The primary downstream ranking-flip gate did not pass under the current
   same-denominator frontier-model endpoint.”
+- “The completed MP-vs-Alex decomposition localizes discordance near the
+  25 meV/atom stability boundary.”
 
 Forbidden:
 
@@ -151,6 +176,8 @@ Forbidden:
 - “PARC solves cross-source DFT disagreement.”
 - “The NMI discordance paper is launched.”
 - “Formula-only matches support the headline discordance number.”
+- “OQMD triangulates the MP-vs-Alex result.” The current OQMD exact denominator
+  is undercovered.
 
 ## Main Files
 
@@ -181,7 +208,18 @@ outputs/milestones/materials_label_discordance_preregistration/
   table_route_c_existing_probe_ranking_metrics.csv
   table_route_c_existing_probe_flip_summary.csv
   ROUTE_B_FULL_SNAPSHOT_RESCUE_CLOSEOUT.md
+  THIRD_SOURCE_AND_DISCORDANCE_DECOMPOSITION_CLOSEOUT.md
   table_route_b_full_snapshot_data_access_failure.csv
+  table_route_b_full_snapshot_matches.csv
+  table_route_b_full_snapshot_model_scores.csv
+  table_route_b_full_snapshot_ranking_metrics.csv
+  table_route_b_full_snapshot_summary.csv
+  table_third_source_triangle_summary.csv
+  table_discordance_near_hull_decomposition.csv
+  table_discordance_chemical_system_top.csv
+  table_discordance_element_family.csv
+  table_discordance_prototype_proxy.csv
+  table_wbm_alex_case_comparison.csv
   table_data_access_smoke.csv
   table_minimal_discordance_probe.csv
   table_frontier_model_scores.csv
