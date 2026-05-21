@@ -1,0 +1,5 @@
+fig4_panel,bar,n,discordance_rate,interpretation
+a,WBM_vs_alex_existing_probe,270,0.5222222222222223,selection/source-specific high-discordance case analysis; not full-snapshot baseline
+b,MP_vs_alex_full_denominator,287,0.10801393728222997,full strict-structure MP-vs-Alex denominator baseline
+c,MP_native_exact_stable_release_conditioned,124,0.1693548387096774,"portable source-native release rule applied to MP, evaluated under Alex"
+c_sensitivity,MP_native_near_hull_25meV_conditioned,198,0.14646464646464646,near-hull release-boundary sensitivity for panel c

@@ -158,6 +158,20 @@ This localizes the modest full-snapshot discordance at the stability decision
 boundary. The earlier WBM-vs-alex/PARC-style 0.522 discordance is retained as a
 case-analysis contrast, not as the full-snapshot baseline.
 
+The Fig. 4(c) reconciliation bar is now completed:
+
+```text
+MP-native exact-stable release set: n=124
+MP-vs-Alex discordance on that selected set: 0.169
+full MP-vs-Alex denominator discordance: 0.108
+WBM-vs-alex existing probe discordance: 0.522
+```
+
+A strict SCS/PARC portability check on the 287-row MP-vs-Alex denominator
+released zero candidates at alpha=0.10 across all tested budgets, so Fig. 4(c)
+is explicitly a source-native release-conditioning diagnostic rather than a new
+certified PARC release claim.
+
 ## Claim Boundaries
 
 Allowed:
@@ -209,6 +223,7 @@ outputs/milestones/materials_label_discordance_preregistration/
   table_route_c_existing_probe_flip_summary.csv
   ROUTE_B_FULL_SNAPSHOT_RESCUE_CLOSEOUT.md
   THIRD_SOURCE_AND_DISCORDANCE_DECOMPOSITION_CLOSEOUT.md
+  FIG4C_SELECTION_CONDITIONED_MP_ALEX_CLOSEOUT.md
   table_route_b_full_snapshot_data_access_failure.csv
   table_route_b_full_snapshot_matches.csv
   table_route_b_full_snapshot_model_scores.csv
@@ -220,6 +235,9 @@ outputs/milestones/materials_label_discordance_preregistration/
   table_discordance_element_family.csv
   table_discordance_prototype_proxy.csv
   table_wbm_alex_case_comparison.csv
+  table_fig4c_selection_conditioned_mp_alex.csv
+  table_fig4c_scs_portability_check.csv
+  table_fig4_reconciliation_bars.csv
   table_data_access_smoke.csv
   table_minimal_discordance_probe.csv
   table_frontier_model_scores.csv

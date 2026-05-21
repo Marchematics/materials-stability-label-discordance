@@ -278,6 +278,35 @@ def test_wbm_alex_high_discordance_is_case_analysis_not_baseline() -> None:
     assert route_b["role"] == "full_snapshot_pairwise_baseline"
 
 
+def test_fig4c_selection_conditioned_mp_alex_bar_is_completed_and_scoped() -> None:
+    fig4c = pd.read_csv(MILESTONE / "table_fig4c_selection_conditioned_mp_alex.csv")
+    full = fig4c[fig4c["selection_rule"].eq("full_MP_Alex_strict_denominator")].iloc[0]
+    selected = fig4c[fig4c["selection_rule"].eq("MP_native_exact_stable_release_ehull_le_0")].iloc[0]
+    near = fig4c[fig4c["selection_rule"].eq("MP_native_near_hull_release_ehull_le_25meV")].iloc[0]
+
+    assert int(full["n_selected"]) == 287
+    assert int(selected["n_selected"]) == 124
+    assert int(selected["mp_selected_but_alex_unstable_n"]) == 21
+    assert float(selected["discordance_rate"]) > float(full["discordance_rate"])
+    assert float(selected["discordance_rate"]) < 0.25
+    assert near["paper_role"] == "selection_boundary_sensitivity"
+
+    bars = pd.read_csv(MILESTONE / "table_fig4_reconciliation_bars.csv")
+    assert {"a", "b", "c"}.issubset(set(bars["fig4_panel"]))
+    panel_c = bars[bars["fig4_panel"].eq("c")].iloc[0]
+    assert panel_c["bar"] == "MP_native_exact_stable_release_conditioned"
+
+    scs = pd.read_csv(MILESTONE / "table_fig4c_scs_portability_check.csv")
+    assert int((scs["released"].astype(int) > 0).sum()) == 0
+    assert set(scs["claim_scope"]) == {"strict_SCS_portability_check_not_fig4c_bar"}
+
+    closeout = (MILESTONE / "FIG4C_SELECTION_CONDITIONED_MP_ALEX_CLOSEOUT.md").read_text(
+        encoding="utf-8"
+    )
+    assert "not a new PARC guarantee" in closeout
+    assert "`0` non-empty seed rows" in closeout
+
+
 def test_selection_conditional_discordance_no_go() -> None:
     top = pd.read_csv(MILESTONE / "table_selection_conditional_top_decile_summary.csv")
     assert set(top["model"]) == {"ALIGNN-FF", "CHGNet", "MACE-MP"}

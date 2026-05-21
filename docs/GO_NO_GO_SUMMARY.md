@@ -207,3 +207,26 @@ why the stronger NMI hypothesis was plausible:
 
 Interpretation: the 0.522 observation should be discussed openly as a
 selection/source-specific case, not hidden and not generalized.
+
+## Fig. 4(c): Selection-Conditioned MP-vs-Alex Reconciliation
+
+Status: completed diagnostic.
+
+The source-native MP release rule was applied to the MP-vs-Alex exact-match
+denominator:
+
+| Bar | n | Discordance | Role |
+|---|---:|---:|---|
+| WBM-vs-alex existing probe | 270 | 0.522 | case-analysis high-discordance probe |
+| MP-vs-Alex full denominator | 287 | 0.108 | full denominator baseline |
+| MP-native exact-stable selected set | 124 | 0.169 | Fig. 4(c) selection-conditioned bar |
+| MP-native 25 meV near-hull set | 198 | 0.146 | sensitivity |
+
+Interpretation: conditioning on the MP-native stable-release set increases
+discordance relative to the full MP-vs-Alex denominator, but only modestly and
+far below the 0.522 WBM-vs-alex case. The reconciliation is therefore mostly a
+source-pair / denominator effect, with a smaller MP-native selection effect.
+
+A strict SCS/PARC portability check on this small denominator produced zero
+non-empty releases at `alpha=0.10`, so this panel is not a certified PARC
+release claim.
