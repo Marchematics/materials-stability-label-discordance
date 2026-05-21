@@ -172,6 +172,22 @@ released zero candidates at alpha=0.10 across all tested budgets, so Fig. 4(c)
 is explicitly a source-native release-conditioning diagnostic rather than a new
 certified PARC release claim.
 
+Full Alexandria MP-identifier denominator construction has also been run as a
+separate public-safe milestone. It does not overwrite the frozen 287-row
+Route-B diagnostic:
+
+```text
+Alexandria rows with MP identifiers: 43,984
+MP records successfully queried: 43,169
+strict StructureMatcher matches: 43,139
+MP-vs-Alex exact-stability discordance: 5,060 / 43,139 = 0.1173
+claim scope: full denominator construction, not a new NMI launch gate
+```
+
+This confirms that the full MP-Alex overlap remains a modest source-discordance
+regime, close to the smaller MP-Alex diagnostic and far below the preregistered
+0.40 NMI-launch threshold.
+
 Submission-readiness diagnostics were added to make the denominator and
 benchmark consequences auditable:
 

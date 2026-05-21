@@ -193,6 +193,28 @@ finding. It is a more modest label-boundary result: binary stable/unstable
 calls disagree primarily near the hull, while the high-score ML selection
 amplification hypothesis remains a no-go.
 
+## Full MP-Alex Denominator Construction
+
+Status: completed as a separate denominator-scale audit.
+
+All Alexandria v20 rows with Materials Project identifiers were processed
+without overwriting the frozen 287-row Route-B diagnostic. The public-safe
+artifact set commits the strict-match CSV and summary tables; the raw MP
+structure JSONL cache is retained locally only.
+
+| Item | Value |
+|---|---:|
+| Alexandria MP-ID rows | 43,984 |
+| MP records successfully queried | 43,169 |
+| strict StructureMatcher matches | 43,139 |
+| discordant exact-stability labels | 5,060 |
+| discordance rate | 0.1173 |
+
+Interpretation: the full MP-Alex overlap confirms a modest pairwise
+source-discordance regime. It does not reopen the NMI discordance line because
+the rate remains far below the preregistered 0.40 launch gate and no frontier
+ranking-flip endpoint is added by this denominator construction step.
+
 ## WBM-vs-Alex Case Analysis
 
 Status: case-analysis contrast.

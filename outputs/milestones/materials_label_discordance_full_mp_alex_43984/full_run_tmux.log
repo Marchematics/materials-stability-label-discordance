@@ -1,0 +1,1654 @@
+MP fetch checkpoint: done=0 todo=43984 total=43984
+Retrieving SummaryDoc documents:   0%|          | 0/90 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 90/90 [00:00<00:00, 1348169.14it/s]
+MP fetched 100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1335765.61it/s]
+MP fetched 200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1919091.92it/s]
+MP fetched 300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2814969.13it/s]
+MP fetched 400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1426634.01it/s]
+MP fetched 500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1222829.15it/s]
+MP fetched 600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1950839.07it/s]
+MP fetched 700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1398101.33it/s]
+MP fetched 800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2467237.65it/s]
+MP fetched 900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1985709.14it/s]
+MP fetched 1000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 808540.53it/s]
+MP fetched 1100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1181494.08it/s]
+MP fetched 1200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1476867.61it/s]
+MP fetched 1300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 468114.29it/s]
+MP fetched 1400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1847711.01it/s]
+MP fetched 1500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 758463.65it/s]
+MP fetched 1600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1740375.10it/s]
+MP fetched 1700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 560372.60it/s]
+MP fetched 1800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1237257.82it/s]
+MP fetched 1900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2026233.82it/s]
+MP fetched 2000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1467265.36it/s]
+MP fetched 2100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1698098.79it/s]
+MP fetched 2200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1677721.60it/s]
+MP fetched 2300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1198372.57it/s]
+MP fetched 2400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1438047.09it/s]
+MP fetched 2500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 2710604.63it/s]
+MP fetched 2600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 2005081.91it/s]
+MP fetched 2700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 2005081.91it/s]
+MP fetched 2800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 2537295.01it/s]
+MP fetched 2900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1446815.67it/s]
+MP fetched 3000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1835008.00it/s]
+MP fetched 3100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2066159.61it/s]
+MP fetched 3200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2481836.69it/s]
+MP fetched 3300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1996327.38it/s]
+MP fetched 3400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 824028.29it/s]
+MP fetched 3500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 2097152.00it/s]
+MP fetched 3600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2291969.40it/s]
+MP fetched 3700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1878896.36it/s]
+MP fetched 3800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 788403.01it/s]
+MP fetched 3900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1880853.81it/s]
+MP fetched 4000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1615704.65it/s]
+MP fetched 4100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1605632.00it/s]
+MP fetched 4200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 711020.71it/s]
+MP fetched 4300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2107797.44it/s]
+MP fetched 4400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1226404.68it/s]
+MP fetched 4500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2006844.02it/s]
+MP fetched 4600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1269835.16it/s]
+MP fetched 4700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/93 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 93/93 [00:00<00:00, 1652840.14it/s]
+MP fetched 4800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 2300875.34it/s]
+MP fetched 4900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 2296322.86it/s]
+MP fetched 5000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 2187352.09it/s]
+MP fetched 5100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2162012.37it/s]
+MP fetched 5200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 2152632.21it/s]
+MP fetched 5300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 2694354.23it/s]
+MP fetched 5400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1955997.54it/s]
+MP fetched 5500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1546135.59it/s]
+MP fetched 5600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1931330.68it/s]
+MP fetched 5700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1677721.60it/s]
+MP fetched 5800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1835008.00it/s]
+MP fetched 5900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/91 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 91/91 [00:00<00:00, 1645179.59it/s]
+MP fetched 6000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1314215.25it/s]
+MP fetched 6100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1083144.44it/s]
+MP fetched 6200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 790593.02it/s]
+MP fetched 6300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1692122.64it/s]
+MP fetched 6400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 2343875.76it/s]
+MP fetched 6500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 2141772.26it/s]
+MP fetched 6600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1847711.01it/s]
+MP fetched 6700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1298546.13it/s]
+MP fetched 6800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1356980.71it/s]
+MP fetched 6900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2486443.69it/s]
+MP fetched 7000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1329566.95it/s]
+MP fetched 7100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1691251.61it/s]
+MP fetched 7200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 699050.67it/s]
+MP fetched 7300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 740171.29it/s]
+MP fetched 7400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1267161.33it/s]
+MP fetched 7500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 312308.56it/s]
+MP fetched 7600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1553445.93it/s]
+MP fetched 7700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1043359.20it/s]
+MP fetched 7800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1231355.30it/s]
+MP fetched 7900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 983849.09it/s]
+MP fetched 8000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1112301.61it/s]
+MP fetched 8100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1361065.54it/s]
+MP fetched 8200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1134234.32it/s]
+MP fetched 8300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/82 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 82/82 [00:00<00:00, 1386826.32it/s]
+MP fetched 8400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/73 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 73/73 [00:00<00:00, 1191378.18it/s]
+MP fetched 8500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/68 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 68/68 [00:00<00:00, 1462629.09it/s]
+MP fetched 8600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1428494.84it/s]
+MP fetched 8700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/66 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 66/66 [00:00<00:00, 407094.21it/s]
+MP fetched 8800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/63 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 63/63 [00:00<00:00, 844220.93it/s]
+MP fetched 8900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1623601.55it/s]
+MP fetched 9000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1906501.82it/s]
+MP fetched 9100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 684225.77it/s]
+MP fetched 9200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 548275.03it/s]
+MP fetched 9300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1269835.16it/s]
+MP fetched 9400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 1158310.70it/s]
+MP fetched 9500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 820624.70it/s]
+MP fetched 9600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 984578.40it/s]
+MP fetched 9700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 524288.00it/s]
+MP fetched 9800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1864135.11it/s]
+MP fetched 9900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1273730.36it/s]
+MP fetched 10000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2005971.48it/s]
+MP fetched 10100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1519675.36it/s]
+MP fetched 10200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1508742.45it/s]
+MP fetched 10300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 628831.18it/s]
+MP fetched 10400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 259067.57it/s]
+MP fetched 10500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 677593.54it/s]
+MP fetched 10600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 973156.38it/s]
+MP fetched 10700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1634787.78it/s]
+MP fetched 10800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2036069.90it/s]
+MP fetched 10900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 486014.37it/s]
+MP fetched 11000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1174875.07it/s]
+MP fetched 11100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 549981.58it/s]
+MP fetched 11200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 840541.88it/s]
+MP fetched 11300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1807889.66it/s]
+MP fetched 11400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1807889.66it/s]
+MP fetched 11500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 935349.48it/s]
+MP fetched 11600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/93 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 93/93 [00:00<00:00, 1893545.01it/s]
+MP fetched 11700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1735574.07it/s]
+MP fetched 11800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1427228.44it/s]
+MP fetched 11900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 943718.40it/s]
+MP fetched 12000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1238077.69it/s]
+MP fetched 12100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1089429.61it/s]
+MP fetched 12200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 457221.13it/s]
+MP fetched 12300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 594894.12it/s]
+MP fetched 12400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1512444.19it/s]
+MP fetched 12500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1105563.83it/s]
+MP fetched 12600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 500284.45it/s]
+MP fetched 12700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 844192.54it/s]
+MP fetched 12800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/91 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 91/91 [00:00<00:00, 1106323.66it/s]
+MP fetched 12900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 750980.14it/s]
+MP fetched 13000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1191281.61it/s]
+MP fetched 13100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1017118.72it/s]
+MP fetched 13200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1016800.97it/s]
+MP fetched 13300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 571685.39it/s]
+MP fetched 13400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1597061.91it/s]
+MP fetched 13500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1286596.32it/s]
+MP fetched 13600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1892313.90it/s]
+MP fetched 13700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 835518.73it/s]
+MP fetched 13800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/83 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 83/83 [00:00<00:00, 798456.95it/s]
+MP fetched 13900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 942540.22it/s]
+MP fetched 14000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 313683.49it/s]
+MP fetched 14100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 452689.20it/s]
+MP fetched 14200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/91 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 91/91 [00:00<00:00, 400085.60it/s]
+MP fetched 14300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1006632.96it/s]
+MP fetched 14400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1789810.76it/s]
+MP fetched 14500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 273181.64it/s]
+MP fetched 14600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/93 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 93/93 [00:00<00:00, 1681337.38it/s]
+MP fetched 14700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1019954.82it/s]
+MP fetched 14800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1597061.91it/s]
+MP fetched 14900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1427228.44it/s]
+MP fetched 15000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1307315.53it/s]
+MP fetched 15100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 654924.54it/s]
+MP fetched 15200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1263344.58it/s]
+MP fetched 15300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1565038.81it/s]
+MP fetched 15400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1076612.79it/s]
+MP fetched 15500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/92 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 92/92 [00:00<00:00, 1037300.99it/s]
+MP fetched 15600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/93 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 93/93 [00:00<00:00, 1101893.42it/s]
+MP fetched 15700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1065579.94it/s]
+MP fetched 15800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2269049.70it/s]
+MP fetched 15900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1831573.80it/s]
+MP fetched 16000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 405246.76it/s]
+MP fetched 16100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 197100.75it/s]
+MP fetched 16200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1254489.72it/s]
+MP fetched 16300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 752239.30it/s]
+MP fetched 16400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1384120.32it/s]
+MP fetched 16500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2076388.12it/s]
+MP fetched 16600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1103764.21it/s]
+MP fetched 16700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1647762.29it/s]
+MP fetched 16800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1402873.01it/s]
+MP fetched 16900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 993910.90it/s]
+MP fetched 17000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 912606.80it/s]
+MP fetched 17100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1086607.25it/s]
+MP fetched 17200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1252031.04it/s]
+MP fetched 17300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 568333.88it/s]
+MP fetched 17400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 750322.72it/s]
+MP fetched 17500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1530767.88it/s]
+MP fetched 17600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 822412.55it/s]
+MP fetched 17700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1083799.48it/s]
+MP fetched 17800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2097152.00it/s]
+MP fetched 17900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2025541.93it/s]
+MP fetched 18000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1607013.03it/s]
+MP fetched 18100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 593253.75it/s]
+MP fetched 18200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1130540.16it/s]
+MP fetched 18300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 995770.01it/s]
+MP fetched 18400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 986895.06it/s]
+MP fetched 18500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1872457.14it/s]
+MP fetched 18600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1407579.99it/s]
+MP fetched 18700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1402777.26it/s]
+MP fetched 18800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1003422.01it/s]
+MP fetched 18900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1109604.23it/s]
+MP fetched 19000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1106676.52it/s]
+MP fetched 19100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 737136.03it/s]
+MP fetched 19200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 815788.01it/s]
+MP fetched 19300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1233618.82it/s]
+MP fetched 19400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 576140.66it/s]
+MP fetched 19500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 854237.07it/s]
+MP fetched 19600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1198372.57it/s]
+MP fetched 19700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 805048.75it/s]
+MP fetched 19800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 779054.59it/s]
+MP fetched 19900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 935216.43it/s]
+MP fetched 20000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1081006.19it/s]
+MP fetched 20100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1248304.76it/s]
+MP fetched 20200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1306636.76it/s]
+MP fetched 20300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1051230.62it/s]
+MP fetched 20400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1092266.67it/s]
+MP fetched 20500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 721845.80it/s]
+MP fetched 20600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 562721.28it/s]
+MP fetched 20700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1442251.90it/s]
+MP fetched 20800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1171593.30it/s]
+MP fetched 20900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 306518.86it/s]
+MP fetched 21000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1613193.85it/s]
+MP fetched 21100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1417188.04it/s]
+MP fetched 21200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 255283.26it/s]
+MP fetched 21300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 977693.24it/s]
+MP fetched 21400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/93 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 93/93 [00:00<00:00, 619159.16it/s]
+MP fetched 21500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1872457.14it/s]
+MP fetched 21600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1019954.82it/s]
+MP fetched 21700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 895515.89it/s]
+MP fetched 21800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 703742.28it/s]
+MP fetched 21900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1677721.60it/s]
+MP fetched 22000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1172983.32it/s]
+MP fetched 22100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1285560.67it/s]
+MP fetched 22200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1186388.85it/s]
+MP fetched 22300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1738664.48it/s]
+MP fetched 22400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1821210.95it/s]
+MP fetched 22500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1446311.72it/s]
+MP fetched 22600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 913045.77it/s]
+MP fetched 22700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1166393.53it/s]
+MP fetched 22800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 511882.68it/s]
+MP fetched 22900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 964791.48it/s]
+MP fetched 23000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1056746.72it/s]
+MP fetched 23100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/93 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 93/93 [00:00<00:00, 437789.31it/s]
+MP fetched 23200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 947751.38it/s]
+MP fetched 23300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1356158.29it/s]
+MP fetched 23400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/79 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 79/79 [00:00<00:00, 567380.16it/s]
+MP fetched 23500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/85 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 85/85 [00:00<00:00, 371370.67it/s]
+MP fetched 23600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1462098.93it/s]
+MP fetched 23700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 929869.28it/s]
+MP fetched 23800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1595480.35it/s]
+MP fetched 23900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1670901.59it/s]
+MP fetched 24000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1393362.01it/s]
+MP fetched 24100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/92 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 92/92 [00:00<00:00, 1439835.70it/s]
+MP fetched 24200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1230664.05it/s]
+MP fetched 24300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1684459.44it/s]
+MP fetched 24400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1250711.13it/s]
+MP fetched 24500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1677721.60it/s]
+MP fetched 24600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 798915.05it/s]
+MP fetched 24700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1250475.73it/s]
+MP fetched 24800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1482197.65it/s]
+MP fetched 24900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1212512.66it/s]
+MP fetched 25000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 891064.58it/s]
+MP fetched 25100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 2186392.51it/s]
+MP fetched 25200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 2597762.48it/s]
+MP fetched 25300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 2065536.64it/s]
+MP fetched 25400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1644167.17it/s]
+MP fetched 25500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1499047.28it/s]
+MP fetched 25600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1173406.48it/s]
+MP fetched 25700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1794942.32it/s]
+MP fetched 25800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1890390.54it/s]
+MP fetched 25900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 566488.53it/s]
+MP fetched 26000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2056031.37it/s]
+MP fetched 26100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1025502.20it/s]
+MP fetched 26200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1322407.95it/s]
+MP fetched 26300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1542023.53it/s]
+MP fetched 26400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1967943.58it/s]
+MP fetched 26500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1940355.59it/s]
+MP fetched 26600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1393362.01it/s]
+MP fetched 26700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1902971.26it/s]
+MP fetched 26800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 2086506.56it/s]
+MP fetched 26900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 441970.92it/s]
+MP fetched 27000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1504478.61it/s]
+MP fetched 27100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1580929.97it/s]
+MP fetched 27200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1181154.57it/s]
+MP fetched 27300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1885512.81it/s]
+MP fetched 27400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 769597.06it/s]
+MP fetched 27500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1184831.64it/s]
+MP fetched 27600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1402777.26it/s]
+MP fetched 27700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1800130.47it/s]
+MP fetched 27800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1687951.61it/s]
+MP fetched 27900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1059167.68it/s]
+MP fetched 28000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1632024.90it/s]
+MP fetched 28100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1521011.34it/s]
+MP fetched 28200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1029803.54it/s]
+MP fetched 28300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1254489.72it/s]
+MP fetched 28400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1515460.20it/s]
+MP fetched 28500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2231012.77it/s]
+MP fetched 28600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2319754.73it/s]
+MP fetched 28700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1926570.26it/s]
+MP fetched 28800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1870432.86it/s]
+MP fetched 28900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 953250.91it/s]
+MP fetched 29000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1922389.33it/s]
+MP fetched 29100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1023000.98it/s]
+MP fetched 29200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2185453.14it/s]
+MP fetched 29300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1671037.45it/s]
+MP fetched 29400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1471685.61it/s]
+MP fetched 29500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1323124.29it/s]
+MP fetched 29600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1100867.19it/s]
+MP fetched 29700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1366222.80it/s]
+MP fetched 29800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1466539.86it/s]
+MP fetched 29900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1402777.26it/s]
+MP fetched 30000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1282661.77it/s]
+MP fetched 30100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1110923.76it/s]
+MP fetched 30200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1436803.10it/s]
+MP fetched 30300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1205259.77it/s]
+MP fetched 30400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1889326.13it/s]
+MP fetched 30500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2343186.59it/s]
+MP fetched 30600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 944663.06it/s]
+MP fetched 30700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1530767.88it/s]
+MP fetched 30800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1265963.71it/s]
+MP fetched 30900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1797558.86it/s]
+MP fetched 31000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1488301.42it/s]
+MP fetched 31100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 577518.91it/s]
+MP fetched 31200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1576806.02it/s]
+MP fetched 31300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 748982.86it/s]
+MP fetched 31400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 840541.88it/s]
+MP fetched 31500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 727208.57it/s]
+MP fetched 31600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 904653.80it/s]
+MP fetched 31700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1086607.25it/s]
+MP fetched 31800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 995770.01it/s]
+MP fetched 31900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1196645.81it/s]
+MP fetched 32000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 709696.11it/s]
+MP fetched 32100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1677721.60it/s]
+MP fetched 32200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 544215.07it/s]
+MP fetched 32300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 581734.26it/s]
+MP fetched 32400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 938323.04it/s]
+MP fetched 32500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 989896.56it/s]
+MP fetched 32600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 633580.66it/s]
+MP fetched 32700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1462098.93it/s]
+MP fetched 32800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1069975.51it/s]
+MP fetched 32900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1864135.11it/s]
+MP fetched 33000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 900729.06it/s]
+MP fetched 33100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 710898.98it/s]
+MP fetched 33200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1343273.83it/s]
+MP fetched 33300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1928187.15it/s]
+MP fetched 33400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 496427.29it/s]
+MP fetched 33500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/96 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 96/96 [00:00<00:00, 1383687.92it/s]
+MP fetched 33600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1347177.11it/s]
+MP fetched 33700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1647762.29it/s]
+MP fetched 33800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1904752.73it/s]
+MP fetched 33900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2076180.48it/s]
+MP fetched 34000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1317441.64it/s]
+MP fetched 34100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1522377.01it/s]
+MP fetched 34200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 407094.21it/s]
+MP fetched 34300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1017735.53it/s]
+MP fetched 34400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 605300.43it/s]
+MP fetched 34500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 643776.89it/s]
+MP fetched 34600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1051204.01it/s]
+MP fetched 34700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1240918.34it/s]
+MP fetched 34800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 825519.08it/s]
+MP fetched 34900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1344328.21it/s]
+MP fetched 35000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1691530.01it/s]
+MP fetched 35100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1493426.42it/s]
+MP fetched 35200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1458234.72it/s]
+MP fetched 35300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 722096.29it/s]
+MP fetched 35400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1511183.06it/s]
+MP fetched 35500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1759474.98it/s]
+MP fetched 35600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 871996.67it/s]
+MP fetched 35700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1753652.97it/s]
+MP fetched 35800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1628376.85it/s]
+MP fetched 35900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 991561.23it/s]
+MP fetched 36000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1230001.17it/s]
+MP fetched 36100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1997287.62it/s]
+MP fetched 36200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1754938.91it/s]
+MP fetched 36300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1421797.97it/s]
+MP fetched 36400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1476867.61it/s]
+MP fetched 36500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 253585.49it/s]
+MP fetched 36600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1191563.64it/s]
+MP fetched 36700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 723155.86it/s]
+MP fetched 36800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1059275.76it/s]
+MP fetched 36900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1252031.04it/s]
+MP fetched 37000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1379705.26it/s]
+MP fetched 37100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 909827.33it/s]
+MP fetched 37200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1384258.75it/s]
+MP fetched 37300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1542023.53it/s]
+MP fetched 37400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1165084.44it/s]
+MP fetched 37500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1416994.59it/s]
+MP fetched 37600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 519097.03it/s]
+MP fetched 37700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1537911.47it/s]
+MP fetched 37800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 837186.43it/s]
+MP fetched 37900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1056499.75it/s]
+MP fetched 38000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 499917.04it/s]
+MP fetched 38100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1230664.05it/s]
+MP fetched 38200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2162012.37it/s]
+MP fetched 38300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1215740.29it/s]
+MP fetched 38400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1870432.86it/s]
+MP fetched 38500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 719434.65it/s]
+MP fetched 38600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 2365392.37it/s]
+MP fetched 38700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1478567.60it/s]
+MP fetched 38800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 399457.52it/s]
+MP fetched 38900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1462098.93it/s]
+MP fetched 39000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1174405.12it/s]
+MP fetched 39100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1165084.44it/s]
+MP fetched 39200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2185453.14it/s]
+MP fetched 39300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 2086613.55it/s]
+MP fetched 39400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 584017.01it/s]
+MP fetched 39500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1446815.67it/s]
+MP fetched 39600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 220404.83it/s]
+MP fetched 39700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1174875.07it/s]
+MP fetched 39800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 262662.41it/s]
+MP fetched 39900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1233618.82it/s]
+MP fetched 40000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 892405.11it/s]
+MP fetched 40100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1762312.61it/s]
+MP fetched 40200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1155455.65it/s]
+MP fetched 40300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 1892313.90it/s]
+MP fetched 40400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 921825.05it/s]
+MP fetched 40500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1168329.81it/s]
+MP fetched 40600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1896055.23it/s]
+MP fetched 40700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1932858.99it/s]
+MP fetched 40800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2107690.45it/s]
+MP fetched 40900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 2164082.38it/s]
+MP fetched 41000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1477708.53it/s]
+MP fetched 41100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1922389.33it/s]
+MP fetched 41200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1441341.58it/s]
+MP fetched 41300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 240775.20it/s]
+MP fetched 41400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 766783.18it/s]
+MP fetched 41500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 608752.39it/s]
+MP fetched 41600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1913530.40it/s]
+MP fetched 41700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 1861957.38it/s]
+MP fetched 41800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/94 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 94/94 [00:00<00:00, 1267731.76it/s]
+MP fetched 41900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/95 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 95/95 [00:00<00:00, 1581186.03it/s]
+MP fetched 42000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1452444.49it/s]
+MP fetched 42100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2184533.33it/s]
+MP fetched 42200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1715851.64it/s]
+MP fetched 42300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1142862.13it/s]
+MP fetched 42400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1292584.25it/s]
+MP fetched 42500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 2195970.68it/s]
+MP fetched 42600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 332881.27it/s]
+MP fetched 42700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 386986.11it/s]
+MP fetched 42800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1306636.76it/s]
+MP fetched 42900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 906629.03it/s]
+MP fetched 43000/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 371506.11it/s]
+MP fetched 43100/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 290813.07it/s]
+MP fetched 43200/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 152631.15it/s]
+MP fetched 43300/43984
+Retrieving SummaryDoc documents:   0%|          | 0/99 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 99/99 [00:00<00:00, 1000568.91it/s]
+MP fetched 43400/43984
+Retrieving SummaryDoc documents:   0%|          | 0/98 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 98/98 [00:00<00:00, 1422289.94it/s]
+MP fetched 43500/43984
+Retrieving SummaryDoc documents:   0%|          | 0/97 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 97/97 [00:00<00:00, 882532.51it/s]
+MP fetched 43600/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 1212226.59it/s]
+MP fetched 43700/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 871996.67it/s]
+MP fetched 43800/43984
+Retrieving SummaryDoc documents:   0%|          | 0/100 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 100/100 [00:00<00:00, 973156.38it/s]
+MP fetched 43900/43984
+Retrieving SummaryDoc documents:   0%|          | 0/84 [00:00<?, ?it/s]Retrieving SummaryDoc documents: 100%|██████████| 84/84 [00:00<00:00, 719023.54it/s]
+MP fetched 43984/43984
+Structure matching checkpoint: done=0 total=43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 1000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 18 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 2000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 3000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 4000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 32 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 5000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 6000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 3 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 7000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 8000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 9000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 10000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 11000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 28 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 12000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 28 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 3 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 13000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 3 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 14000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 15000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 40 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 17 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 16000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 28 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 17000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 3 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 14 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 18 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 18000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 14 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 3 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 19000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 14 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 20000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 14 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 21000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 22000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 23000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 24000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 25000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 26000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 13 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 14 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 27000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 28000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 5 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 29000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 28 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 30000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 31000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 32000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 5 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 28 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 32 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 33000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 26 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 28 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 3 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 14 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 34000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 18 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 35000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 3 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 36000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 10 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 30 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 37000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 3 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 38000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 7 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 20 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 39000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 40000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 41000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 42000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+Structure matched 43000/43984
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 4 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 6 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 8 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 2 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 24 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 12 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 1 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+/root/miniconda3/lib/python3.12/site-packages/pymatgen/core/structure.py:3117: UserWarning: Issues encountered while parsing CIF: 16 fractional coordinates rounded to ideal values to avoid issues with finite precision.
+  struct = parser.parse_structures(primitive=primitive)[0]
+EXIT:0

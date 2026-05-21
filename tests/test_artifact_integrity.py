@@ -6,6 +6,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 MILESTONE = ROOT / "outputs" / "milestones" / "materials_label_discordance_preregistration"
+FULL_MILESTONE = ROOT / "outputs" / "milestones" / "materials_label_discordance_full_mp_alex_43984"
 
 
 def test_no_secret_material_is_committed() -> None:
@@ -24,6 +25,26 @@ def test_no_secret_material_is_committed() -> None:
         combined,
     )
     assert credential_like == []
+
+
+def test_full_mp_alex_43984_denominator_is_completed_and_scoped() -> None:
+    summary = pd.read_csv(FULL_MILESTONE / "table_full_mp_alex_denominator_summary.csv").iloc[0]
+    assert int(summary["alex_mp_identifier_rows"]) == 43_984
+    assert int(summary["mp_records_successfully_queried"]) >= 43_000
+    assert int(summary["strict_structure_matches"]) >= 43_000
+    assert int(summary["discordant_n"]) == 5_060
+    assert 0.10 <= float(summary["discordance_rate"]) <= 0.13
+    assert summary["claim_scope"] == "full_43984_MP_identifier_denominator"
+
+    counts = pd.read_csv(FULL_MILESTONE / "table_full_mp_alex_match_status_counts.csv")
+    count_map = dict(zip(counts["match_status"], counts["count"]))
+    assert int(count_map["strict_structure_match"]) == 43_139
+    assert int(count_map["missing_mp_record"]) == 815
+    assert int(count_map["structure_mismatch"]) == 30
+
+    manifest = (FULL_MILESTONE / "MANIFEST_SHA256.txt").read_text(encoding="utf-8")
+    assert "table_full_mp_alex_structure_matches.csv" in manifest
+    assert "mp_records_summary_structures.jsonl" not in manifest
 
 
 def test_minimal_discordance_probe_passes_launch_signal() -> None:
