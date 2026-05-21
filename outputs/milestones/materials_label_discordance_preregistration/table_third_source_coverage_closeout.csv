@@ -1,0 +1,4 @@
+source,candidate_overlap,strict_matches,status,reason_for_exclusion
+OQMD public API,287,4,undercovered,insufficient exact StructureMatcher coverage for third-source measurement
+JARVIS dft_3d via jarvis-tools,not_established,not_established,blocked,public dataset access in this environment raises BadZipFile during jarvis-tools smoke
+WBM/Matbench,270,270,case_analysis_only,"different benchmark denominator; useful as explicit case analysis, not as third-source triangulation of MP-Alex"

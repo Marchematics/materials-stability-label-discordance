@@ -1,0 +1,8 @@
+component,definition,value
+WBM source,Matbench/WBM candidate rows from phase29 alex-mp A2 diagnostic,/home/waas/paper_experiments/github/Certified-Open-Vocabulary-MOT/outputs/milestones/materials_alex_mp_a1_a2_validation/table_alex_mp_a2_candidate_matches.csv
+Alexandria label source,"alex-mp v20 local snapshot, train+val files",/home/waas/paper_experiments/private/mattergen_repo/data-release/alex-mp/alex_mp_20.zip
+candidate universe,union of reconstructed raw/PARC candidates in the phase29 external-source diagnostic,701
+selection/matching rule,exact_structure_match rows only; formula-only rows excluded from FTR/discordance,270
+binary labels,source-native e_above_hull <= 0 eV/atom; no recomputed hull,WBM stable_DFT vs Alexandria alex_stable_exact
+duplicates,candidate material_id rows retained once in public-safe table,701
+Fig4 role,"case-analysis contrast, not full-snapshot baseline",0.522 discordance on exact matches

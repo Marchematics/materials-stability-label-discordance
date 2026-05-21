@@ -307,6 +307,110 @@ def test_fig4c_selection_conditioned_mp_alex_bar_is_completed_and_scoped() -> No
     assert "`0` non-empty seed rows" in closeout
 
 
+def test_denominator_construction_audit_explains_287_denominator() -> None:
+    audit = pd.read_csv(MILESTONE / "table_denominator_construction_audit.csv")
+    counts = dict(zip(audit["step"], audit["count"], strict=True))
+    assert int(counts["Alexandria v20 entries"]) == 675204
+    assert int(counts["Alexandria entries with MP identifiers"]) == 43984
+    assert int(counts["Frozen Route B MP-ID candidates attempted"]) == 300
+    assert int(counts["MP records successfully queried"]) == 287
+    assert int(counts["StructureMatcher strict matches"]) == 287
+    assert int(counts["MP/Alex labels available"]) == 287
+    assert int(counts["ALIGNN-FF scores available"]) == 287
+    assert int(counts["CHGNet scores available"]) == 287
+    assert int(counts["MACE-MP scores available"]) == 287
+    assert int(counts["OQMD exact matches"]) == 4
+
+
+def test_representativeness_tables_are_present_and_scoped() -> None:
+    stable = pd.read_csv(MILESTONE / "table_representativeness_stable_fraction.csv")
+    pops = set(stable["population"])
+    assert "Alexandria_v20_all_rows" in pops
+    assert "Alexandria_v20_MP_identifier_rows" in pops
+    assert "MP_Alex_strict_denominator_MP_labels" in pops
+    assert "MP_Alex_strict_denominator_Alex_labels" in pops
+
+    elements = pd.read_csv(MILESTONE / "table_representativeness_element_frequency.csv")
+    assert len(elements) > 10
+    crystal = pd.read_csv(MILESTONE / "table_representativeness_crystal_system.csv")
+    assert crystal["n"].sum() == 287
+    ehull = pd.read_csv(MILESTONE / "table_representativeness_ehull_distribution.csv")
+    assert {"MP", "Alexandria"}.issubset(set(ehull["source"]))
+
+
+def test_wbm_alex_probe_has_formal_definition_and_is_case_analysis() -> None:
+    definition = pd.read_csv(MILESTONE / "table_wbm_alex_probe_formal_definition.csv")
+    assert "selection/matching rule" in set(definition["component"])
+    summary = pd.read_csv(MILESTONE / "table_wbm_alex_probe_formal_summary.csv").iloc[0]
+    assert int(summary["n_candidate_rows"]) == 701
+    assert int(summary["n_exact_structure_match"]) == 270
+    assert int(summary["discordant_n"]) == 141
+    assert abs(float(summary["discordance_rate"]) - 0.5222222222222223) < 1e-12
+    assert summary["claim_scope"] == "formal_case_analysis_not_general_baseline"
+
+
+def test_uncertainty_threshold_sweep_captures_discordance_with_flag_burden() -> None:
+    sweep = pd.read_csv(MILESTONE / "table_uncertainty_threshold_sweep.csv")
+    row5 = sweep[sweep["threshold_meV_per_atom"].eq(5)].iloc[0]
+    row25 = sweep[sweep["threshold_meV_per_atom"].eq(25)].iloc[0]
+    assert int(row5["discordant_captured_n"]) == 31
+    assert int(row5["outside_discordant_n"]) == 0
+    assert float(row5["flagged_fraction"]) > 0.50
+    assert int(row25["discordant_captured_n"]) == 31
+    assert int(row25["outside_discordant_n"]) == 0
+    assert float(row25["flagged_fraction"]) > float(row5["flagged_fraction"])
+
+
+def test_uncertainty_filtered_benchmark_metrics_and_ranking_stability_exist() -> None:
+    metrics = pd.read_csv(MILESTONE / "table_benchmark_metrics_uncertainty_filtered.csv")
+    assert {"ALIGNN-FF", "CHGNet", "MACE-MP"}.issubset(set(metrics["model"]))
+    assert {"MP", "Alexandria"}.issubset(set(metrics["label_source"]))
+    assert {"none", "0.025"}.issubset(set(metrics["threshold_eV_per_atom"].astype(str)))
+    assert {"binary_precision", "binary_recall", "binary_F1", "AUROC_supporting"}.issubset(metrics.columns)
+
+    rank = pd.read_csv(MILESTONE / "table_benchmark_ranking_stability_uncertainty_filtered.csv")
+    assert "top_model_changed_vs_unfiltered" in rank.columns
+    assert not rank[rank["threshold_eV_per_atom"].astype(str).eq("none")]["top_model_changed_vs_unfiltered"].astype(bool).any()
+
+
+def test_selection_fraction_curve_and_regression_support_no_amplification() -> None:
+    curve = pd.read_csv(MILESTONE / "table_selection_fraction_discordance_curve.csv")
+    assert set(curve["selection_fraction"]) == {0.01, 0.05, 0.10, 0.20, 0.50}
+    assert set(curve["model"]) == {"ALIGNN-FF", "CHGNet", "MACE-MP"}
+    top10 = curve[curve["selection_fraction"].eq(0.10)]
+    assert top10["discordance_rate"].max() < 0.30
+    assert top10["permutation_p_ge_observed"].min() > 0.10
+
+    logit = pd.read_csv(MILESTONE / "table_logistic_regression_discordance.csv")
+    rank = logit[logit["predictor"].eq("rank_percentile")]
+    assert rank["standardized_logistic_coef"].abs().max() < 0.25
+    perm = pd.read_csv(MILESTONE / "table_model_rank_permutation_tests.csv")
+    assert perm["p_abs_ge_observed"].min() > 0.10
+
+
+def test_scatter_source_and_error_case_tables_exist() -> None:
+    scatter = pd.read_csv(MILESTONE / "table_mp_alex_ehull_scatter_source.csv")
+    assert len(scatter) == 287
+    assert {"both_stable", "both_unstable", "MP_stable_only", "Alex_stable_only"}.issubset(set(scatter["quadrant"]))
+    assert {"near_hull_10meV", "near_hull_25meV", "near_hull_50meV"}.issubset(scatter.columns)
+
+    cases = pd.read_csv(MILESTONE / "table_top_discordant_structures_by_delta_ehull.csv")
+    assert len(cases) >= 10
+    assert cases["abs_delta_ehull"].is_monotonic_decreasing
+    assert set(cases["structure_match_rms"]) == {"not_recorded_public_safe_artifact"}
+
+
+def test_third_source_coverage_closeout_keeps_boundaries() -> None:
+    closeout = pd.read_csv(MILESTONE / "table_third_source_coverage_closeout.csv")
+    oqmd = closeout[closeout["source"].eq("OQMD public API")].iloc[0]
+    assert int(oqmd["strict_matches"]) == 4
+    assert oqmd["status"] == "undercovered"
+    jarvis = closeout[closeout["source"].eq("JARVIS dft_3d via jarvis-tools")].iloc[0]
+    assert jarvis["status"] == "blocked"
+    wbm = closeout[closeout["source"].eq("WBM/Matbench")].iloc[0]
+    assert wbm["status"] == "case_analysis_only"
+
+
 def test_selection_conditional_discordance_no_go() -> None:
     top = pd.read_csv(MILESTONE / "table_selection_conditional_top_decile_summary.csv")
     assert set(top["model"]) == {"ALIGNN-FF", "CHGNet", "MACE-MP"}

@@ -1,0 +1,12 @@
+step,count,exclusion_reason,source_artifact
+Alexandria v20 entries,675204,full alex-mp v20 train+val rows available locally,alex_mp_20.zip
+Alexandria entries with MP identifiers,43984,non-MP Alexandria IDs cannot be queried through MP material_id join,alex_mp_20.zip
+Frozen Route B MP-ID candidates attempted,300,"predeclared minimal MP-vs-Alex rescue subset, not full Alexandria population",table_route_b_full_snapshot_matches.csv
+MP records successfully queried,287,missing/deprecated MP IDs removed,table_route_b_full_snapshot_matches.csv
+Reduced-formula compatible pairs,287,formula screen not a binding exclusion in this artifact; strict StructureMatcher is binding,table_route_b_full_snapshot_matches.csv
+StructureMatcher strict matches,287,retained denominator,table_route_b_full_snapshot_matches.csv
+MP/Alex labels available,287,primary pairwise analysis,table_route_b_full_snapshot_matches.csv
+ALIGNN-FF scores available,287,model analysis,table_route_b_full_snapshot_matches.csv
+CHGNet scores available,287,model analysis,table_route_b_full_snapshot_matches.csv
+MACE-MP scores available,287,model analysis,table_route_b_full_snapshot_matches.csv
+OQMD exact matches,4,"coverage boundary, not three-source measurement",table_mp_alex_oqmd_exact_matches.csv

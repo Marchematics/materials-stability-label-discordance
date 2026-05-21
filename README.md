@@ -172,6 +172,31 @@ released zero candidates at alpha=0.10 across all tested budgets, so Fig. 4(c)
 is explicitly a source-native release-conditioning diagnostic rather than a new
 certified PARC release claim.
 
+Submission-readiness diagnostics were added to make the denominator and
+benchmark consequences auditable:
+
+```text
+Alexandria v20 rows: 675,204
+Alexandria rows with MP identifiers: 43,984
+frozen Route-B MP-ID candidates attempted: 300
+MP records successfully queried: 287
+strict StructureMatcher denominator: 287
+OQMD exact matches: 4
+```
+
+Near-hull uncertainty flags capture all observed MP-vs-Alex binary discordance
+on this denominator, at the cost of substantial flag burden:
+
+```text
+5 meV either-source flag: captures 31/31 discordant pairs, flags 152/287
+25 meV either-source flag: captures 31/31 discordant pairs, flags 213/287
+```
+
+The selection-fraction curves and logistic/permutation tests keep the refined
+model-selection hypothesis closed: model rank is weak after accounting for
+energy-boundary variables, and no tested model shows robust high-score
+discordance amplification across selection fractions.
+
 ## Claim Boundaries
 
 Allowed:
@@ -224,6 +249,7 @@ outputs/milestones/materials_label_discordance_preregistration/
   ROUTE_B_FULL_SNAPSHOT_RESCUE_CLOSEOUT.md
   THIRD_SOURCE_AND_DISCORDANCE_DECOMPOSITION_CLOSEOUT.md
   FIG4C_SELECTION_CONDITIONED_MP_ALEX_CLOSEOUT.md
+  SUBMISSION_READY_DIAGNOSTICS_CLOSEOUT.md
   table_route_b_full_snapshot_data_access_failure.csv
   table_route_b_full_snapshot_matches.csv
   table_route_b_full_snapshot_model_scores.csv
@@ -238,6 +264,23 @@ outputs/milestones/materials_label_discordance_preregistration/
   table_fig4c_selection_conditioned_mp_alex.csv
   table_fig4c_scs_portability_check.csv
   table_fig4_reconciliation_bars.csv
+  table_denominator_construction_audit.csv
+  table_representativeness_num_sites_distribution.csv
+  table_representativeness_element_frequency.csv
+  table_representativeness_crystal_system.csv
+  table_representativeness_ehull_distribution.csv
+  table_representativeness_stable_fraction.csv
+  table_wbm_alex_probe_formal_definition.csv
+  table_wbm_alex_probe_formal_summary.csv
+  table_uncertainty_threshold_sweep.csv
+  table_benchmark_metrics_uncertainty_filtered.csv
+  table_benchmark_ranking_stability_uncertainty_filtered.csv
+  table_selection_fraction_discordance_curve.csv
+  table_logistic_regression_discordance.csv
+  table_model_rank_permutation_tests.csv
+  table_mp_alex_ehull_scatter_source.csv
+  table_top_discordant_structures_by_delta_ehull.csv
+  table_third_source_coverage_closeout.csv
   table_data_access_smoke.csv
   table_minimal_discordance_probe.csv
   table_frontier_model_scores.csv

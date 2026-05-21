@@ -230,3 +230,61 @@ source-pair / denominator effect, with a smaller MP-native selection effect.
 A strict SCS/PARC portability check on this small denominator produced zero
 non-empty releases at `alpha=0.10`, so this panel is not a certified PARC
 release claim.
+
+## Denominator Audit and Representativeness
+
+Status: completed audit.
+
+The exact-match denominator is now explicitly auditable:
+
+| Step | Count | Role |
+|---|---:|---|
+| Alexandria v20 rows | 675,204 | local source pool |
+| Alexandria rows with MP identifiers | 43,984 | MP-queryable source pool |
+| Frozen Route-B MP-ID candidates attempted | 300 | predeclared rescue subset |
+| MP records successfully queried | 287 | missing/deprecated IDs removed |
+| StructureMatcher strict matches | 287 | retained denominator |
+| OQMD exact matches | 4 | coverage boundary |
+
+Interpretation: the 287-row denominator is a strict exact-match comparison set,
+not a random intersection of all Alexandria or Materials Project entries.
+Representativeness tables report atom-count, element, crystal-system,
+energy-above-hull and stable-fraction distributions so the denominator can be
+read as an interpretable source-comparison set.
+
+## Benchmark Consequence of Near-Hull Flags
+
+Status: completed threshold sweep.
+
+Near-hull uncertainty flags capture all observed MP-vs-Alex binary discordance
+in this denominator:
+
+| Threshold | Flagged | Discordant captured | Outside discordance |
+|---:|---:|---:|---:|
+| 5 meV | 152/287 | 31/31 | 0/135 |
+| 10 meV | 165/287 | 31/31 | 0/122 |
+| 25 meV | 213/287 | 31/31 | 0/74 |
+| 50 meV | 249/287 | 31/31 | 0/38 |
+
+Interpretation: a boundary flag is effective at capturing discordant binary
+calls, but it is not cheap: even the 5 meV flag covers more than half of this
+strict denominator. This supports reporting stable/unstable/uncertain labels
+rather than treating near-hull binary labels as fixed ground truth.
+
+## Model-Selection Amplification Curves and Regression
+
+Status: completed no-go support.
+
+Selection-fraction curves over top 1%, 5%, 10%, 20% and 50% model-ranked
+candidates do not show robust enrichment across ALIGNN-FF, CHGNet and MACE-MP.
+Logistic diagnostics show that energy-boundary variables dominate, while
+model-rank percentile remains weak:
+
+| Model | rank-percentile coefficient | permutation p |
+|---|---:|---:|
+| ALIGNN-FF | 0.082 | 0.633 |
+| CHGNet | 0.151 | 0.367 |
+| MACE-MP | 0.164 | 0.327 |
+
+Interpretation: the selection-conditional high-score amplification hypothesis
+remains a core no-go result, not a footnote.
