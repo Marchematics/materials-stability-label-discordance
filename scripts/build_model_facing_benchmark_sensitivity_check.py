@@ -26,6 +26,8 @@ MP_STRUCTURE_CACHE = Path(
 SAMPLE_SEED = 20260523
 N_TARGET = 5000
 BATCH_SIZE = int(os.environ.get("CHGNET_BATCH_SIZE", "64"))
+BOOTSTRAP_SEED = 20260524
+N_BOOTSTRAP = 2000
 
 
 def sha256_file(path: Path) -> str:
@@ -51,7 +53,7 @@ def reduced_formula(formula: str) -> str:
         return str(formula)
 
 
-def load_denominator() -> pd.DataFrame:
+def load_full_denominator() -> pd.DataFrame:
     df = pd.read_csv(FULL / "table_full_mp_alex_structure_matches.csv")
     df = df[df["match_status"].eq("strict_structure_match")].copy()
     df["mp_e_above_hull"] = pd.to_numeric(df["mp_e_above_hull"], errors="coerce")
@@ -59,8 +61,13 @@ def load_denominator() -> pd.DataFrame:
     df["mp_stable"] = df["mp_stable_exact"].astype(str).str.lower().eq("true")
     df["alex_stable"] = df["alex_stable_exact"].astype(str).str.lower().eq("true")
     df["discordant"] = df["mp_stable"] != df["alex_stable"]
-    df = df.sort_values("material_id").sample(n=N_TARGET, random_state=SAMPLE_SEED).sort_values("material_id")
     df["target_reduced_formula"] = df["formula"].map(reduced_formula)
+    return df.reset_index(drop=True)
+
+
+def load_scoring_sample() -> pd.DataFrame:
+    df = load_full_denominator()
+    df = df.sort_values("material_id").sample(n=N_TARGET, random_state=SAMPLE_SEED).sort_values("material_id")
     return df.reset_index(drop=True)
 
 
@@ -221,6 +228,42 @@ def threshold_metrics(score_df: pd.DataFrame, label_col: str, denominator: str) 
     }
 
 
+def safe_auc(y: pd.Series, score: pd.Series) -> tuple[float | str, float | str]:
+    y = y.astype(bool)
+    if y.nunique() < 2:
+        return "", ""
+    return float(roc_auc_score(y, score)), float(average_precision_score(y, score))
+
+
+def write_score_direction_sanity(score_df: pd.DataFrame) -> None:
+    rng = np.random.default_rng(BOOTSTRAP_SEED)
+    random_score = pd.Series(rng.normal(size=len(score_df)), index=score_df.index)
+    score_defs = {
+        "raw_CHGNet_formation_energy_proxy_as_higher_stability_score": -score_df["score"],
+        "negative_CHGNet_formation_energy_proxy_as_higher_stability_score": score_df["score"],
+        "random_ranking_baseline": random_score,
+    }
+    rows = []
+    for score_name, score in score_defs.items():
+        for label_col in ["mp_stable", "alex_stable"]:
+            auroc, auprc = safe_auc(score_df[label_col], score)
+            rows.append(
+                {
+                    "score_variant": score_name,
+                    "label_source": label_col,
+                    "n": int(len(score_df)),
+                    "positive_rate": float(score_df[label_col].astype(bool).mean()),
+                    "auroc": auroc,
+                    "auprc": auprc,
+                    "interpretation": (
+                        "direction_sanity_only_not_model_selection; raw formation energy is not a composition-aware hull-distance predictor"
+                    ),
+                    "claim_scope": "model_facing_sensitivity_check_not_leaderboard",
+                }
+            )
+    pd.DataFrame(rows).to_csv(OUT / "table_chgnet_score_direction_sanity.csv", index=False)
+
+
 def precision_at_k(score_df: pd.DataFrame) -> pd.DataFrame:
     rows = []
     rankings = score_df.sort_values(["score", "material_id"], ascending=[False, True])
@@ -259,7 +302,112 @@ def precision_at_k(score_df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def write_topk_discordance_decomposition(score_df: pd.DataFrame) -> None:
+    ranked = score_df.sort_values(["score", "material_id"], ascending=[False, True])
+    rows = []
+    for k in [100, 300, 500, 1000, 2000]:
+        sub = ranked.head(k)
+        both_stable = sub["mp_stable"].astype(bool) & sub["alex_stable"].astype(bool)
+        mp_only = sub["mp_stable"].astype(bool) & ~sub["alex_stable"].astype(bool)
+        alex_only = ~sub["mp_stable"].astype(bool) & sub["alex_stable"].astype(bool)
+        both_unstable = ~sub["mp_stable"].astype(bool) & ~sub["alex_stable"].astype(bool)
+        rows.append(
+            {
+                "model": "CHGNet",
+                "K": k,
+                "both_stable_n": int(both_stable.sum()),
+                "mp_only_stable_n": int(mp_only.sum()),
+                "alex_only_stable_n": int(alex_only.sum()),
+                "both_unstable_n": int(both_unstable.sum()),
+                "mp_stable_n": int(sub["mp_stable"].astype(bool).sum()),
+                "alex_stable_n": int(sub["alex_stable"].astype(bool).sum()),
+                "mp_minus_alex_stable_n": int(sub["mp_stable"].astype(bool).sum())
+                - int(sub["alex_stable"].astype(bool).sum()),
+                "source_discordant_n": int((mp_only | alex_only).sum()),
+                "source_discordant_fraction": float((mp_only | alex_only).mean()),
+                "claim_scope": "model_facing_sensitivity_check_not_leaderboard",
+            }
+        )
+    pd.DataFrame(rows).to_csv(OUT / "table_topk_discordance_decomposition.csv", index=False)
+
+
+def write_sample_representativeness(score_df: pd.DataFrame) -> None:
+    full = load_full_denominator()
+    score_df = score_df.copy()
+    full["n_elements"] = full["formula"].map(lambda f: len(Composition(str(f)).elements))
+    score_df["n_elements"] = score_df["formula"].map(lambda f: len(Composition(str(f)).elements))
+    rows = []
+    for name, df in {"full_denominator": full, "chgnet_5000_sample": score_df}.items():
+        rows.append(
+            {
+                "comparison": name,
+                "stratum": "overall",
+                "n": int(len(df)),
+                "mp_stable_rate": float(df["mp_stable"].astype(bool).mean()),
+                "alex_stable_rate": float(df["alex_stable"].astype(bool).mean()),
+                "discordance_rate": float((df["mp_stable"].astype(bool) != df["alex_stable"].astype(bool)).mean()),
+                "median_n_sites": float(pd.to_numeric(df.get("num_sites", pd.Series(dtype=float)), errors="coerce").median())
+                if "num_sites" in df.columns
+                else "",
+                "median_n_elements": float(df["n_elements"].median()),
+                "claim_scope": "sample_representativeness_audit",
+            }
+        )
+        for n_el, sub in df.groupby("n_elements"):
+            rows.append(
+                {
+                    "comparison": name,
+                    "stratum": f"n_elements={int(n_el)}",
+                    "n": int(len(sub)),
+                    "mp_stable_rate": float(sub["mp_stable"].astype(bool).mean()),
+                    "alex_stable_rate": float(sub["alex_stable"].astype(bool).mean()),
+                    "discordance_rate": float((sub["mp_stable"].astype(bool) != sub["alex_stable"].astype(bool)).mean()),
+                    "median_n_sites": "",
+                    "median_n_elements": int(n_el),
+                    "claim_scope": "sample_representativeness_audit",
+                }
+            )
+    pd.DataFrame(rows).to_csv(OUT / "table_chgnet_sample_representativeness.csv", index=False)
+
+
+def write_precision_shift_bootstrap(score_df: pd.DataFrame) -> None:
+    ranked = score_df.sort_values(["score", "material_id"], ascending=[False, True]).reset_index(drop=True)
+    rng = np.random.default_rng(BOOTSTRAP_SEED)
+    rows = []
+    for k in [100, 300, 500, 1000, 2000]:
+        top = ranked.head(k).reset_index(drop=True)
+        obs = float(top["mp_stable"].astype(bool).mean() - top["alex_stable"].astype(bool).mean())
+        mp_n = int(top["mp_stable"].astype(bool).sum())
+        alex_n = int(top["alex_stable"].astype(bool).sum())
+        shifts = []
+        idx = np.arange(k)
+        for _ in range(N_BOOTSTRAP):
+            sample_idx = rng.choice(idx, size=k, replace=True)
+            boot = top.iloc[sample_idx]
+            shifts.append(float(boot["mp_stable"].astype(bool).mean() - boot["alex_stable"].astype(bool).mean()))
+        lo, hi = np.quantile(shifts, [0.025, 0.975])
+        rows.append(
+            {
+                "model": "CHGNet",
+                "K": k,
+                "mp_stable_n": mp_n,
+                "alex_stable_n": alex_n,
+                "observed_mp_minus_alex_precision_shift": obs,
+                "bootstrap_ci_low": float(lo),
+                "bootstrap_ci_high": float(hi),
+                "n_bootstrap": N_BOOTSTRAP,
+                "bootstrap_seed": BOOTSTRAP_SEED,
+                "claim_scope": "uncertainty_for_model_facing_sensitivity_check",
+            }
+        )
+    pd.DataFrame(rows).to_csv(OUT / "table_precision_shift_bootstrap.csv", index=False)
+
+
 def write_metrics(score_df: pd.DataFrame) -> None:
+    write_score_direction_sanity(score_df)
+    write_topk_discordance_decomposition(score_df)
+    write_sample_representativeness(score_df)
+    write_precision_shift_bootstrap(score_df)
     rows = [
         threshold_metrics(score_df, "mp_stable", "full_sample_5000"),
         threshold_metrics(score_df, "alex_stable", "full_sample_5000"),
@@ -293,22 +441,37 @@ def write_metrics(score_df: pd.DataFrame) -> None:
 
 def write_closeout() -> None:
     manifest = pd.read_csv(OUT / "table_chgnet_scored_subset_manifest.csv")
+    sanity = pd.read_csv(OUT / "table_chgnet_score_direction_sanity.csv")
     metrics = pd.read_csv(OUT / "table_model_metric_source_sensitivity.csv")
     pk = pd.read_csv(OUT / "table_precision_at_k_source_sensitivity.csv")
     shift = pd.read_csv(OUT / "table_precision_at_k_metric_shift.csv")
+    decomp = pd.read_csv(OUT / "table_topk_discordance_decomposition.csv")
+    representativeness = pd.read_csv(OUT / "table_chgnet_sample_representativeness.csv")
+    bootstrap = pd.read_csv(OUT / "table_precision_shift_bootstrap.csv")
     (OUT / "MODEL_FACING_BENCHMARK_SENSITIVITY_CHECK.md").write_text(
         "# Model-Facing Benchmark Sensitivity Check\n\n"
         "This completed diagnostic uses one real model ranking, CHGNet, on a deterministic 5,000-structure subset of the 43,139 strict MP-Alex denominator. "
         "Scores are negative CHGNet formation-energy proxies constructed from CHGNet structure energies and MP elemental reference structures. "
         "The result is not a leaderboard and does not compare multiple models; it checks whether the label-source effect observed in the oracle/source-label analysis also appears under a real ranking.\n\n"
+        "The score-direction sanity check is intentionally reported before interpretation. "
+        "The raw formation-energy proxy direction has AUROC above 0.5 on this subset, while the negative-formation direction used for the frozen ranking has AUROC below 0.5. "
+        "This is not promoted as a model-quality result: raw CHGNet formation-energy proxies are not composition-aware hull-distance predictors, and this diagnostic is used only to measure label-source sensitivity under a real, reproducible ranking.\n\n"
         "## Scoring Manifest\n\n"
         f"{manifest.to_markdown(index=False)}\n\n"
         "## Threshold-Free Metrics\n\n"
         f"{metrics.to_markdown(index=False)}\n\n"
+        "## Score-Direction Sanity Check\n\n"
+        f"{sanity.to_markdown(index=False)}\n\n"
         "## Precision at K\n\n"
         f"{pk.to_markdown(index=False)}\n\n"
         "## MP-minus-Alex Precision Shift\n\n"
-        f"{shift.to_markdown(index=False)}\n",
+        f"{shift.to_markdown(index=False)}\n\n"
+        "## Top-K Discordance Decomposition\n\n"
+        f"{decomp.to_markdown(index=False)}\n\n"
+        "## Precision-Shift Bootstrap\n\n"
+        f"{bootstrap.to_markdown(index=False)}\n\n"
+        "## Sample Representativeness\n\n"
+        f"{representativeness.to_markdown(index=False)}\n",
         encoding="utf-8",
     )
 
@@ -320,7 +483,7 @@ def main() -> None:
         print(f"Reusing existing score table: {score_path}", flush=True)
         score_df = pd.read_csv(score_path)
     else:
-        df = load_denominator()
+        df = load_scoring_sample()
         score_df = score_subset(df)
     write_metrics(score_df)
     write_closeout()

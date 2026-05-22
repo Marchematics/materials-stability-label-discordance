@@ -1,0 +1,6 @@
+model,K,mp_stable_n,alex_stable_n,observed_mp_minus_alex_precision_shift,bootstrap_ci_low,bootstrap_ci_high,n_bootstrap,bootstrap_seed,claim_scope
+CHGNet,100,37,34,0.02999999999999997,-0.04999999999999999,0.10000000000000003,2000,20260524,uncertainty_for_model_facing_sensitivity_check
+CHGNet,300,100,87,0.043333333333333335,0.006666666666666654,0.08000000000000002,2000,20260524,uncertainty_for_model_facing_sensitivity_check
+CHGNet,500,152,134,0.035999999999999976,0.011999999999999955,0.062,2000,20260524,uncertainty_for_model_facing_sensitivity_check
+CHGNet,1000,261,237,0.02400000000000002,0.005999999999999978,0.04100000000000001,2000,20260524,uncertainty_for_model_facing_sensitivity_check
+CHGNet,2000,584,524,0.02999999999999997,0.01699999999999996,0.04349999999999998,2000,20260524,uncertainty_for_model_facing_sensitivity_check

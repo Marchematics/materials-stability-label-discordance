@@ -193,6 +193,33 @@ def test_model_facing_sensitivity_check_has_real_model_large_subset_and_boundari
     assert abs(float(k300["metric_shift_mp_minus_alex"])) >= 0.02
     assert (pk_shift["claim_scope"] == "model_facing_sensitivity_check_not_leaderboard").all()
 
+    sanity = pd.read_csv(MODEL_SENSITIVITY / "table_chgnet_score_direction_sanity.csv")
+    assert {
+        "raw_CHGNet_formation_energy_proxy_as_higher_stability_score",
+        "negative_CHGNet_formation_energy_proxy_as_higher_stability_score",
+        "random_ranking_baseline",
+    }.issubset(set(sanity["score_variant"]))
+    assert {"mp_stable", "alex_stable"}.issubset(set(sanity["label_source"]))
+
+    decomp = pd.read_csv(MODEL_SENSITIVITY / "table_topk_discordance_decomposition.csv")
+    k300_decomp = decomp[decomp["K"].eq(300)].iloc[0]
+    assert int(k300_decomp["mp_stable_n"]) == 100
+    assert int(k300_decomp["alex_stable_n"]) == 87
+    assert int(k300_decomp["mp_only_stable_n"]) == 23
+    assert int(k300_decomp["alex_only_stable_n"]) == 10
+
+    bootstrap = pd.read_csv(MODEL_SENSITIVITY / "table_precision_shift_bootstrap.csv")
+    k300_boot = bootstrap[bootstrap["K"].eq(300)].iloc[0]
+    assert float(k300_boot["bootstrap_ci_low"]) <= float(k300["metric_shift_mp_minus_alex"])
+    assert float(k300_boot["bootstrap_ci_high"]) >= float(k300["metric_shift_mp_minus_alex"])
+
+    represent = pd.read_csv(MODEL_SENSITIVITY / "table_chgnet_sample_representativeness.csv")
+    full = represent[represent["comparison"].eq("full_denominator") & represent["stratum"].eq("overall")].iloc[0]
+    sample = represent[represent["comparison"].eq("chgnet_5000_sample") & represent["stratum"].eq("overall")].iloc[0]
+    assert int(full["n"]) == 43_139
+    assert int(sample["n"]) == 5_000
+    assert abs(float(full["discordance_rate"]) - float(sample["discordance_rate"])) < 0.01
+
     metrics = pd.read_csv(MODEL_SENSITIVITY / "table_model_metric_source_sensitivity.csv")
     assert {"mp_stable", "alex_stable"}.issubset(set(metrics["label_source"]))
     assert (metrics["claim_scope"] == "model_facing_sensitivity_check_not_leaderboard").all()

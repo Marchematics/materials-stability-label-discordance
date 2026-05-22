@@ -324,13 +324,26 @@ precision@300:
 AUROC:
   MP labels: 0.454
   Alexandria labels: 0.466
+
+score-direction sanity:
+  raw formation-energy proxy as higher-is-stable AUROC: 0.546 / 0.534
+  negative formation-energy proxy as higher-is-stable AUROC: 0.454 / 0.466
+
+top-K decomposition at K=300:
+  both stable: 77
+  MP-only stable: 23
+  Alex-only stable: 10
+  both unstable: 190
+  bootstrap CI for MP-minus-Alex precision shift: [0.0067, 0.0800]
 ```
 
 This is intentionally not a leaderboard: CHGNet is used only to show that the
 label-source effect is visible under a real model ranking on a large subset,
 not only under source-native oracle labels. The diagnostic should be described
 as a model-facing sensitivity check, not as evidence that CHGNet is a strong
-predictor on this denominator.
+predictor on this denominator. The direction-sanity table is reported to rule
+out a hidden sign convention error; neither direction is promoted as a
+composition-aware hull-distance predictor.
 
 Allowed:
 
