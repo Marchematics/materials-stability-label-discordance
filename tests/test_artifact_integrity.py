@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MILESTONE = ROOT / "outputs" / "milestones" / "materials_label_discordance_preregistration"
 FULL_MILESTONE = ROOT / "outputs" / "milestones" / "materials_label_discordance_full_mp_alex_43984"
 ENHANCEMENT = ROOT / "outputs" / "milestones" / "benchmark_reliability_enhancement"
+COMMON_HULL = ROOT / "outputs" / "milestones" / "common_hull_mechanism_subset"
 
 
 def test_no_secret_material_is_committed() -> None:
@@ -114,6 +115,30 @@ def test_benchmark_reliability_enhancement_keeps_completed_and_protocol_rows_sep
     assert "conflict_excluded_metric" in set(card["card_field"])
     conflict = card[card["card_field"].eq("conflict_excluded_metric")].iloc[0]
     assert conflict["status"] == "protocol_only"
+
+
+def test_common_composition_hull_proxy_is_coverage_boundary_not_mechanism_claim() -> None:
+    sample = pd.read_csv(COMMON_HULL / "table_common_hull_mechanism_sample.csv")
+    assert len(sample) == 1_500
+    assert int(sample["native_discordant"].sum()) == 1_000
+    assert int((~sample["native_discordant"].astype(bool)).sum()) == 500
+
+    coverage = pd.read_csv(COMMON_HULL / "table_common_hull_coverage_audit.csv")
+    cov = dict(zip(coverage["sample_role"], coverage["common_available_fraction"]))
+    assert cov["discordant_mechanism_sample"] < 0.05
+    assert cov["concordant_control_sample"] < 0.05
+
+    mechanism = pd.read_csv(COMMON_HULL / "table_common_hull_mechanism_decomposition.csv")
+    assert "common_hull_unavailable" in set(mechanism["mechanism_class"])
+    unavailable = mechanism[mechanism["mechanism_class"].eq("common_hull_unavailable")]
+    assert int(unavailable["n"].sum()) >= 1_400
+
+    closeout = (COMMON_HULL / "COMMON_HULL_MECHANISM_SUBSET_CLOSEOUT.md").read_text(
+        encoding="utf-8"
+    )
+    assert "coverage-boundary result" in closeout
+    assert "not a positive mechanism-decomposition result" in closeout
+    assert "common-composition competitor-hull proxy" in closeout
 
 
 def test_minimal_discordance_probe_passes_launch_signal() -> None:

@@ -248,6 +248,27 @@ protocols: common-hull/common-competitor mechanism decomposition, third-source
 formula-query triangulation, and full-denominator model benchmark-impact
 analysis. These protocols are claim boundaries, not completed evidence.
 
+## Common-Composition Hull Proxy Boundary
+
+`outputs/milestones/common_hull_mechanism_subset/` converts the common-hull
+idea from protocol-only into a deterministic coverage-boundary experiment. It
+samples 1,000 native MP-Alex discordant structures plus 500 concordant controls
+and attempts a common-composition competitor-hull proxy using public MP
+formation energies and Alexandria formation-energy proxies.
+
+The result is deliberately **not** a positive mechanism-decomposition claim:
+
+```text
+discordant mechanism sample: 10 / 1,000 common-composition proxy available
+concordant controls: 6 / 500 common-composition proxy available
+claim scope: coverage-boundary result, not full common-hull reconstruction
+```
+
+This failed coverage gate is useful because it shows that mechanism attribution
+cannot be obtained by a lightweight public-table join. A paper-facing mechanism
+claim would require dedicated common-hull reconstruction with broader
+competitor coverage and unclipped/source-compatible formation energies.
+
 Allowed:
 
 - “The existing WBM-vs-alex exact-structure probe shows high binary
