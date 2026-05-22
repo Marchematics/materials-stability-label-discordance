@@ -1,0 +1,4 @@
+protocol_component,status,required_inputs,completed_claim_allowed,intended_output
+common_hull_reconstruction,gated_protocol_not_completed,unclipped formation energies and sufficient competing entries for MP and Alexandria chemical systems,False,waterfall separating energy/correction flips from competitor-set flips
+source_energy_on_common_competitor_set,gated_protocol_not_completed,source-specific formation energies mapped onto a shared competitor set,False,mechanistic decomposition of native discordance
+public_table_clipping_assessment,partial_reporting_burden_only,unclipped source energies to go beyond near-hull flag burden,False,separate reporting artifacts from physical hull shifts

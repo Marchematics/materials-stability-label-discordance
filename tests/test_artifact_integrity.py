@@ -7,6 +7,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 MILESTONE = ROOT / "outputs" / "milestones" / "materials_label_discordance_preregistration"
 FULL_MILESTONE = ROOT / "outputs" / "milestones" / "materials_label_discordance_full_mp_alex_43984"
+ENHANCEMENT = ROOT / "outputs" / "milestones" / "benchmark_reliability_enhancement"
 
 
 def test_no_secret_material_is_committed() -> None:
@@ -77,6 +78,42 @@ def test_full_mp_alex_43984_denominator_is_completed_and_scoped() -> None:
     manifest = (FULL_MILESTONE / "MANIFEST_SHA256.txt").read_text(encoding="utf-8")
     assert "table_full_mp_alex_structure_matches.csv" in manifest
     assert "mp_records_summary_structures.jsonl" not in manifest
+
+
+def test_benchmark_reliability_enhancement_keeps_completed_and_protocol_rows_separate() -> None:
+    atlas = pd.read_csv(ENHANCEMENT / "table_selection_conditioned_discordance_atlas.csv")
+    full = atlas[atlas["selection_condition"].eq("full_denominator")].iloc[0]
+    assert int(full["n"]) == 43_139
+    assert int(full["discordant_n"]) == 5_060
+    assert 0.10 <= float(full["discordance_rate"]) <= 0.13
+
+    mp_stable = atlas[atlas["selection_condition"].eq("MP_exact_stable")].iloc[0]
+    assert int(mp_stable["n"]) == 16_872
+    assert 0.20 <= float(mp_stable["discordance_rate"]) <= 0.23
+
+    threshold = pd.read_csv(ENHANCEMENT / "table_full_denominator_uncertainty_threshold_sweep.csv")
+    five = threshold[threshold["threshold_meV_atom"].eq(5)].iloc[0]
+    assert int(five["discordant_captured_n"]) == 5_060
+    assert int(five["outside_discordant_n"]) == 0
+    assert 0.49 <= float(five["flagged_fraction"]) <= 0.50
+
+    common_hull = pd.read_csv(ENHANCEMENT / "table_common_hull_mechanism_protocol.csv")
+    assert set(common_hull["status"]).issubset(
+        {"gated_protocol_not_completed", "partial_reporting_burden_only"}
+    )
+    assert not common_hull["completed_claim_allowed"].astype(bool).any()
+
+    benchmark = pd.read_csv(ENHANCEMENT / "table_benchmark_impact_protocol.csv")
+    assert set(benchmark["status"]).issubset(
+        {"gated_protocol_not_completed", "protocol_defined_not_completed"}
+    )
+    assert benchmark["claim_boundary"].str.contains("no full-denominator model leaderboard claim").any()
+
+    card = pd.read_csv(ENHANCEMENT / "table_source_aware_benchmark_card.csv")
+    assert "source_discordance_burden" in set(card["card_field"])
+    assert "conflict_excluded_metric" in set(card["card_field"])
+    conflict = card[card["card_field"].eq("conflict_excluded_metric")].iloc[0]
+    assert conflict["status"] == "protocol_only"
 
 
 def test_minimal_discordance_probe_passes_launch_signal() -> None:

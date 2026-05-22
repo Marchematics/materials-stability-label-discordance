@@ -228,6 +228,26 @@ Boundary: these references motivate the benchmark-reliability question. They
 do not introduce new GRACE, MatterGen, SevenNet, Orb, MatterSim or full
 Matbench Discovery experiments.
 
+## Benchmark Reliability Enhancement
+
+`outputs/milestones/benchmark_reliability_enhancement/` adds completed
+full-denominator reporting enhancements on top of the 43,139 strict
+MP-Alexandria matches:
+
+```text
+full denominator discordance: 5,060 / 43,139 = 0.1173
+MP-exact-stable selected subset discordance: 0.2150
+Alex-exact-stable selected subset discordance: 0.0976
+5 meV either-source near-hull flag: captures 5,060 / 5,060 discordant pairs,
+  flags 21,354 / 43,139 structures
+```
+
+The same milestone adds a source-aware benchmark card and a 24-row materials
+case atlas. It also freezes, but does not claim as completed, three gated
+protocols: common-hull/common-competitor mechanism decomposition, third-source
+formula-query triangulation, and full-denominator model benchmark-impact
+analysis. These protocols are claim boundaries, not completed evidence.
+
 Allowed:
 
 - “The existing WBM-vs-alex exact-structure probe shows high binary

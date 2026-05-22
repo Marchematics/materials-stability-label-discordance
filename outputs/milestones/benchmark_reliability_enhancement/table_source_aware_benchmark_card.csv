@@ -1,0 +1,14 @@
+card_field,paper_value,status
+label_source,Materials Project and Alexandria source-native labels,completed
+database_version,Alexandria alex-mp v20 plus MP API-derived records queried during the full run,completed
+query_date,Recorded in full_run_tmux.log and artifact manifest,completed
+api_endpoint,MP materials summary search by MP material_id,completed
+structure_matching_protocol,"pymatgen StructureMatcher ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=True, scale=True, attempt_supercell=True",completed
+hull_reference,source-native public e_above_hull values,completed
+stability_threshold,exact stable if e_above_hull <= 0 eV/atom,completed
+source_discordance_burden,"5,060 / 43,139 = 0.1173 on strict MP-Alex matches",completed
+near_threshold_burden,reported by full-denominator threshold sweep,completed
+conflict_excluded_metric,protocol item for model benchmarks; not a completed full-denominator model-ranking result,protocol_only
+conflict_included_metric,protocol item for model benchmarks; not a completed full-denominator model-ranking result,protocol_only
+exact_denominator_definition,"43,139 strict MP-Alex structure matches from 43,984 Alexandria rows with MP identifiers",completed
+missing_id_audit,815 missing MP records and 30 structure mismatches,completed
