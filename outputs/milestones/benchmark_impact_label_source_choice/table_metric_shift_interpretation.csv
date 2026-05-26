@@ -1,0 +1,5 @@
+impact_statement,value,unit,paper_use
+binary_label_disagreement_burden,0.1172952548737801,fraction_of_full_strict_denominator,completed benchmark-label source uncertainty number
+MP_stable_candidates_rejected_by_Alexandria,0.2150308202939782,fraction_of_MP_stable_set,upper-bound transfer loss for MP-native stable releases evaluated by Alexandria
+Alexandria_stable_candidates_rejected_by_MP,0.0975742709185064,fraction_of_Alexandria_stable_set,upper-bound transfer loss for Alexandria-native stable releases evaluated by MP
+conflict_excluded_denominator_retention,0.8827047451262199,fraction_of_full_strict_denominator,cost of source-agreement-only benchmark reporting

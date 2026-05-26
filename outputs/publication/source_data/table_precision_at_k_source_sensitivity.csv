@@ -1,0 +1,16 @@
+model,denominator,label_source,K,precision_at_K,stable_n_at_K,discordant_fraction_at_K,claim_scope
+CHGNet,full_sample_5000,mp_stable,100,0.37,37,0.15,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,mp_stable,300,0.3333333333333333,100,0.11,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,mp_stable,500,0.304,152,0.084,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,mp_stable,1000,0.261,261,0.08,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,mp_stable,2000,0.292,584,0.09,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,alex_stable,100,0.34,34,0.15,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,alex_stable,300,0.29,87,0.11,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,alex_stable,500,0.268,134,0.084,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,alex_stable,1000,0.237,237,0.08,model_facing_sensitivity_check_not_leaderboard
+CHGNet,full_sample_5000,alex_stable,2000,0.262,524,0.09,model_facing_sensitivity_check_not_leaderboard
+CHGNet,source_agreement_only,agreement_stable,100,0.37,37,0.0,model_facing_sensitivity_check_not_leaderboard
+CHGNet,source_agreement_only,agreement_stable,300,0.27666666666666667,83,0.0,model_facing_sensitivity_check_not_leaderboard
+CHGNet,source_agreement_only,agreement_stable,500,0.268,134,0.0,model_facing_sensitivity_check_not_leaderboard
+CHGNet,source_agreement_only,agreement_stable,1000,0.222,222,0.0,model_facing_sensitivity_check_not_leaderboard
+CHGNet,source_agreement_only,agreement_stable,2000,0.271,542,0.0,model_facing_sensitivity_check_not_leaderboard

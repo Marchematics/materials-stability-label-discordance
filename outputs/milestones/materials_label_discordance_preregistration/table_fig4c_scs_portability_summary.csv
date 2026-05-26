@@ -1,0 +1,2 @@
+check,alpha,rho,K_values,seed_budget_rows,non_empty_releases,claim_scope
+strict_SCS_PARC_portability_check,0.1,0.1,50;100;124;200;287,100,0,portability_check_not_fig4c_bar

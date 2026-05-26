@@ -1,0 +1,4 @@
+model,denominator,label_source,n,positive_rate,auroc,auprc,median_threshold_precision,median_threshold_f1,claim_scope,delta_vs_alex_auroc,delta_vs_alex_auprc
+CHGNet,full_sample_5000,mp_stable,5000,0.3928,0.45442235603176007,0.3533245697740132,0.3336,0.3736559139784946,model_facing_sensitivity_check_not_leaderboard,-0.01185867020087289,0.03690935118406763
+CHGNet,full_sample_5000,alex_stable,5000,0.3462,0.46628102623263296,0.3164152185899456,0.3,0.3545261167572678,model_facing_sensitivity_check_not_leaderboard,,
+CHGNet,source_agreement_only,mp_stable,4441,0.35307363206485026,0.45643375693472654,0.3165249696068041,0.29311121116614136,0.3436262866191607,model_facing_sensitivity_check_not_leaderboard,,

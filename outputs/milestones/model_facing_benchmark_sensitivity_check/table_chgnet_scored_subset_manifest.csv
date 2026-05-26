@@ -1,0 +1,2 @@
+model,n_scored,n_target,sample_seed,batch_size,device,mp_structure_cache,mp_structure_cache_sha256,claim_scope
+CHGNet,5000,5000,20260523,64,cuda,/home/waas/paper_experiments/github/discordance-/outputs/milestones/materials_label_discordance_full_mp_alex_43984/mp_records_summary_structures.jsonl,fe9763ec3d931cdb6e3095fe36dcd2d47be4f2e50935a015d63c70855e6565ef,model_facing_sensitivity_check_not_leaderboard

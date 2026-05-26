@@ -1,0 +1,5 @@
+source,label,n,energy_min_eV_atom,energy_max_eV_atom,nonzero_abs_gt_1e_12_n,zero_abs_le_1e_12_n
+MP,stable,124,0.0,0.0,0,124
+MP,unstable,163,0.000468158571428,0.635473080000004,163,0
+Alexandria,stable,113,0.0,0.0,0,113
+Alexandria,unstable,174,2.8549999999683e-06,0.0979241560416657,174,0

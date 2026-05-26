@@ -21,7 +21,7 @@ Status: pass for the existing WBM-vs-alex exact-structure probe.
 Interpretation: strong evidence that the existing exact-match subset contains
 substantial source-dependent binary stability labels.
 
-Boundary: this is not yet the final MP-vs-alex full-snapshot claim.
+Boundary: this is not yet the final MP-vs-alex matched-denominator claim.
 
 ## Step 2: Downstream Conclusion Flip
 
@@ -43,7 +43,7 @@ paper by itself.
 
 ## Route B: Final Rescue
 
-Only one rescue remains open: MP-vs-Alex full snapshot with strict
+Only one rescue remains open: MP-vs-Alex matched denominator with strict
 StructureMatcher matches, `n_common >= 200`, and the same ALIGNN-FF / CHGNet /
 MACE-MP stable-class F1 endpoint. The line reopens only if both discordance is
 at least 0.40 and the frontier ranking flips. Otherwise the NMI line is
@@ -88,7 +88,7 @@ A frozen Matbench Discovery / WBM ALIGNN-FF prediction table is available:
 
 Interpretation: the frozen prediction table can support WBM-denominator
 diagnostics, but it is not an arbitrary-structure scorer for a full MP-vs-Alex
-snapshot. Route B remains blocked unless a legal ALIGNN-FF scorer becomes
+matched denominator. Route B remains blocked unless a legal ALIGNN-FF scorer becomes
 available or the preregistered denominator can be satisfied by frozen public
 ALIGNN-FF predictions without changing the protocol.
 
@@ -117,13 +117,13 @@ diagnostics, not full primary frontier-panel evidence.
 Existing-probe outcome: CHGNet / MACE-MP / M3GNet all scored the same 270
 WBM-vs-alex exact-match structures, but stable-class F1 ranking did not flip.
 This is a diagnostic no-go for that existing denominator, not a full Route C
-full-snapshot result.
+matched-denominator result.
 
 ## Route B Runner Status
 
 Status: runner implemented; first execution blocked at MP API data access.
 
-The Route B full-snapshot runner requires `MP_API_KEY` in the shell
+The Route B matched-denominator runner requires `MP_API_KEY` in the shell
 environment. This is intentional: credentials are not read from files and are
 not committed to artifacts. The first execution produced
 `table_route_b_full_snapshot_data_access_failure.csv` and did not consume the
@@ -203,7 +203,12 @@ why the stronger NMI hypothesis was plausible:
 | Case | n | Discordance | Role |
 |---|---:|---:|---|
 | WBM-vs-alex existing probe | 270 | 0.522 | high-discordance case analysis |
-| MP-vs-alex full snapshot | 287 | 0.108 | full-snapshot baseline |
+| MP-vs-alex matched denominator | 287 | 0.108 | source-native baseline |
+| MP-native exact-stable selected | 124 | 0.169 | selection-conditioned diagnostic |
+| MP-native near-hull <=25 meV | 198 | 0.146 | boundary sensitivity |
 
 Interpretation: the 0.522 observation should be discussed openly as a
-selection/source-specific case, not hidden and not generalized.
+selection/source-specific case, not hidden and not generalized. Within the
+MP-vs-Alex source pair, exact-stable selection raises discordance by about
+6 percentage points, so most of the 0.522-vs-0.108 gap remains attributable to
+source-pair, denominator, or WBM-specific release effects.

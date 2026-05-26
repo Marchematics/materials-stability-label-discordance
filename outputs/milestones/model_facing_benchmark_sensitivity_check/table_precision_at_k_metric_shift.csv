@@ -1,0 +1,6 @@
+K,mp_precision_at_K,alex_precision_at_K,metric_shift_mp_minus_alex,model,claim_scope
+100,0.37,0.34,0.02999999999999997,CHGNet,model_facing_sensitivity_check_not_leaderboard
+300,0.3333333333333333,0.29,0.043333333333333335,CHGNet,model_facing_sensitivity_check_not_leaderboard
+500,0.304,0.268,0.035999999999999976,CHGNet,model_facing_sensitivity_check_not_leaderboard
+1000,0.261,0.237,0.02400000000000002,CHGNet,model_facing_sensitivity_check_not_leaderboard
+2000,0.292,0.262,0.02999999999999997,CHGNet,model_facing_sensitivity_check_not_leaderboard

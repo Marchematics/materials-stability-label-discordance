@@ -1,0 +1,5 @@
+fig4_panel,bar,n,discordance_rate,interpretation
+a,WBM_vs_alex_existing_probe,270,0.5222222222222223,selection/source-specific high-discordance case analysis; not matched-denominator baseline
+b,MP_vs_alex_full_denominator,43139,0.1172952548737801,full MP-ID strict-structure MP-vs-Alex denominator baseline
+c,MP_native_exact_stable_release_conditioned,16872,0.2150308202939782,source-native exact-stable conditioning applied to full MP-Alex denominator and evaluated under Alexandria
+c_sensitivity,MP_native_near_hull_25meV_conditioned,27280,0.1714442815249267,near-hull release-boundary sensitivity on full MP-Alex denominator

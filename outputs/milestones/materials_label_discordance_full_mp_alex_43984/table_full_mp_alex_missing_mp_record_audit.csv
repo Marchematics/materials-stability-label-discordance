@@ -1,0 +1,14 @@
+group,n,unique_chemical_systems,median_num_sites,max_num_sites,chemical_system
+all_missing,815,703,12.0,20,
+alex_stable,327,308,12.0,20,
+alex_unstable,488,421,12.0,20,
+top_missing_chemical_system,6,,,,Ga-Yb
+top_missing_chemical_system,6,,,,Mg-Yb
+top_missing_chemical_system,4,,,,Eu-Yb
+top_missing_chemical_system,4,,,,F-Li-Mn
+top_missing_chemical_system,4,,,,Pd-Sn-Yb
+top_missing_chemical_system,4,,,,F-O-Sb
+top_missing_chemical_system,4,,,,F-O-V
+top_missing_chemical_system,3,,,,F-Li-O-V
+top_missing_chemical_system,3,,,,Ba-Fe-O-Yb
+top_missing_chemical_system,3,,,,Yb-Zn
