@@ -13,18 +13,12 @@ The analysis scripts are Python-based and use standard scientific Python
 packages including `pandas`, `numpy`, `matplotlib`, `scipy`, `pymatgen` and
 model-specific packages for the archived CHGNet sensitivity diagnostic.
 
-The manuscript is compiled with the Springer Nature `sn-jnl` LaTeX workflow.
-The local command used during manuscript preparation was:
-
-```bash
-/opt/homebrew/bin/tectonic -X compile --keep-intermediates --keep-logs manuscript/main.tex
-```
+Manuscript and journal-submission files are not tracked in this public
+reproducibility repository.
 
 ## Main reproduction commands
 
 ```bash
-python scripts/build_manuscript_figures.py
-/opt/homebrew/bin/tectonic -X compile --keep-intermediates --keep-logs manuscript/main.tex
 pytest -q tests
 ```
 

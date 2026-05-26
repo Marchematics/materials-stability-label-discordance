@@ -21,7 +21,6 @@ scripts/build_major_revision_diagnostics.py
 scripts/build_benchmark_impact_label_source_choice.py
 scripts/build_model_facing_benchmark_sensitivity_check.py
 scripts/analyze_revised_fig2_energy_difference.py
-scripts/build_manuscript_figures.py
 ```
 
 Integrity tests are under `tests/` and can be run with:

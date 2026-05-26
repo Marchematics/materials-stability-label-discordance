@@ -11,14 +11,10 @@ PUBLIC_TEXT_FILES = [
     ROOT / "REPRODUCIBILITY.md",
     ROOT / "DATA_AVAILABILITY.md",
     ROOT / "CODE_AVAILABILITY.md",
-    ROOT / "submission" / "npj" / "cover_letter.md",
-    ROOT / "submission" / "npj" / "significance_statement.md",
-    ROOT / "submission" / "npj" / "reviewer_checklist.md",
-    ROOT / "manuscript" / "main.tex",
 ]
 
 
-def test_publication_facing_files_avoid_internal_route_language() -> None:
+def test_public_reproducibility_files_avoid_internal_route_language() -> None:
     forbidden = [
         "Route" + "-B",
         "Route" + " B",

@@ -18,6 +18,9 @@ __pycache__/
 private/
 raw/
 data/private/
+manuscript/
+submission/
+notes/
 *.tif
 *.tiff
 *_tmux.log

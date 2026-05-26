@@ -14,7 +14,7 @@ The archive contains:
 - near-threshold reporting-burden diagnostics;
 - oracle label-transfer and conflict-excluded denominator diagnostics;
 - CHGNet 5,000-structure model-facing sensitivity outputs;
-- manuscript figures, source data, file lists and SHA256 manifests.
+- figure source data, file lists and SHA256 manifests.
 
 The raw Materials Project structure cache used during denominator construction
 is a local API cache and is not redistributed. Public-safe matched summary

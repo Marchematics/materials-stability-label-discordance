@@ -1,10 +1,11 @@
 # Source-native stability-label uncertainty in crystal discovery benchmarks
 
-This repository supports the manuscript:
+This repository provides the public reproducibility materials for the study:
 
 **Source-native stability-label uncertainty in crystal discovery benchmarks**
 
-Target journal: *npj Computational Materials*.
+Manuscript and journal-submission files are not tracked in this repository.
+They are handled separately through the journal submission system.
 
 ## Study summary
 
@@ -32,15 +33,9 @@ is wrong, or that CHGNet is a stability leaderboard model. The contribution is a
 reproducible benchmark-reliability audit: source-sensitive and near-threshold
 label burden should be disclosed alongside binary stability endpoints.
 
-## Publication-facing outputs
+## Reproducibility materials
 
 ```text
-manuscript/
-  main.tex
-  main.pdf
-  references.bib
-  figures/
-
 outputs/publication/
   tables/
     table_source_aware_benchmark_card.csv
@@ -56,10 +51,11 @@ outputs/milestones/benchmark_impact_label_source_choice/
 outputs/milestones/model_facing_benchmark_sensitivity_check/
   CHGNet 5,000-structure fixed-ranking sensitivity diagnostics
 
-submission/npj/
-  cover_letter.md
-  significance_statement.md
-  reviewer_checklist.md
+scripts/
+  analysis, diagnostic and figure-generation scripts
+
+tests/
+  integrity and claim-support checks
 ```
 
 Historical preregistration and exploratory diagnostics are retained under
@@ -69,8 +65,8 @@ submission.
 
 ## Data and code availability
 
-Derived public-safe tables, figure source data, figure files, scripts and
-integrity manifests are archived at Zenodo:
+Derived public-safe tables, figure source data, scripts and integrity manifests
+are archived at Zenodo:
 
 ```text
 https://doi.org/10.5281/zenodo.20392665
@@ -81,14 +77,18 @@ is a local API cache and is not redistributed. Public-safe matched summary
 tables can be regenerated from public source records using the archived scripts,
 subject to Materials Project API terms.
 
-## Reproduce figures and manuscript
+## Reproduce analyses
 
 ```bash
-python scripts/build_manuscript_figures.py
-/opt/homebrew/bin/tectonic -X compile --keep-intermediates --keep-logs manuscript/main.tex
 pytest -q tests
 ```
 
-`manuscript/figures/fig.pdf` is the hand-prepared source for Fig. 1. The figure
-builder preserves this file and exports `fig1_pipeline.{pdf,png,svg,tiff}` for
-the manuscript package.
+Optional figure regeneration can be run with:
+
+```bash
+python scripts/build_manuscript_figures.py
+```
+
+The figure builder writes generated figures under the local ignored
+`manuscript/figures/` directory. If the hand-prepared Fig. 1 source is absent,
+the script generates a programmatic fallback panel.

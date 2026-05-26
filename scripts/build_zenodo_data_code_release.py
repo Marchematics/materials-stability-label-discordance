@@ -354,7 +354,8 @@ def main() -> None:
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
 
-    copy_file("manuscript/figures/fig.pdf")
+    if (ROOT / "manuscript" / "figures" / "fig.pdf").exists():
+        copy_file("manuscript/figures/fig.pdf")
 
     write_text("README.md", README)
     write_text("DATA_AVAILABILITY.md", DATA_AVAILABILITY)
