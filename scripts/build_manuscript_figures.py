@@ -449,6 +449,17 @@ def build_fig2() -> None:
             }
         )
     flag_df = pd.DataFrame(flag_rows)
+    signed_sweep = pd.read_csv(
+        ROOT / "outputs" / "milestones" / "benchmark_reliability_enhancement" / "table_signed_hull_distance_sweep.csv"
+    )
+    mp_flag_df = (
+        signed_sweep[
+            signed_sweep["source"].eq("mp")
+            & signed_sweep["threshold_meV"].isin([1, 2, 5, 10, 25, 50, 100])
+        ]
+        .sort_values("threshold_meV")
+        .copy()
+    )
 
     fig = plt.figure(figsize=(7.25, 4.45))
     gs = fig.add_gridspec(2, 2, width_ratios=[1.22, 0.95], height_ratios=[1.0, 0.92], wspace=0.33, hspace=0.42)
@@ -527,46 +538,70 @@ def build_fig2() -> None:
         ax_b.text(i, hi + 0.015, f"{k}/{n}", ha="center", va="bottom", fontsize=5.7)
 
     panel_label(ax_c, "c", -0.12, 1.06)
-    x = np.arange(len(flag_df))
-    ax_c.bar(x, flag_df["discordant_fraction"], color=COLORS["discord"], width=0.64, label="source conflicts captured")
-    ax_c.bar(
+    x = np.arange(len(mp_flag_df))
+    bars = ax_c.bar(
         x,
-        flag_df["concordant_flagged_fraction"],
-        bottom=flag_df["discordant_fraction"],
-        color=COLORS["uncertain"],
-        alpha=0.75,
-        width=0.64,
-        label="concordant flagged",
+        mp_flag_df["flagged_fraction"],
+        color=mpl.colors.to_rgba(COLORS["uncertain"], 0.82),
+        edgecolor=COLORS["dark_gray"],
+        linewidth=0.45,
+        width=0.62,
+        label="flagged fraction",
     )
-    ax_c.bar(
+    ax_c2 = ax_c.twinx()
+    (recall_line,) = ax_c2.plot(
         x,
-        flag_df["unflagged_fraction"],
-        bottom=flag_df["flagged_fraction"],
-        color="white",
-        edgecolor=COLORS["gray"],
-        linewidth=0.6,
-        width=0.64,
-        label="unflagged",
+        mp_flag_df["discordant_recall"],
+        color=COLORS["discord"],
+        marker="o",
+        lw=1.0,
+        ms=2.6,
+        label="source-conflict recall",
+        zorder=5,
     )
     ax_c.set_ylim(0, 1.02)
-    ax_c.set_xticks(x, [str(v) for v in thresholds])
+    ax_c2.set_ylim(0, 1.02)
+    ax_c.set_xticks(x, [str(v) for v in mp_flag_df["threshold_meV"].to_list()])
     ax_c.set_ylabel("Fraction of denominator")
-    ax_c.set_xlabel(r"Either-source threshold (meV atom$^{-1}$)")
-    for i, row in enumerate(flag_df.itertuples(index=False)):
-        ax_c.text(i, row.flagged_fraction + 0.035, f"{row.flagged_fraction:.1%}", ha="center", va="bottom", fontsize=5.6)
+    ax_c2.set_ylabel("Source-conflict recall")
+    ax_c.set_xlabel(r"MP-source threshold (meV atom$^{-1}$)")
+    for threshold in [5, 25]:
+        row = mp_flag_df[mp_flag_df["threshold_meV"].eq(threshold)].iloc[0]
+        i = int(mp_flag_df.index.get_loc(row.name))
+        ax_c.text(i, row["flagged_fraction"] + 0.035, f"{row['flagged_fraction']:.1%}", ha="center", va="bottom", fontsize=5.5)
+        ax_c2.text(
+            i + 0.08,
+            row["discordant_recall"] + 0.045,
+            f"{row['discordant_recall']:.1%} recall",
+            ha="left",
+            va="bottom",
+            fontsize=5.3,
+            color=COLORS["discord_dark"],
+            bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.15},
+            zorder=8,
+        )
     ax_c.text(
-        0.02,
-        0.97,
-        "mechanical capture:\none source clipped to 0",
+        0.015,
+        1.055,
+        "source-specific flag; not either-source tautology",
         transform=ax_c.transAxes,
         ha="left",
-        va="top",
-        fontsize=5.9,
+        va="bottom",
+        fontsize=5.4,
         color=COLORS["discord_dark"],
         bbox={"boxstyle": "round,pad=0.20", "facecolor": "white", "edgecolor": COLORS["discord"], "linewidth": 0.45},
+        clip_on=False,
     )
-    ax_c.text(0.02, 0.75, "outside-flag\nsource conflict = 0", transform=ax_c.transAxes, ha="left", va="top", fontsize=5.8, color=COLORS["muted"])
-    ax_c.legend(loc="upper left", bbox_to_anchor=(0.0, -0.34), ncol=2, fontsize=5.6, columnspacing=0.9, handlelength=1.1)
+    ax_c.legend(
+        [bars, recall_line],
+        ["flagged fraction", "source-conflict recall"],
+        loc="upper center",
+        bbox_to_anchor=(0.50, -0.34),
+        ncol=2,
+        fontsize=5.4,
+        columnspacing=0.8,
+        handlelength=1.1,
+    )
 
     save_figure(fig, "fig2_delta_e")
     plt.close(fig)
