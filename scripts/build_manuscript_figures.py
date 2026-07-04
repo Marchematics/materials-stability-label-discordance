@@ -198,7 +198,7 @@ def build_fig1() -> None:
             pass
         return
 
-    fig, ax = plt.subplots(figsize=(7.25, 3.95))
+    fig, ax = plt.subplots(figsize=(7.35, 4.10))
     ax.set_axis_off()
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
@@ -365,10 +365,10 @@ def build_fig1() -> None:
     parrow("a", (0.725, 0.235), (0.725, 0.120), COLORS["dark_gray"], scale=12)
     ptext("a", 0.905, 0.345, "815\nnot returned", fontsize=4.8)
     ptext("a", 0.905, 0.225, "30\nmismatches", fontsize=4.8)
-    pbox("a", 0.510, 0.070, 0.440, 0.100, "Retained denominator\n43,139", COLORS["light_green"], COLORS["stable"], fontsize=7.0, text_color=COLORS["stable"], weight="bold")
+    pbox("a", 0.555, 0.060, 0.335, 0.120, "Retained\ndenominator\n43,139", COLORS["light_green"], COLORS["stable"], fontsize=6.1, text_color=COLORS["stable"], weight="bold")
 
     # Panel b: binary label outcomes.
-    ptext("b", 0.505, 0.955, "Binary stability-label outcomes", fontsize=7.4, weight="bold")
+    ptext("b", 0.560, 0.955, "Binary stability-label\noutcomes", fontsize=6.7, weight="bold", linespacing=0.95)
     ptext("b", 0.355, 0.820, "alex-mp-20\nunstable", fontsize=5.8, weight="bold")
     ptext("b", 0.685, 0.820, "alex-mp-20\nstable", fontsize=5.8, weight="bold")
     ptext("b", 0.085, 0.620, "MP\nunstable", fontsize=5.8, weight="bold", rotation=90)
@@ -387,13 +387,11 @@ def build_fig1() -> None:
         gw, gh = wh("b", cell_w, cell_h)
         ax.add_patch(Rectangle((gx, gy), gw, gh, facecolor=face, edgecolor=edge, linewidth=0.9, linestyle=linestyle))
         ptext("b", x + cell_w / 2, y + cell_h * 0.60, count, fontsize=8.8, color=edge, weight="bold")
-        ptext("b", x + cell_w / 2, y + cell_h * 0.38, label, fontsize=5.5)
-    ptext("b", 0.505, 0.115, "Source conflicts: ", fontsize=6.8, weight="bold", ha="right")
-    ptext("b", 0.510, 0.115, "5,060", fontsize=6.8, color=COLORS["discord"], weight="bold", ha="left")
-    ptext("b", 0.620, 0.115, " / 43,139 (11.7%)", fontsize=6.8, weight="bold", ha="left")
+        ptext("b", x + cell_w / 2, y + cell_h * 0.38, label, fontsize=5.2)
+    ptext("b", 0.505, 0.115, "Source conflicts: 5,060 / 43,139 (11.7%)", fontsize=6.2, weight="bold")
 
     # Panel c: source-aware benchmark reporting.
-    ptext("c", 0.520, 0.955, "Source-aware benchmark\nreporting", fontsize=7.4, weight="bold")
+    ptext("c", 0.555, 0.955, "Source-aware benchmark\nreporting", fontsize=6.9, weight="bold")
     pbox("c", 0.035, 0.365, 0.250, 0.285, "", "white", COLORS["gray"], linewidth=0.7)
     ptext("c", 0.160, 0.605, "Conventional\nbenchmark", fontsize=5.0, weight="bold")
     pbox("c", 0.065, 0.495, 0.190, 0.070, "stable", COLORS["light_green"], COLORS["stable"], fontsize=5.5, text_color=COLORS["stable"], weight="bold")
@@ -407,7 +405,7 @@ def build_fig1() -> None:
     phull("c", 0.700, 0.315, 0.280, 0.420)
     for y, color in [(0.580, COLORS["stable"]), (0.485, COLORS["mp"]), (0.385, COLORS["alex"])]:
         ax.plot([xy("c", 0.675, y)[0], xy("c", 0.845, y)[0]], [xy("c", 0, y)[1], xy("c", 0, y)[1]], color=color, linewidth=0.8, linestyle=(0, (3, 2)))
-    ptext("c", 0.500, 0.110, "5 meV: lower burden     |     25 meV: more conservative", fontsize=4.9)
+    ptext("c", 0.500, 0.110, "5 meV: lower burden   |   25 meV: more conservative", fontsize=4.2)
 
     save_figure(fig, "fig1_pipeline")
     plt.close(fig)
