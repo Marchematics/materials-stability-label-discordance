@@ -1,0 +1,20 @@
+# Core analysis pipeline
+numpy
+pandas
+scipy
+scikit-learn
+pymatgen
+mp-api
+
+# Figure generation
+matplotlib
+
+# Model-facing sensitivity diagnostic (CHGNet) — optional, GPU recommended
+# chgnet
+# torch
+
+# Notes:
+# - A Materials Project API key (MP_API_KEY) is required for scripts that
+#   query MP directly; it is read from the environment, never committed.
+# - The CHGNet sensitivity diagnostic additionally needs `chgnet` and `torch`;
+#   uncomment those lines to run it.

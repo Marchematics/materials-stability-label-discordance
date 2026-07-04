@@ -1,0 +1,5 @@
+predictor,evaluation_label_source,n,tp,fp,fn,tn,precision,recall,f1,accuracy,balanced_accuracy,claim_scope,delta_from_source_native_f1
+perfect_MP_source_labeler,MP_source_native_truth,43139,16872,0,0,26267,1.0,1.0,1.0,1.0,1.0,source_label_transfer_upper_bound_not_ml_model,0.0
+perfect_MP_source_labeler,Alexandria_source_native_truth,43139,13244,3628,1432,24835,0.7849691797060218,0.9024257290814935,0.8396094839609484,0.8827047451262199,0.887481002122871,source_label_transfer_upper_bound_not_ml_model,-0.16039051603905163
+perfect_Alexandria_source_labeler,MP_source_native_truth,43139,13244,1432,3628,24835,0.9024257290814935,0.7849691797060218,0.8396094839609484,0.8827047451262199,0.8652260525248043,source_label_transfer_upper_bound_not_ml_model,-0.16039051603905163
+perfect_Alexandria_source_labeler,Alexandria_source_native_truth,43139,14676,0,0,28463,1.0,1.0,1.0,1.0,1.0,source_label_transfer_upper_bound_not_ml_model,0.0

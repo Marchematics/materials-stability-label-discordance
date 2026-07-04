@@ -1,0 +1,5 @@
+gate,status,decision,required_next_action
+technical_scorer_gate,pass,local explicit-path ALIGNN-FF scorer works on CPU smoke tests,can be used for internal diagnostic scoring
+public_registry_gate,pass,atomgptlab/alignn registry and docs identify v12.2.2024_dft_3d_307k and map it to the Figshare file URL,record registry SHA256 and source URLs
+clean_download_hash_match,pending_blocked_403,registry URL currently returns HTTP 403 in this environment and does not reproduce local archive hash,retry clean download or archive exact zip before primary evidence
+route_b_primary_evidence_gate,pending_hash_match,do not run one-shot Route B primary claim yet,freeze MP snapshot and complete clean download hash match before full rescue

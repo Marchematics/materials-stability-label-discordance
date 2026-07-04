@@ -1,0 +1,3 @@
+benchmark_impact_component,status,required_condition,allowed_metrics,claim_boundary
+full_denominator_model_predictions,gated_protocol_not_completed,"frozen public or reproducibly generated predictions on the same 43,139 strict-match denominator",precision@K; stable_rate@K; recall; F1; AUROC; AUPRC; Kendall/Spearman ranking stability,no full-denominator model leaderboard claim until this gate is met
+source_conflict_excluded_metrics,protocol_defined_not_completed,eligible model predictions on full denominator,"metric uncertainty band under MP labels, Alexandria labels and conflict-excluded labels",may support benchmark-impact claim only after model-prediction gate

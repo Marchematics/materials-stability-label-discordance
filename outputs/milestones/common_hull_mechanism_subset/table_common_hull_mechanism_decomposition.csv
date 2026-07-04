@@ -1,0 +1,5 @@
+sample_role,mechanism_class,n,fraction_within_sample_role
+concordant_control_sample,common_hull_unavailable,494,0.988
+concordant_control_sample,concordant_under_native_and_common_composition,6,0.012
+discordant_mechanism_sample,common_hull_unavailable,990,0.99
+discordant_mechanism_sample,energy_or_correction_driven_common_composition,10,0.01

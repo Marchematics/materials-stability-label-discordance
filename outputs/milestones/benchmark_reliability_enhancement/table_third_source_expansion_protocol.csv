@@ -1,0 +1,4 @@
+source,status,matching_route,main_text_gate,supplement_gate,coverage_boundary_gate
+JARVIS,protocol_candidate,formula query followed by the same strict StructureMatcher,n_strict_matches >= 1000,200 <= n_strict_matches < 1000,n_strict_matches < 200
+OQMD,protocol_candidate_after_prior_ID_route_undercovered,formula query followed by the same strict StructureMatcher,n_strict_matches >= 1000,200 <= n_strict_matches < 1000,n_strict_matches < 200
+AFLOW_or_OPTIMADE_source,protocol_candidate_if_comparable_ehull_available,formula query followed by the same strict StructureMatcher,n_strict_matches >= 1000,200 <= n_strict_matches < 1000,n_strict_matches < 200

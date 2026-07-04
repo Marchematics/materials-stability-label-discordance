@@ -1,0 +1,6 @@
+model,K,both_stable_n,mp_only_stable_n,alex_only_stable_n,both_unstable_n,mp_stable_n,alex_stable_n,mp_minus_alex_stable_n,source_discordant_n,source_discordant_fraction,claim_scope
+CHGNet,100,28,9,6,57,37,34,3,15,0.15,model_facing_sensitivity_check_not_leaderboard
+CHGNet,300,77,23,10,190,100,87,13,33,0.11,model_facing_sensitivity_check_not_leaderboard
+CHGNet,500,122,30,12,336,152,134,18,42,0.084,model_facing_sensitivity_check_not_leaderboard
+CHGNet,1000,209,52,28,711,261,237,24,80,0.08,model_facing_sensitivity_check_not_leaderboard
+CHGNet,2000,464,120,60,1356,584,524,60,180,0.09,model_facing_sensitivity_check_not_leaderboard

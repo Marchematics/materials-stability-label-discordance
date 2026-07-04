@@ -1,0 +1,4 @@
+comparison,n_common,discordance_rate,claim_scope
+MP_vs_Alex,287,0.10801393728222997,completed_pairwise_baseline
+MP_vs_OQMD,4,0.0,blocked_or_undercovered_third_source
+Alex_vs_OQMD,4,0.0,blocked_or_undercovered_third_source

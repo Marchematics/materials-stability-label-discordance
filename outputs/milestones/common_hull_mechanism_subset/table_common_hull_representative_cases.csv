@@ -1,0 +1,11 @@
+sample_role,material_id,formula,chemical_system,native_mp_ehull,native_alex_ehull,native_mp_stable,native_alex_stable,native_discordant,mp_common_composition_ehull,alex_common_composition_ehull,mp_common_composition_stable,alex_common_composition_stable,common_formula_count,mp_competitor_formula_count,alex_competitor_formula_count,mechanism_class,claim_scope
+discordant_mechanism_sample,mp-756006,LiSbS,Li-S-Sb,0.0,0.0290960933333339,True,False,True,,,,,21,21,51,common_hull_unavailable,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-1217619,TbGa2Co3,Co-Ga-Tb,0.006488808333328,0.0,False,True,True,,,,,15,15,94,common_hull_unavailable,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-1102621,ErCoSi,Co-Er-Si,0.0,0.0094893233333319,True,False,True,,,,,13,13,63,common_hull_unavailable,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-1084826,Nd2Co3,Co-Nd,0.0,0.0094107032500003,True,False,True,,,,,13,13,19,common_hull_unavailable,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-1104,LaMg,La-Mg,0.005696517500002,0.0,False,True,True,,,,,13,13,26,common_hull_unavailable,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-158,As,As,0.0,0.0230069049999999,True,False,True,0.0,0.02300690499999991,True,False,1,1,1,energy_or_correction_driven_common_composition,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-1096861,Cd,Cd,0.037120430000001,0.0,False,True,True,0.037120430000001,0.0,False,True,1,1,1,energy_or_correction_driven_common_composition,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-54,Co,Co,0.025098924999999,0.0,False,True,True,0.025098924999999002,0.0,False,True,1,1,1,energy_or_correction_driven_common_composition,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-88,Dy,Dy,0.0,0.0173757700000001,True,False,True,0.0,0.017375770000000124,True,False,1,1,1,energy_or_correction_driven_common_composition,common_composition_hull_proxy_subset
+discordant_mechanism_sample,mp-1184502,In,In,0.007490013333335,0.0,False,True,True,0.007490013333333,0.0,False,True,1,1,1,energy_or_correction_driven_common_composition,common_composition_hull_proxy_subset

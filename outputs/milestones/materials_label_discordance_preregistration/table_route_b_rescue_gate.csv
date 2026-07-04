@@ -1,0 +1,7 @@
+gate,requirement,status,stop_rule
+one_shot_only,Route B may be run once only,registered,Do not create Route C or tune endpoints after seeing Route B
+source_pair,Materials Project API-derived records vs independently downloaded Alexandria/alex-mp snapshot,ready_for_attempt,If either legal source snapshot is unavailable stop
+match_denominator,strict StructureMatcher exact/high-confidence matches with n_common >= 200,pending,If n_common < 200 keep route closed unless a larger legal denominator is frozen
+primary_models,ALIGNN-FF / CHGNet / MACE-MP same denominator,pending,If same-denominator scores cannot be generated do not claim primary ranking endpoint
+reopen_rule,discordance >= 0.40 AND frontier stable-F1 ranking flip,pending,If either condition fails keep NMI line closed
+permanent_close_rule,no frontier stable-F1 ranking flip on Route B full snapshot,pending,Permanently close the NMI discordance line

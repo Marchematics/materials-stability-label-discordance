@@ -1,0 +1,8 @@
+gate,status,evidence,next_action
+public_repository,pass,atomgptlab/alignn public repository exists and documents ALIGNN-FF,none
+public_pretrained_docs,pass,docs/pretrained/alignn-ff.md lists v12.2.2024_dft_3d_307k,none
+public_registry,pass,alignn/ff/all_models_alignn_atomwise.json maps v12.2.2024_dft_3d_307k to https://ndownloader.figshare.com/files/50904240,none
+registry_sha256,pass,07c000c8be735b78e0032c5cec980afd5368ed5c3e74b926316c09a91b15d04f,recorded
+clean_download_hash_match,pending_blocked_403,registry URL returned HTTP 403 text/html 118 bytes with sha256 58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4,retry from reproducible environment or archive exact zip
+local_archive_hash,recorded,ccc5c71e44e0213f8f5261a5e1df43df03129a4ec661a31c7a880cbf48b4e7b5,compare clean download to this hash
+route_b_primary_evidence_gate,pending_hash_match,public provenance entry exists but clean download does not yet reproduce local archive,do not run or claim Route B primary outcome

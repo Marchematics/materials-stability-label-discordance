@@ -1,0 +1,7 @@
+selection_rule,n_selected,discordant_n,discordance_rate,mp_selected_but_alex_unstable_n,alex_selected_but_mp_unstable_n,mp_selected_but_alex_unstable_rate,alex_selected_but_mp_unstable_rate,mp_ehull_min,mp_ehull_max,alex_ehull_min,alex_ehull_max,paper_role
+full_MP_Alex_strict_denominator,287,31,0.10801393728222997,21,10,0.07317073170731707,0.03484320557491289,0.0,0.635473080000004,0.0,0.0979241560416657,fig4b_full_denominator_baseline
+MP_native_exact_stable_release_ehull_le_0,124,21,0.1693548387096774,21,0,0.1693548387096774,0.0,0.0,0.0,0.0,0.0979241560416657,fig4c_selection_conditioned_primary_bar
+MP_native_near_hull_release_ehull_le_25meV,198,29,0.14646464646464646,21,8,0.10606060606060606,0.04040404040404041,0.0,0.024845188749999,0.0,0.0979241560416657,selection_boundary_sensitivity
+MP_score_top_decile_lowest_ehull,29,6,0.20689655172413793,6,0,0.20689655172413793,0.0,0.0,0.0,0.0,0.0979241560416657,score_conditioned_sensitivity
+MP_score_top_quartile_lowest_ehull,72,9,0.125,9,0,0.125,0.0,0.0,0.0,0.0,0.0979241560416657,score_conditioned_sensitivity
+MP_score_top_half_lowest_ehull,144,26,0.18055555555555555,21,5,0.14583333333333334,0.034722222222222224,0.0,0.005573382499999,0.0,0.0979241560416657,score_conditioned_sensitivity

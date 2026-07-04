@@ -1,0 +1,6 @@
+threshold_meV_atom,flagged_n,flagged_fraction,discordant_captured_n,discordant_total_n,discordant_recall,outside_discordant_n,concordant_flagged_n,flag_precision_for_discordance,claim_scope
+5,21354,0.4950045202716799,5060,5060,1.0,0,16294,0.23695794698885456,full_denominator_reporting_burden_curve
+10,23617,0.5474628526391432,5060,5060,1.0,0,18557,0.21425244527247322,full_denominator_reporting_burden_curve
+25,28985,0.6718978186791534,5060,5060,1.0,0,23925,0.174573055028463,full_denominator_reporting_burden_curve
+50,35017,0.811724889311296,5060,5060,1.0,0,29957,0.14450124225376246,full_denominator_reporting_burden_curve
+100,43139,1.0,5060,5060,1.0,0,38079,0.1172952548737801,full_denominator_reporting_burden_curve

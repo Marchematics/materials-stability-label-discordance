@@ -1,0 +1,7 @@
+model,label_source,n_common,predicted_positive_rule,predicted_positive_n,stable_positive_n,stable_class_F1_primary,balanced_accuracy_coprimary,precision_discovery,discovered_stable_count,score_col
+CHGNet,WBM,270,top_max_5_percent_or_20_by_frozen_score,20,204,0.14285714285714285,0.5089126559714795,0.8,16,score_chgnet
+CHGNet,alex-mp,270,top_max_5_percent_or_20_by_frozen_score,20,71,0.13186813186813187,0.5070776417297757,0.3,6,score_chgnet
+M3GNet,WBM,270,top_max_5_percent_or_20_by_frozen_score,20,204,0.08928571428571429,0.4487522281639929,0.5,10,score_m3gnet
+M3GNet,alex-mp,270,top_max_5_percent_or_20_by_frozen_score,20,71,0.02197802197802198,0.4593035600537901,0.05,1,score_m3gnet
+MACE-MP,WBM,270,top_max_5_percent_or_20_by_frozen_score,20,204,0.13392857142857142,0.498885918003565,0.75,15,score_mace_mp
+MACE-MP,alex-mp,270,top_max_5_percent_or_20_by_frozen_score,20,71,0.13186813186813187,0.5070776417297757,0.3,6,score_mace_mp

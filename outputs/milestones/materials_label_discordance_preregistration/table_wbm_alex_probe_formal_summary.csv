@@ -1,0 +1,2 @@
+n_candidate_rows,n_no_formula_match,n_formula_only_no_structure_match,n_exact_structure_match,discordant_n,discordance_rate,wbm_stable_n,alex_stable_n,claim_scope
+701,320,111,270,141,0.5222222222222223,204,71,formal_case_analysis_not_general_baseline

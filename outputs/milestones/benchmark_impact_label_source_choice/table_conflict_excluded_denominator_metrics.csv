@@ -1,0 +1,4 @@
+denominator,n,mp_stable_rate,alex_stable_rate,source_conflict_n,source_conflict_fraction,claim_scope
+full_strict_MP_Alex,43139,0.39110781427478614,0.340202600894782,5060,0.1172952548737801,completed_full_denominator_label_source_impact
+source_agreement_only_conflict_excluded,38079,0.34780325113579663,0.34780325113579663,0,0.0,completed_conflict_excluded_denominator_definition
+source_conflict_only,5060,0.71699604743083,0.28300395256916994,5060,1.0,completed_source_conflict_burden_definition

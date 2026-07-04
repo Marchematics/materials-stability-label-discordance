@@ -1,0 +1,16 @@
+model,predictor,standardized_logistic_coef,n
+ALIGNN-FF,abs_delta_ehull,1.4931355926456973,287
+ALIGNN-FF,min_abs_ehull,-2.2315840223246997,287
+ALIGNN-FF,mp_e_above_hull,-1.5995451383002854,287
+ALIGNN-FF,alex_e_above_hull,1.1188803439641022,287
+ALIGNN-FF,rank_percentile,0.08176256973748328,287
+CHGNet,abs_delta_ehull,1.4908091758359936,287
+CHGNet,min_abs_ehull,-2.219819221500193,287
+CHGNet,mp_e_above_hull,-1.585616482984161,287
+CHGNet,alex_e_above_hull,1.111322031350915,287
+CHGNet,rank_percentile,0.1507497034071242,287
+MACE-MP,abs_delta_ehull,1.4941478206373577,287
+MACE-MP,min_abs_ehull,-2.2234713689593306,287
+MACE-MP,mp_e_above_hull,-1.5868532293643076,287
+MACE-MP,alex_e_above_hull,1.1119543144661204,287
+MACE-MP,rank_percentile,0.163594974507438,287
