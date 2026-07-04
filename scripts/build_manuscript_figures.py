@@ -641,9 +641,9 @@ def build_fig3() -> None:
     ax_c.set_xlabel("Top K under fixed CHGNet ranking")
     ax_c.set_ylabel("Precision@K")
     ax_c.grid(axis="y", color=COLORS["grid"], lw=0.55)
-    ax_c.text(300, 0.366, "+4.3 pp", ha="center", va="bottom", fontsize=5.8, color=COLORS["discord_dark"])
-    ax_c.text(500, 0.338, "+3.6 pp", ha="center", va="bottom", fontsize=5.8, color=COLORS["discord_dark"])
-    ax_c.legend(loc="upper right", fontsize=5.2, handlelength=1.7)
+    ax_c.text(290, 0.382, "+4.3 pp", ha="center", va="bottom", fontsize=5.8, color=COLORS["discord_dark"])
+    ax_c.text(560, 0.350, "+3.6 pp", ha="center", va="bottom", fontsize=5.8, color=COLORS["discord_dark"])
+    ax_c.legend(loc="lower left", fontsize=5.0, handlelength=1.5, borderaxespad=0.2)
 
     # Panel d: MP-minus-Alex precision-shift intervals.
     panel_label(ax_d, "d", -0.18, 1.04)
