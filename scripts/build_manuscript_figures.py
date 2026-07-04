@@ -680,7 +680,7 @@ def build_fig3() -> None:
     ax_c.text(560, 0.350, "+3.6 pp", ha="center", va="bottom", fontsize=5.8, color=COLORS["discord_dark"])
     ax_c.legend(loc="lower left", fontsize=5.0, handlelength=1.5, borderaxespad=0.2)
 
-    # Panel d: MP-minus-Alex precision-shift intervals.
+    # Panel d: MP-minus-alex-mp-20 precision-shift intervals.
     panel_label(ax_d, "d", -0.18, 1.04)
     sh = shifts.sort_values("K")
     y = np.arange(len(sh))
@@ -700,7 +700,7 @@ def build_fig3() -> None:
         capsize=2,
     )
     ax_d.set_yticks(y, [f"K={int(k)}" for k in sh["K"]])
-    ax_d.set_xlabel("MP - Alex precision shift (pp)")
+    ax_d.set_xlabel("MP - alex-mp-20 precision shift (pp)")
     ax_d.set_xlim(-6, 11)
     ax_d.grid(axis="x", color=COLORS["grid"], lw=0.55)
     ax_d.invert_yaxis()
@@ -714,11 +714,11 @@ def build_fig3() -> None:
             ~scores["mp_stable"].astype(bool) & scores["alex_stable"].astype(bool),
             ~scores["mp_stable"].astype(bool) & ~scores["alex_stable"].astype(bool),
         ],
-        ["both stable", "MP only", "Alex only", "both unstable"],
+        ["both stable", "MP only", "alex-mp-20 only", "both unstable"],
         default="other",
     )
     scores = scores.assign(label_class=cls)
-    order = ["both stable", "MP only", "Alex only", "both unstable"]
+    order = ["both stable", "MP only", "alex-mp-20 only", "both unstable"]
     class_colors = [COLORS["stable"], COLORS["discord"], COLORS["alex"], COLORS["unstable"]]
     rng = np.random.default_rng(20260525)
     data = [scores.loc[scores["label_class"].eq(name), "score"].to_numpy() for name in order]
@@ -733,7 +733,8 @@ def build_fig3() -> None:
             vals = rng.choice(vals, size=900, replace=False)
         xj = rng.normal(i, 0.055, size=len(vals))
         ax_e.scatter(xj, vals, s=1.2, alpha=0.13, color=color, linewidths=0)
-    ax_e.set_xticks(np.arange(len(order)), ["both\nstable", "MP\nonly", "Alex\nonly", "both\nunstable"])
+    ax_e.set_xticks(np.arange(len(order)), ["both stable", "MP only", "alex-mp-20 only", "both unstable"], rotation=28, ha="right")
+    ax_e.tick_params(axis="x", labelsize=5.2, pad=1)
     ax_e.set_ylabel("CHGNet ranking score")
     ax_e.set_ylim(-0.25, 4.65)
     ax_e.grid(axis="y", color=COLORS["grid"], lw=0.55)
@@ -743,7 +744,7 @@ def build_fig3() -> None:
     parts = [
         ("both stable", "both_stable_n", COLORS["stable"]),
         ("MP only", "mp_only_stable_n", COLORS["discord"]),
-        ("Alex only", "alex_only_stable_n", COLORS["alex"]),
+        ("alex-mp-20 only", "alex_only_stable_n", COLORS["alex"]),
         ("both unstable", "both_unstable_n", COLORS["unstable"]),
     ]
     top = topk.sort_values("K").reset_index(drop=True)
