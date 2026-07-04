@@ -11,6 +11,7 @@ ENHANCEMENT = ROOT / "outputs" / "milestones" / "benchmark_reliability_enhanceme
 COMMON_HULL = ROOT / "outputs" / "milestones" / "common_hull_mechanism_subset"
 BENCHMARK_IMPACT = ROOT / "outputs" / "milestones" / "benchmark_impact_label_source_choice"
 MODEL_SENSITIVITY = ROOT / "outputs" / "milestones" / "model_facing_benchmark_sensitivity_check"
+JARVIS_EXTENSION = ROOT / "outputs" / "milestones" / "jarvis_multisource_extension"
 
 
 def test_no_secret_material_is_committed() -> None:
@@ -229,6 +230,80 @@ def test_model_facing_sensitivity_check_has_real_model_large_subset_and_boundari
     )
     assert "not a leaderboard" in closeout
     assert "one real model ranking" in closeout
+
+
+def test_jarvis_multisource_extension_is_exact_match_and_scoped() -> None:
+    flow = pd.read_csv(JARVIS_EXTENSION / "table_multisource_denominator_flow.csv")
+    flow_map = dict(zip(flow["step"], flow["n"]))
+    assert int(flow_map["archived_MP_alex_mp20_strict_denominator"]) == 43_139
+    assert int(flow_map["jarvis_dft_3d_records_with_structure_and_ehull"]) >= 75_000
+    assert int(flow_map["denominator_rows_with_formula_candidate_in_jarvis"]) >= 30_000
+    assert int(flow_map["jarvis_unique_matched_denominator_rows"]) >= 25_000
+    assert int(flow_map["jarvis_single_match_denominator_rows"]) >= 20_000
+
+    download_scope = pd.read_csv(JARVIS_EXTENSION / "table_jarvis_download_scope.csv").iloc[0]
+    assert str(download_scope["query_date"]) == "2026-07-04"
+    assert int(download_scope["queried_bucket_min"]) == 1
+    assert int(download_scope["queried_bucket_max"]) >= 260
+    assert int(download_scope["consecutive_empty_tail"]) >= 20
+    assert int(download_scope["cached_raw_records"]) >= 79_000
+
+    matches = pd.read_csv(JARVIS_EXTENSION / "table_jarvis_default_exact_matches.csv")
+    assert len(matches) == int(flow_map["jarvis_default_exact_structure_match_rows"])
+    assert matches["match_status"].eq("default_exact_structure_match").all()
+    assert matches["jarvis_optimade_id"].str.startswith("dft_3d_").all()
+    assert matches["jarvis_ehull"].notna().all()
+
+    tolerance = pd.read_csv(JARVIS_EXTENSION / "table_jarvis_structure_matching_tolerance_sweep.csv")
+    assert set(tolerance["tolerance"]) == {"tight", "default", "loose"}
+    assert (tolerance["claim_scope"] == "coverage_sensitivity_not_formula_only_match").all()
+    assert int(tolerance[tolerance["tolerance"].eq("default")]["matched_denominator_rows"].iloc[0]) == int(
+        flow_map["jarvis_unique_matched_denominator_rows"]
+    )
+
+    pair = pd.read_csv(JARVIS_EXTENSION / "table_pairwise_source_conflict_rates.csv")
+    assert set(pair["cutoff_mev_atom"]) == {0, 1, 5, 10, 25}
+    assert set(pair["pair"]) == {"MP-JARVIS", "alex-mp-20-JARVIS", "MP-alex-mp-20"}
+    assert (pair["evidence_scope"] == "triple_exact_match_conflict_rate_result").all()
+    assert (pair["n"] == int(flow_map["jarvis_single_match_denominator_rows"])).all()
+    assert pair["conflict_fraction"].between(0, 1).all()
+
+    tie = pd.read_csv(JARVIS_EXTENSION / "table_jarvis_multiple_match_tie_break_sensitivity.csv")
+    assert set(tie["sensitivity_rule"]) == {
+        "single_match_primary",
+        "include_multiple_lowest_jarvis_ehull",
+        "include_multiple_first_jarvis_identifier",
+    }
+    assert set(tie["cutoff_mev_atom"]) == {0, 1, 5, 10, 25}
+    exact_zero = tie[tie["cutoff_mev_atom"].eq(0)]
+    for rule, group in exact_zero.groupby("sensitivity_rule"):
+        rates = dict(zip(group["pair"], group["conflict_fraction"]))
+        assert rates["alex-mp-20-JARVIS"] > rates["MP-JARVIS"] > rates["MP-alex-mp-20"]
+        if rule != "single_match_primary":
+            assert int(group["n"].iloc[0]) == int(flow_map["jarvis_unique_matched_denominator_rows"])
+
+    composition = pd.read_csv(JARVIS_EXTENSION / "table_three_source_label_composition.csv")
+    assert set(composition["cutoff_mev_atom"]) == {0, 1, 5, 10, 25}
+    assert "MP=1;alex-mp-20=1;JARVIS=1" in set(composition["label_tuple"])
+    for cutoff, group in composition.groupby("cutoff_mev_atom"):
+        assert int(group["n"].sum()) == int(flow_map["jarvis_single_match_denominator_rows"])
+        assert abs(float(group["fraction"].sum()) - 1.0) < 1e-9
+
+    for filename in [
+        "figure5_panel_a_denominator_flow.csv",
+        "figure5_panel_b_pairwise_conflicts.csv",
+        "figure5_panel_c_label_composition.csv",
+        "table_jarvis_multiple_match_tie_break_sensitivity.csv",
+        "MANIFEST_SHA256.txt",
+        "JARVIS_MULTISOURCE_EXTENSION_CLOSEOUT.md",
+    ]:
+        assert (JARVIS_EXTENSION / filename).exists()
+    assert (ROOT / "manuscript" / "figures" / "fig5_jarvis_multisource.pdf").stat().st_size > 10_000
+
+    closeout = (JARVIS_EXTENSION / "JARVIS_MULTISOURCE_EXTENSION_CLOSEOUT.md").read_text(encoding="utf-8")
+    assert "No formula-only match is used as a result" in closeout
+    assert "No common hull is reconstructed" in closeout
+    assert "Primary MP--alex-mp-20 result remains" in closeout
 
 
 def test_minimal_discordance_probe_passes_launch_signal() -> None:

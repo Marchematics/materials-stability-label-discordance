@@ -1,0 +1,9 @@
+cutoff_mev_atom,label_tuple,n,fraction,evidence_scope
+0,MP=0;alex-mp-20=0;JARVIS=0,8869,0.38064377682403433,triple_exact_match_conflict_rate_result
+0,MP=0;alex-mp-20=0;JARVIS=1,3016,0.12944206008583692,triple_exact_match_conflict_rate_result
+0,MP=0;alex-mp-20=1;JARVIS=0,278,0.011931330472103005,triple_exact_match_conflict_rate_result
+0,MP=0;alex-mp-20=1;JARVIS=1,509,0.021845493562231758,triple_exact_match_conflict_rate_result
+0,MP=1;alex-mp-20=0;JARVIS=0,524,0.022489270386266094,triple_exact_match_conflict_rate_result
+0,MP=1;alex-mp-20=0;JARVIS=1,1729,0.07420600858369099,triple_exact_match_conflict_rate_result
+0,MP=1;alex-mp-20=1;JARVIS=0,679,0.029141630901287553,triple_exact_match_conflict_rate_result
+0,MP=1;alex-mp-20=1;JARVIS=1,7696,0.3303004291845494,triple_exact_match_conflict_rate_result

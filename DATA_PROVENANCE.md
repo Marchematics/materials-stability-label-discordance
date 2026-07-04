@@ -67,6 +67,33 @@ The queried fields used for this audit were:
 The Materials Project `energy_above_hull` field is interpreted as eV atom^-1.
 Binary stability is defined source-natively as `energy_above_hull <= 0`.
 
+## JARVIS-DFT source for secondary extension
+
+The secondary multi-source extension uses JARVIS-DFT records exposed through
+the JARVIS OPTIMADE `jarvisdft` structures endpoint:
+
+```text
+https://jarvis.nist.gov/optimade/jarvisdft/v1/structures
+```
+
+The archived retrieval queried the JARVIS OPTIMADE endpoint on 2026-07-04,
+using bucket filters from 1 to 260 and stopping after a 20-bucket empty tail.
+The bucket filter is recorded only as retrieval bookkeeping. Scientific fields
+are taken from the parsed structure records.
+
+The extension retains records with:
+
+- `dft_3d_` identifiers;
+- lattice vectors;
+- species at sites;
+- Cartesian site positions;
+- `_jarvis_ehull`.
+
+The cached retrieval contains 79,637 raw OPTIMADE records and 75,993 usable
+JARVIS-DFT 3D records with structures and hull values. The `_jarvis_ehull`
+field is interpreted as eV atom^-1. Binary stability is defined source-natively
+as `_jarvis_ehull <= 0`.
+
 ## Matching denominator
 
 The primary denominator is the retained strict MP-identifier
@@ -81,6 +108,13 @@ Materials Project identifiers. Of these, 43,169 Materials Project records were
 retrieved in the archived query and 43,139 passed strict `pymatgen`
 `StructureMatcher` matching. The unmatched records and structure mismatches are
 audited separately rather than silently discarded.
+
+The JARVIS extension starts from this same 43,139-row denominator. Reduced
+formula is used only as a prefilter. Reported JARVIS denominators require exact
+`StructureMatcher` matches. The default setting yields 36,544 JARVIS exact match
+rows covering 28,273 MP--alex-mp-20 denominator rows. Pairwise source-conflict
+rates use the 23,300 rows with exactly one JARVIS exact match. The 4,973 rows
+with multiple JARVIS exact matches are reported as a duplicate-match boundary.
 
 ## Redistribution scope
 
@@ -98,6 +132,8 @@ Public-safe derived outputs include:
 - chemistry-stratified source-conflict summaries;
 - conflict-excluded metric summaries;
 - manuscript figure source data;
+- JARVIS multi-source denominator flow, exact-match, cutoff-sensitivity and
+  three-source label-composition outputs;
 - integrity tests and file checksums.
 
 ## Scope guardrails
@@ -107,6 +143,7 @@ The study reports source-native label dependence. It does not claim:
 - a common-hull reconstruction;
 - prospective materials discovery;
 - independent DFT validation;
+- formula-only JARVIS validation;
 - alex-mp-20-wide or database-wide source-conflict prevalence beyond the
   retained MP-identifier structure-matched denominator;
 - that MatterGen alex-mp-20 labels are unmodified Alexandria labels.

@@ -19,6 +19,13 @@ Headline result: on 43,139 strict MP--alex-mp-20 structure matches, 5,060
 under metastability-tolerant cutoffs (11.45% at 5 meV atom^-1 and 9.02% at
 25 meV atom^-1) and is chemically nonuniform.
 
+Secondary multi-source extension: JARVIS-DFT 3D records queried on 2026-07-04
+through the JARVIS OPTIMADE endpoint were exact-matched to the archived
+MP--alex-mp-20 denominator. The extension retains 23,300 single-match
+MP--alex-mp-20--JARVIS rows for pairwise source-conflict rates. It is a
+source-native public-label audit only; it does not use formula-only matches and
+does not reconstruct a common hull.
+
 ## Data Source Naming
 
 The second label source is **MatterGen alex-mp-20**, not an unmodified
@@ -48,6 +55,7 @@ Key scripts:
 - `build_benchmark_impact_label_source_choice.py` builds label-transfer and conflict-excluded sensitivity tables.
 - `build_common_hull_mechanism_subset.py` and `analyze_formation_energy_mechanism.py` build mechanism-boundary diagnostics.
 - `build_manuscript_figures.py` builds public manuscript Fig. 1--4.
+- `build_jarvis_multisource_extension.py` downloads/parses JARVIS OPTIMADE 3D records, exact-matches them to the MP--alex-mp-20 denominator and builds Fig. 5 source tables.
 
 ## Primary Public Results
 
@@ -57,6 +65,7 @@ Key scripts:
 - 5,060 / 43,139 matched structures have source-conflicting binary stability labels, giving an 11.7% source-conflict burden.
 - The burden remains material under positive stability cutoffs: 11.45% at 5 meV atom^-1 and 9.02% at 25 meV atom^-1.
 - An MP-source 5 meV atom^-1 threshold flag captures 82.4% of conflicts while flagging 45.8% of the denominator.
+- In the secondary JARVIS extension, the single-match triple denominator has 23,300 rows; exact-zero source-conflict burdens are 20.3% for MP--JARVIS, 24.5% for alex-mp-20--JARVIS and 13.0% for MP--alex-mp-20 on that denominator.
 
 These numbers are source-native benchmark diagnostics. They should be reported
 with the denominator, matching rule, label field, source version and query date.
@@ -101,7 +110,8 @@ A source-aware binary stability benchmark report should include:
 
 A static, citable snapshot of the public-safe data and code is archived at
 Zenodo: https://doi.org/10.5281/zenodo.20392665. This repository is the public
-development repository.
+development repository. The JARVIS-extension resubmission release is identified
+as `v1.1-jarvis-extension`.
 
 ## License
 
