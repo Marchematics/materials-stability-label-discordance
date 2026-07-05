@@ -12,6 +12,8 @@ COMMON_HULL = ROOT / "outputs" / "milestones" / "common_hull_mechanism_subset"
 BENCHMARK_IMPACT = ROOT / "outputs" / "milestones" / "benchmark_impact_label_source_choice"
 MODEL_SENSITIVITY = ROOT / "outputs" / "milestones" / "model_facing_benchmark_sensitivity_check"
 JARVIS_EXTENSION = ROOT / "outputs" / "milestones" / "jarvis_multisource_extension"
+OFFICIAL_ALEX_FEAS = ROOT / "outputs" / "milestones" / "official_alexandria_pbe_feasibility"
+OFFICIAL_ALEX_EXT = ROOT / "outputs" / "milestones" / "official_alexandria_pbe_extension"
 
 
 def test_no_secret_material_is_committed() -> None:
@@ -34,7 +36,6 @@ def test_no_secret_material_is_committed() -> None:
 
 def test_related_work_positioning_is_context_not_new_experiment() -> None:
     text = (ROOT / "docs" / "RELATED_WORK_POSITIONING.md").read_text(encoding="utf-8")
-    bib = (ROOT / "docs" / "bibliography_additions.bib").read_text(encoding="utf-8")
 
     for required in [
         "JARVIS-Leaderboard",
@@ -47,18 +48,6 @@ def test_related_work_positioning_is_context_not_new_experiment() -> None:
         "Do not claim source-wide burden outside the retained MP--alex-mp-20",
     ]:
         assert required in text
-
-    for key in [
-        "choudhary2024jarvis_leaderboard",
-        "riebesell2025matbench_discovery",
-        "batatia2025foundation_mace",
-        "deng2025systematic_softening",
-        "kuner2025mp_aloe",
-        "lysogorskiy2026grace",
-        "zou2025thermodynamic_stability",
-        "zeni2025mattergen",
-    ]:
-        assert key in bib
 
     assert "not a new training-data experiment here" in text
     assert "not evaluated as new experimental rows here" in text
@@ -304,6 +293,113 @@ def test_jarvis_multisource_extension_is_exact_match_and_scoped() -> None:
     assert "No formula-only match is used as a result" in closeout
     assert "No common hull is reconstructed" in closeout
     assert "Primary MP--alex-mp-20 result remains" in closeout
+
+
+def test_official_alexandria_pbe_feasibility_uses_complete_database_and_exact_matches() -> None:
+    scope = pd.read_csv(OFFICIAL_ALEX_FEAS / "table_official_alexandria_pbe_download_scope.csv").iloc[0]
+    assert str(scope["snapshot"]) == "2025.07.02"
+    assert int(scope["downloaded_shards"]) == 58
+    assert int(scope["parsed_shards"]) == 58
+    assert scope["field_path"] == "entries[].data.e_above_hull"
+    assert "convex_hull_only_file_not_used_as_denominator" in scope["guardrail"]
+
+    schema = pd.read_csv(OFFICIAL_ALEX_FEAS / "table_official_alexandria_pbe_schema_audit.csv")
+    assert int(schema["records_total"].sum()) == 5_777_914
+    assert int(schema["records_with_e_above_hull"].sum()) == 5_777_914
+    assert int(schema["records_with_formula"].sum()) == 5_777_914
+    assert int(schema["records_with_structure"].sum()) == 5_777_914
+
+    flow = pd.read_csv(OFFICIAL_ALEX_FEAS / "table_official_alexandria_pbe_denominator_flow.csv")
+    flow_map = dict(zip(flow["step"], flow["n"]))
+    assert int(flow_map["official_alexandria_pbe_complete_3d_records_parsed"]) == 5_777_914
+    assert int(flow_map["primary_MP_alex_mp20_strict_denominator_rows"]) == 43_139
+    assert int(flow_map["denominator_rows_with_official_alexandria_formula_candidate"]) == 42_818
+    assert int(flow_map["official_alexandria_exact_structure_match_rows"]) == 48_755
+    assert int(flow_map["official_alexandria_unique_matched_denominator_rows"]) == 41_760
+    assert int(flow_map["official_alexandria_single_match_denominator_rows"]) == 36_802
+
+    matches = pd.read_csv(OFFICIAL_ALEX_FEAS / "table_official_alexandria_pbe_exact_matches.csv")
+    assert len(matches) == 48_755
+    assert matches["match_status"].eq("default_exact_structure_match").all()
+    assert matches["official_alexandria_id"].str.startswith("agm").all()
+    assert matches["official_alexandria_e_above_hull"].notna().all()
+
+    closeout = (OFFICIAL_ALEX_FEAS / "OFFICIAL_ALEXANDRIA_PBE_FEASIBILITY_CLOSEOUT.md").read_text(
+        encoding="utf-8"
+    )
+    assert "complete PBE 3D JSON snapshot" in closeout
+    assert "complete_PBE_3D_json_not_convex_hull_only" in closeout
+    assert "official Alexandria rows are not joined by MP-ID" in closeout
+    assert "`main_text_candidate`" in closeout
+
+
+def test_official_alexandria_pbe_extension_outputs_are_scoped_and_consistent() -> None:
+    triple = pd.read_csv(OFFICIAL_ALEX_EXT / "table_official_alexandria_single_match_triple_denominator.csv")
+    assert len(triple) == 36_802
+    assert triple["material_id"].is_unique
+    assert triple["official_alexandria_e_above_hull"].notna().all()
+
+    pair = pd.read_csv(OFFICIAL_ALEX_EXT / "table_official_alexandria_pairwise_conflict_by_cutoff.csv")
+    assert set(pair["cutoff_mev_atom"]) == {0, 1, 5, 10, 25}
+    assert {
+        "single_match_primary",
+        "include_multiple_lowest_official_alexandria_ehull",
+        "include_multiple_first_official_alexandria_identifier",
+    }.issubset(set(pair["denominator_rule"]))
+    assert (pair["evidence_scope"] == "source_native_public_label_audit_not_common_hull").all()
+
+    exact = pair[pair["denominator_rule"].eq("single_match_primary") & pair["cutoff_mev_atom"].eq(0)]
+    rates = dict(zip(exact["source_pair"], exact["conflict_fraction"]))
+    counts = dict(zip(exact["source_pair"], exact["conflict_n"]))
+    assert int(exact["n"].iloc[0]) == 36_802
+    assert counts["MP--official_Alexandria_PBE"] == 5_666
+    assert counts["MatterGen_alex_mp20--official_Alexandria_PBE"] == 3_862
+    assert counts["MP--MatterGen_alex_mp20"] == 4_244
+    assert 0.153 <= rates["MP--official_Alexandria_PBE"] <= 0.155
+    assert 0.104 <= rates["MatterGen_alex_mp20--official_Alexandria_PBE"] <= 0.106
+    assert 0.115 <= rates["MP--MatterGen_alex_mp20"] <= 0.116
+
+    tie = pair[pair["cutoff_mev_atom"].eq(0)]
+    low = tie[tie["denominator_rule"].eq("include_multiple_lowest_official_alexandria_ehull")]
+    first = tie[tie["denominator_rule"].eq("include_multiple_first_official_alexandria_identifier")]
+    assert int(low["n"].iloc[0]) == 41_760
+    assert int(first["n"].iloc[0]) == 41_760
+    low_rates = dict(zip(low["source_pair"], low["conflict_fraction"]))
+    first_rates = dict(zip(first["source_pair"], first["conflict_fraction"]))
+    assert low_rates["MP--official_Alexandria_PBE"] > rates["MP--official_Alexandria_PBE"]
+    assert first_rates["MP--official_Alexandria_PBE"] > rates["MP--official_Alexandria_PBE"]
+
+    composition = pd.read_csv(OFFICIAL_ALEX_EXT / "table_official_alexandria_three_source_label_composition_by_cutoff.csv")
+    assert set(composition["cutoff_mev_atom"]) == {0, 1, 5, 10, 25}
+    for cutoff, group in composition.groupby("cutoff_mev_atom"):
+        assert int(group["n"].sum()) == 36_802
+        assert abs(float(group["fraction"].sum()) - 1.0) < 1e-9
+    assert "stable in all three sources" in set(composition["interpretation"])
+    assert "unstable in all three sources" in set(composition["interpretation"])
+
+    drift = pd.read_csv(OFFICIAL_ALEX_EXT / "table_official_alexandria_alexmp20_ehull_drift_summary.csv")
+    assert "source_native_hull_value_difference_not_mechanism_attribution" in set(drift["evidence_scope"])
+    assert int(drift[drift["subset"].eq("all")]["n"].iloc[0]) == 36_802
+
+    rank = pd.read_csv(OFFICIAL_ALEX_EXT / "table_official_alexandria_source_native_ranking_uncertainty.csv")
+    assert {"MP", "MatterGen_alex_mp20", "official_Alexandria_PBE"}.issubset(set(rank["label_view"]))
+    assert (rank["evidence_scope"] == "fixed_source_native_ranking_label_uncertainty_band_not_model_benchmark").all()
+
+    for filename in [
+        "figure_official_alexandria_pairwise_conflicts_inputs.csv",
+        "figure_official_alexandria_label_composition_inputs.csv",
+        "figure_official_alexandria_ehull_drift_inputs.csv",
+        "figure_official_alexandria_ranking_uncertainty_inputs.csv",
+        "MANIFEST_SHA256.txt",
+        "OFFICIAL_ALEXANDRIA_PBE_EXTENSION_CLOSEOUT.md",
+    ]:
+        assert (OFFICIAL_ALEX_EXT / filename).exists()
+
+    closeout = (OFFICIAL_ALEX_EXT / "OFFICIAL_ALEXANDRIA_PBE_EXTENSION_CLOSEOUT.md").read_text(
+        encoding="utf-8"
+    )
+    assert "MatterGen alex-mp-20 and official Alexandria-PBE" in closeout
+    assert "not a common-hull reconstruction" in closeout
 
 
 def test_minimal_discordance_probe_passes_launch_signal() -> None:

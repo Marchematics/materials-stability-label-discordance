@@ -1,9 +1,9 @@
 # Data provenance
 
-This repository audits source-native binary stability labels on a strict
-Materials Project--alex-mp-20 MP-identifier structure-matched denominator. It
-does not reconstruct a common hull and does not treat either source as absolute
-physical truth.
+This repository audits source-native binary stability labels on structure-
+matched Materials Project, MatterGen alex-mp-20 and official Alexandria-PBE
+denominators. It does not reconstruct a common hull and does not treat any
+source as absolute physical truth.
 
 ## MatterGen alex-mp-20 source
 
@@ -67,6 +67,47 @@ The queried fields used for this audit were:
 The Materials Project `energy_above_hull` field is interpreted as eV atom^-1.
 Binary stability is defined source-natively as `energy_above_hull <= 0`.
 
+## Official Alexandria-PBE source
+
+The official Alexandria-PBE extension uses the complete PBE 3D database from
+the Alexandria Materials Database, snapshot `2025.07.02`:
+
+```text
+https://alexandria.icams.rub.de/data/pbe/2025.07.02/
+```
+
+The archive was retrieved on 2026-07-05. The analysis uses the complete PBE 3D
+JSON shards rather than the convex-hull-only download, because binary
+stable/unstable labels require hull values for all matched structures, not only
+known hull vertices.
+
+The parsed snapshot contains:
+
+```text
+58 JSON bzip2 shards
+5,777,914 total records
+5,777,914 records with formula, structure and entries[].data.e_above_hull
+```
+
+Relevant fields include:
+
+- `entry_id`
+- `composition`
+- `structure`
+- `entries[].data.e_above_hull`
+- `entries[].data.prototype_id`
+- `entries[].data.run_timestamp`
+
+The `entries[].data.e_above_hull` field is interpreted as eV atom^-1. Binary
+stability is defined source-natively as `e_above_hull <= 0`.
+
+Official Alexandria-PBE is audited as a separate source from MatterGen
+alex-mp-20. The public outputs therefore distinguish:
+
+- Materials Project;
+- MatterGen alex-mp-20;
+- official Alexandria-PBE.
+
 ## JARVIS-DFT source for secondary extension
 
 The secondary multi-source extension uses JARVIS-DFT records exposed through
@@ -116,6 +157,25 @@ rows covering 28,273 MP--alex-mp-20 denominator rows. Pairwise source-conflict
 rates use the 23,300 rows with exactly one JARVIS exact match. The 4,973 rows
 with multiple JARVIS exact matches are reported as a duplicate-match boundary.
 
+The official Alexandria-PBE extension also starts from the 43,139-row
+MP--alex-mp-20 denominator. Reduced formula is used only as a prefilter. MP
+identifiers are not used to join official Alexandria-PBE rows. Exact matches
+are identified with `pymatgen` `StructureMatcher` after formula prefiltering.
+The extension yields:
+
+```text
+42,818 MP--alex-mp-20 denominator rows with at least one official
+  Alexandria-PBE formula candidate
+48,755 official Alexandria-PBE exact-match rows
+41,760 unique MP--alex-mp-20 denominator rows with at least one exact match
+36,802 single-match MP--alex-mp-20--official Alexandria-PBE rows
+4,958 rows with multiple official Alexandria-PBE exact matches
+```
+
+The single-match denominator is the primary official Alexandria-PBE analysis
+set. Multiple-match rows are reported as a duplicate-match boundary and are
+included only in deterministic tie-breaking sensitivity analyses.
+
 ## Redistribution scope
 
 Raw Materials Project structure caches, restricted local reconstruction inputs
@@ -134,6 +194,10 @@ Public-safe derived outputs include:
 - manuscript figure source data;
 - JARVIS multi-source denominator flow, exact-match, cutoff-sensitivity and
   three-source label-composition outputs;
+- official Alexandria-PBE denominator flow, schema audit, exact-match,
+  cutoff-sensitivity, directionality, three-source label-composition,
+  alex-mp-20--official Alexandria-PBE hull-value difference, chemistry
+  bootstrap and fixed-ranking uncertainty outputs;
 - integrity tests and file checksums.
 
 ## Scope guardrails
@@ -144,6 +208,7 @@ The study reports source-native label dependence. It does not claim:
 - prospective materials discovery;
 - independent DFT validation;
 - formula-only JARVIS validation;
+- formula-only official Alexandria-PBE validation;
 - alex-mp-20-wide or database-wide source-conflict prevalence beyond the
   retained MP-identifier structure-matched denominator;
 - that MatterGen alex-mp-20 labels are unmodified Alexandria labels.

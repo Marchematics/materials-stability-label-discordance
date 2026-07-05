@@ -1,0 +1,2 @@
+source,snapshot,retrieval_date,index_url,downloaded_shards,parsed_shards,field_path,field_units,guardrail
+official_Alexandria_PBE_complete_3D_json,2025.07.02,2026-07-05,https://alexandria.icams.rub.de/data/pbe/2025.07.02/,58,58,entries[].data.e_above_hull,eV/atom,complete_database_used; convex_hull_only_file_not_used_as_denominator
