@@ -1619,7 +1619,123 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
     (out_dir / "phase2_requirement_audit.md").write_text("\n".join(md), encoding="utf-8")
 
 
-def write_manifest(out_dir: Path) -> None:
+def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.DataFrame:
+    """Write a machine-readable Phase 2 acceptance/guardrail check.
+
+    This check is deliberately stricter than "files exist" but does not pretend
+    guardrailed partials are full physical-truth completion. It gives future
+    readers a single command/artifact to audit the Phase 2 scope against the
+    user-facing objective.
+    """
+    out_dir = ensure_dir(out_dir)
+    rows: list[dict[str, Any]] = []
+
+    def add(check_id: str, status: str, evidence: str, guardrail: str = "") -> None:
+        rows.append({"check_id": check_id, "status": status, "evidence": evidence, "guardrail": guardrail})
+
+    phase1_manifest = phase1 / "manifest_phase1_v2.json"
+    phase1_labels = phase1 / "labels_by_view.parquet"
+    add(
+        "phase1_frozen_input_present",
+        "pass" if phase1_manifest.exists() and phase1_labels.exists() else "fail",
+        f"phase1_manifest_exists={phase1_manifest.exists()}; labels_exists={phase1_labels.exists()}; manifest_sha256={sha256_file(phase1_manifest) if phase1_manifest.exists() else 'missing'}",
+        "Phase 2 reads Phase 1 artifacts and does not rewrite outputs/phase1_v2.",
+    )
+
+    inv_path = out_dir / "model_scores" / "model_score_inventory.csv"
+    inv = pd.read_csv(inv_path) if inv_path.exists() else pd.DataFrame()
+    scored = inv[inv.get("score_status", pd.Series(dtype=str)).eq("scored")] if not inv.empty else pd.DataFrame()
+    real = scored[scored.get("model_role", pd.Series(dtype=str)).eq("real_model")] if not scored.empty else pd.DataFrame()
+    target_models = {"Voronoi RF", "CGCNN", "CGCNN+P", "MEGNet", "ALIGNN", "ALIGNN-FF", "Wrenformer", "BOWSR", "M3GNet", "CHGNet", "MACE-MP", "SevenNet", "ORB", "EquiformerV2+DeNS"}
+    external_rows = int(pd.to_numeric(inv.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum()) if not inv.empty else 0
+    add(
+        "model_score_inventory",
+        "pass" if len(scored) >= 10 and target_models.intersection(set(inv.get("model_name", []))) >= {"ALIGNN-FF", "M3GNet", "CHGNet", "MACE-MP"} else "fail",
+        f"inventory_rows={len(inv)}; scored_entries={len(scored)}; real_sourceaware_scored_models={len(real)}; external_wbm_rows={external_rows}; target_models_recorded={len(target_models.intersection(set(inv.get('model_name', []))))}",
+        "External Matbench/WBM rows are inventoried but not used in SourceAware metrics without exact row mapping.",
+    )
+
+    den_dir = out_dir / "denominators"
+    try:
+        full = pd.read_parquet(den_dir / "denominator_d5_full_complete.parquet")
+        family = pd.read_parquet(den_dir / "denominator_d5_family_complete.parquet")
+        pair = pd.read_parquet(den_dir / "denominator_d5_pairwise_complete.parquet")
+        maxcov = pd.read_parquet(den_dir / "denominator_d5_max_coverage_by_model.parquet")
+        den_status = "pass" if len(full) >= 36000 and len(family) >= 36000 and len(pair) > 0 and maxcov["model_name"].nunique() >= 10 else "fail"
+        den_ev = f"D5_full={len(full)}; D5_family={len(family)}; D5_pairwise_rows={len(pair)}; D5_maxcov_models={maxcov['model_name'].nunique()}"
+    except Exception as exc:
+        den_status, den_ev = "fail", f"failed_to_load_denominators={exc}"
+    add("model_denominators", den_status, den_ev, "D5 denominators are model coverage sets, not physical-truth labels.")
+
+    metrics_path = out_dir / "model_metrics" / "metrics_by_model_label_view.csv"
+    topk_path = out_dir / "model_metrics" / "topk_by_model_label_view.csv"
+    ratio_path = out_dir / "model_metrics" / "model_margin_to_label_uncertainty_ratio.csv"
+    metrics = pd.read_csv(metrics_path) if metrics_path.exists() else pd.DataFrame()
+    topk = pd.read_csv(topk_path) if topk_path.exists() else pd.DataFrame()
+    ratio = pd.read_csv(ratio_path) if ratio_path.exists() else pd.DataFrame()
+    view_ok = set(LABEL_VIEWS).issubset(set(metrics.get("label_view", []))) and set(LABEL_VIEWS).issubset(set(topk.get("label_view", [])))
+    k_ok = set(K_GRID).issubset(set(pd.to_numeric(topk.get("K", pd.Series(dtype=float)), errors="coerce").dropna().astype(int))) if not topk.empty else False
+    bootstrap_ok = (out_dir / "model_metrics" / "metrics_by_model_label_view_bootstrap.csv").exists() and (out_dir / "model_metrics" / "metrics_by_model_label_view_bootstrap_resampled.csv").exists()
+    add(
+        "model_evaluation_label_views",
+        "pass" if view_ok and k_ok and bootstrap_ok else "fail",
+        f"metrics_rows={len(metrics)}; topk_rows={len(topk)}; views_ok={view_ok}; K_ok={k_ok}; bootstrap_files_ok={bootstrap_ok}",
+        "source_union rows are explicit not-evaluable rows if full source-union reconstruction is incomplete.",
+    )
+    dom_metrics = set(ratio[pd.to_numeric(ratio.get("uncertainty_dominance_ratio", pd.Series(dtype=float)), errors="coerce") > 1].get("metric", pd.Series(dtype=str)).astype(str)) if not ratio.empty else set()
+    add(
+        "label_uncertainty_vs_model_spread",
+        "pass" if len(dom_metrics) >= 3 else "fail",
+        f"ratio_rows={len(ratio)}; metrics_with_uncertainty_dominance_gt_1={len(dom_metrics)}; metrics={sorted(dom_metrics)}",
+        "Dominance compares benchmark label views and does not select physical truth.",
+    )
+
+    inv_all_path = out_dir / "rank_inversions" / "all_rank_inversions.csv"
+    inv_top_path = out_dir / "rank_inversions" / "top_model_inversions.csv"
+    inv_all = pd.read_csv(inv_all_path) if inv_all_path.exists() else pd.DataFrame()
+    inv_top = pd.read_csv(inv_top_path) if inv_top_path.exists() else pd.DataFrame()
+    add(
+        "rank_inversion_analysis",
+        "pass" if len(inv_all) > 0 else "fail",
+        f"all_rank_inversion_rows={len(inv_all)}; top_model_inversion_rows={len(inv_top)}",
+        "Rank changes are label-view diagnostics and should be reported without overclaiming definitive best-model changes.",
+    )
+
+    gen_path = out_dir / "generative" / "generated_candidate_inventory.csv"
+    consequence_path = out_dir / "generative" / "generated_pipeline_consequence_summary.csv"
+    gen_inv = pd.read_csv(gen_path) if gen_path.exists() else pd.DataFrame()
+    consequence = pd.read_csv(consequence_path) if consequence_path.exists() else pd.DataFrame()
+    screeners = consequence[consequence.get("pipeline_type", pd.Series(dtype=str)).eq("screening_pipeline_not_true_generator")] if not consequence.empty else pd.DataFrame()
+    true_completed = int(((gen_inv.get("pipeline_type", pd.Series(dtype=str)) == "true_generator") & gen_inv.get("status", pd.Series(dtype=str)).astype(str).str.startswith("complete")).sum()) if not gen_inv.empty else 0
+    add(
+        "generative_candidate_consequence",
+        "guarded_partial" if len(screeners) >= 3 and true_completed >= 1 else "fail",
+        f"inventory_rows={len(gen_inv)}; screening_consequence_pipelines={len(screeners)}; completed_true_generator_smoke={true_completed}; consequence_rows={len(consequence)}",
+        "Matched screeners are public-source-aware candidate consequences; unmatched generated pools are not assigned stable/unstable labels; no homogeneous DFT validation is claimed.",
+    )
+
+    lb_path = out_dir / "leaderboard" / "sourceaware_leaderboard_alpha.csv"
+    lb = pd.read_csv(lb_path) if lb_path.exists() else pd.DataFrame()
+    card_n = len(list((out_dir / "leaderboard" / "leaderboard_model_cards").glob("*.md")))
+    add("leaderboard_alpha", "pass" if len(lb) >= 10 and card_n >= len(inv) else "fail", f"leaderboard_rows={len(lb)}; model_cards={card_n}; inventory_rows={len(inv)}", "Leaderboard alpha reports benchmark-view bands, not final physical-truth ranks.")
+
+    fig_dir = out_dir / "figures"
+    src_dir = out_dir / "figure_source_data"
+    stems = ["fig1_leaderboard_bands", "fig2_uncertainty_vs_spread", "fig3_rank_inversions", "fig4_topk_heatmap", "fig5_generated_consequence", "fig6_workflow"]
+    missing_figs = [stem for stem in stems if not (fig_dir / f"{stem}.svg").exists() or not (fig_dir / f"{stem}.pdf").exists() or not (src_dir / f"{stem}.csv").exists()]
+    add("figures_and_source_data", "pass" if not missing_figs else "fail", f"figure_stems={len(stems)}; missing={missing_figs}", "Figures visualize benchmark diagnostics, not homogeneous DFT validation.")
+
+    tests = sorted((ROOT / "tests").glob("test_phase2_*.py"))
+    add("tests_and_reproducibility", "pass" if len(tests) >= 8 else "fail", f"phase2_test_files={len(tests)}; regeneration_command=python -m sourceaware.phase2.cli build-all --phase1 outputs/phase1_v2 --out outputs/phase2_v1 --external-cache /home/waas/paper_experiments/phase2_external", "Run pytest after regeneration to verify current code and artifacts.")
+
+    report = pd.DataFrame(rows)
+    report.to_json(out_dir / "phase2_acceptance_check.json", orient="records", indent=2)
+    md = ["# Phase 2 acceptance and guardrail check", "", "Statuses: `pass` means the artifact-level check passed; `guarded_partial` means the implemented public-safe evidence is intentionally scoped and must not be overclaimed.", "", report.to_markdown(index=False)]
+    (out_dir / "phase2_acceptance_check.md").write_text("\n".join(md), encoding="utf-8")
+    return report
+
+
+def write_manifest(out_dir: Path, phase1: Path = PHASE1) -> None:
     records = []
     for p in sorted(out_dir.rglob("*")):
         if p.is_file() and p.name != "manifest_phase2_v1.json":
@@ -1639,7 +1755,13 @@ def write_manifest(out_dir: Path) -> None:
             except Exception:
                 rel = str(p)
             records.append({"path": rel, "sha256": sha256_file(p), "bytes": p.stat().st_size, "rows": rows, "columns": cols})
-    payload = {"phase": "phase2_v1", "framing": "full model-facing and generative-candidate consequence layer; not homogeneous DFT referee truth", "file_count": len(records), "files": records}
+    phase1_info = {
+        "path": str(phase1),
+        "frozen_input": True,
+        "manifest_path": str(phase1 / "manifest_phase1_v2.json"),
+        "manifest_sha256": sha256_file(phase1 / "manifest_phase1_v2.json") if (phase1 / "manifest_phase1_v2.json").exists() else None,
+    }
+    payload = {"phase": "phase2_v1", "framing": "full model-facing and generative-candidate consequence layer; not homogeneous DFT referee truth", "phase1_input": phase1_info, "file_count": len(records), "files": records}
     (out_dir / "manifest_phase2_v1.json").write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
 
 
@@ -1680,7 +1802,8 @@ def build_all(phase1: Path = PHASE1, out_dir: Path = PHASE2, external_cache: Pat
     write_tests_report(out_dir, inventory, gen["inventory"], evals["ratio"], inversions)
     write_key_findings(out_dir, inventory, evals, inversions, gen)
     write_requirement_audit(out_dir, inventory, den, evals, inversions, gen)
-    write_manifest(out_dir)
+    write_acceptance_check(phase1, out_dir)
+    write_manifest(out_dir, phase1)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -1690,11 +1813,22 @@ def main(argv: list[str] | None = None) -> int:
     build.add_argument("--phase1", type=Path, default=PHASE1)
     build.add_argument("--out", type=Path, default=PHASE2)
     build.add_argument("--external-cache", type=Path, default=Path("/home/waas/paper_experiments/phase2_external"))
+    check = sub.add_parser("check")
+    check.add_argument("--phase1", type=Path, default=PHASE1)
+    check.add_argument("--out", type=Path, default=PHASE2)
     args = parser.parse_args(argv)
     if args.cmd == "build-all":
         ensure_dir(args.external_cache)
         build_all(args.phase1, args.out, args.external_cache)
-        return 0
+    elif args.cmd == "check":
+        report = write_acceptance_check(args.phase1, args.out)
+        write_manifest(args.out, args.phase1)
+        failed = report[report["status"].eq("fail")]
+        if len(failed):
+            print(failed.to_string(index=False))
+            return 1
+        print(report[["check_id", "status"]].to_string(index=False))
+    return 0
     return 1
 
 

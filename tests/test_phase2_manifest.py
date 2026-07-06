@@ -9,6 +9,8 @@ OUT = ROOT / "outputs" / "phase2_v1"
 def test_phase2_manifest_and_leaderboard_cards():
     man = json.loads((OUT / "manifest_phase2_v1.json").read_text())
     assert man["phase"] == "phase2_v1"
+    assert man["phase1_input"]["frozen_input"] is True
+    assert re.fullmatch(r"[0-9a-f]{64}", man["phase1_input"]["manifest_sha256"])
     assert man["file_count"] >= 20
     for rec in man["files"]:
         assert re.fullmatch(r"[0-9a-f]{64}", rec["sha256"])
@@ -22,3 +24,27 @@ def test_phase2_manifest_and_leaderboard_cards():
         assert (card_dir / f"{safe}.md").exists(), model
     report = (OUT / "tests_report.md").read_text()
     assert "not homogeneous DFT validation" in report
+
+
+def test_phase2_acceptance_check_records_passes_and_guardrails():
+    path = OUT / "phase2_acceptance_check.json"
+    assert path.exists()
+    checks = pd.read_json(path)
+    required = {
+        "phase1_frozen_input_present",
+        "model_score_inventory",
+        "model_denominators",
+        "model_evaluation_label_views",
+        "label_uncertainty_vs_model_spread",
+        "rank_inversion_analysis",
+        "generative_candidate_consequence",
+        "leaderboard_alpha",
+        "figures_and_source_data",
+        "tests_and_reproducibility",
+    }
+    assert required == set(checks.check_id)
+    assert not checks.status.eq("fail").any()
+    gen = checks[checks.check_id.eq("generative_candidate_consequence")].iloc[0]
+    assert gen.status == "guarded_partial"
+    assert "no homogeneous DFT validation" in gen.guardrail
+    assert (OUT / "phase2_acceptance_check.md").exists()
