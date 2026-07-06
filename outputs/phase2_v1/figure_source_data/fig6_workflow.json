@@ -1,0 +1,15 @@
+{
+  "inputs": [
+    "outputs/phase1_v2 labels",
+    "model scores",
+    "generated/screened candidates"
+  ],
+  "steps": [
+    "standardize scores",
+    "evaluate label views",
+    "rank inversions",
+    "leaderboard alpha",
+    "candidate consequence"
+  ],
+  "guardrail": "not homogeneous DFT validation"
+}

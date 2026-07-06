@@ -1,0 +1,13 @@
+# Phase 2 tests and acceptance report
+
+- Scored SourceAware entries including baselines: 12
+- Real SourceAware-scored models: 4
+- SourceAware scored model families represented: 6
+- Matbench Discovery external WBM score tables downloaded: 4
+- Matbench Discovery external WBM rows collected: 1028354
+- True generator pipelines completed: 0
+- Screening/candidate consequence pipelines completed: 1
+- Any uncertainty dominance ratio > 1: True
+- Top-model inversions found: 702
+
+Guardrail: Phase 2 reports source-aware benchmark consequences and candidate-consequence diagnostics. It is not homogeneous DFT validation and does not provide physical-truth stability labels. External Matbench/WBM predictions are collected as ecosystem coverage and remain excluded from SourceAware label-view claims unless exact mapping is supplied.

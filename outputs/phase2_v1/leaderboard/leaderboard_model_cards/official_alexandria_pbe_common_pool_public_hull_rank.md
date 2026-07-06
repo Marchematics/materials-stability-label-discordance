@@ -1,0 +1,33 @@
+# official_Alexandria_PBE_common_pool_public_hull_rank
+
+Family: public_hull_oracle
+Coverage: 36802
+Rank stability score: 5.0
+Label uncertainty band stable_yield@1000: 0.611
+
+Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth.
+
+## Label-view metrics
+
+| denominator           | model_name                                           | label_view      |     n |   positive_rate | label_semantics       | metric_status                                      |         f1 |   precision |     recall |   balanced_accuracy |      auroc |      auprc |
+|:----------------------|:-----------------------------------------------------|:----------------|------:|----------------:|:----------------------|:---------------------------------------------------|-----------:|------------:|-----------:|--------------------:|-----------:|-----------:|
+| D5_full_complete      | official_Alexandria_PBE_common_pool_public_hull_rank | mp_native       | 36769 |        0.408659 | stability             | ok                                                 |   0.71902  |    0.71902  |   0.71902  |            0.762421 |   0.854396 |   0.704148 |
+| D5_full_complete      | official_Alexandria_PBE_common_pool_public_hull_rank | alexmp20_native | 36769 |        0.3615   | stability             | ok                                                 |   0.64189  |    0.64189  |   0.64189  |            0.719569 |   0.83758  |   0.634573 |
+| D5_full_complete      | official_Alexandria_PBE_common_pool_public_hull_rank | alex_pbe_native | 36769 |        0.330904 | stability             | ok                                                 |   0.595381 |    0.595381 |   0.595381 |            0.697638 |   0.840865 |   0.603829 |
+| D5_full_complete      | official_Alexandria_PBE_common_pool_public_hull_rank | common_pool     | 31872 |        0.517257 | stability             | ok                                                 |   1        |    1        |   1        |            1        |   1        |   1        |
+| D5_full_complete      | official_Alexandria_PBE_common_pool_public_hull_rank | source_union    |     0 |      nan        | stability             | not_evaluable_full_source_union_incomplete         | nan        |  nan        | nan        |          nan        | nan        | nan        |
+| D5_full_complete      | official_Alexandria_PBE_common_pool_public_hull_rank | consensus       | 24614 |        0.385431 | stability             | ok                                                 |   1        |    1        |   1        |            1        |   1        |   1        |
+| D5_full_complete      | official_Alexandria_PBE_common_pool_public_hull_rank | uncertain       | 36769 |        0.330577 | uncertainty_indicator | uncertainty_indicator_not_primary_stability_metric |   0.541176 |    0.541176 |   0.541176 |            0.657299 |   0.761784 |   0.525719 |
+| D5_full_complete      | official_Alexandria_PBE_common_pool_public_hull_rank | audit_view      | 36769 |        0.258016 | stability             | ok                                                 |   0.421524 |    0.421524 |   0.421524 |            0.610183 |   0.806419 |   0.469373 |
+| D5_family_complete    | official_Alexandria_PBE_common_pool_public_hull_rank | mp_native       | 36802 |        0.40851  | stability             | ok                                                 |   0.718904 |    0.718904 |   0.718904 |            0.762383 |   0.854457 |   0.70411  |
+| D5_family_complete    | official_Alexandria_PBE_common_pool_public_hull_rank | alexmp20_native | 36802 |        0.361393 | stability             | ok                                                 |   0.641805 |    0.641805 |   0.641805 |            0.719549 |   0.83757  |   0.634505 |
+| D5_family_complete    | official_Alexandria_PBE_common_pool_public_hull_rank | alex_pbe_native | 36802 |        0.330852 | stability             | ok                                                 |   0.595516 |    0.595516 |   0.595516 |            0.697762 |   0.840976 |   0.603944 |
+| D5_family_complete    | official_Alexandria_PBE_common_pool_public_hull_rank | common_pool     | 31873 |        0.51724  | stability             | ok                                                 |   1        |    1        |   1        |            1        |   1        |   1        |
+| D5_family_complete    | official_Alexandria_PBE_common_pool_public_hull_rank | source_union    |     0 |      nan        | stability             | not_evaluable_full_source_union_incomplete         | nan        |  nan        | nan        |          nan        | nan        | nan        |
+| D5_family_complete    | official_Alexandria_PBE_common_pool_public_hull_rank | consensus       | 24615 |        0.385415 | stability             | ok                                                 |   1        |    1        |   1        |            1        |   1        |   1        |
+| D5_family_complete    | official_Alexandria_PBE_common_pool_public_hull_rank | uncertain       | 36802 |        0.33115  | uncertainty_indicator | uncertainty_indicator_not_primary_stability_metric |   0.54115  |    0.54115  |   0.54115  |            0.656986 |   0.760921 |   0.525755 |
+| D5_family_complete    | official_Alexandria_PBE_common_pool_public_hull_rank | audit_view      | 36802 |        0.257785 | stability             | ok                                                 |   0.421419 |    0.421419 |   0.421419 |            0.610233 |   0.806459 |   0.469119 |
+| D5_max_coverage_union | official_Alexandria_PBE_common_pool_public_hull_rank | mp_native       | 36802 |        0.40851  | stability             | ok                                                 |   0.718904 |    0.718904 |   0.718904 |            0.762383 |   0.854457 |   0.70411  |
+| D5_max_coverage_union | official_Alexandria_PBE_common_pool_public_hull_rank | alexmp20_native | 36802 |        0.361393 | stability             | ok                                                 |   0.641805 |    0.641805 |   0.641805 |            0.719549 |   0.83757  |   0.634505 |
+| D5_max_coverage_union | official_Alexandria_PBE_common_pool_public_hull_rank | alex_pbe_native | 36802 |        0.330852 | stability             | ok                                                 |   0.595516 |    0.595516 |   0.595516 |            0.697762 |   0.840976 |   0.603944 |
+| D5_max_coverage_union | official_Alexandria_PBE_common_pool_public_hull_rank | common_pool     | 31873 |        0.51724  | stability             | ok                                                 |   1        |    1        |   1        |            1        |   1        |   1        |

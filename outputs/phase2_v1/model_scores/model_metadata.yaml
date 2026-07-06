@@ -1,0 +1,438 @@
+ALIGNN:
+  coverage_n: 0
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: strong_gnn
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_prediction_target
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+ALIGNN-FF:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: GNN interatomic potential raw-energy ranker
+  missing_n: 0
+  model_family: strong_gnn
+  model_role: real_model
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: ALIGNN-FF_sourceaware_model_score
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+BOWSR:
+  coverage_n: 0
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: optimization_strategy
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_prediction_target
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+CGCNN:
+  coverage_n: 0
+  external_score_rows_n: 256961
+  external_score_status: downloaded_external_unmapped
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: early_gnn
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_wbm_prediction_downloaded_unmapped
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+CGCNN+P:
+  coverage_n: 0
+  external_score_rows_n: 256961
+  external_score_status: downloaded_external_unmapped
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: early_gnn
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_wbm_prediction_downloaded_unmapped
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+CHGNet:
+  coverage_n: 36801
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: universal interatomic potential predicted-hull ranker
+  missing_n: 1
+  model_family: universal_potential
+  model_role: real_model
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: CHGNet_sourceaware_model_score
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: true
+  whether_hull_distance: true
+EquiformerV2+DeNS:
+  coverage_n: 0
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: universal_potential
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_prediction_target
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+M3GNet:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: universal interatomic potential raw-energy ranker
+  missing_n: 0
+  model_family: universal_potential
+  model_role: real_model
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: M3GNet_sourceaware_model_score
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+MACE-MP:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: universal interatomic potential raw-energy ranker
+  missing_n: 0
+  model_family: universal_potential
+  model_role: real_model
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: MACE-MP_sourceaware_model_score
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+MEGNet:
+  coverage_n: 0
+  external_score_rows_n: 256963
+  external_score_status: downloaded_external_unmapped
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: early_gnn
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_wbm_prediction_downloaded_unmapped
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+MP_common_pool_public_hull_rank:
+  coverage_n: 36770
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: sourceaware_row_metadata_or_public_hull_baseline
+  missing_n: 32
+  model_family: public_hull_oracle
+  model_role: baseline
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: MP_common_pool_public_hull_rank
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: true
+MP_source_native_public_hull_rank:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: sourceaware_row_metadata_or_public_hull_baseline
+  missing_n: 0
+  model_family: public_hull_oracle
+  model_role: baseline
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: MP_source_native_public_hull_rank
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: true
+MatterGen_alex_mp20_source_native_public_hull_rank:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: sourceaware_row_metadata_or_public_hull_baseline
+  missing_n: 0
+  model_family: public_hull_oracle
+  model_role: baseline
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: MatterGen_alex_mp20_source_native_public_hull_rank
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: true
+ORB:
+  coverage_n: 0
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: universal_potential
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_prediction_target
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+SevenNet:
+  coverage_n: 0
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: universal_potential
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_prediction_target
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+Voronoi RF:
+  coverage_n: 0
+  external_score_rows_n: 257469
+  external_score_status: downloaded_external_unmapped
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: fingerprint_baseline
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_wbm_prediction_downloaded_unmapped
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+Wrenformer:
+  coverage_n: 0
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: coordinate_free_prototype
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_prediction_target
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+consensus_oracle_proxy:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: sourceaware_row_metadata_or_public_hull_baseline
+  missing_n: 0
+  model_family: sourceaware_oracle
+  model_role: baseline
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: phase2_oracle_baseline
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+official_Alexandria_PBE_common_pool_public_hull_rank:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: sourceaware_row_metadata_or_public_hull_baseline
+  missing_n: 0
+  model_family: public_hull_oracle
+  model_role: baseline
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: official_Alexandria_PBE_common_pool_public_hull_rank
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: true
+official_Alexandria_PBE_source_native_public_hull_rank:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: sourceaware_row_metadata_or_public_hull_baseline
+  missing_n: 0
+  model_family: public_hull_oracle
+  model_role: baseline
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: official_Alexandria_PBE_source_native_public_hull_rank
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: true
+prevalence_dummy:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: sourceaware_row_metadata_or_public_hull_baseline
+  missing_n: 0
+  model_family: dummy_baseline
+  model_role: baseline
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: phase2_deterministic_baseline
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+random_baseline:
+  coverage_n: 36802
+  external_score_rows_n: 0
+  external_score_status: not_applicable
+  failure_reason: .nan
+  include_in_primary_leaderboard: true
+  input_type: sourceaware_row_metadata_or_public_hull_baseline
+  missing_n: 0
+  model_family: random_baseline
+  model_role: baseline
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: scored
+  score_type: standardized_higher_more_stable
+  source_of_score: phase2_deterministic_baseline
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false

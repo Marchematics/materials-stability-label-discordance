@@ -2,6 +2,15 @@
 
 **Phase 1 release: reusable source-aware benchmark layer, not a full homogeneous-DFT referee benchmark.**
 
+**Phase 2 working layer:** `outputs/phase2_v1/` extends the frozen Phase 1
+benchmark into model-facing and screened-candidate consequence diagnostics:
+model-score inventory, D5-style model denominators, model × label-view metrics,
+top-K stable-yield/uncertainty tables, rank-inversion audits, a SourceAware
+leaderboard alpha, figure source data and an explicit candidate-consequence
+scope audit. Phase 2 remains a public-source-aware benchmark evaluation layer;
+it is **not** homogeneous DFT validation and does **not** assert physical-truth
+stability labels.
+
 A reproducibility-focused toolkit for **source-native stability-label audits**,
 **common-pool convex-hull relabeling**, **source-aware benchmark datasets** and
 **model/candidate consequence diagnostics** in machine-learning
@@ -119,6 +128,8 @@ used as a synonym for alex-mp-20.
 
 Key scripts:
 
+- `build_phase2_v1.py` builds the Phase 2 model-facing and candidate-consequence
+  layer from frozen `outputs/phase1_v2/` inputs.
 - `run_full_mp_alex_denominator_43984.py` builds the 43,139-row source-linked denominator.
 - `run_structure_matching_tolerance_sweep.py` checks denominator sensitivity to `StructureMatcher` tolerances.
 - `build_benchmark_reliability_enhancement.py` builds benchmark-card, cutoff, threshold and chemistry diagnostics.
