@@ -1,0 +1,321 @@
+{
+  "file_count": 61,
+  "files": [
+    {
+      "bytes": 4781,
+      "path": "outputs/phase1_v2/benchmark_card_main.json",
+      "sha256": "37092f0cdbdf0f59c827b5d4e5b411b36f52e4d8eb8f84af06d82e14edfb86be"
+    },
+    {
+      "bytes": 108,
+      "path": "outputs/phase1_v2/benchmark_card_main.md",
+      "sha256": "9b53f85226555fa629ba481bccde4dac5c502e792474b166492504468d3e214b"
+    },
+    {
+      "bytes": 424,
+      "path": "outputs/phase1_v2/benchmark_card_schema.json",
+      "sha256": "ef5d76879d3c2c20f25bcaebd8dc311e95193f52024db8c31f48fd1f3c798bd8"
+    },
+    {
+      "bytes": 784,
+      "path": "outputs/phase1_v2/benchmark_cards/source_alex_pbe.json",
+      "sha256": "f41ef55cd5f29dfd90696f5990ec4da975ca601f173b49adc7af3694d05d9193"
+    },
+    {
+      "bytes": 781,
+      "path": "outputs/phase1_v2/benchmark_cards/source_alexmp20.json",
+      "sha256": "e531ca80b597b6f2dc917f924ed214c766ab98663b5bf320ee4c22c9755af557"
+    },
+    {
+      "bytes": 747,
+      "path": "outputs/phase1_v2/benchmark_cards/source_jarvis.json",
+      "sha256": "fc33d744a2e02aef31b66cd3da8a833f3e5e3d84d5574ef44a6c751b8226546b"
+    },
+    {
+      "bytes": 762,
+      "path": "outputs/phase1_v2/benchmark_cards/source_mp.json",
+      "sha256": "70dd579c30866b2da51328c9d5d4cf0b9effcb2531528c6ab6dc8f93da244830"
+    },
+    {
+      "bytes": 5365002,
+      "path": "outputs/phase1_v2/common_pool_hull_labels.parquet",
+      "sha256": "a72ae481c1278f6612dec4926fd0e14a2a61546a29558806449c65ff5edc7a77"
+    },
+    {
+      "bytes": 592,
+      "path": "outputs/phase1_v2/conflict_decomposition.csv",
+      "sha256": "f112a8277c17552c611aabdc9594adefef0e2f16d237cdec1b1791f80219da60"
+    },
+    {
+      "bytes": 1096,
+      "path": "outputs/phase1_v2/data_sources.yaml",
+      "sha256": "ed09c839f1ea802547141b86c50c9ddd91c436ef2b4d5b91e47bb57ae4c1c70e"
+    },
+    {
+      "bytes": 3326206,
+      "path": "outputs/phase1_v2/denominator_d0_formula.parquet",
+      "sha256": "3261c84bda89f248b7e3f805cc4e87dc41fd14a72c4aea6e692876f609d98941"
+    },
+    {
+      "bytes": 4298327,
+      "path": "outputs/phase1_v2/denominator_d1_mp_alexmp20_exact.parquet",
+      "sha256": "4536181d0cc4f4e805b762f7abc16dff49ac32ab10d9cd7a1234cae3c608b011"
+    },
+    {
+      "bytes": 3988732,
+      "path": "outputs/phase1_v2/denominator_d2_triple_single_match.parquet",
+      "sha256": "650ca109ebfb24a310501f1a95bcb659c45fa3bfde4b33557d7e3bec7dfb23f7"
+    },
+    {
+      "bytes": 4228819,
+      "path": "outputs/phase1_v2/denominator_d3_jarvis_overlap.parquet",
+      "sha256": "46fe3228d788422dec57684480088e0782608827bf2cd93fe8fee42c2b76d8d3"
+    },
+    {
+      "bytes": 3988442,
+      "path": "outputs/phase1_v2/denominator_d4_source_union_pool.parquet",
+      "sha256": "72614d526371a1410e7032b7b50f021b9f23ed789b0c110344c73966f961e64a"
+    },
+    {
+      "bytes": 3997511,
+      "path": "outputs/phase1_v2/denominator_d5_model_complete.parquet",
+      "sha256": "27cd6abe6cb3f855dc2bd2222749e5f5fa380acf2495b5a9884e46f7d878a2e5"
+    },
+    {
+      "bytes": 81,
+      "path": "outputs/phase1_v2/denominator_summary.json",
+      "sha256": "e7f0f4962b2dee470f06f681657cd66aa8c618a8631db62c562786fb79028677"
+    },
+    {
+      "bytes": 10543,
+      "path": "outputs/phase1_v2/figure_source_data/fig1_model_label_uncertainty_metrics.csv",
+      "sha256": "c9fa97339a12091d68c76e41db3df17adb370e43d2ec999fc06acc8b7dd16a24"
+    },
+    {
+      "bytes": 9811,
+      "path": "outputs/phase1_v2/figure_source_data/fig1_topk_uncertainty.csv",
+      "sha256": "46e0bc0759d5d12e66fe5d7c330e94944492bf295ac0d3855f85a9cd8159bb97"
+    },
+    {
+      "bytes": 260,
+      "path": "outputs/phase1_v2/figure_source_data/fig2_denominator_hierarchy.csv",
+      "sha256": "901d3d855602b41a2ecfbd9a4c5bb4ffb1d167f4705b9aebe80e03bdcd9011d9"
+    },
+    {
+      "bytes": 592,
+      "path": "outputs/phase1_v2/figure_source_data/fig3_conflict_decomposition.csv",
+      "sha256": "f112a8277c17552c611aabdc9594adefef0e2f16d237cdec1b1791f80219da60"
+    },
+    {
+      "bytes": 101,
+      "path": "outputs/phase1_v2/figure_source_data/fig4_near_threshold_diagnostics.csv",
+      "sha256": "9c6416dc63ec98d82339375bc570d68d1bb6a4e26c6d33c7836a607433a8b8ad"
+    },
+    {
+      "bytes": 54,
+      "path": "outputs/phase1_v2/figure_source_data/fig5_workflow_card_inputs.csv",
+      "sha256": "59947c5c44accabbb7c8f805f076ab0d87666181ffe60145d998fa44a9b0e01f"
+    },
+    {
+      "bytes": 8977179,
+      "path": "outputs/phase1_v2/figure_source_data/fig6_jarvis_portability.csv",
+      "sha256": "4b1c00a3f91d5992aafdc591a0a0289fe3f40ef128a457be6bfa57d3f5d2da41"
+    },
+    {
+      "bytes": 64,
+      "path": "outputs/phase1_v2/figures/README.md",
+      "sha256": "9e93269aaec9ead578106045083fecf418a31acc9da823be6eac4d0e4e75e041"
+    },
+    {
+      "bytes": 6375,
+      "path": "outputs/phase1_v2/label_view_band_vs_model_spread.csv",
+      "sha256": "0e4108c50e50804882a8f1f45a42d60ce96824c6dd72623bef16c99e1444272a"
+    },
+    {
+      "bytes": 45598258,
+      "path": "outputs/phase1_v2/labels_by_view.parquet",
+      "sha256": "e51c61271a888bd524821842c4238ac86c6347bcfc683c15c5123643de71f934"
+    },
+    {
+      "bytes": 9257,
+      "path": "outputs/phase1_v2/manifest_phase1_v2.json",
+      "sha256": "7836eb76c576afd06f3ac64ce456e096975aa6c14dd631b802b21dae2600520f"
+    },
+    {
+      "bytes": 10667,
+      "path": "outputs/phase1_v2/model_metrics_by_label_view.csv",
+      "sha256": "49970525b1fc1306239d253536d7a7e8144ed92fcb7411d5d65bdede793b4e6c"
+    },
+    {
+      "bytes": 8249,
+      "path": "outputs/phase1_v2/model_rank_inversions.csv",
+      "sha256": "1d42d90226b0968069fdce5419508063a9d3638b9655eba97ba23d2755cca2fb"
+    },
+    {
+      "bytes": 980517,
+      "path": "outputs/phase1_v2/source_id_map.parquet",
+      "sha256": "d9d2ca7b4371037f794ef67bd4bc0825fee2a8c5c65e83f79d6dd46b47684096"
+    },
+    {
+      "bytes": 5141910,
+      "path": "outputs/phase1_v2/source_union_hull_labels.parquet",
+      "sha256": "32bfe71138ed1a0f1b5dd5b083dcccd06169db6b3eea6a83fda39db932a4c5a9"
+    },
+    {
+      "bytes": 512,
+      "path": "outputs/phase1_v2/source_union_hull_status.json",
+      "sha256": "ae36107524743a729234940a5cf108005804e4ab7abf14423b3bbfb089f85c85"
+    },
+    {
+      "bytes": 3692877,
+      "path": "outputs/phase1_v2/structure_fingerprints.parquet",
+      "sha256": "486e2b6083ede3ed3c9cb3bf7c878e763886a7d8bd3fc2c8a3977d0ee03b5fad"
+    },
+    {
+      "bytes": 9823,
+      "path": "outputs/phase1_v2/topk_yield_by_label_view.csv",
+      "sha256": "ddd9261c57845ada5af043e4d84d409900fec0513dfde3cd74c06a5cd517a7b3"
+    },
+    {
+      "bytes": 616,
+      "path": "outputs/phase1_v2/uncertain_fraction_by_topk.csv",
+      "sha256": "1ae0cd1e9f0a548fa060872ac07646b77a38191817ef1401757faeaceef04464"
+    },
+    {
+      "bytes": 76,
+      "path": "sourceaware/__init__.py",
+      "sha256": "a296d7ffdaaafee4b2275b266f07af20451f39efa9dcd781454ca935abcab0a5"
+    },
+    {
+      "bytes": 5495,
+      "path": "sourceaware/cards.py",
+      "sha256": "60fa82ade41a73542cc194be95b117bd7b8c8db924784d6bd26349f94a6452cb"
+    },
+    {
+      "bytes": 2071,
+      "path": "sourceaware/cli.py",
+      "sha256": "7a789642d401c9fe1dd3eddbd84888fdb2f61b1f71c79a689fc608cca4f61159"
+    },
+    {
+      "bytes": 6747,
+      "path": "sourceaware/hulls.py",
+      "sha256": "b8431230991549bd8f1616b1dea005229efe62ebab55d967489b5078cc31f25d"
+    },
+    {
+      "bytes": 1944,
+      "path": "sourceaware/io.py",
+      "sha256": "25f1f1d9dd2a4c57134dce81882eae39c5fe2518e7c76033b33f8554b7ce87e8"
+    },
+    {
+      "bytes": 3984,
+      "path": "sourceaware/labels.py",
+      "sha256": "fe6922488bee7641e899da8dac655ff73e950dd74f6c6c939f29e1d28f557db0"
+    },
+    {
+      "bytes": 1671,
+      "path": "sourceaware/matching.py",
+      "sha256": "6857e041c5426ac90da8d0781290c89897bbdabf7c95458c5b07057250079d5d"
+    },
+    {
+      "bytes": 5253,
+      "path": "sourceaware/metrics.py",
+      "sha256": "8ecc181c308277f17c4e37df5c4402bbebed2f06c835f143f5604f9be94a2769"
+    },
+    {
+      "bytes": 1870,
+      "path": "sourceaware/plots.py",
+      "sha256": "2079af6ef546b3b7632d732285e8d5dd5f15a6d8bd4c6dde56de3074414ab74c"
+    },
+    {
+      "bytes": 372,
+      "path": "scripts/build_phase1_common_pool_hulls.py",
+      "sha256": "784db6e6b1c889dadcafe746a84a8df4c6b28c8c6bcfcb5f2062db40a43fa131"
+    },
+    {
+      "bytes": 9572,
+      "path": "scripts/build_phase1_denominators.py",
+      "sha256": "9bfee6f3afac2872f393287f0a15910bda179f0b95b1fac6c48ede93d6093275"
+    },
+    {
+      "bytes": 374,
+      "path": "scripts/build_phase1_figures.py",
+      "sha256": "fdf59821eab2bcd0d2b9ae6eed107d7c9a2fe7a6055ae086315e9995b6fa4598"
+    },
+    {
+      "bytes": 361,
+      "path": "scripts/build_phase1_label_views.py",
+      "sha256": "b88889e437d97c50493eb86b74f61ea8c1f7b1760101a4a28d61d9007dc93a95"
+    },
+    {
+      "bytes": 461,
+      "path": "scripts/build_phase1_model_metrics.py",
+      "sha256": "557252b0d537c50b52e0e3938af8dbfe030986369e59821f2ea56f5571aa8354"
+    },
+    {
+      "bytes": 431,
+      "path": "scripts/build_phase1_source_union_hulls.py",
+      "sha256": "c355b0e53f198791babf5a5d478ac66f17ee019bb076e2da8a281e6646e8036a"
+    },
+    {
+      "bytes": 749,
+      "path": "scripts/generate_benchmark_card.py",
+      "sha256": "4a3a2987d4f77f47300319fbc727b8cca716d1e4addcad1523cf8b8e92a9599d"
+    },
+    {
+      "bytes": 552,
+      "path": "tests/test_phase1_benchmark_card_schema.py",
+      "sha256": "69adaf332edf3ae7cb60b0ba23c7df9492fb89ede63a6ff0f4cc79981c15902b"
+    },
+    {
+      "bytes": 635,
+      "path": "tests/test_phase1_denominator_membership.py",
+      "sha256": "6b07bb9040d992280d698136160a1b78a188c9b4d1e8b7dee78d01bd44fbf724"
+    },
+    {
+      "bytes": 627,
+      "path": "tests/test_phase1_hash_integrity.py",
+      "sha256": "478680ef9d01c2c6b09dd75816db064b48c57ba5d501bbe40f66bf094da9ec65"
+    },
+    {
+      "bytes": 1308,
+      "path": "tests/test_phase1_hull_reconstruction.py",
+      "sha256": "03ee403448a9c5d17b5050bfc11dea7c7fcd68c3a28536b21917beddcbaad337"
+    },
+    {
+      "bytes": 1783,
+      "path": "tests/test_phase1_label_definitions.py",
+      "sha256": "f186e071fd22d3f759a94695592867b6de454f1acb6708024264476cfa619457"
+    },
+    {
+      "bytes": 662,
+      "path": "tests/test_phase1_metric_reproducibility.py",
+      "sha256": "e6b7b396fce724d03ec447a7d935dfc62ef6c1e41435f39b36efa8e00fafc4ba"
+    },
+    {
+      "bytes": 421,
+      "path": "tests/test_phase1_row_counts.py",
+      "sha256": "b1949b711efe3faf8db7dea105068300e37b753f347b92252612a00da0166af3"
+    },
+    {
+      "bytes": 16452,
+      "path": "README.md",
+      "sha256": "e236f03ee02524f5051609db34e222d7b98c87c658910fa487a98cfd587a9245"
+    },
+    {
+      "bytes": 4345,
+      "path": "docs/PHASE1_MANUSCRIPT_LOCK.md",
+      "sha256": "0cde7f47ed957f49433275bb2abfd28ed0d9ac8fd544066807df83d5b61d7647"
+    }
+  ],
+  "frozen_path_policy": [
+    "outputs/phase1_v2/",
+    "sourceaware/",
+    "scripts/build_phase1_*.py",
+    "scripts/generate_benchmark_card.py",
+    "tests/test_phase1_*.py",
+    "README.md",
+    "docs/PHASE1_MANUSCRIPT_LOCK.md"
+  ],
+  "release_tag": "v2.0-phase1-sourceaware-benchmark-core",
+  "scope": "Phase 1 reusable source-aware benchmark layer, not a full homogeneous-DFT referee benchmark"
+}

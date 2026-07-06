@@ -1,0 +1,33 @@
+benchmark_layer: SourceAware-Stability phase1_v2
+sources:
+- source_id: mp
+  name: Materials Project
+  label_field: source_native_mp_label
+  hull_field: source_native_mp_ehull
+  unit: eV/atom
+  formation_energy_available: true
+  can_enter_common_pool_or_source_union_hull: true
+- source_id: alexmp20
+  name: MatterGen alex-mp-20
+  label_field: source_native_mattergen_label
+  hull_field: source_native_mattergen_ehull
+  unit: eV/atom
+  formation_energy_available: false
+  can_enter_common_pool_or_source_union_hull: false
+- source_id: alex_pbe
+  name: official Alexandria-PBE
+  label_field: source_native_alexandria_label
+  hull_field: source_native_alexandria_ehull
+  unit: eV/atom
+  formation_energy_available: true
+  can_enter_common_pool_or_source_union_hull: true
+- source_id: jarvis
+  name: JARVIS-DFT 3D
+  label_field: jarvis_stable_exact
+  hull_field: jarvis_ehull
+  unit: eV/atom
+  formation_energy_available: false
+  can_enter_common_pool_or_source_union_hull: false
+rules:
+  stable_threshold: e_above_hull <= 1e-8 eV/atom
+  label_scope: benchmark diagnostics, not physical-truth labels

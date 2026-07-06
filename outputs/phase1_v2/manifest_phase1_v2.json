@@ -1,0 +1,271 @@
+{
+  "benchmark_layer": "SourceAware-Stability phase1_v2",
+  "file_count": 33,
+  "files": [
+    {
+      "bytes": 424,
+      "columns": 1,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/benchmark_card_schema.json",
+      "rows": 17,
+      "sha256": "ef5d76879d3c2c20f25bcaebd8dc311e95193f52024db8c31f48fd1f3c798bd8"
+    },
+    {
+      "bytes": 784,
+      "columns": 1,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/benchmark_cards/source_alex_pbe.json",
+      "rows": 14,
+      "sha256": "f41ef55cd5f29dfd90696f5990ec4da975ca601f173b49adc7af3694d05d9193"
+    },
+    {
+      "bytes": 781,
+      "columns": 1,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/benchmark_cards/source_alexmp20.json",
+      "rows": 14,
+      "sha256": "e531ca80b597b6f2dc917f924ed214c766ab98663b5bf320ee4c22c9755af557"
+    },
+    {
+      "bytes": 747,
+      "columns": 1,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/benchmark_cards/source_jarvis.json",
+      "rows": 14,
+      "sha256": "fc33d744a2e02aef31b66cd3da8a833f3e5e3d84d5574ef44a6c751b8226546b"
+    },
+    {
+      "bytes": 762,
+      "columns": 1,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/benchmark_cards/source_mp.json",
+      "rows": 14,
+      "sha256": "70dd579c30866b2da51328c9d5d4cf0b9effcb2531528c6ab6dc8f93da244830"
+    },
+    {
+      "bytes": 5365002,
+      "columns": 21,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/common_pool_hull_labels.parquet",
+      "rows": 36802,
+      "sha256": "a72ae481c1278f6612dec4926fd0e14a2a61546a29558806449c65ff5edc7a77"
+    },
+    {
+      "bytes": 592,
+      "columns": 5,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/conflict_decomposition.csv",
+      "rows": 7,
+      "sha256": "f112a8277c17552c611aabdc9594adefef0e2f16d237cdec1b1791f80219da60"
+    },
+    {
+      "bytes": 1096,
+      "columns": null,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/data_sources.yaml",
+      "rows": null,
+      "sha256": "ed09c839f1ea802547141b86c50c9ddd91c436ef2b4d5b91e47bb57ae4c1c70e"
+    },
+    {
+      "bytes": 3326206,
+      "columns": 19,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/denominator_d0_formula.parquet",
+      "rows": 34962,
+      "sha256": "3261c84bda89f248b7e3f805cc4e87dc41fd14a72c4aea6e692876f609d98941"
+    },
+    {
+      "bytes": 4298327,
+      "columns": 20,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/denominator_d1_mp_alexmp20_exact.parquet",
+      "rows": 43139,
+      "sha256": "4536181d0cc4f4e805b762f7abc16dff49ac32ab10d9cd7a1234cae3c608b011"
+    },
+    {
+      "bytes": 3988732,
+      "columns": 23,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/denominator_d2_triple_single_match.parquet",
+      "rows": 36802,
+      "sha256": "650ca109ebfb24a310501f1a95bcb659c45fa3bfde4b33557d7e3bec7dfb23f7"
+    },
+    {
+      "bytes": 4228819,
+      "columns": 23,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/denominator_d3_jarvis_overlap.parquet",
+      "rows": 36802,
+      "sha256": "46fe3228d788422dec57684480088e0782608827bf2cd93fe8fee42c2b76d8d3"
+    },
+    {
+      "bytes": 3988442,
+      "columns": 22,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/denominator_d4_source_union_pool.parquet",
+      "rows": 36802,
+      "sha256": "72614d526371a1410e7032b7b50f021b9f23ed789b0c110344c73966f961e64a"
+    },
+    {
+      "bytes": 3997511,
+      "columns": 25,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/denominator_d5_model_complete.parquet",
+      "rows": 36801,
+      "sha256": "27cd6abe6cb3f855dc2bd2222749e5f5fa380acf2495b5a9884e46f7d878a2e5"
+    },
+    {
+      "bytes": 81,
+      "columns": null,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/denominator_summary.json",
+      "rows": null,
+      "sha256": "e7f0f4962b2dee470f06f681657cd66aa8c618a8631db62c562786fb79028677"
+    },
+    {
+      "bytes": 10543,
+      "columns": 14,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/figure_source_data/fig1_model_label_uncertainty_metrics.csv",
+      "rows": 40,
+      "sha256": "c9fa97339a12091d68c76e41db3df17adb370e43d2ec999fc06acc8b7dd16a24"
+    },
+    {
+      "bytes": 9811,
+      "columns": 7,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/figure_source_data/fig1_topk_uncertainty.csv",
+      "rows": 200,
+      "sha256": "46e0bc0759d5d12e66fe5d7c330e94944492bf295ac0d3855f85a9cd8159bb97"
+    },
+    {
+      "bytes": 260,
+      "columns": 3,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/figure_source_data/fig2_denominator_hierarchy.csv",
+      "rows": 6,
+      "sha256": "901d3d855602b41a2ecfbd9a4c5bb4ffb1d167f4705b9aebe80e03bdcd9011d9"
+    },
+    {
+      "bytes": 592,
+      "columns": 5,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/figure_source_data/fig3_conflict_decomposition.csv",
+      "rows": 7,
+      "sha256": "f112a8277c17552c611aabdc9594adefef0e2f16d237cdec1b1791f80219da60"
+    },
+    {
+      "bytes": 101,
+      "columns": 3,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/figure_source_data/fig4_near_threshold_diagnostics.csv",
+      "rows": 4,
+      "sha256": "9c6416dc63ec98d82339375bc570d68d1bb6a4e26c6d33c7836a607433a8b8ad"
+    },
+    {
+      "bytes": 54,
+      "columns": 2,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/figure_source_data/fig5_workflow_card_inputs.csv",
+      "rows": 1,
+      "sha256": "59947c5c44accabbb7c8f805f076ab0d87666181ffe60145d998fa44a9b0e01f"
+    },
+    {
+      "bytes": 8977179,
+      "columns": 23,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/figure_source_data/fig6_jarvis_portability.csv",
+      "rows": 36802,
+      "sha256": "4b1c00a3f91d5992aafdc591a0a0289fe3f40ef128a457be6bfa57d3f5d2da41"
+    },
+    {
+      "bytes": 64,
+      "columns": 1,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/figures/README.md",
+      "rows": 1,
+      "sha256": "9e93269aaec9ead578106045083fecf418a31acc9da823be6eac4d0e4e75e041"
+    },
+    {
+      "bytes": 6375,
+      "columns": 7,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/label_view_band_vs_model_spread.csv",
+      "rows": 56,
+      "sha256": "0e4108c50e50804882a8f1f45a42d60ce96824c6dd72623bef16c99e1444272a"
+    },
+    {
+      "bytes": 45598258,
+      "columns": 21,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/labels_by_view.parquet",
+      "rows": 515228,
+      "sha256": "e51c61271a888bd524821842c4238ac86c6347bcfc683c15c5123643de71f934"
+    },
+    {
+      "bytes": 10667,
+      "columns": 14,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/model_metrics_by_label_view.csv",
+      "rows": 40,
+      "sha256": "49970525b1fc1306239d253536d7a7e8144ed92fcb7411d5d65bdede793b4e6c"
+    },
+    {
+      "bytes": 8249,
+      "columns": 8,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/model_rank_inversions.csv",
+      "rows": 135,
+      "sha256": "1d42d90226b0968069fdce5419508063a9d3638b9655eba97ba23d2755cca2fb"
+    },
+    {
+      "bytes": 980517,
+      "columns": 4,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/source_id_map.parquet",
+      "rows": 110406,
+      "sha256": "d9d2ca7b4371037f794ef67bd4bc0825fee2a8c5c65e83f79d6dd46b47684096"
+    },
+    {
+      "bytes": 5141910,
+      "columns": 39,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/source_union_hull_labels.parquet",
+      "rows": 36802,
+      "sha256": "32bfe71138ed1a0f1b5dd5b083dcccd06169db6b3eea6a83fda39db932a4c5a9"
+    },
+    {
+      "bytes": 512,
+      "columns": 1,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/source_union_hull_status.json",
+      "rows": 8,
+      "sha256": "ae36107524743a729234940a5cf108005804e4ab7abf14423b3bbfb089f85c85"
+    },
+    {
+      "bytes": 3692877,
+      "columns": 8,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/structure_fingerprints.parquet",
+      "rows": 36802,
+      "sha256": "486e2b6083ede3ed3c9cb3bf7c878e763886a7d8bd3fc2c8a3977d0ee03b5fad"
+    },
+    {
+      "bytes": 9823,
+      "columns": 7,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/topk_yield_by_label_view.csv",
+      "rows": 200,
+      "sha256": "ddd9261c57845ada5af043e4d84d409900fec0513dfde3cd74c06a5cd517a7b3"
+    },
+    {
+      "bytes": 616,
+      "columns": 5,
+      "generating_script": "phase1_v2_pipeline",
+      "path": "outputs/phase1_v2/uncertain_fraction_by_topk.csv",
+      "rows": 20,
+      "sha256": "1ae0cd1e9f0a548fa060872ac07646b77a38191817ef1401757faeaceef04464"
+    }
+  ],
+  "manifest_version": "1.0"
+}

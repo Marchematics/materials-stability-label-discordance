@@ -1,0 +1,15 @@
+{
+  "can_enter_common_pool_or_source_union_hull": false,
+  "duplicate_handling": "single exact matches retained; multiple matches audited",
+  "exact_match_handling": "structure exact denominators are separate from D0 formula overlap",
+  "formation_energy_available": false,
+  "hull_stability_field": "jarvis_ehull",
+  "label_field_name": "jarvis_stable_exact",
+  "missing_id_handling": "missing IDs excluded from exact denominators",
+  "query_or_download_date": "archived in milestone outputs",
+  "source_name": "JARVIS-DFT 3D",
+  "stable_threshold": "e_above_hull <= 1e-8 eV/atom",
+  "unit": "eV/atom",
+  "unmatched_handling": "unmatched rows counted in audit fields",
+  "version_or_snapshot_date": "archived public snapshot or milestone cache"
+}

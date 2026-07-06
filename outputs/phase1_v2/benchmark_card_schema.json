@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "required": [
+    "benchmark_name",
+    "benchmark_version",
+    "retained_denominator",
+    "source_coverage",
+    "pairwise_conflict_matrix",
+    "common_pool_status",
+    "full_source_union_status",
+    "consensus_stable_fraction",
+    "uncertain_fraction",
+    "metric_bands",
+    "topk_stable_yield_bands",
+    "manifest_sha256"
+  ],
+  "type": "object"
+}

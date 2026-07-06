@@ -1,0 +1,9 @@
+{
+  "diagnostic": "full_source_union_hull_reconstruction",
+  "exact_match_source_union_baseline_available": true,
+  "failure_reason": "mp_api_access_or_complete_full_phase_pool_not_available_in_public_artifact_build",
+  "full_source_union_labels_available": false,
+  "guardrail": "Exact-match source-union compatibility rows are retained only as a baseline diagnostic and are not relabeled as full-source-union hulls.",
+  "pool_scope": "full_source_union_required_but_not_constructed",
+  "status": "incomplete"
+}
