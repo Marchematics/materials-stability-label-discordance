@@ -31,7 +31,7 @@
     "finding": "Model rank interpretation changes under source-aware label views, including pairwise-complete label-dependent winner flips.",
     "primary_number": 756,
     "secondary_number": 10468,
-    "evidence": "756 aggregate label-view rank-comparison rows; 702 top-model inversion rows in aggregate rankings; 10468 pairwise-complete label-dependent winner flips.",
+    "evidence": "756 aggregate label-view rank-comparison rows; 702 aggregate top-model inversion rows, mostly involving baselines/oracles; real-model top-inversion rows=99; real-model lower-rank inversion rows=306; 10468 pairwise-complete label-dependent winner flips.",
     "claim_scope": "supports_rank_instability_and_pairwise_margin_claims",
     "guardrail": "Rank inversions are reported as label-view diagnostics; if a leading model is robust in a subtable, that should be reported rather than overclaimed."
   },

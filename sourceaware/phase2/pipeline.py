@@ -972,6 +972,63 @@ def rank_correlations(rankings: pd.DataFrame, out_dir: Path) -> pd.DataFrame:
     return corr
 
 
+def real_model_rank_claim_audit(rankings: pd.DataFrame, inventory: pd.DataFrame, out_dir: Path) -> dict[str, pd.DataFrame]:
+    """Separate real-model rank changes from oracle/baseline top-rank changes."""
+    rdir = ensure_dir(out_dir / "rank_inversions")
+    mdir = ensure_dir(out_dir / "model_metrics")
+    if "model_role" in inventory.columns:
+        real_models = set(inventory[inventory["model_role"].eq("real_model")]["model_name"])
+    else:
+        # Compatibility for toy/unit-test inventories that predate Phase 2
+        # model-role metadata.
+        real_models = set(inventory.get("model_name", pd.Series(dtype=str)))
+    real_rank = rankings[rankings["model_name"].isin(real_models)].copy()
+    if real_rank.empty:
+        empty_rank = pd.DataFrame(columns=list(rankings.columns) + ["real_model_rank"])
+        empty_audit = pd.DataFrame(columns=["denominator", "metric", "label_view_a", "label_view_b", "common_real_model_n", "real_model_rank_inversion_count", "top_real_model_a", "top_real_model_b", "top_real_model_inversion", "claim_interpretation"])
+        empty_rank.to_csv(mdir / "real_model_rankings_by_label_view.csv", index=False)
+        empty_audit.to_csv(rdir / "real_model_rank_claim_audit.csv", index=False)
+        return {"rankings": empty_rank, "audit": empty_audit}
+    real_rank["real_model_rank"] = real_rank.groupby(["denominator", "label_view", "metric"])["metric_value"].rank(method="min", ascending=False).astype(int)
+    rows = []
+    for (den, metric), sub in real_rank.groupby(["denominator", "metric"], sort=True):
+        views = sorted(sub["label_view"].unique())
+        ranks = {v: sub[sub["label_view"].eq(v)].set_index("model_name")["real_model_rank"].to_dict() for v in views}
+        for a, b in itertools.combinations(views, 2):
+            common = sorted(set(ranks[a]) & set(ranks[b]))
+            if not common:
+                continue
+            inv_count = sum(1 for x, y in itertools.combinations(common, 2) if (ranks[a][x] - ranks[a][y]) * (ranks[b][x] - ranks[b][y]) < 0)
+            top_a = min(common, key=lambda m: ranks[a][m])
+            top_b = min(common, key=lambda m: ranks[b][m])
+            top_inv = top_a != top_b
+            rows.append({
+                "denominator": den,
+                "metric": metric,
+                "label_view_a": a,
+                "label_view_b": b,
+                "common_real_model_n": len(common),
+                "real_model_rank_inversion_count": int(inv_count),
+                "top_real_model_a": top_a,
+                "top_real_model_b": top_b,
+                "top_real_model_inversion": bool(top_inv),
+                "claim_interpretation": "real_model_leader_changes_under_label_views" if top_inv else ("lower_rank_real_model_order_changes" if inv_count else "real_model_order_stable_for_this_pair"),
+            })
+    audit = pd.DataFrame(rows)
+    real_rank.to_csv(mdir / "real_model_rankings_by_label_view.csv", index=False)
+    audit.to_csv(rdir / "real_model_rank_claim_audit.csv", index=False)
+    audit.to_csv(mdir / "real_model_rank_claim_audit.csv", index=False)
+    md = [
+        "# Real-model rank claim audit",
+        "",
+        "This artifact separates rank changes among real SourceAware-scored models from oracle/baseline top-rank changes. It is intended to prevent overclaiming leaderboard changes driven by public-hull or consensus-oracle baselines.",
+        "",
+        audit.head(100).to_markdown(index=False) if len(audit) else "No real-model rank audit rows.",
+    ]
+    (rdir / "real_model_rank_claim_audit.md").write_text("\n".join(md), encoding="utf-8")
+    return {"rankings": real_rank, "audit": audit}
+
+
 def rank_inversions(rankings: pd.DataFrame, inventory: pd.DataFrame, out_dir: Path) -> dict[str, pd.DataFrame]:
     inv_rows = []
     top_rows = []
@@ -1018,7 +1075,8 @@ def rank_inversions(rankings: pd.DataFrame, inventory: pd.DataFrame, out_dir: Pa
     family_inv.to_csv(rdir / "family_level_inversions.csv", index=False)
     budget.to_csv(rdir / "budget_dependent_inversions.csv", index=False)
     inv.to_csv(rdir / "label_dependent_inversions.csv", index=False)
-    return {"all": inv, "top": top, "family": family_inv, "budget": budget}
+    real_audit = real_model_rank_claim_audit(rankings, inventory, out_dir)
+    return {"all": inv, "top": top, "family": family_inv, "budget": budget, "real_model_rankings": real_audit["rankings"], "real_model_audit": real_audit["audit"]}
 
 
 def build_pairwise_complete_margins(phase1: Path, out_dir: Path, scores: pd.DataFrame, denominators: dict[str, pd.DataFrame], inventory: pd.DataFrame) -> pd.DataFrame:
@@ -1715,12 +1773,15 @@ def write_key_findings(out_dir: Path, inventory: pd.DataFrame, evals: dict[str, 
     top_inv = inversions.get("top", pd.DataFrame())
     pair_inv_path = out_dir / "rank_inversions" / "pairwise_complete_label_dependent_inversions.csv"
     pair_inv = pd.read_csv(pair_inv_path) if pair_inv_path.exists() else pd.DataFrame()
+    real_audit = inversions.get("real_model_audit", pd.DataFrame())
+    real_top_inv = int(real_audit.get("top_real_model_inversion", pd.Series(dtype=bool)).astype(bool).sum()) if not real_audit.empty else 0
+    real_lower_inv = int((pd.to_numeric(real_audit.get("real_model_rank_inversion_count", pd.Series(dtype=float)), errors="coerce").fillna(0) > 0).sum()) if not real_audit.empty else 0
     audit_rows.append({
         "finding_id": "rank_interpretation_changes",
         "finding": "Model rank interpretation changes under source-aware label views, including pairwise-complete label-dependent winner flips.",
         "primary_number": len(all_inv),
         "secondary_number": len(pair_inv),
-        "evidence": f"{len(all_inv)} aggregate label-view rank-comparison rows; {len(top_inv)} top-model inversion rows in aggregate rankings; {len(pair_inv)} pairwise-complete label-dependent winner flips.",
+        "evidence": f"{len(all_inv)} aggregate label-view rank-comparison rows; {len(top_inv)} aggregate top-model inversion rows, mostly involving baselines/oracles; real-model top-inversion rows={real_top_inv}; real-model lower-rank inversion rows={real_lower_inv}; {len(pair_inv)} pairwise-complete label-dependent winner flips.",
         "claim_scope": "supports_rank_instability_and_pairwise_margin_claims",
         "guardrail": "Rank inversions are reported as label-view diagnostics; if a leading model is robust in a subtable, that should be reported rather than overclaimed.",
     })
@@ -1842,8 +1903,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "5_rank_inversion_analysis",
             "status": "complete",
-            "evidence": f"all inversions rows={len(inversions['all'])}; top-model inversion rows={len(inversions['top'])}; family rows={len(inversions['family'])}; budget rows={len(inversions['budget'])}",
-            "primary_artifacts": "outputs/phase2_v1/rank_inversions/all_rank_inversions.csv; top_model_inversions.csv; family_level_inversions.csv; budget_dependent_inversions.csv",
+            "evidence": f"all inversions rows={len(inversions['all'])}; aggregate top-model inversion rows={len(inversions['top'])}; real-model rank audit rows={len(inversions.get('real_model_audit', pd.DataFrame()))}; family rows={len(inversions['family'])}; budget rows={len(inversions['budget'])}",
+            "primary_artifacts": "outputs/phase2_v1/rank_inversions/all_rank_inversions.csv; top_model_inversions.csv; real_model_rank_claim_audit.csv; family_level_inversions.csv; budget_dependent_inversions.csv",
             "guardrail": "Reported inversions are empirical rank diagnostics under label views; no unsupported claim that a definitive best model is overturned.",
         },
         {
@@ -1961,12 +2022,15 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
 
     inv_all_path = out_dir / "rank_inversions" / "all_rank_inversions.csv"
     inv_top_path = out_dir / "rank_inversions" / "top_model_inversions.csv"
+    real_audit_path = out_dir / "rank_inversions" / "real_model_rank_claim_audit.csv"
     inv_all = pd.read_csv(inv_all_path) if inv_all_path.exists() else pd.DataFrame()
     inv_top = pd.read_csv(inv_top_path) if inv_top_path.exists() else pd.DataFrame()
+    real_audit = pd.read_csv(real_audit_path) if real_audit_path.exists() else pd.DataFrame()
+    real_audit_ok = (not real_audit.empty) and {"top_real_model_inversion", "claim_interpretation"}.issubset(real_audit.columns)
     add(
         "rank_inversion_analysis",
-        "pass" if len(inv_all) > 0 else "fail",
-        f"all_rank_inversion_rows={len(inv_all)}; top_model_inversion_rows={len(inv_top)}",
+        "pass" if len(inv_all) > 0 and real_audit_ok else "fail",
+        f"all_rank_inversion_rows={len(inv_all)}; aggregate_top_model_inversion_rows={len(inv_top)}; real_model_rank_audit_rows={len(real_audit)}; real_model_rank_audit_ok={real_audit_ok}",
         "Rank changes are label-view diagnostics and should be reported without overclaiming definitive best-model changes.",
     )
 

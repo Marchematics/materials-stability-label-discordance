@@ -17,6 +17,13 @@ def test_phase2_rank_inversion_outputs_exist():
     assert (inv.rank_inversion_count >= 0).all()
     assert (OUT / "rank_inversions" / "family_level_inversions.csv").exists()
     assert (OUT / "rank_inversions" / "budget_dependent_inversions.csv").exists()
+    real_audit = pd.read_csv(OUT / "rank_inversions" / "real_model_rank_claim_audit.csv")
+    assert len(real_audit) > 0
+    assert {"top_real_model_inversion", "claim_interpretation", "real_model_rank_inversion_count"}.issubset(real_audit.columns)
+    assert real_audit.common_real_model_n.ge(4).all()
+    assert real_audit.claim_interpretation.str.contains("real_model|lower_rank|stable", regex=True).all()
+    real_rank = pd.read_csv(OUT / "model_metrics" / "real_model_rankings_by_label_view.csv")
+    assert set(real_rank.model_name).issuperset({"ALIGNN-FF", "CHGNet", "MACE-MP", "M3GNet"})
     corr = pd.read_csv(OUT / "model_metrics" / "rank_correlation_by_label_view.csv")
     assert len(corr) > 0
     assert {"spearman_rank_correlation", "kendall_tau_b", "discordant_pair_fraction"}.issubset(corr.columns)

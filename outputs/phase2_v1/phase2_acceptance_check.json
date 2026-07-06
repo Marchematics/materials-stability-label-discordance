@@ -32,7 +32,7 @@
   {
     "check_id":"rank_inversion_analysis",
     "status":"pass",
-    "evidence":"all_rank_inversion_rows=756; top_model_inversion_rows=702",
+    "evidence":"all_rank_inversion_rows=756; aggregate_top_model_inversion_rows=702; real_model_rank_audit_rows=756; real_model_rank_audit_ok=True",
     "guardrail":"Rank changes are label-view diagnostics and should be reported without overclaiming definitive best-model changes."
   },
   {
