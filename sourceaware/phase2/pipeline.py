@@ -926,18 +926,31 @@ def build_denominators(phase1: Path, out_dir: Path, scores: pd.DataFrame, invent
         ids = sorted(coverage_sets[a] & coverage_sets[b])
         pair_rows.extend({"model_a": a, "model_b": b, "row_id": rid} for rid in ids)
     pairwise = pd.DataFrame(pair_rows)
-    pairwise.to_parquet(den_dir / "denominator_d5_pairwise_complete.parquet", index=False)
+    if len(pairwise):
+        pairwise = pairwise.merge(base[["row_id", "mp_id", "formula", "chemical_system", "structure_hash"]], on="row_id", how="left")
+        pairwise["denominator"] = "D5_pairwise_complete"
+    pairwise.to_parquet(den_dir / "denominator_d5_pairwise_complete.parquet", index=False, compression="zstd", compression_level=19)
 
     max_rows = []
     for model, ids in coverage_sets.items():
         max_rows.extend({"model_name": model, "row_id": rid} for rid in sorted(ids))
     maxcov = pd.DataFrame(max_rows)
-    maxcov.to_parquet(den_dir / "denominator_d5_max_coverage_by_model.parquet", index=False)
+    if len(maxcov):
+        maxcov = maxcov.merge(base[["row_id", "mp_id", "formula", "chemical_system", "structure_hash"]], on="row_id", how="left")
+        maxcov["denominator"] = "D5_max_coverage_by_model"
+    maxcov.to_parquet(den_dir / "denominator_d5_max_coverage_by_model.parquet", index=False, compression="zstd", compression_level=19)
 
     audit = inventory.copy()
     audit["d5_full_complete_n"] = len(full)
     audit["d5_family_complete_n"] = len(family)
-    audit["pairwise_overlap_min_n"] = pairwise.groupby(["model_a", "model_b"]).size().min() if len(pairwise) else 0
+    pair_counts = pairwise.groupby(["model_a", "model_b"]).size() if len(pairwise) else pd.Series(dtype=int)
+    audit["pairwise_overlap_min_n"] = int(pair_counts.min()) if len(pair_counts) else 0
+    audit["pairwise_overlap_median_n"] = float(pair_counts.median()) if len(pair_counts) else 0
+    audit["pairwise_overlap_max_n"] = int(pair_counts.max()) if len(pair_counts) else 0
+    max_counts = maxcov.groupby("model_name").size().to_dict() if len(maxcov) else {}
+    audit["d5_max_coverage_n_for_model"] = audit["model_name"].map(max_counts).fillna(0).astype(int)
+    audit["is_d5_family_representative"] = audit["model_name"].isin(set(reps))
+    audit["d5_full_complete_missing_n_for_model"] = audit["coverage_n"].sub(len(full)).clip(lower=0)
     audit.to_csv(den_dir / "model_denominator_audit.csv", index=False)
     return {"full": full, "family": family, "pairwise": pairwise, "maxcov": maxcov, "audit": audit}
 

@@ -23,25 +23,25 @@
       "sha256": "2a983b51f5b28e04ec72c6c4851eb24286234a7b8cf2e9608168d14f88170d0a"
     },
     {
-      "bytes": 1068404,
-      "columns": 2,
+      "bytes": 18149881,
+      "columns": 7,
       "path": "outputs/phase2_v1/denominators/denominator_d5_max_coverage_by_model.parquet",
       "rows": 441591,
-      "sha256": "e56b59238b4fdf586158738e5edfc14d45266ccd2a8aa016866c5138b25f01d0"
+      "sha256": "bb9a478ec297626ec016628bffa8a21f51393f7a28dd36467baa6719370c7f27"
     },
     {
-      "bytes": 5433630,
-      "columns": 3,
+      "bytes": 99161293,
+      "columns": 8,
       "path": "outputs/phase2_v1/denominators/denominator_d5_pairwise_complete.parquet",
       "rows": 2428569,
-      "sha256": "ad2dd6cb4de63b4761ccf8c6b695979fde90fda5d1265889873f87bf2d98d082"
+      "sha256": "8e1a122850a79f3e7089e45c3952ea624a81d4dfce7be1a40f946eac7c8478a9"
     },
     {
-      "bytes": 13482,
-      "columns": 26,
+      "bytes": 14245,
+      "columns": 31,
       "path": "outputs/phase2_v1/denominators/model_denominator_audit.csv",
       "rows": 24,
-      "sha256": "18325115c532c65bd82fc98ead02d638ba23ec1efa9b16cc34464a1536ab9b15"
+      "sha256": "4159c5992584585cd99da52d0d632e2291cdb48f3e13fb6dcec3ad3ba1215f6d"
     },
     {
       "bytes": 14780,
