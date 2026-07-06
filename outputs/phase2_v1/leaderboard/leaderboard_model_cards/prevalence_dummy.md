@@ -1,11 +1,22 @@
 # prevalence_dummy
 
 Family: dummy_baseline
+Model role: baseline
+Score status: scored
 Coverage: 36802
+Missing: 0
+Source of score: phase2_deterministic_baseline
+External WBM rows audited: 0
+External score status: not_applicable
+Included in primary leaderboard: True
+
+Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth. External WBM artifacts without exact SourceAware row mapping are not used for label-view metrics.
+
+## Leaderboard alpha summary
+
 Rank stability score: 5.0
 Label uncertainty band stable_yield@1000: 0.194
-
-Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth.
+Top-K uncertain burden audit_view@1000: 0.257
 
 ## Label-view metrics
 

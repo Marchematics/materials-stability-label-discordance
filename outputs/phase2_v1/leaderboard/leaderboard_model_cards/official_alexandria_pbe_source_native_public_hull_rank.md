@@ -1,11 +1,22 @@
 # official_Alexandria_PBE_source_native_public_hull_rank
 
 Family: public_hull_oracle
+Model role: baseline
+Score status: scored
 Coverage: 36802
+Missing: 0
+Source of score: official_Alexandria_PBE_source_native_public_hull_rank
+External WBM rows audited: 0
+External score status: not_applicable
+Included in primary leaderboard: True
+
+Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth. External WBM artifacts without exact SourceAware row mapping are not used for label-view metrics.
+
+## Leaderboard alpha summary
+
 Rank stability score: 10.0
 Label uncertainty band stable_yield@1000: 0.813
-
-Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth.
+Top-K uncertain burden audit_view@1000: 0.187
 
 ## Label-view metrics
 

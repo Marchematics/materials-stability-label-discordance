@@ -1,11 +1,22 @@
 # MP_common_pool_public_hull_rank
 
 Family: public_hull_oracle
+Model role: baseline
+Score status: scored
 Coverage: 36770
+Missing: 32
+Source of score: MP_common_pool_public_hull_rank
+External WBM rows audited: 0
+External score status: not_applicable
+Included in primary leaderboard: True
+
+Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth. External WBM artifacts without exact SourceAware row mapping are not used for label-view metrics.
+
+## Leaderboard alpha summary
+
 Rank stability score: 4.0
 Label uncertainty band stable_yield@1000: 0.507
-
-Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth.
+Top-K uncertain burden audit_view@1000: 0.507
 
 ## Label-view metrics
 

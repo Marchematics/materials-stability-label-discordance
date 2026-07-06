@@ -1073,11 +1073,49 @@ def build_leaderboard(out_dir: Path, inventory: pd.DataFrame, metrics: pd.DataFr
     lb.to_csv(lb_dir / "sourceaware_leaderboard_alpha.csv", index=False)
     md = ["# SourceAware leaderboard alpha", "", "Primary alpha rank: consensus stable_yield@1000 on D5_family_complete.", "", lb.to_markdown(index=False)]
     (lb_dir / "sourceaware_leaderboard_alpha.md").write_text("\n".join(md), encoding="utf-8")
-    for _, row in lb.iterrows():
-        model = row["model_name"]
+    lb_by_model = lb.set_index("model_name") if "model_name" in lb else pd.DataFrame()
+    for _, inv_row in inventory.iterrows():
+        model = inv_row["model_name"]
         safe = str(model).lower().replace(" ", "_").replace("/", "_").replace("-", "_")
         m = metrics[metrics["model_name"].eq(model)]
-        content = [f"# {model}", "", f"Family: {row.get('family')}", f"Coverage: {row.get('coverage_n')}", f"Rank stability score: {row.get('rank_stability_score')}", f"Label uncertainty band stable_yield@1000: {row.get('label_uncertainty_band_stable_yield@1000')}", "", "Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth.", "", "## Label-view metrics", "", m.head(20).to_markdown(index=False) if len(m) else "No metrics." ]
+        lb_row = lb_by_model.loc[model] if len(lb_by_model) and model in lb_by_model.index else pd.Series(dtype=object)
+        sourceaware_scored = inv_row.get("score_status") == "scored"
+        content = [
+            f"# {model}",
+            "",
+            f"Family: {inv_row.get('model_family')}",
+            f"Model role: {inv_row.get('model_role')}",
+            f"Score status: {inv_row.get('score_status')}",
+            f"Coverage: {inv_row.get('coverage_n')}",
+            f"Missing: {inv_row.get('missing_n')}",
+            f"Source of score: {inv_row.get('source_of_score')}",
+            f"External WBM rows audited: {inv_row.get('external_score_rows_n', 0)}",
+            f"External score status: {inv_row.get('external_score_status', 'not_applicable')}",
+            f"Included in primary leaderboard: {inv_row.get('include_in_primary_leaderboard')}",
+            "",
+            "Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth. External WBM artifacts without exact SourceAware row mapping are not used for label-view metrics.",
+            "",
+        ]
+        if sourceaware_scored and len(lb_row):
+            content.extend([
+                "## Leaderboard alpha summary",
+                "",
+                f"Rank stability score: {lb_row.get('rank_stability_score')}",
+                f"Label uncertainty band stable_yield@1000: {lb_row.get('label_uncertainty_band_stable_yield@1000')}",
+                f"Top-K uncertain burden audit_view@1000: {lb_row.get('topK_uncertain_burden_audit_view@1000')}",
+                "",
+            ])
+        else:
+            content.extend([
+                "## Leaderboard alpha summary",
+                "",
+                "Not evaluated in SourceAware label-view leaderboard because exact SourceAware row scores are unavailable or the row is an external target audit.",
+                "",
+            ])
+        content.extend(["## Label-view metrics", "", m.head(20).to_markdown(index=False) if len(m) else "No SourceAware label-view metrics for this inventory row."])
+        failure = inv_row.get("failure_reason") if "failure_reason" in inventory.columns else None
+        if pd.notna(failure):
+            content.extend(["", "## Failure / exclusion reason", "", str(failure)])
         (cards_dir / f"{safe}.md").write_text("\n".join(content), encoding="utf-8")
     return lb
 
@@ -1416,7 +1454,7 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "7_leaderboard_alpha",
             "status": "complete",
-            "evidence": f"leaderboard rows={len(pd.read_csv(out_dir / 'leaderboard' / 'sourceaware_leaderboard_alpha.csv'))}; model cards={len(list((out_dir / 'leaderboard' / 'leaderboard_model_cards').glob('*.md')))}",
+            "evidence": f"leaderboard rows={len(pd.read_csv(out_dir / 'leaderboard' / 'sourceaware_leaderboard_alpha.csv'))}; inventory model cards={len(list((out_dir / 'leaderboard' / 'leaderboard_model_cards').glob('*.md')))}",
             "primary_artifacts": "outputs/phase2_v1/leaderboard/sourceaware_leaderboard_alpha.csv; sourceaware_leaderboard_alpha.md; leaderboard_model_cards/*.md",
             "guardrail": "Leaderboard ranks are alpha benchmark-view bands, not final physical-truth rankings.",
         },

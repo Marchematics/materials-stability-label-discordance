@@ -1,11 +1,22 @@
 # ALIGNN-FF
 
 Family: strong_gnn
+Model role: real_model
+Score status: scored
 Coverage: 36802
+Missing: 0
+Source of score: ALIGNN-FF_sourceaware_model_score
+External WBM rows audited: 256963
+External score status: downloaded_external_unmapped
+Included in primary leaderboard: True
+
+Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth. External WBM artifacts without exact SourceAware row mapping are not used for label-view metrics.
+
+## Leaderboard alpha summary
+
 Rank stability score: 5.0
 Label uncertainty band stable_yield@1000: 0.254
-
-Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth.
+Top-K uncertain burden audit_view@1000: 0.311
 
 ## Label-view metrics
 

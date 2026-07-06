@@ -1,11 +1,22 @@
 # CHGNet
 
 Family: universal_potential
+Model role: real_model
+Score status: scored
 Coverage: 36801
+Missing: 1
+Source of score: CHGNet_sourceaware_model_score
+External WBM rows audited: 0
+External score status: figshare_download_unavailable_http_403
+Included in primary leaderboard: True
+
+Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth. External WBM artifacts without exact SourceAware row mapping are not used for label-view metrics.
+
+## Leaderboard alpha summary
+
 Rank stability score: 7.0
 Label uncertainty band stable_yield@1000: 0.279
-
-Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogeneous DFT referee truth.
+Top-K uncertain burden audit_view@1000: 0.354
 
 ## Label-view metrics
 

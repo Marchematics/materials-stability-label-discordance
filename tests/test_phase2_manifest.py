@@ -15,6 +15,10 @@ def test_phase2_manifest_and_leaderboard_cards():
     lb = pd.read_csv(OUT / "leaderboard" / "sourceaware_leaderboard_alpha.csv")
     assert len(lb) >= 10
     card_dir = OUT / "leaderboard" / "leaderboard_model_cards"
-    assert len(list(card_dir.glob("*.md"))) >= 10
+    inv = pd.read_csv(OUT / "model_scores" / "model_score_inventory.csv")
+    assert len(list(card_dir.glob("*.md"))) >= len(inv)
+    for model in inv.model_name:
+        safe = str(model).lower().replace(" ", "_").replace("/", "_").replace("-", "_")
+        assert (card_dir / f"{safe}.md").exists(), model
     report = (OUT / "tests_report.md").read_text()
     assert "not homogeneous DFT validation" in report
