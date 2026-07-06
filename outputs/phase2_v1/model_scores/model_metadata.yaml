@@ -1,7 +1,7 @@
 ALIGNN:
   coverage_n: 0
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -21,8 +21,8 @@ ALIGNN:
   whether_hull_distance: false
 ALIGNN-FF:
   coverage_n: 36802
-  external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_rows_n: 256963
+  external_score_status: downloaded_external_unmapped
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: GNN interatomic potential raw-energy ranker
@@ -41,7 +41,7 @@ ALIGNN-FF:
 BOWSR:
   coverage_n: 0
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -104,7 +104,7 @@ CGCNN+P:
 CHGNet:
   coverage_n: 36801
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: universal interatomic potential predicted-hull ranker
@@ -123,7 +123,7 @@ CHGNet:
 EquiformerV2+DeNS:
   coverage_n: 0
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -144,7 +144,7 @@ EquiformerV2+DeNS:
 M3GNet:
   coverage_n: 36802
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: universal interatomic potential raw-energy ranker
@@ -163,7 +163,7 @@ M3GNet:
 MACE-MP:
   coverage_n: 36802
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: universal interatomic potential raw-energy ranker
@@ -182,6 +182,27 @@ MACE-MP:
 MEGNet:
   coverage_n: 0
   external_score_rows_n: 256963
+  external_score_status: downloaded_external_unmapped
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: early_gnn
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_wbm_prediction_downloaded_unmapped
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+MEGNet-RS2RE:
+  coverage_n: 0
+  external_score_rows_n: 256953
   external_score_status: downloaded_external_unmapped
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
@@ -260,7 +281,7 @@ MatterGen_alex_mp20_source_native_public_hull_rank:
 ORB:
   coverage_n: 0
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -281,7 +302,7 @@ ORB:
 SevenNet:
   coverage_n: 0
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -323,7 +344,7 @@ Voronoi RF:
 Wrenformer:
   coverage_n: 0
   external_score_rows_n: 0
-  external_score_status: not_applicable
+  external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -357,6 +378,27 @@ consensus_oracle_proxy:
   score_status: scored
   score_type: standardized_higher_more_stable
   source_of_score: phase2_oracle_baseline
+  training_data: reported_by_source_or_not_applicable_for_baseline
+  whether_calibrated_energy: false
+  whether_hull_distance: false
+eSEN-30M-MP:
+  coverage_n: 0
+  external_score_rows_n: 256963
+  external_score_status: downloaded_external_unmapped
+  failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
+    or local score generation; recorded as ecosystem target, not primary SourceAware
+    evidence.
+  include_in_primary_leaderboard: false
+  input_type: unknown_or_external
+  missing_n: 36802
+  model_family: universal_potential
+  model_role: external_target_not_scored
+  score_direction: descending_higher_score_first
+  score_direction_original: varies_by_source_standardized_in_pipeline
+  score_direction_standardized: higher_score_more_likely_stable
+  score_status: not_scored_no_exact_sourceaware_mapping_or_download
+  score_type: standardized_higher_more_stable
+  source_of_score: matbench_discovery_public_wbm_prediction_downloaded_unmapped
   training_data: reported_by_source_or_not_applicable_for_baseline
   whether_calibrated_energy: false
   whether_hull_distance: false

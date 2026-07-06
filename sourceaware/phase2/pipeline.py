@@ -75,9 +75,11 @@ MATBENCH_TARGETS = [
     ("CGCNN", "early_gnn"),
     ("CGCNN+P", "early_gnn"),
     ("MEGNet", "early_gnn"),
+    ("MEGNet-RS2RE", "early_gnn"),
     ("ALIGNN", "strong_gnn"),
     ("Wrenformer", "coordinate_free_prototype"),
     ("BOWSR", "optimization_strategy"),
+    ("eSEN-30M-MP", "universal_potential"),
     ("SevenNet", "universal_potential"),
     ("ORB", "universal_potential"),
     ("EquiformerV2+DeNS", "universal_potential"),
@@ -87,6 +89,20 @@ MATBENCH_RAW_FILES = {
     "CGCNN": {"path": "models/cgcnn/2023-01-26-cgcnn-ens=10-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_mp2020_corrected_pred_ens"},
     "CGCNN+P": {"path": "models/cgcnn/2023-02-05-cgcnn-perturb=5-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_cgcnn_pred_ens"},
     "MEGNet": {"path": "models/megnet/2022-11-18-megnet-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_megnet"},
+    "MEGNet-RS2RE": {"path": "models/megnet/2023-08-23-megnet-wbm-RS2RE.csv.gz", "score_col": "e_form_per_atom_megnet_rs2re"},
+    "ALIGNN-FF": {"path": "models/alignn_ff/2023-07-11-alignn-ff-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_alignn_ff"},
+    "eSEN-30M-MP": {"path": "models/esnet/2025-06-20-esnet-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_esnet"},
+}
+MATBENCH_FIGSHARE_TARGETS = {
+    "ALIGNN": {"pred_file_url": "https://figshare.com/files/51607262", "pred_file": "models/alignn/alignn-mp22/2023-06-02-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_alignn"},
+    "Wrenformer": {"pred_file_url": "https://figshare.com/files/52057553", "pred_file": "models/wrenformer/wrenformer-ens=10/2022-11-15-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_wrenformer_pred_ens"},
+    "BOWSR": {"pred_file_url": "https://figshare.com/files/52057523", "pred_file": "models/bowsr/bowsr-megnet/2023-01-23-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_bowsr_megnet"},
+    "CHGNet": {"pred_file_url": "https://figshare.com/files/52057526", "pred_file": "models/chgnet/chgnet-0.3.0/2023-12-21-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_chgnet"},
+    "MACE-MP": {"pred_file_url": "https://figshare.com/files/52057538", "pred_file": "models/mace/mace-mp-0/2023-12-11-wbm-IS2RE-FIRE.csv.gz", "score_col": "e_form_per_atom_mace"},
+    "M3GNet": {"pred_file_url": "https://figshare.com/files/52057535", "pred_file": "models/m3gnet/m3gnet-tf-manual-sampling/2023-12-28-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_m3gnet"},
+    "SevenNet": {"pred_file_url": "https://figshare.com/files/52057544", "pred_file": "models/sevennet/sevennet-0/2024-07-11-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_sevennet"},
+    "ORB": {"pred_file_url": "https://figshare.com/files/52057562", "pred_file": "models/orb/orbff-v2/2024-10-11-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_orb"},
+    "EquiformerV2+DeNS": {"pred_file_url": "https://figshare.com/files/52057568", "pred_file": "models/eqV2/eqV2-s-dens-mp/2024-10-18-wbm-IS2RE.csv.gz", "score_col": "e_form_per_atom_eqV2-31M-dens-MP-p5"},
 }
 MATBENCH_RAW_BASE = "https://raw.githubusercontent.com/janosh/matbench-discovery/main"
 GENERATOR_SEARCH_TARGETS = {
@@ -186,11 +202,14 @@ def score_metadata(model: str, coverage: int, total_n: int, source: str, status:
 
 
 def collect_matbench_external_scores(out_dir: Path, external_cache: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Download small Matbench Discovery WBM prediction tables that are directly accessible.
+    """Download/audit public Matbench Discovery WBM prediction artifacts.
 
-    These rows are WBM IDs, not SourceAware D2 rows. They are collected to document
-    ecosystem coverage but are not used for Phase-1 label-view metrics unless a future
-    exact WBM-to-SourceAware mapping is supplied.
+    Rows in the returned parquet are WBM IDs, not SourceAware D2 rows. They are
+    collected to document ecosystem coverage but are not used for Phase-1
+    label-view metrics unless a future exact WBM-to-SourceAware mapping is
+    supplied. Figshare-hosted targets are also audited; in this environment the
+    public Figshare endpoint returns HTTP 403, so they are recorded explicitly
+    rather than silently omitted.
     """
     model_dir = ensure_dir(out_dir / "model_scores")
     cache_dir = ensure_dir(external_cache / "matbench_discovery")
@@ -203,11 +222,13 @@ def collect_matbench_external_scores(out_dir: Path, external_cache: Path) -> tup
         rows = 0
         sha = ""
         failure = ""
+        http_status = None
         try:
             if requests is None:
                 raise RuntimeError("requests unavailable")
             if not cache_path.exists():
                 resp = requests.get(url, timeout=30)
+                http_status = resp.status_code
                 resp.raise_for_status()
                 cache_path.write_bytes(resp.content)
             sha = sha256_file(cache_path)
@@ -221,6 +242,7 @@ def collect_matbench_external_scores(out_dir: Path, external_cache: Path) -> tup
             keep["score_type"] = "matbench_discovery_predicted_formation_energy_standardized_negative_higher_is_more_stable"
             keep["source_panel"] = "matbench_wbm_external_unmapped"
             keep["source_url"] = url
+            keep["source_artifact_kind"] = "raw_github_csv_gz"
             keep = keep.dropna(subset=["score_standardized"])
             rows = len(keep)
             frames.append(keep)
@@ -228,11 +250,68 @@ def collect_matbench_external_scores(out_dir: Path, external_cache: Path) -> tup
         except Exception as exc:  # pragma: no cover - network variability
             failure = str(exc)
             status = "download_failed_or_schema_mismatch"
-        audit_rows.append({"model_name": model, "source_url": url, "cache_path": str(cache_path), "external_score_status": status, "external_score_rows_n": int(rows), "external_cache_sha256": sha, "failure_reason": failure})
-    external = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(columns=["external_material_id", "score_original", "model_name", "score_standardized", "score_type", "source_panel", "source_url"])
+        audit_rows.append({
+            "model_name": model,
+            "source_url": url,
+            "source_artifact_kind": "raw_github_csv_gz",
+            "prediction_file": spec["path"],
+            "score_col": spec["score_col"],
+            "cache_path": str(cache_path),
+            "external_score_status": status,
+            "external_score_rows_n": int(rows),
+            "external_cache_sha256": sha,
+            "http_status": http_status,
+            "mapping_status": "unmapped_wbm_ids_not_sourceaware_row_ids",
+            "failure_reason": failure,
+        })
+
+    # Audit Figshare-hosted Matbench Discovery predictions for target models
+    # whose full WBM CSVs are not mirrored in the GitHub tree. We intentionally
+    # keep these out of the score parquet unless the file can be downloaded and
+    # schema-checked; the audit is still valuable provenance for the model matrix.
+    for model, spec in MATBENCH_FIGSHARE_TARGETS.items():
+        if model in MATBENCH_RAW_FILES:
+            continue
+        url = spec["pred_file_url"]
+        status = "not_attempted_requests_unavailable"
+        failure = ""
+        http_status = None
+        try:
+            if requests is None:
+                raise RuntimeError("requests unavailable")
+            resp = requests.get(url, timeout=15, stream=True, headers={"User-Agent": "SourceAware-Stability/phase2"})
+            http_status = resp.status_code
+            if resp.status_code == 200:
+                # Do not commit large Figshare artifacts in this pass. Record that
+                # the endpoint is reachable and requires an explicit cache/import
+                # path for future mapped evaluation.
+                status = "figshare_reachable_not_imported_unmapped"
+            else:
+                status = f"figshare_download_unavailable_http_{resp.status_code}"
+                failure = (resp.text or "")[:200] if hasattr(resp, "text") else ""
+        except Exception as exc:  # pragma: no cover - network variability
+            failure = str(exc)
+            status = "figshare_download_failed"
+        audit_rows.append({
+            "model_name": model,
+            "source_url": url,
+            "source_artifact_kind": "figshare_csv_gz",
+            "prediction_file": spec["pred_file"],
+            "score_col": spec["score_col"],
+            "cache_path": "",
+            "external_score_status": status,
+            "external_score_rows_n": 0,
+            "external_cache_sha256": "",
+            "http_status": http_status,
+            "mapping_status": "unmapped_wbm_ids_not_sourceaware_row_ids",
+            "failure_reason": failure,
+        })
+
+    external = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(columns=["external_material_id", "score_original", "model_name", "score_standardized", "score_type", "source_panel", "source_url", "source_artifact_kind"])
     audit = pd.DataFrame(audit_rows)
     external.to_parquet(model_dir / "matbench_external_scores_long.parquet", index=False)
     audit.to_csv(model_dir / "matbench_external_score_audit.csv", index=False)
+    audit.to_csv(model_dir / "matbench_target_prediction_artifact_audit.csv", index=False)
     return external, audit
 
 
@@ -813,6 +892,7 @@ def write_tests_report(out_dir: Path, inventory: pd.DataFrame, gen_inv: pd.DataF
     real = scored[scored["model_role"].eq("real_model")]
     external_downloaded = int((pd.to_numeric(inventory.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0) > 0).sum())
     external_rows = int(pd.to_numeric(inventory.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
+    external_figshare_attempted = int(inventory.get("external_score_status", pd.Series(dtype=str)).astype(str).str.contains("figshare_download_unavailable", na=False).sum())
     text = f"""# Phase 2 tests and acceptance report
 
 - Scored SourceAware entries including baselines: {len(scored)}
@@ -820,6 +900,7 @@ def write_tests_report(out_dir: Path, inventory: pd.DataFrame, gen_inv: pd.DataF
 - SourceAware scored model families represented: {scored['model_family'].nunique()}
 - Matbench Discovery external WBM score tables downloaded: {external_downloaded}
 - Matbench Discovery external WBM rows collected: {external_rows}
+- Matbench Discovery Figshare target artifacts audited but unavailable here: {external_figshare_attempted}
 - True generator pipelines completed: {int(((gen_inv['pipeline_type'] == 'true_generator') & (gen_inv['status'].str.startswith('complete'))).sum())}
 - Screening/candidate consequence pipelines completed: {int((gen_inv['status'] == 'complete_screening_consequence').sum())}
 - Any uncertainty dominance ratio > 1: {bool((pd.to_numeric(ratio.get('uncertainty_dominance_ratio', pd.Series(dtype=float)), errors='coerce') > 1).any())}

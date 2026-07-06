@@ -3,8 +3,9 @@
 - Scored SourceAware entries including baselines: 12
 - Real SourceAware-scored models: 4
 - SourceAware scored model families represented: 6
-- Matbench Discovery external WBM score tables downloaded: 4
-- Matbench Discovery external WBM rows collected: 1028354
+- Matbench Discovery external WBM score tables downloaded: 7
+- Matbench Discovery external WBM rows collected: 1799233
+- Matbench Discovery Figshare target artifacts audited but unavailable here: 9
 - True generator pipelines completed: 0
 - Screening/candidate consequence pipelines completed: 1
 - Any uncertainty dominance ratio > 1: True

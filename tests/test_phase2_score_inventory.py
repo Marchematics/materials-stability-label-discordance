@@ -17,11 +17,16 @@ def test_phase2_score_inventory_standardized_and_sufficient():
     assert required.issubset(inv.columns)
     assert inv.score_direction.eq("descending_higher_score_first").all()
     assert "external_score_rows_n" in inv.columns
-    assert pd.to_numeric(inv.external_score_rows_n, errors="coerce").fillna(0).sum() > 500_000
+    assert pd.to_numeric(inv.external_score_rows_n, errors="coerce").fillna(0).sum() > 1_500_000
+    assert {"eSEN-30M-MP", "MEGNet-RS2RE"}.issubset(set(inv.model_name))
     external = pd.read_parquet(OUT / "model_scores" / "matbench_external_scores_long.parquet")
-    assert len(external) > 500_000
+    assert len(external) > 1_500_000
+    assert {"raw_github_csv_gz"}.issubset(set(external.source_artifact_kind))
     audit = pd.read_csv(OUT / "model_scores" / "matbench_external_score_audit.csv")
-    assert (audit.external_score_status == "downloaded_external_unmapped").any()
+    assert (audit.external_score_status == "downloaded_external_unmapped").sum() >= 7
+    assert (audit.external_score_status.str.contains("figshare_download_unavailable_http_403")).any()
+    target_audit = pd.read_csv(OUT / "model_scores" / "matbench_target_prediction_artifact_audit.csv")
+    assert {"ALIGNN", "Wrenformer", "BOWSR", "SevenNet", "ORB", "EquiformerV2+DeNS"}.issubset(set(target_audit.model_name))
     scores = pd.read_parquet(OUT / "model_scores" / "all_model_scores_long.parquet")
     assert scores.score_standardized.notna().all()
     assert scores.score_direction_standardized.eq("higher_score_more_likely_stable").all()
