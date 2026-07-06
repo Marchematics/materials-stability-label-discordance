@@ -20,5 +20,7 @@ def test_phase2_generative_outputs_are_honest_about_scope():
     required = {"apparent_stable_yield", "all_source_native_stable_yield", "consensus_stable_yield", "audit_view_stable_yield", "source_uncertain_fraction", "near_threshold_fraction", "duplicate_fraction", "unmatched_fraction"}
     assert required.issubset(consequence.columns)
     assert consequence.consensus_stable_yield.notna().any()
+    fig5 = pd.read_csv(OUT / "figure_source_data" / "fig5_generated_consequence.csv")
+    assert required.issubset(fig5.columns)
     search = pd.read_csv(OUT / "generative" / "candidate_source_search_audit.csv")
     assert {"MatterGen", "FlowMM", "DiffCSP", "CDVAE", "CrystalFlow"}.issubset(set(search.pipeline_name))

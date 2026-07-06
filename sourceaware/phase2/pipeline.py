@@ -396,6 +396,23 @@ def compute_metrics_for(scores: pd.DataFrame, labels: pd.DataFrame, denominator_
                 status = "not_evaluable_full_source_union_incomplete"
             if merged.empty:
                 metric_rows.append({"denominator": denominator_name, "model_name": model, "label_view": view, "n": 0, "label_semantics": semantics, "metric_status": status})
+                for k in K_GRID:
+                    topk_rows.append({
+                        "denominator": denominator_name,
+                        "model_name": model,
+                        "label_view": view,
+                        "K": k,
+                        "K_effective": 0,
+                        "n_ranked": 0,
+                        "stable_n": 0,
+                        "precision_at_k": np.nan,
+                        "recall_at_k": np.nan,
+                        "stable_yield_at_k": np.nan,
+                        "uncertain_fraction_at_k": np.nan,
+                        "false_positive_burden_at_k": np.nan,
+                        "DAF_at_k": np.nan,
+                        "metric_status": status,
+                    })
                 continue
             y = merged["label"].astype(bool).astype(int).to_numpy()
             score = merged["score_standardized"].astype(float).to_numpy()
@@ -705,7 +722,11 @@ def build_leaderboard(out_dir: Path, inventory: pd.DataFrame, metrics: pd.DataFr
     cards_dir = ensure_dir(lb_dir / "leaderboard_model_cards")
     primary = topk[(topk["denominator"].eq("D5_family_complete")) & (topk["K"].eq(1000))].copy()
     pivot = primary.pivot_table(index="model_name", columns="label_view", values="stable_yield_at_k", aggfunc="first")
-    ranks = pivot.rank(ascending=False, method="min").add_prefix("rank_")
+    # Keep explicit columns for every requested Phase 2 label view, including
+    # full source-union labels when the Phase 1 hull reconstruction is incomplete
+    # and therefore not numerically rankable.
+    pivot = pivot.reindex(columns=LABEL_VIEWS)
+    ranks = pivot.rank(ascending=False, method="min").reindex(columns=LABEL_VIEWS).add_prefix("rank_")
     lb = pivot.add_prefix("stable_yield_@").join(ranks, how="outer").reset_index()
     inv = inventory.set_index("model_name")
     lb["family"] = lb["model_name"].map(inv["model_family"].to_dict())
@@ -736,7 +757,9 @@ def build_figures(out_dir: Path, metrics: pd.DataFrame, topk: pd.DataFrame, rank
     ratio.to_csv(fd / "fig2_uncertainty_vs_spread.csv", index=False)
     inversions["all"].to_csv(fd / "fig3_rank_inversions.csv", index=False)
     topk.to_csv(fd / "fig4_topk_heatmap.csv", index=False)
-    gen["summary"].to_csv(fd / "fig5_generated_consequence.csv", index=False)
+    # Fig. 5 needs the consequence-level stable/uncertain/unsupported fields,
+    # not only one row per label view.
+    gen.get("consequence", gen["summary"]).to_csv(fd / "fig5_generated_consequence.csv", index=False)
     workflow = {"inputs": ["outputs/phase1_v2 labels", "model scores", "generated/screened candidates"], "steps": ["standardize scores", "evaluate label views", "rank inversions", "leaderboard alpha", "candidate consequence"], "guardrail": "not homogeneous DFT validation"}
     (fd / "fig6_workflow.json").write_text(json.dumps(workflow, indent=2), encoding="utf-8")
     if plt is None:

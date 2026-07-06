@@ -9,6 +9,9 @@ OUT = ROOT / "outputs" / "phase2_v1"
 
 
 def test_phase2_rank_inversion_outputs_exist():
+    lb = pd.read_csv(OUT / "leaderboard" / "sourceaware_leaderboard_alpha.csv")
+    assert {"rank_mp_native", "rank_alexmp20_native", "rank_alex_pbe_native", "rank_common_pool", "rank_source_union", "rank_consensus", "rank_uncertain", "rank_audit_view"}.issubset(lb.columns)
+    assert lb["rank_source_union"].isna().all()
     inv = pd.read_csv(OUT / "rank_inversions" / "all_rank_inversions.csv")
     assert {"label_view_a", "label_view_b", "rank_inversion_count", "top_model_inversion"}.issubset(inv.columns)
     assert (inv.rank_inversion_count >= 0).all()
