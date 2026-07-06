@@ -8,3 +8,12 @@ CHGNet_screened_public_hull_top5000,consensus,5000,4291,2856,1114,0.390056022408
 CHGNet_screened_public_hull_top5000,mp_native,5000,4291,4291,1743,0.4061990212071778,0.0,0.14180000000000004
 CHGNet_screened_public_hull_top5000,source_union,5000,4291,0,0,,,0.14180000000000004
 CHGNet_screened_public_hull_top5000,uncertain,5000,4291,4291,1435,0.33442088091353994,0.33442088091353994,0.14180000000000004
+PGCGM_public_safe_generated_pool,alex_pbe_native,3000,0,0,0,,,1.0
+PGCGM_public_safe_generated_pool,alexmp20_native,3000,0,0,0,,,1.0
+PGCGM_public_safe_generated_pool,all_source_native,3000,0,0,0,,,1.0
+PGCGM_public_safe_generated_pool,audit_view,3000,0,0,0,,,1.0
+PGCGM_public_safe_generated_pool,common_pool,3000,0,0,0,,,1.0
+PGCGM_public_safe_generated_pool,consensus,3000,0,0,0,,,1.0
+PGCGM_public_safe_generated_pool,mp_native,3000,0,0,0,,,1.0
+PGCGM_public_safe_generated_pool,source_union,3000,0,0,0,,,1.0
+PGCGM_public_safe_generated_pool,uncertain,3000,0,0,0,,,1.0

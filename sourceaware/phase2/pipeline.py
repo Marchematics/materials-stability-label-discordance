@@ -36,6 +36,7 @@ PHASE1 = ROOT / "outputs" / "phase1_v2"
 PHASE2 = ROOT / "outputs" / "phase2_v1"
 SEED_SCORES = ROOT / "inputs" / "phase2_v1" / "sourceaware_model_scores_public_safe.parquet"
 CANDIDATE_SCORES = ROOT / "outputs" / "milestones" / "model_facing_benchmark_sensitivity_check" / "candidate_scores_chgnet_5000_v2_ehull.csv"
+PGCGM_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "pgcgm_unlabeled_candidate_pool_public_safe_input.csv"
 
 LABEL_VIEWS = [
     "mp_native",
@@ -696,6 +697,7 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
         search_rows.append({"pipeline_name": gen, "pipeline_type": "true_generator", "local_package_detected": installed, "search_status": status, "evidence": note})
         inventory_rows.append({"pipeline_name": gen, "pipeline_type": "true_generator", "status": status, "candidate_n": 0, "matched_n": 0, "claim_scope": "attempt_record_only_not_evidence"})
 
+    candidate_frames: list[pd.DataFrame] = []
     if CANDIDATE_SCORES.exists():
         cand = pd.read_csv(CANDIDATE_SCORES, low_memory=False)
         cand = cand.rename(columns={"material_id": "mp_id"})
@@ -705,11 +707,37 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
         cand["duplicate_key"] = cand["mp_id"].astype(str)
         cand["is_duplicate"] = cand.duplicated("duplicate_key", keep="first")
         cand["score_standardized"] = pd.to_numeric(cand.get("score"), errors="coerce")
-        cand_clean = cand[["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate"]].copy()
+        chg_clean = cand[["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate"]].copy()
+        chg_clean["candidate_source"] = str(CANDIDATE_SCORES)
+        candidate_frames.append(chg_clean)
         search_rows.append({"pipeline_name": "CHGNet_screened_public_hull_top5000", "pipeline_type": "screening_pipeline_not_true_generator", "local_package_detected": True, "search_status": "found_existing_public_safe_screening_table", "evidence": str(CANDIDATE_SCORES)})
     else:
-        cand_clean = pd.DataFrame(columns=["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate"])
         search_rows.append({"pipeline_name": "CHGNet_screened_public_hull_top5000", "pipeline_type": "screening_pipeline_not_true_generator", "local_package_detected": False, "search_status": "not_found", "evidence": str(CANDIDATE_SCORES)})
+
+    if PGCGM_CANDIDATES.exists():
+        pg = pd.read_csv(PGCGM_CANDIDATES, low_memory=False)
+        pg = pg.copy()
+        pg["pipeline_name"] = "PGCGM_public_safe_generated_pool"
+        pg["pipeline_type"] = "available_crystal_generation_pipeline"
+        pg["mp_id"] = pd.NA
+        pg["chemical_system"] = pg.get("elements", pd.Series(dtype=str)).astype(str).str.replace("|", "-", regex=False)
+        pg.loc[pg["chemical_system"].isin(["nan", "None", "<NA>"]), "chemical_system"] = pd.NA
+        pg["score_standardized"] = -pd.to_numeric(pg.get("raw_pool_rank"), errors="coerce")
+        pg["predicted_e_above_hull"] = np.nan
+        pg["is_duplicate"] = pg.get("duplicate_status", "").astype(str).ne("unique_structure_sha256")
+        pg_clean = pg[["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate"]].copy()
+        pg_clean["candidate_source"] = str(PGCGM_CANDIDATES)
+        candidate_frames.append(pg_clean)
+        search_rows.append({"pipeline_name": "PGCGM_public_safe_generated_pool", "pipeline_type": "available_crystal_generation_pipeline", "local_package_detected": True, "search_status": "found_public_safe_generated_candidate_pool_without_sourceaware_exact_ids", "evidence": str(PGCGM_CANDIDATES)})
+    else:
+        search_rows.append({"pipeline_name": "PGCGM_public_safe_generated_pool", "pipeline_type": "available_crystal_generation_pipeline", "local_package_detected": False, "search_status": "not_found", "evidence": str(PGCGM_CANDIDATES)})
+
+    clean_cols = ["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate", "candidate_source"]
+    cand_clean = pd.concat(candidate_frames, ignore_index=True) if candidate_frames else pd.DataFrame(columns=clean_cols)
+    for col in clean_cols:
+        if col not in cand_clean:
+            cand_clean[col] = pd.NA
+    cand_clean = cand_clean[clean_cols]
     cand_clean.to_parquet(gen_dir / "generated_candidates_clean.parquet", index=False)
 
     matched = cand_clean.merge(base[["row_id", "mp_id", "structure_hash", "source_native_mp_ehull", "source_native_mattergen_ehull", "source_native_alexandria_ehull", "common_pool_mp_ehull", "common_pool_alexandria_ehull"]], on="mp_id", how="left")
@@ -744,7 +772,18 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     view_summary_rows = []
     topk_rows = []
     if len(cand_clean):
-        inventory_rows.append({"pipeline_name": "CHGNet_screened_public_hull_top5000", "pipeline_type": "screening_pipeline_not_true_generator", "status": "complete_screening_consequence", "candidate_n": int(len(cand_clean)), "matched_n": int(matched["matched_to_sourceaware"].sum()), "claim_scope": "public_sourceaware_screening_consequence_not_homogeneous_dft_validation"})
+        for pipeline, sub in matched.groupby("pipeline_name"):
+            ptype = str(sub["pipeline_type"].iloc[0])
+            if pipeline == "CHGNet_screened_public_hull_top5000":
+                status = "complete_screening_consequence"
+                claim_scope = "public_sourceaware_screening_consequence_not_homogeneous_dft_validation"
+            elif pipeline == "PGCGM_public_safe_generated_pool":
+                status = "complete_generated_pool_unmatched_to_sourceaware_exact_denominator"
+                claim_scope = "public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment"
+            else:
+                status = "complete_candidate_consequence"
+                claim_scope = "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation"
+            inventory_rows.append({"pipeline_name": pipeline, "pipeline_type": ptype, "status": status, "candidate_n": int(len(sub)), "matched_n": int(sub["matched_to_sourceaware"].sum()), "claim_scope": claim_scope})
     for (pipeline, view), sub in cand_labels.groupby(["pipeline_name", "label_view"]):
         evaluable = sub[sub["is_evaluable"].astype(bool)].copy()
         stable = int(evaluable["label"].astype(bool).sum()) if len(evaluable) else 0
@@ -781,7 +820,7 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
             "near_threshold_fraction": float(sub["near_threshold_25meV"].astype(bool).mean()) if len(sub) else np.nan,
             "duplicate_fraction": float(sub["is_duplicate"].astype(bool).mean()) if len(sub) else np.nan,
             "unmatched_fraction": float(1 - sub["matched_to_sourceaware"].mean()) if len(sub) else np.nan,
-            "claim_scope": "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation",
+            "claim_scope": "public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "PGCGM_public_safe_generated_pool" else "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation",
         })
     consequence = pd.DataFrame(consequence_rows)
 
@@ -901,7 +940,8 @@ def write_tests_report(out_dir: Path, inventory: pd.DataFrame, gen_inv: pd.DataF
 - Matbench Discovery external WBM score tables downloaded: {external_downloaded}
 - Matbench Discovery external WBM rows collected: {external_rows}
 - Matbench Discovery Figshare target artifacts audited but unavailable here: {external_figshare_attempted}
-- True generator pipelines completed: {int(((gen_inv['pipeline_type'] == 'true_generator') & (gen_inv['status'].str.startswith('complete'))).sum())}
+- True target generator pipelines completed: {int(((gen_inv['pipeline_type'] == 'true_generator') & (gen_inv['status'].str.startswith('complete'))).sum())}
+- Available generated-candidate pools completed/audited: {int((gen_inv['status'] == 'complete_generated_pool_unmatched_to_sourceaware_exact_denominator').sum())}
 - Screening/candidate consequence pipelines completed: {int((gen_inv['status'] == 'complete_screening_consequence').sum())}
 - Any uncertainty dominance ratio > 1: {bool((pd.to_numeric(ratio.get('uncertainty_dominance_ratio', pd.Series(dtype=float)), errors='coerce') > 1).any())}
 - Top-model inversions found: {len(inversions['top'])}
