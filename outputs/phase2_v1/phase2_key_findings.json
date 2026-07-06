@@ -4,7 +4,7 @@
     "finding": "Phase 2 evaluates a SourceAware-scored model/baseline matrix and separately audits unmapped Matbench Discovery WBM artifacts.",
     "primary_number": 12,
     "secondary_number": 4,
-    "evidence": "12 SourceAware-scored entries including baselines; 4 real SourceAware-scored models; 1799233 external WBM prediction rows audited; WBM-native contextual metrics/leaderboard computed for 7 downloaded external models but excluded from SourceAware label-view metrics without exact mapping.",
+    "evidence": "12 SourceAware-scored entries including baselines; 4 real SourceAware-scored models; 1799233 external WBM prediction rows audited; WBM-native contextual metrics/leaderboard computed for 7 downloaded external models; score-direction audit rows=19; external rows excluded from SourceAware label-view metrics without exact mapping.",
     "claim_scope": "benchmark_evaluation_scope_not_full_matbench_leaderboard",
     "guardrail": "Unmapped WBM predictions are inventory/provenance evidence only, not SourceAware metric evidence."
   },

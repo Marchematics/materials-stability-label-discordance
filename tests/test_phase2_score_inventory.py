@@ -79,3 +79,22 @@ def test_external_wbm_context_leaderboard_is_separate_from_sourceaware_leaderboa
     voronoi_card = (OUT / "leaderboard" / "leaderboard_model_cards" / "voronoi_rf.md").read_text()
     assert "External WBM-native context" in voronoi_card
     assert "not exact SourceAware row IDs" in voronoi_card
+
+
+def test_model_score_direction_audit_records_standardization_transformations():
+    audit = pd.read_csv(OUT / "model_scores" / "model_score_direction_audit.csv")
+    assert len(audit) >= 19  # 12 SourceAware-scored entries plus downloaded external WBM context models
+    assert audit.standardized_direction.eq("higher_score_more_likely_stable").all()
+    assert audit.transformation_check_passed.astype(bool).all()
+    assert {"sourceaware_d2", "external_wbm_native_context_only"}.issubset(set(audit.score_panel))
+    external = audit[audit.score_panel.eq("external_wbm_native_context_only")]
+    assert len(external) >= 7
+    assert external.standardization_transform.eq("score_standardized = -score_original").all()
+    assert external.guardrail.str.contains("not SourceAware label-view evidence", regex=False).all()
+    sourceaware = audit[audit.score_panel.eq("sourceaware_d2")]
+    assert len(sourceaware) >= 12
+    assert sourceaware.standardization_transform.eq("identity_or_prestandardized_public_safe_score").all()
+    inv = pd.read_csv(OUT / "model_scores" / "model_score_inventory.csv")
+    assert "score_direction_audit_passed" in inv.columns
+    audited = inv[(inv.score_status.eq("scored")) | (pd.to_numeric(inv.external_score_rows_n, errors="coerce").fillna(0).gt(0))]
+    assert audited.score_direction_audit_passed.astype(bool).all()

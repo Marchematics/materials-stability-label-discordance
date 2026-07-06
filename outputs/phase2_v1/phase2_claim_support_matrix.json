@@ -12,8 +12,8 @@
     "claim_id": "C2_matbench_ecosystem_coverage",
     "claim_text": "Phase 2 inventories Matbench Discovery-style model families and audits external WBM predictions when exact SourceAware mapping is unavailable.",
     "support_status": "supported_with_scope_guardrails",
-    "primary_evidence": "inventory rows=24; external WBM rows audited=1799233; WBM-native contextual metrics models=7; formula-overlap-only rows=197267",
-    "primary_artifacts": "model_scores/model_score_inventory.csv; model_scores/matbench_external_score_audit.csv; model_scores/matbench_external_formula_overlap_audit.csv; model_scores/external_wbm_native_metrics.csv; model_scores/external_wbm_native_topk.csv; leaderboard/external_wbm_native_context_leaderboard.csv",
+    "primary_evidence": "inventory rows=24; external WBM rows audited=1799233; WBM-native contextual metrics models=7; score-direction audit rows=19; formula-overlap-only rows=197267",
+    "primary_artifacts": "model_scores/model_score_inventory.csv; model_scores/model_score_direction_audit.csv; model_scores/matbench_external_score_audit.csv; model_scores/matbench_external_formula_overlap_audit.csv; model_scores/external_wbm_native_metrics.csv; model_scores/external_wbm_native_topk.csv; leaderboard/external_wbm_native_context_leaderboard.csv",
     "manuscript_safe_language": "Say external WBM artifacts are audited and WBM-native contextual metrics are separate from SourceAware label-view metrics unless exact row mapping is supplied.",
     "overclaim_to_avoid": "Do not use formula-only overlap as stable/unstable label assignment."
   },

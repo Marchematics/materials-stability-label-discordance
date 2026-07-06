@@ -8,7 +8,7 @@
   {
     "check_id":"model_score_inventory",
     "status":"pass",
-    "evidence":"inventory_rows=24; scored_entries=12; real_sourceaware_scored_models=4; external_wbm_rows=1799233; external_wbm_native_metric_models=7; formula_overlap_only_external_rows=197267; target_models_recorded=14",
+    "evidence":"inventory_rows=24; scored_entries=12; real_sourceaware_scored_models=4; external_wbm_rows=1799233; external_wbm_native_metric_models=7; score_direction_audit_rows=19; score_direction_ok=True; formula_overlap_only_external_rows=197267; target_models_recorded=14",
     "guardrail":"External Matbench\/WBM rows are inventoried and WBM-native contextual metrics are computed separately; formula-only overlaps and WBM-native metrics are not used in SourceAware label-view metrics without exact row mapping."
   },
   {

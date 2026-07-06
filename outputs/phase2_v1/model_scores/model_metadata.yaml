@@ -14,6 +14,7 @@ ALIGNN:
   model_family: strong_gnn
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: false
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -36,6 +37,7 @@ ALIGNN-FF:
   model_family: strong_gnn
   model_role: real_model
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -60,6 +62,7 @@ BOWSR:
   model_family: optimization_strategy
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: false
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -84,6 +87,7 @@ CGCNN:
   model_family: early_gnn
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -108,6 +112,7 @@ CGCNN+P:
   model_family: early_gnn
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -130,6 +135,7 @@ CHGNet:
   model_family: universal_potential
   model_role: real_model
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -154,6 +160,7 @@ EquiformerV2+DeNS:
   model_family: universal_potential
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: false
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -176,6 +183,7 @@ M3GNet:
   model_family: universal_potential
   model_role: real_model
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -198,6 +206,7 @@ MACE-MP:
   model_family: universal_potential
   model_role: real_model
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -222,6 +231,7 @@ MEGNet:
   model_family: early_gnn
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -246,6 +256,7 @@ MEGNet-RS2RE:
   model_family: early_gnn
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -268,6 +279,7 @@ MP_common_pool_public_hull_rank:
   model_family: public_hull_oracle
   model_role: baseline
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -290,6 +302,7 @@ MP_source_native_public_hull_rank:
   model_family: public_hull_oracle
   model_role: baseline
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -312,6 +325,7 @@ MatterGen_alex_mp20_source_native_public_hull_rank:
   model_family: public_hull_oracle
   model_role: baseline
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -336,6 +350,7 @@ ORB:
   model_family: universal_potential
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: false
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -360,6 +375,7 @@ SevenNet:
   model_family: universal_potential
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: false
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -384,6 +400,7 @@ Voronoi RF:
   model_family: fingerprint_baseline
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -408,6 +425,7 @@ Wrenformer:
   model_family: coordinate_free_prototype
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: false
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -430,6 +448,7 @@ consensus_oracle_proxy:
   model_family: sourceaware_oracle
   model_role: baseline
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -454,6 +473,7 @@ eSEN-30M-MP:
   model_family: universal_potential
   model_role: external_target_not_scored
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: not_scored_no_exact_sourceaware_mapping_or_download
@@ -476,6 +496,7 @@ official_Alexandria_PBE_common_pool_public_hull_rank:
   model_family: public_hull_oracle
   model_role: baseline
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -498,6 +519,7 @@ official_Alexandria_PBE_source_native_public_hull_rank:
   model_family: public_hull_oracle
   model_role: baseline
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -520,6 +542,7 @@ prevalence_dummy:
   model_family: dummy_baseline
   model_role: baseline
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored
@@ -542,6 +565,7 @@ random_baseline:
   model_family: random_baseline
   model_role: baseline
   score_direction: descending_higher_score_first
+  score_direction_audit_passed: true
   score_direction_original: varies_by_source_standardized_in_pipeline
   score_direction_standardized: higher_score_more_likely_stable
   score_status: scored

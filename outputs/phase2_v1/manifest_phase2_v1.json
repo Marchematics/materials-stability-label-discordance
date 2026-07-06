@@ -1,12 +1,12 @@
 {
-  "file_count": 111,
+  "file_count": 112,
   "files": [
     {
-      "bytes": 2447,
+      "bytes": 2471,
       "columns": null,
       "path": "outputs/phase2_v1/README.md",
       "rows": null,
-      "sha256": "585266239b8bdf1c897d166ab4927d4f912d08c21ad9a3f4eaaba4fa0ef8a4be"
+      "sha256": "a17872e58aafbe352fb682197ae46580bbbdc965f9a9f5770e4f33d7af09c614"
     },
     {
       "bytes": 4553134,
@@ -37,11 +37,11 @@
       "sha256": "ad2dd6cb4de63b4761ccf8c6b695979fde90fda5d1265889873f87bf2d98d082"
     },
     {
-      "bytes": 13327,
-      "columns": 25,
+      "bytes": 13482,
+      "columns": 26,
       "path": "outputs/phase2_v1/denominators/model_denominator_audit.csv",
       "rows": 24,
-      "sha256": "9031d590a9df38514eecf550e85e85983a83212813199ce122802c3539aa439b"
+      "sha256": "18325115c532c65bd82fc98ead02d638ba23ec1efa9b16cc34464a1536ab9b15"
     },
     {
       "bytes": 14780,
@@ -618,88 +618,95 @@
       "sha256": "62464b8a993051903ebde136127fe1cbc8b8ee8040f5f54bbdeb5a732d5cd4e7"
     },
     {
-      "bytes": 24091,
+      "bytes": 24985,
       "columns": null,
       "path": "outputs/phase2_v1/model_scores/model_metadata.yaml",
       "rows": null,
-      "sha256": "ef5a1e207e921b03cda1d8cbc36a9b62dddfc5b677d7cb71e4a66114c967c9dc"
+      "sha256": "ce06263ae5add3545d2ae68b923902ee8f9621637198f1bd01c97d5477183c7c"
     },
     {
-      "bytes": 12832,
-      "columns": 22,
+      "bytes": 6460,
+      "columns": 12,
+      "path": "outputs/phase2_v1/model_scores/model_score_direction_audit.csv",
+      "rows": 19,
+      "sha256": "8c3e6261280e5f4876eb881e530d2e5afa60a173bff38ead44a1e330b57bafd0"
+    },
+    {
+      "bytes": 12987,
+      "columns": 23,
       "path": "outputs/phase2_v1/model_scores/model_score_inventory.csv",
       "rows": 24,
-      "sha256": "b3f0724639ea4e414d1f5a0ccff4df017bf0752a0091071840a080ca25052785"
+      "sha256": "e14b9c5560f3fafa6ec7b576c75f2d512be17742de547ad60644fef1254d7a60"
     },
     {
-      "bytes": 3730,
+      "bytes": 3786,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.json",
       "rows": null,
-      "sha256": "b723cb2b7066e4092bab823b13380ed0033fed6e9408e06f16a08fbd71c2cd29"
+      "sha256": "21a11c849e598b4e11f0812bf6b93c0ba79222950669631b6cf1c84ddaf8a467"
     },
     {
       "bytes": 6716,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.md",
       "rows": null,
-      "sha256": "4faba9f1f7f101f0ca2ee4e2c7a8cdd4c63a0ebb2ea36af0f08688dbc1a25d28"
+      "sha256": "273d96dd22cfe7a7b8c2e97a3f4a55740fa25d2fea11b25b880b85bf2b94192f"
     },
     {
-      "bytes": 5332,
+      "bytes": 5409,
       "columns": 7,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.csv",
       "rows": 7,
-      "sha256": "ee1b72862726d46c2be129a62a4d13dad50f60e6fe472e433ef2e3d85509e4cd"
+      "sha256": "c207a4578b334c00613e5baeaca26af76a0890aec62e15e3a70594f9c9a91c25"
     },
     {
-      "bytes": 6550,
+      "bytes": 6627,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.json",
       "rows": null,
-      "sha256": "4d44b308a59738e5a55de1acc12b5443ad06936a3ac7dafecfa7fccaeab30282"
+      "sha256": "b34b8b377471eb59a91a2396439e3fd4ba815d60f9d25aa1753111ce9fa25f32"
     },
     {
-      "bytes": 10347,
+      "bytes": 10761,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.md",
       "rows": null,
-      "sha256": "3ca7e3ac35904c5e71c1ba95d525bf3f23f1d72649888d4898d1eeaa12597c41"
+      "sha256": "0e4f0e529a4acafe13d43104ef639323c47868999678c440af34a4bfe55319a8"
     },
     {
-      "bytes": 3975,
+      "bytes": 4017,
       "columns": 7,
       "path": "outputs/phase2_v1/phase2_key_findings.csv",
       "rows": 7,
-      "sha256": "0ef7c2e92366e3efa7175bf6fd88fb7bb76894b86d6a8f57674031c73ba590d8"
+      "sha256": "8333c78d2577cc5185acddb1c20f83b80e5266d4bd5b11d0402f14d8a3c01a34"
     },
     {
-      "bytes": 4943,
+      "bytes": 4985,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_key_findings.json",
       "rows": null,
-      "sha256": "7809785bd6fcf953a1f5ba645f2753551f3ad47b3b864667baadff7c69dab296"
+      "sha256": "c8895d05a40c58599fc110370bacf22d50eb8281dabed509e2338eccb8a3d1bf"
     },
     {
-      "bytes": 6850,
+      "bytes": 7228,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_key_findings.md",
       "rows": null,
-      "sha256": "e415a4502308cfcf255277649c124af2c6dc5c20711f0db6ffb56202c4c0e0e0"
+      "sha256": "7b1a64bb9d4d04594d3a6e1b88526c0681017e7db6c3d43d552d5b16216b4194"
     },
     {
-      "bytes": 4857,
+      "bytes": 4952,
       "columns": 5,
       "path": "outputs/phase2_v1/phase2_requirement_audit.csv",
       "rows": 9,
-      "sha256": "91384f033b682a46674ca8fa21283ee15adc94b21f46bf8a3440d5075ff7a02a"
+      "sha256": "09730bcc1df4b64fbebfd30be7dedd86f70e8902633354483207bcef5649bdcb"
     },
     {
-      "bytes": 11199,
+      "bytes": 12244,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_requirement_audit.md",
       "rows": null,
-      "sha256": "202dc0ef4968554243ad045a6dadf47925915384604a88664fbcd3036c4d438b"
+      "sha256": "f6e7c59359daa78a05715b5442cfe7e64bb5328d904c2941d34c2b766a03b1e7"
     },
     {
       "bytes": 261757,
