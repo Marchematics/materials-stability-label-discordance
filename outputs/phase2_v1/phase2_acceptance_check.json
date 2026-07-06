@@ -44,8 +44,8 @@
   {
     "check_id":"leaderboard_alpha",
     "status":"pass",
-    "evidence":"leaderboard_rows=12; model_cards=24; inventory_rows=24",
-    "guardrail":"Leaderboard alpha reports benchmark-view bands, not final physical-truth ranks."
+    "evidence":"leaderboard_rows=12; model_cards=24; inventory_rows=24; external_wbm_context_leaderboard_rows=7",
+    "guardrail":"Leaderboard alpha reports benchmark-view bands, not final physical-truth ranks. External WBM-native context leaderboard is separate and not SourceAware rank evidence."
   },
   {
     "check_id":"figures_and_source_data",

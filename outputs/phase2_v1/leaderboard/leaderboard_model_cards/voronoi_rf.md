@@ -16,6 +16,18 @@ Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogen
 
 Not evaluated in SourceAware label-view leaderboard because exact SourceAware row scores are unavailable or the row is an external target audit.
 
+## External WBM-native context
+
+This section is contextual only: WBM IDs are not exact SourceAware row IDs, so these values are not SourceAware label-view metrics.
+
+WBM-native AUPRC rank: 7
+WBM-native AUROC rank: 7
+WBM-native stable_yield@1000 rank: 7
+WBM-native AUPRC: 0.2094625416915208
+WBM-native AUROC: 0.6157638236051349
+WBM-native stable_yield@1000: 0.287
+Context guardrail: Separate WBM-native context leaderboard; WBM IDs are not exact SourceAware row IDs and this table is not SourceAware rank evidence.
+
 ## Label-view metrics
 
 No SourceAware label-view metrics for this inventory row.

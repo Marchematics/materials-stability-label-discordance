@@ -61,3 +61,21 @@ def test_external_wbm_native_metrics_are_context_only_not_sourceaware():
     sourceaware_metrics = pd.read_csv(OUT / "model_metrics" / "metrics_by_model_label_view.csv")
     external_only_models = set(metrics.model_name) - set(inv[inv.score_status.eq("scored")].model_name)
     assert external_only_models.isdisjoint(set(sourceaware_metrics.model_name))
+
+
+def test_external_wbm_context_leaderboard_is_separate_from_sourceaware_leaderboard():
+    ext_lb = pd.read_csv(OUT / "leaderboard" / "external_wbm_native_context_leaderboard.csv")
+    assert len(ext_lb) >= 7
+    assert ext_lb.evaluation_scope.eq("external_wbm_native_context_only").all()
+    assert ext_lb.guardrail.str.contains("not SourceAware rank evidence", regex=False).all()
+    assert {"wbm_native_rank_auprc", "wbm_native_rank_auroc", "wbm_native_rank_stable_yield@1000", "wbm_native_rank_range"}.issubset(ext_lb.columns)
+    assert pd.to_numeric(ext_lb["wbm_native_rank_auprc"], errors="coerce").notna().all()
+    src_lb = pd.read_csv(OUT / "leaderboard" / "sourceaware_leaderboard_alpha.csv")
+    external_only = set(ext_lb.model_name) - set(src_lb.model_name)
+    assert external_only  # external models are context only, not injected into SourceAware alpha ranks
+    assert external_only.isdisjoint(set(src_lb.model_name))
+    md = (OUT / "leaderboard" / "external_wbm_native_context_leaderboard.md").read_text()
+    assert "not** the SourceAware label-view leaderboard" in md
+    voronoi_card = (OUT / "leaderboard" / "leaderboard_model_cards" / "voronoi_rf.md").read_text()
+    assert "External WBM-native context" in voronoi_card
+    assert "not exact SourceAware row IDs" in voronoi_card

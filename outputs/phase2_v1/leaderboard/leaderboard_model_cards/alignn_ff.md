@@ -21,6 +21,18 @@ Best label view stable_yield@1000: common_pool
 Worst label view stable_yield@1000: audit_view
 Top-K uncertain burden audit_view@1000: 0.311
 
+## External WBM-native context
+
+This section is contextual only: WBM IDs are not exact SourceAware row IDs, so these values are not SourceAware label-view metrics.
+
+WBM-native AUPRC rank: 5
+WBM-native AUROC rank: 6
+WBM-native stable_yield@1000 rank: 5
+WBM-native AUPRC: 0.2194879810971652
+WBM-native AUROC: 0.6306056088343268
+WBM-native stable_yield@1000: 0.307
+Context guardrail: Separate WBM-native context leaderboard; WBM IDs are not exact SourceAware row IDs and this table is not SourceAware rank evidence.
+
 ## Label-view metrics
 
 | denominator           | model_name   | label_view      |     n |   positive_rate | label_semantics       | metric_status                                      |         f1 |   precision |     recall |   balanced_accuracy |      auroc |      auprc |

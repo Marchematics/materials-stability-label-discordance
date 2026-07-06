@@ -25,7 +25,7 @@ pytest -q
 - `model_metrics/`: model × label-view metrics, top-K tables, bootstrap intervals, uncertainty/spread ratios and rank correlations.
 - `rank_inversions/`: aggregate, pairwise-complete, family, budget and real-model rank-change audits.
 - `generative/`: public-source-aware screened/generated candidate consequence, with unmatched/formula-only cases and redacted private/local raw-generation provenance kept separate.
-- `leaderboard/`: SourceAware leaderboard alpha and one model card per inventory row.
+- `leaderboard/`: SourceAware leaderboard alpha, one model card per inventory row, and a separate WBM-native context leaderboard for unmapped external scores.
 - `figure_source_data/` and `figures/`: source tables plus SVG/PDF artifacts for Figures 1–6.
 
 ## Manuscript safety artifacts

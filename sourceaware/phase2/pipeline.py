@@ -1806,9 +1806,69 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     return {"inventory": inventory, "search": search, "clean": cand_clean, "matched": matched, "formula_support": formula_support, "provenance": provenance, "labels": cand_labels, "summary": view_summary, "consequence": consequence, "topk": topk}
 
 
+def build_external_wbm_context_leaderboard(out_dir: Path) -> pd.DataFrame:
+    """Build a separate WBM-native context leaderboard for external models.
+
+    This table is intentionally not merged into the SourceAware leaderboard:
+    it uses WBM-native labels and WBM material IDs, so it documents model
+    ecosystem context without becoming SourceAware label-view evidence.
+    """
+    lb_dir = ensure_dir(out_dir / "leaderboard")
+    metrics_path = out_dir / "model_scores" / "external_wbm_native_metrics.csv"
+    topk_path = out_dir / "model_scores" / "external_wbm_native_topk.csv"
+    cols = [
+        "model_name",
+        "wbm_native_rank_auprc",
+        "wbm_native_rank_auroc",
+        "wbm_native_rank_f1",
+        "wbm_native_rank_stable_yield@1000",
+        "wbm_native_rank_range",
+        "n",
+        "auprc",
+        "auroc",
+        "f1",
+        "stable_yield@1000",
+        "evaluation_scope",
+        "guardrail",
+    ]
+    if not metrics_path.exists() or not topk_path.exists():
+        empty = pd.DataFrame(columns=cols)
+        empty.to_csv(lb_dir / "external_wbm_native_context_leaderboard.csv", index=False)
+        (lb_dir / "external_wbm_native_context_leaderboard.md").write_text("# External WBM-native context leaderboard\n\nNo external WBM-native metrics available.\n", encoding="utf-8")
+        return empty
+    metrics = pd.read_csv(metrics_path)
+    topk = pd.read_csv(topk_path)
+    if metrics.empty:
+        empty = pd.DataFrame(columns=cols)
+        empty.to_csv(lb_dir / "external_wbm_native_context_leaderboard.csv", index=False)
+        (lb_dir / "external_wbm_native_context_leaderboard.md").write_text("# External WBM-native context leaderboard\n\nNo external WBM-native metrics available.\n", encoding="utf-8")
+        return empty
+    k1000 = topk[topk["K"].eq(1000)][["model_name", "stable_yield_at_k"]].rename(columns={"stable_yield_at_k": "stable_yield@1000"})
+    lb = metrics[["model_name", "n", "auprc", "auroc", "f1", "evaluation_scope", "guardrail"]].merge(k1000, on="model_name", how="left")
+    lb["guardrail"] = "Separate WBM-native context leaderboard; WBM IDs are not exact SourceAware row IDs and this table is not SourceAware rank evidence."
+    for metric in ["auprc", "auroc", "f1", "stable_yield@1000"]:
+        lb[f"wbm_native_rank_{metric}"] = pd.to_numeric(lb[metric], errors="coerce").rank(method="min", ascending=False).astype("Int64")
+    rank_cols = ["wbm_native_rank_auprc", "wbm_native_rank_auroc", "wbm_native_rank_f1", "wbm_native_rank_stable_yield@1000"]
+    lb["wbm_native_rank_range"] = lb[rank_cols].max(axis=1) - lb[rank_cols].min(axis=1)
+    lb = lb.sort_values(["wbm_native_rank_auprc", "wbm_native_rank_auroc", "model_name"], kind="mergesort")
+    lb = lb[cols]
+    lb.to_csv(lb_dir / "external_wbm_native_context_leaderboard.csv", index=False)
+    md = [
+        "# External WBM-native context leaderboard",
+        "",
+        "This contextual table uses WBM-native labels and WBM material IDs. It is **not** the SourceAware label-view leaderboard and must not be interpreted as SourceAware rank evidence without exact WBM-to-SourceAware row mapping.",
+        "",
+        lb.to_markdown(index=False),
+    ]
+    (lb_dir / "external_wbm_native_context_leaderboard.md").write_text("\n".join(md), encoding="utf-8")
+    return lb
+
+
 def build_leaderboard(out_dir: Path, inventory: pd.DataFrame, metrics: pd.DataFrame, topk: pd.DataFrame, ratio: pd.DataFrame) -> pd.DataFrame:
     lb_dir = ensure_dir(out_dir / "leaderboard")
     cards_dir = ensure_dir(lb_dir / "leaderboard_model_cards")
+    external_wbm_lb = build_external_wbm_context_leaderboard(out_dir)
+    external_wbm_by_model = external_wbm_lb.set_index("model_name") if len(external_wbm_lb) else pd.DataFrame()
     primary = topk[(topk["denominator"].eq("D5_family_complete")) & (topk["K"].eq(1000))].copy()
     pivot = primary.pivot_table(index="model_name", columns="label_view", values="stable_yield_at_k", aggfunc="first")
     # Keep explicit columns for every requested Phase 2 label view, including
@@ -1893,6 +1953,22 @@ def build_leaderboard(out_dir: Path, inventory: pd.DataFrame, metrics: pd.DataFr
                 "## Leaderboard alpha summary",
                 "",
                 "Not evaluated in SourceAware label-view leaderboard because exact SourceAware row scores are unavailable or the row is an external target audit.",
+                "",
+            ])
+        if len(external_wbm_by_model) and model in external_wbm_by_model.index:
+            ext = external_wbm_by_model.loc[model]
+            content.extend([
+                "## External WBM-native context",
+                "",
+                "This section is contextual only: WBM IDs are not exact SourceAware row IDs, so these values are not SourceAware label-view metrics.",
+                "",
+                f"WBM-native AUPRC rank: {ext.get('wbm_native_rank_auprc')}",
+                f"WBM-native AUROC rank: {ext.get('wbm_native_rank_auroc')}",
+                f"WBM-native stable_yield@1000 rank: {ext.get('wbm_native_rank_stable_yield@1000')}",
+                f"WBM-native AUPRC: {ext.get('auprc')}",
+                f"WBM-native AUROC: {ext.get('auroc')}",
+                f"WBM-native stable_yield@1000: {ext.get('stable_yield@1000')}",
+                f"Context guardrail: {ext.get('guardrail')}",
                 "",
             ])
         content.extend(["## Label-view metrics", "", m.head(20).to_markdown(index=False) if len(m) else "No SourceAware label-view metrics for this inventory row."])
@@ -2068,7 +2144,7 @@ def write_key_findings(out_dir: Path, inventory: pd.DataFrame, evals: dict[str, 
         "finding": "Phase 2 evaluates a SourceAware-scored model/baseline matrix and separately audits unmapped Matbench Discovery WBM artifacts.",
         "primary_number": len(scored),
         "secondary_number": len(real),
-        "evidence": f"{len(scored)} SourceAware-scored entries including baselines; {len(real)} real SourceAware-scored models; {external_rows} external WBM prediction rows audited; WBM-native contextual metrics computed for {external_wbm_metrics['model_name'].nunique() if len(external_wbm_metrics) else 0} downloaded external models but excluded from SourceAware label-view metrics without exact mapping.",
+        "evidence": f"{len(scored)} SourceAware-scored entries including baselines; {len(real)} real SourceAware-scored models; {external_rows} external WBM prediction rows audited; WBM-native contextual metrics/leaderboard computed for {external_wbm_metrics['model_name'].nunique() if len(external_wbm_metrics) else 0} downloaded external models but excluded from SourceAware label-view metrics without exact mapping.",
         "claim_scope": "benchmark_evaluation_scope_not_full_matbench_leaderboard",
         "guardrail": "Unmapped WBM predictions are inventory/provenance evidence only, not SourceAware metric evidence.",
     })
@@ -2229,7 +2305,7 @@ def write_claim_support_matrix(out_dir: Path, inventory: pd.DataFrame, evals: di
             "claim_text": "Phase 2 inventories Matbench Discovery-style model families and audits external WBM predictions when exact SourceAware mapping is unavailable.",
             "support_status": "supported_with_scope_guardrails",
             "primary_evidence": f"inventory rows={len(inventory)}; external WBM rows audited={external_rows}; WBM-native contextual metrics models={external_wbm_metrics['model_name'].nunique() if len(external_wbm_metrics) else 0}; formula-overlap-only rows={external_formula_rows}",
-            "primary_artifacts": "model_scores/model_score_inventory.csv; model_scores/matbench_external_score_audit.csv; model_scores/matbench_external_formula_overlap_audit.csv; model_scores/external_wbm_native_metrics.csv; model_scores/external_wbm_native_topk.csv",
+            "primary_artifacts": "model_scores/model_score_inventory.csv; model_scores/matbench_external_score_audit.csv; model_scores/matbench_external_formula_overlap_audit.csv; model_scores/external_wbm_native_metrics.csv; model_scores/external_wbm_native_topk.csv; leaderboard/external_wbm_native_context_leaderboard.csv",
             "manuscript_safe_language": "Say external WBM artifacts are audited and WBM-native contextual metrics are separate from SourceAware label-view metrics unless exact row mapping is supplied.",
             "overclaim_to_avoid": "Do not use formula-only overlap as stable/unstable label assignment.",
         },
@@ -2424,7 +2500,7 @@ pytest -q
 - `model_metrics/`: model × label-view metrics, top-K tables, bootstrap intervals, uncertainty/spread ratios and rank correlations.
 - `rank_inversions/`: aggregate, pairwise-complete, family, budget and real-model rank-change audits.
 - `generative/`: public-source-aware screened/generated candidate consequence, with unmatched/formula-only cases and redacted private/local raw-generation provenance kept separate.
-- `leaderboard/`: SourceAware leaderboard alpha and one model card per inventory row.
+- `leaderboard/`: SourceAware leaderboard alpha, one model card per inventory row, and a separate WBM-native context leaderboard for unmapped external scores.
 - `figure_source_data/` and `figures/`: source tables plus SVG/PDF artifacts for Figures 1–6.
 
 ## Manuscript safety artifacts
@@ -2551,8 +2627,11 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
 
     lb_path = out_dir / "leaderboard" / "sourceaware_leaderboard_alpha.csv"
     lb = pd.read_csv(lb_path) if lb_path.exists() else pd.DataFrame()
+    external_wbm_lb_path = out_dir / "leaderboard" / "external_wbm_native_context_leaderboard.csv"
+    external_wbm_lb = pd.read_csv(external_wbm_lb_path) if external_wbm_lb_path.exists() else pd.DataFrame()
     card_n = len(list((out_dir / "leaderboard" / "leaderboard_model_cards").glob("*.md")))
-    add("leaderboard_alpha", "pass" if len(lb) >= 10 and card_n >= len(inv) else "fail", f"leaderboard_rows={len(lb)}; model_cards={card_n}; inventory_rows={len(inv)}", "Leaderboard alpha reports benchmark-view bands, not final physical-truth ranks.")
+    external_wbm_lb_ok = (not external_wbm_lb.empty) and external_wbm_lb["guardrail"].astype(str).str.contains("not SourceAware rank evidence", regex=False).all()
+    add("leaderboard_alpha", "pass" if len(lb) >= 10 and card_n >= len(inv) and external_wbm_lb_ok else "fail", f"leaderboard_rows={len(lb)}; model_cards={card_n}; inventory_rows={len(inv)}; external_wbm_context_leaderboard_rows={len(external_wbm_lb)}", "Leaderboard alpha reports benchmark-view bands, not final physical-truth ranks. External WBM-native context leaderboard is separate and not SourceAware rank evidence.")
 
     fig_dir = out_dir / "figures"
     src_dir = out_dir / "figure_source_data"
