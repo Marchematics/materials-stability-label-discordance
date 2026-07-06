@@ -631,14 +631,116 @@ def build_external_wbm_formula_overlap_audit(out_dir: Path, external_scores: pd.
     return audit
 
 
+def build_external_wbm_native_metrics(out_dir: Path, external_scores: pd.DataFrame, wbm_summary: Path = WBM_SUMMARY) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Evaluate downloaded WBM predictions on WBM-native labels only.
+
+    These outputs provide model-ecosystem context for downloaded Matbench-style
+    prediction files. They are not SourceAware label-view metrics because WBM
+    material IDs are not exact SourceAware D2 row IDs.
+    """
+    model_dir = ensure_dir(out_dir / "model_scores")
+    guardrail = "WBM-native contextual evaluation only; WBM IDs are not exact SourceAware row IDs and these metrics are not SourceAware label-view evidence."
+    metric_cols = [
+        "evaluation_scope",
+        "model_name",
+        "n",
+        "positive_rate",
+        "stable_threshold_eV",
+        "f1",
+        "precision",
+        "recall",
+        "balanced_accuracy",
+        "auroc",
+        "auprc",
+        "source_label_field",
+        "guardrail",
+    ]
+    topk_cols = [
+        "evaluation_scope",
+        "model_name",
+        "K",
+        "K_effective",
+        "stable_n",
+        "stable_yield_at_k",
+        "recall_at_k",
+        "DAF_at_k",
+        "source_label_field",
+        "guardrail",
+    ]
+    if external_scores.empty or not wbm_summary.exists():
+        metrics = pd.DataFrame(columns=metric_cols)
+        topk = pd.DataFrame(columns=topk_cols)
+        metrics.to_csv(model_dir / "external_wbm_native_metrics.csv", index=False)
+        topk.to_csv(model_dir / "external_wbm_native_topk.csv", index=False)
+        return metrics, topk
+
+    summary = pd.read_csv(
+        wbm_summary,
+        usecols=["material_id", "e_above_hull_mp2020_corrected_ppd_mp"],
+        low_memory=False,
+    ).rename(columns={"material_id": "external_material_id", "e_above_hull_mp2020_corrected_ppd_mp": "wbm_native_e_above_hull_eV"})
+    joined = external_scores[["external_material_id", "model_name", "score_standardized"]].merge(summary, on="external_material_id", how="inner")
+    joined["score_standardized"] = pd.to_numeric(joined["score_standardized"], errors="coerce")
+    joined["wbm_native_e_above_hull_eV"] = pd.to_numeric(joined["wbm_native_e_above_hull_eV"], errors="coerce")
+    joined = joined.dropna(subset=["score_standardized", "wbm_native_e_above_hull_eV"])
+    metric_rows: list[dict[str, Any]] = []
+    topk_rows: list[dict[str, Any]] = []
+    for model, sub in joined.groupby("model_name", sort=True):
+        sub = sub.sort_values(["score_standardized", "external_material_id"], ascending=[False, True], kind="mergesort")
+        y = sub["wbm_native_e_above_hull_eV"].le(0.0).astype(int).to_numpy()
+        score = sub["score_standardized"].astype(float).to_numpy()
+        vals = metric_values_from_arrays(y, score)
+        metric_rows.append({
+            "evaluation_scope": "external_wbm_native_context_only",
+            "model_name": model,
+            "n": int(len(sub)),
+            "positive_rate": float(np.mean(y)) if len(y) else np.nan,
+            "stable_threshold_eV": 0.0,
+            "f1": vals["f1"],
+            "precision": vals["precision"],
+            "recall": vals["recall"],
+            "balanced_accuracy": vals["balanced_accuracy"],
+            "auroc": vals["auroc"],
+            "auprc": vals["auprc"],
+            "source_label_field": "e_above_hull_mp2020_corrected_ppd_mp<=0",
+            "guardrail": guardrail,
+        })
+        total_pos = int(y.sum())
+        base_rate = float(np.mean(y)) if len(y) else np.nan
+        for k in K_GRID:
+            kk = min(k, len(sub))
+            top = sub.head(kk)
+            stable_n = int(top["wbm_native_e_above_hull_eV"].le(0.0).sum()) if kk else 0
+            stable_yield = float(stable_n / kk) if kk else np.nan
+            topk_rows.append({
+                "evaluation_scope": "external_wbm_native_context_only",
+                "model_name": model,
+                "K": k,
+                "K_effective": kk,
+                "stable_n": stable_n,
+                "stable_yield_at_k": stable_yield,
+                "recall_at_k": float(stable_n / total_pos) if total_pos else np.nan,
+                "DAF_at_k": float(stable_yield / base_rate) if base_rate and not np.isnan(base_rate) else np.nan,
+                "source_label_field": "e_above_hull_mp2020_corrected_ppd_mp<=0",
+                "guardrail": guardrail,
+            })
+    metrics = pd.DataFrame(metric_rows, columns=metric_cols)
+    topk = pd.DataFrame(topk_rows, columns=topk_cols)
+    metrics.to_csv(model_dir / "external_wbm_native_metrics.csv", index=False)
+    topk.to_csv(model_dir / "external_wbm_native_topk.csv", index=False)
+    return metrics, topk
+
+
 def build_model_scores(phase1: Path, out_dir: Path, external_cache: Path | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
     labels, base = load_phase1_labels(phase1)
     total_n = len(base)
     external_cache = external_cache or Path("/home/waas/paper_experiments/phase2_external")
     external_scores, external_audit = collect_matbench_external_scores(out_dir, external_cache)
     external_formula_audit = build_external_wbm_formula_overlap_audit(out_dir, external_scores, base)
+    external_wbm_metrics, _external_wbm_topk = build_external_wbm_native_metrics(out_dir, external_scores)
     external_rows_by_model = dict(zip(external_audit["model_name"], external_audit["external_score_rows_n"])) if len(external_audit) else {}
     external_status_by_model = dict(zip(external_audit["model_name"], external_audit["external_score_status"])) if len(external_audit) else {}
+    external_wbm_native_models = set(external_wbm_metrics["model_name"]) if len(external_wbm_metrics) else set()
     if not SEED_SCORES.exists():
         raise FileNotFoundError(
             f"Missing public-safe seed scores: {SEED_SCORES}. Restore from Phase 1 scoring archive or provide --seed-scores in a future extension."
@@ -721,6 +823,9 @@ def build_model_scores(phase1: Path, out_dir: Path, external_cache: Path | None 
     else:
         inventory["external_formula_overlap_fraction"] = 0.0
         inventory["external_formula_overlap_rows_n"] = 0
+    inventory["external_wbm_native_metric_status"] = inventory["model_name"].map(
+        lambda m: "computed_context_only_not_sourceaware" if m in external_wbm_native_models else "not_computed"
+    )
     inventory = inventory.sort_values(["score_status", "model_family", "model_name"]).reset_index(drop=True)
 
     model_dir = ensure_dir(out_dir / "model_scores")
@@ -1956,12 +2061,14 @@ def write_key_findings(out_dir: Path, inventory: pd.DataFrame, evals: dict[str, 
     scored = inventory[inventory["score_status"].eq("scored")]
     real = scored[scored["model_role"].eq("real_model")]
     external_rows = int(pd.to_numeric(inventory.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
+    external_wbm_metrics_path = out_dir / "model_scores" / "external_wbm_native_metrics.csv"
+    external_wbm_metrics = pd.read_csv(external_wbm_metrics_path) if external_wbm_metrics_path.exists() else pd.DataFrame()
     audit_rows.append({
         "finding_id": "model_matrix_scope",
         "finding": "Phase 2 evaluates a SourceAware-scored model/baseline matrix and separately audits unmapped Matbench Discovery WBM artifacts.",
         "primary_number": len(scored),
         "secondary_number": len(real),
-        "evidence": f"{len(scored)} SourceAware-scored entries including baselines; {len(real)} real SourceAware-scored models; {external_rows} external WBM prediction rows audited but excluded from label-view metrics without exact mapping.",
+        "evidence": f"{len(scored)} SourceAware-scored entries including baselines; {len(real)} real SourceAware-scored models; {external_rows} external WBM prediction rows audited; WBM-native contextual metrics computed for {external_wbm_metrics['model_name'].nunique() if len(external_wbm_metrics) else 0} downloaded external models but excluded from SourceAware label-view metrics without exact mapping.",
         "claim_scope": "benchmark_evaluation_scope_not_full_matbench_leaderboard",
         "guardrail": "Unmapped WBM predictions are inventory/provenance evidence only, not SourceAware metric evidence.",
     })
@@ -2085,6 +2192,8 @@ def write_claim_support_matrix(out_dir: Path, inventory: pd.DataFrame, evals: di
     real = scored[scored["model_role"].eq("real_model")].copy()
     external_rows = int(pd.to_numeric(inventory.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
     external_formula_rows = int(pd.to_numeric(inventory.get("external_formula_overlap_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
+    external_wbm_metrics_path = out_dir / "model_scores" / "external_wbm_native_metrics.csv"
+    external_wbm_metrics = pd.read_csv(external_wbm_metrics_path) if external_wbm_metrics_path.exists() else pd.DataFrame()
     dom = ratio[pd.to_numeric(ratio.get("uncertainty_dominance_ratio", pd.Series(dtype=float)), errors="coerce") > 1].copy()
     dom_metrics = sorted(dom.get("metric", pd.Series(dtype=str)).astype(str).unique())
     source_union_status = sorted(metrics[metrics["label_view"].eq("source_union")].get("metric_status", pd.Series(dtype=str)).astype(str).unique())
@@ -2119,9 +2228,9 @@ def write_claim_support_matrix(out_dir: Path, inventory: pd.DataFrame, evals: di
             "claim_id": "C2_matbench_ecosystem_coverage",
             "claim_text": "Phase 2 inventories Matbench Discovery-style model families and audits external WBM predictions when exact SourceAware mapping is unavailable.",
             "support_status": "supported_with_scope_guardrails",
-            "primary_evidence": f"inventory rows={len(inventory)}; external WBM rows audited={external_rows}; formula-overlap-only rows={external_formula_rows}",
-            "primary_artifacts": "model_scores/model_score_inventory.csv; model_scores/matbench_external_score_audit.csv; model_scores/matbench_external_formula_overlap_audit.csv",
-            "manuscript_safe_language": "Say external WBM artifacts are audited for ecosystem scope and excluded from SourceAware metrics without exact row mapping.",
+            "primary_evidence": f"inventory rows={len(inventory)}; external WBM rows audited={external_rows}; WBM-native contextual metrics models={external_wbm_metrics['model_name'].nunique() if len(external_wbm_metrics) else 0}; formula-overlap-only rows={external_formula_rows}",
+            "primary_artifacts": "model_scores/model_score_inventory.csv; model_scores/matbench_external_score_audit.csv; model_scores/matbench_external_formula_overlap_audit.csv; model_scores/external_wbm_native_metrics.csv; model_scores/external_wbm_native_topk.csv",
+            "manuscript_safe_language": "Say external WBM artifacts are audited and WBM-native contextual metrics are separate from SourceAware label-view metrics unless exact row mapping is supplied.",
             "overclaim_to_avoid": "Do not use formula-only overlap as stable/unstable label assignment.",
         },
         {
@@ -2199,6 +2308,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
     external_rows = int(pd.to_numeric(inventory.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
     figshare_unavailable = int(inventory.get("external_score_status", pd.Series(dtype=str)).astype(str).str.contains("figshare_download_unavailable", na=False).sum())
     external_formula_overlap_rows = int(pd.to_numeric(inventory.get("external_formula_overlap_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
+    external_wbm_metrics_path = out_dir / "model_scores" / "external_wbm_native_metrics.csv"
+    external_wbm_metrics = pd.read_csv(external_wbm_metrics_path) if external_wbm_metrics_path.exists() else pd.DataFrame()
     metrics = evals["metrics"]
     topk = evals["topk"]
     ratio = evals["ratio"]
@@ -2214,8 +2325,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "1_model_score_inventory",
             "status": "complete_with_scope_guardrails",
-            "evidence": f"{len(inventory)} inventory rows; {len(scored)} SourceAware-scored entries including baselines; {len(real)} real SourceAware-scored models; {external_downloaded} external WBM tables and {external_rows} WBM rows audited; formula-overlap-only WBM rows={external_formula_overlap_rows}; {figshare_unavailable} Figshare targets unavailable in this environment",
-            "primary_artifacts": "outputs/phase2_v1/model_scores/model_score_inventory.csv; outputs/phase2_v1/model_scores/all_model_scores_long.parquet; outputs/phase2_v1/model_scores/all_model_scores_wide.parquet; outputs/phase2_v1/model_scores/matbench_external_score_audit.csv; outputs/phase2_v1/model_scores/matbench_external_formula_overlap_audit.csv",
+            "evidence": f"{len(inventory)} inventory rows; {len(scored)} SourceAware-scored entries including baselines; {len(real)} real SourceAware-scored models; {external_downloaded} external WBM tables and {external_rows} WBM rows audited; WBM-native contextual metric models={external_wbm_metrics['model_name'].nunique() if len(external_wbm_metrics) else 0}; formula-overlap-only WBM rows={external_formula_overlap_rows}; {figshare_unavailable} Figshare targets unavailable in this environment",
+            "primary_artifacts": "outputs/phase2_v1/model_scores/model_score_inventory.csv; outputs/phase2_v1/model_scores/all_model_scores_long.parquet; outputs/phase2_v1/model_scores/all_model_scores_wide.parquet; outputs/phase2_v1/model_scores/matbench_external_score_audit.csv; outputs/phase2_v1/model_scores/matbench_external_formula_overlap_audit.csv; outputs/phase2_v1/model_scores/external_wbm_native_metrics.csv; outputs/phase2_v1/model_scores/external_wbm_native_topk.csv",
             "guardrail": "External WBM rows use WBM IDs and formula-only overlap is never used for SourceAware label-view metrics without exact structure mapping.",
         },
         {
@@ -2308,7 +2419,7 @@ pytest -q
 
 ## Main artifact groups
 
-- `model_scores/`: SourceAware-scored model/baseline matrix plus audited external Matbench/WBM artifacts.
+- `model_scores/`: SourceAware-scored model/baseline matrix plus audited external Matbench/WBM artifacts and WBM-native contextual metrics kept separate from SourceAware label views.
 - `denominators/`: D5 full-complete, family-complete, pairwise-complete and per-model max-coverage denominators.
 - `model_metrics/`: model × label-view metrics, top-K tables, bootstrap intervals, uncertainty/spread ratios and rank correlations.
 - `rank_inversions/`: aggregate, pairwise-complete, family, budget and real-model rank-change audits.
@@ -2357,11 +2468,14 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
     target_models = {"Voronoi RF", "CGCNN", "CGCNN+P", "MEGNet", "ALIGNN", "ALIGNN-FF", "Wrenformer", "BOWSR", "M3GNet", "CHGNet", "MACE-MP", "SevenNet", "ORB", "EquiformerV2+DeNS"}
     external_rows = int(pd.to_numeric(inv.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum()) if not inv.empty else 0
     external_formula_rows = int(pd.to_numeric(inv.get("external_formula_overlap_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum()) if not inv.empty else 0
+    external_native_path = out_dir / "model_scores" / "external_wbm_native_metrics.csv"
+    external_native = pd.read_csv(external_native_path) if external_native_path.exists() else pd.DataFrame()
+    external_native_ok = (not external_native.empty) and external_native["model_name"].nunique() >= 5 and external_native["guardrail"].astype(str).str.contains("not SourceAware label-view evidence", regex=False).all()
     add(
         "model_score_inventory",
-        "pass" if len(scored) >= 10 and target_models.intersection(set(inv.get("model_name", []))) >= {"ALIGNN-FF", "M3GNet", "CHGNet", "MACE-MP"} else "fail",
-        f"inventory_rows={len(inv)}; scored_entries={len(scored)}; real_sourceaware_scored_models={len(real)}; external_wbm_rows={external_rows}; formula_overlap_only_external_rows={external_formula_rows}; target_models_recorded={len(target_models.intersection(set(inv.get('model_name', []))))}",
-        "External Matbench/WBM rows are inventoried, and formula-only overlaps are audited, but neither is used in SourceAware metrics without exact row mapping.",
+        "pass" if len(scored) >= 10 and target_models.intersection(set(inv.get("model_name", []))) >= {"ALIGNN-FF", "M3GNet", "CHGNet", "MACE-MP"} and external_native_ok else "fail",
+        f"inventory_rows={len(inv)}; scored_entries={len(scored)}; real_sourceaware_scored_models={len(real)}; external_wbm_rows={external_rows}; external_wbm_native_metric_models={external_native['model_name'].nunique() if len(external_native) else 0}; formula_overlap_only_external_rows={external_formula_rows}; target_models_recorded={len(target_models.intersection(set(inv.get('model_name', []))))}",
+        "External Matbench/WBM rows are inventoried and WBM-native contextual metrics are computed separately; formula-only overlaps and WBM-native metrics are not used in SourceAware label-view metrics without exact row mapping.",
     )
 
     den_dir = out_dir / "denominators"

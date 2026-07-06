@@ -4,6 +4,7 @@ ALIGNN:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -27,6 +28,7 @@ ALIGNN-FF:
   external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256963
   external_score_status: downloaded_external_unmapped
+  external_wbm_native_metric_status: computed_context_only_not_sourceaware
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: GNN interatomic potential raw-energy ranker
@@ -48,6 +50,7 @@ BOWSR:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -71,6 +74,7 @@ CGCNN:
   external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256961
   external_score_status: downloaded_external_unmapped
+  external_wbm_native_metric_status: computed_context_only_not_sourceaware
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -94,6 +98,7 @@ CGCNN+P:
   external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256961
   external_score_status: downloaded_external_unmapped
+  external_wbm_native_metric_status: computed_context_only_not_sourceaware
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -117,6 +122,7 @@ CHGNet:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: universal interatomic potential predicted-hull ranker
@@ -138,6 +144,7 @@ EquiformerV2+DeNS:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -161,6 +168,7 @@ M3GNet:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: universal interatomic potential raw-energy ranker
@@ -182,6 +190,7 @@ MACE-MP:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: universal interatomic potential raw-energy ranker
@@ -203,6 +212,7 @@ MEGNet:
   external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256963
   external_score_status: downloaded_external_unmapped
+  external_wbm_native_metric_status: computed_context_only_not_sourceaware
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -226,6 +236,7 @@ MEGNet-RS2RE:
   external_formula_overlap_rows_n: 28178
   external_score_rows_n: 256953
   external_score_status: downloaded_external_unmapped
+  external_wbm_native_metric_status: computed_context_only_not_sourceaware
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -249,6 +260,7 @@ MP_common_pool_public_hull_rank:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: sourceaware_row_metadata_or_public_hull_baseline
@@ -270,6 +282,7 @@ MP_source_native_public_hull_rank:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: sourceaware_row_metadata_or_public_hull_baseline
@@ -291,6 +304,7 @@ MatterGen_alex_mp20_source_native_public_hull_rank:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: sourceaware_row_metadata_or_public_hull_baseline
@@ -312,6 +326,7 @@ ORB:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -335,6 +350,7 @@ SevenNet:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -358,6 +374,7 @@ Voronoi RF:
   external_formula_overlap_rows_n: 28169
   external_score_rows_n: 257469
   external_score_status: downloaded_external_unmapped
+  external_wbm_native_metric_status: computed_context_only_not_sourceaware
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -381,6 +398,7 @@ Wrenformer:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
+  external_wbm_native_metric_status: not_computed
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -404,6 +422,7 @@ consensus_oracle_proxy:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: sourceaware_row_metadata_or_public_hull_baseline
@@ -425,6 +444,7 @@ eSEN-30M-MP:
   external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256963
   external_score_status: downloaded_external_unmapped
+  external_wbm_native_metric_status: computed_context_only_not_sourceaware
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
     or local score generation; recorded as ecosystem target, not primary SourceAware
     evidence.
@@ -448,6 +468,7 @@ official_Alexandria_PBE_common_pool_public_hull_rank:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: sourceaware_row_metadata_or_public_hull_baseline
@@ -469,6 +490,7 @@ official_Alexandria_PBE_source_native_public_hull_rank:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: sourceaware_row_metadata_or_public_hull_baseline
@@ -490,6 +512,7 @@ prevalence_dummy:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: sourceaware_row_metadata_or_public_hull_baseline
@@ -511,6 +534,7 @@ random_baseline:
   external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
+  external_wbm_native_metric_status: not_computed
   failure_reason: .nan
   include_in_primary_leaderboard: true
   input_type: sourceaware_row_metadata_or_public_hull_baseline

@@ -20,7 +20,7 @@ pytest -q
 
 ## Main artifact groups
 
-- `model_scores/`: SourceAware-scored model/baseline matrix plus audited external Matbench/WBM artifacts.
+- `model_scores/`: SourceAware-scored model/baseline matrix plus audited external Matbench/WBM artifacts and WBM-native contextual metrics kept separate from SourceAware label views.
 - `denominators/`: D5 full-complete, family-complete, pairwise-complete and per-model max-coverage denominators.
 - `model_metrics/`: model × label-view metrics, top-K tables, bootstrap intervals, uncertainty/spread ratios and rank correlations.
 - `rank_inversions/`: aggregate, pairwise-complete, family, budget and real-model rank-change audits.

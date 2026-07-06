@@ -37,3 +37,27 @@ def test_phase2_score_inventory_standardized_and_sufficient():
     scores = pd.read_parquet(OUT / "model_scores" / "all_model_scores_long.parquet")
     assert scores.score_standardized.notna().all()
     assert scores.score_direction_standardized.eq("higher_score_more_likely_stable").all()
+
+
+def test_external_wbm_native_metrics_are_context_only_not_sourceaware():
+    metrics = pd.read_csv(OUT / "model_scores" / "external_wbm_native_metrics.csv")
+    topk = pd.read_csv(OUT / "model_scores" / "external_wbm_native_topk.csv")
+    assert len(metrics) >= 7
+    assert metrics.model_name.nunique() >= 7
+    assert topk.model_name.nunique() == metrics.model_name.nunique()
+    assert {100, 300, 500, 1000, 5000, 10000}.issubset(set(pd.to_numeric(topk.K, errors="coerce").astype(int)))
+    assert metrics.evaluation_scope.eq("external_wbm_native_context_only").all()
+    assert topk.evaluation_scope.eq("external_wbm_native_context_only").all()
+    assert metrics.guardrail.str.contains("not SourceAware label-view evidence", regex=False).all()
+    assert topk.guardrail.str.contains("not SourceAware label-view evidence", regex=False).all()
+    for col in ["f1", "precision", "recall", "balanced_accuracy", "auroc", "auprc"]:
+        vals = pd.to_numeric(metrics[col], errors="coerce").dropna()
+        assert ((0 <= vals) & (vals <= 1)).all()
+    sy = pd.to_numeric(topk.stable_yield_at_k, errors="coerce").dropna()
+    assert ((0 <= sy) & (sy <= 1)).all()
+    inv = pd.read_csv(OUT / "model_scores" / "model_score_inventory.csv")
+    assert "external_wbm_native_metric_status" in inv.columns
+    assert inv.external_wbm_native_metric_status.eq("computed_context_only_not_sourceaware").sum() >= 7
+    sourceaware_metrics = pd.read_csv(OUT / "model_metrics" / "metrics_by_model_label_view.csv")
+    external_only_models = set(metrics.model_name) - set(inv[inv.score_status.eq("scored")].model_name)
+    assert external_only_models.isdisjoint(set(sourceaware_metrics.model_name))
