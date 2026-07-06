@@ -1,12 +1,12 @@
 {
-  "file_count": 106,
+  "file_count": 107,
   "files": [
     {
-      "bytes": 2244,
+      "bytes": 2297,
       "columns": null,
       "path": "outputs/phase2_v1/README.md",
       "rows": null,
-      "sha256": "cb1541908e263be5aa6c73510fe8819b34f3bc27ce1ec793a72d148ca5e1a9b7"
+      "sha256": "1ea01889f5ccf4b10c0180137e6802cd6a5ee58b1aa6609636c9aa6dd9b39dfd"
     },
     {
       "bytes": 4553134,
@@ -189,6 +189,13 @@
       "path": "outputs/phase2_v1/generative/candidate_source_search_audit.csv",
       "rows": 13,
       "sha256": "91cdc916f24cf5185fe2cf013647f5c84a2e928602d23c177db8a31a52e25f63"
+    },
+    {
+      "bytes": 3972,
+      "columns": 13,
+      "path": "outputs/phase2_v1/generative/generated_candidate_artifact_provenance.csv",
+      "rows": 9,
+      "sha256": "3d90850f8fe8aa96c00bc2681295d35fdca3d7acee05a02ae03394dd6712b771"
     },
     {
       "bytes": 4806122,
@@ -597,74 +604,74 @@
       "sha256": "a6a48e09a7cbbac6a4441969bd279e22360079a5673c36aa11623181cea8bbc6"
     },
     {
-      "bytes": 3449,
+      "bytes": 3497,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.json",
       "rows": null,
-      "sha256": "10c43ff57e02d6de3b0607b1bba1d68f2108f120682751eebeefbd9d32c193d9"
+      "sha256": "8b03d04eae2eb59ea08a924631fb4684f09f1491aae6fa2496e57ac5fc0bc863"
     },
     {
       "bytes": 6164,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.md",
       "rows": null,
-      "sha256": "9e041c53d687d19dd5529baab291fc41b90ed97f48fc4150b09dc758d31d204d"
+      "sha256": "4f45fa3c72ff0f54dbfc07ca85d528cf0453387ed64cf886430c7840098ad4f1"
     },
     {
-      "bytes": 4997,
+      "bytes": 5110,
       "columns": 7,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.csv",
       "rows": 7,
-      "sha256": "e6f2ef75e70228d5e159d77d3e82afc41d92e4b11062094c0b817c21b33d5537"
+      "sha256": "75e6adb5d2225339bdc19259dada6f47bf3d74068e43003f72c20f84bf786a49"
     },
     {
-      "bytes": 6215,
+      "bytes": 6328,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.json",
       "rows": null,
-      "sha256": "39d35dc1c307e6f71e770b4ee25f4454b7cfc901d6c497be9cd303a10a457c1e"
+      "sha256": "e11f42146a518b69351b3c59f8d63a53b25c980981b0cc9f091d744b9eef76ce"
     },
     {
-      "bytes": 9303,
+      "bytes": 9807,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.md",
       "rows": null,
-      "sha256": "97165a6f6f4711f368fb62c4d3b8bbf2ff65d5858b6317f348fd1f84dd43e6db"
+      "sha256": "94ad95a712827f285c3b581117cf15a475167e71cc7b0e0d250f7428c2030679"
     },
     {
-      "bytes": 3799,
+      "bytes": 3878,
       "columns": 7,
       "path": "outputs/phase2_v1/phase2_key_findings.csv",
       "rows": 7,
-      "sha256": "15df6a352fec3086f771f7c1c9ff6c4e492d11e725b911bb390586593ca986b4"
+      "sha256": "5dcca1a5b97096addad68ec6c3ac39aa7299205e56b07f227a89aa4d8ec44a8f"
     },
     {
-      "bytes": 4767,
+      "bytes": 4846,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_key_findings.json",
       "rows": null,
-      "sha256": "35bdb59968ad52106f3f4141919e03a7f0ea87c588ab7895a150bdf90e5eabc8"
+      "sha256": "f7b52e966b5f8a9454927ffd97eddb943d535db470dc51e9ce45babf38cd4a0f"
     },
     {
       "bytes": 6742,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_key_findings.md",
       "rows": null,
-      "sha256": "dcf97c72d9443c135b5639396a99c42255ff20d944b77edb31bd58c7a4a89e00"
+      "sha256": "9ffee66e6bba00823614d397838aa99c5bc6db4c4d91a5e795abb67bcdd6e42c"
     },
     {
-      "bytes": 4620,
+      "bytes": 4693,
       "columns": 5,
       "path": "outputs/phase2_v1/phase2_requirement_audit.csv",
       "rows": 9,
-      "sha256": "c242b2c4ee18dc5f99c5a4fd26ec346916887fb661cc9cc4d25161f80af12274"
+      "sha256": "41e3f4b2d63a9cd362d2d00d694e236139424ccc816db63dcd669441736498bf"
     },
     {
-      "bytes": 9659,
+      "bytes": 10154,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_requirement_audit.md",
       "rows": null,
-      "sha256": "811b46069782b834d9c4e791337d0da1966d65a98ccfa84be5750c497e0f27b9"
+      "sha256": "95477b6ea3c22261658c559ae72cf7a7b85c6abe42b29114014e4f3e2f563450"
     },
     {
       "bytes": 261757,

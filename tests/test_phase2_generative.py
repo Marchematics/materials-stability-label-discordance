@@ -69,3 +69,36 @@ def test_phase2_generative_outputs_are_honest_about_scope():
     named = search[search.pipeline_name.isin(["MatterGen", "FlowMM", "DiffCSP", "CDVAE", "CrystalFlow"])]
     assert named.public_source_url.notna().all()
     assert named.guardrail.str.contains("not label assignment", regex=False).all()
+
+
+def test_phase2_generated_candidate_artifact_provenance_is_public_safe():
+    prov = pd.read_csv(OUT / "generative" / "generated_candidate_artifact_provenance.csv")
+    assert len(prov) >= 8
+    required = {
+        "pipeline_name",
+        "artifact_role",
+        "artifact_kind",
+        "path_scope",
+        "publishable_path",
+        "exists",
+        "committed_to_public_repo",
+        "row_count",
+        "structure_count",
+        "sha256",
+        "label_assignment_status",
+        "guardrail",
+    }
+    assert required.issubset(prov.columns)
+    assert "private_local_not_committed" in set(prov.path_scope)
+    private = prov[prov.path_scope.eq("private_local_not_committed")]
+    assert private.publishable_path.str.contains("<redacted_private_path>", regex=False).all()
+    assert not private.committed_to_public_repo.astype(bool).any()
+    assert private.guardrail.str.contains("not committed", case=False).any()
+    public_mg = prov[prov.publishable_path.str.endswith("mattergen_pilot_5k_public_safe_formulas.csv", na=False)].iloc[0]
+    assert int(public_mg.row_count) == 5000
+    assert public_mg.label_assignment_status == "formula_only_overlap_no_label_assignment"
+    consistency = prov[prov.artifact_kind.eq("count_consistency_audit")].iloc[0]
+    assert int(consistency.row_count) == 5000
+    assert int(consistency.structure_count) == 5000
+    assert consistency.label_assignment_status == "count_consistent_no_label_assignment"
+    assert "does not create SourceAware stable/unstable labels" in consistency.guardrail

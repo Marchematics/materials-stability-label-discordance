@@ -44,6 +44,8 @@ PGCGM_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "pgcgm_unlabeled_candidate_po
 MATTERGEN_SMOKE_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "mattergen_hf_base_smoke_generated_crystals.extxyz"
 MATTERGEN_PILOT_FORMULAS = ROOT / "inputs" / "phase2_v1" / "mattergen_pilot_5k_public_safe_formulas.csv"
 WBM_SUMMARY = Path("/home/waas/paper_experiments/data/matbench_discovery/2023-12-13-wbm-summary.csv.gz")
+PRIVATE_MATTERGEN_PILOT_SHARDS = sorted(Path("/home/waas/paper_experiments/private/mattergen_v4_generation/pilot_5k_3gpu").glob("shard*/generated_crystals.extxyz"))
+PRIVATE_MATTERGEN_PILOT_CIF_ZIP = Path("/home/waas/paper_experiments/private/mattergen_v4_generation/pilot_5k_3gpu_merged/generated_crystals_cif.zip")
 
 LABEL_VIEWS = [
     "mp_native",
@@ -245,6 +247,157 @@ def parse_extxyz_formulas(path: Path) -> pd.DataFrame:
         idx += 1
         i += 2 + n
     return pd.DataFrame(rows)
+
+
+def count_extxyz_structures(path: Path) -> int:
+    """Count structures in an extxyz file without exposing coordinates."""
+    if not path.exists():
+        return 0
+    lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+    count = 0
+    i = 0
+    while i < len(lines):
+        if not lines[i].strip():
+            i += 1
+            continue
+        try:
+            n_atoms = int(lines[i].strip())
+        except ValueError:
+            i += 1
+            continue
+        count += 1
+        i += n_atoms + 2
+    return count
+
+
+def public_or_redacted_path(path: Path) -> tuple[str, str, bool]:
+    """Return a publishable path description for provenance tables."""
+    path = Path(path)
+    try:
+        return "public_repo", str(path.resolve().relative_to(ROOT)), True
+    except Exception:
+        pass
+    text = str(path)
+    if "/private/" in text:
+        return "private_local_not_committed", f"<redacted_private_path>/{path.parent.name}/{path.name}", False
+    return "external_local_cache", text, False
+
+
+def write_generated_candidate_provenance(gen_dir: Path) -> pd.DataFrame:
+    """Write a public-safe provenance audit for generated-candidate artifacts.
+
+    This records hashes and counts for public-safe inputs and redacted local raw
+    structure artifacts. The raw private coordinates/archives are never copied
+    into the public output tree, and formula-only artifacts remain explicitly
+    separated from SourceAware label assignment.
+    """
+    rows: list[dict[str, Any]] = []
+
+    def add_artifact(path: Path, pipeline: str, role: str, artifact_kind: str, label_assignment_status: str, guardrail: str) -> None:
+        path = Path(path)
+        scope, publishable_path, committed = public_or_redacted_path(path)
+        exists = path.exists()
+        row_count = structure_count = None
+        if exists:
+            try:
+                if path.suffix == ".parquet":
+                    row_count = len(pd.read_parquet(path))
+                elif path.suffix == ".csv":
+                    row_count = len(pd.read_csv(path, low_memory=False))
+                elif path.suffix == ".extxyz":
+                    structure_count = count_extxyz_structures(path)
+            except Exception:
+                row_count = structure_count = None
+        rows.append({
+            "pipeline_name": pipeline,
+            "artifact_role": role,
+            "artifact_kind": artifact_kind,
+            "path_scope": scope,
+            "publishable_path": publishable_path,
+            "exists": bool(exists),
+            "committed_to_public_repo": bool(committed),
+            "row_count": row_count,
+            "structure_count": structure_count,
+            "bytes": int(path.stat().st_size) if exists else 0,
+            "sha256": sha256_file(path) if exists else "",
+            "label_assignment_status": label_assignment_status,
+            "guardrail": guardrail,
+        })
+
+    add_artifact(
+        MATTERGEN_SMOKE_CANDIDATES,
+        "MatterGen_hf_base_smoke_unconditional",
+        "public_safe_input",
+        "extxyz_coordinates_public_smoke",
+        "unmatched_no_exact_sourceaware_label_assignment",
+        "Small public smoke extxyz is used only for ingestion/provenance; no homogeneous DFT validation is claimed.",
+    )
+    add_artifact(
+        MATTERGEN_PILOT_FORMULAS,
+        "MatterGen_pilot_5k_public_safe_formulas",
+        "public_safe_input",
+        "formula_rank_csv_no_coordinates_no_energies",
+        "formula_only_overlap_no_label_assignment",
+        "Formula/rank-only MatterGen pilot table is never converted to stable/unstable SourceAware labels.",
+    )
+    add_artifact(
+        PGCGM_CANDIDATES,
+        "PGCGM_public_safe_generated_pool",
+        "public_safe_input",
+        "formula_metadata_csv_public_safe",
+        "formula_only_overlap_no_label_assignment",
+        "Public-safe generated-pool metadata excludes private structures and DFT outcomes.",
+    )
+    add_artifact(
+        CANDIDATE_SCORES,
+        "CHGNet_screened_public_hull_top5000",
+        "public_safe_input",
+        "screened_candidate_csv",
+        "exact_sourceaware_matches_when_mp_id_present",
+        "Screened candidates with MP IDs support SourceAware benchmark consequence, not new-material DFT validation.",
+    )
+    for shard in PRIVATE_MATTERGEN_PILOT_SHARDS:
+        add_artifact(
+            shard,
+            "MatterGen_pilot_5k_public_safe_formulas",
+            "private_raw_generation_artifact_redacted",
+            "extxyz_coordinates_private_not_committed",
+            "not_used_for_public_label_assignment",
+            "Private raw generated structures are audited by hash/count only and are not committed or treated as validated stable materials.",
+        )
+    add_artifact(
+        PRIVATE_MATTERGEN_PILOT_CIF_ZIP,
+        "MatterGen_pilot_5k_public_safe_formulas",
+        "private_raw_generation_artifact_redacted",
+        "cif_zip_private_not_committed",
+        "not_used_for_public_label_assignment",
+        "Private raw CIF archive is audited by hash only and is not committed to the public benchmark repository.",
+    )
+    prov = pd.DataFrame(rows)
+    if len(prov):
+        # Consistency row: the public-safe formula table should be derivable
+        # from the local private MatterGen shard count without exposing
+        # coordinates. This is an audit, not label assignment.
+        public_n = int(prov.loc[prov["publishable_path"].astype(str).str.endswith("mattergen_pilot_5k_public_safe_formulas.csv"), "row_count"].fillna(0).sum())
+        private_n = int(prov.loc[(prov["pipeline_name"].eq("MatterGen_pilot_5k_public_safe_formulas")) & (prov["artifact_kind"].eq("extxyz_coordinates_private_not_committed")), "structure_count"].fillna(0).sum())
+        rows.append({
+            "pipeline_name": "MatterGen_pilot_5k_public_safe_formulas",
+            "artifact_role": "public_private_count_consistency_check",
+            "artifact_kind": "count_consistency_audit",
+            "path_scope": "derived_audit",
+            "publishable_path": "public_formula_rows_vs_private_extxyz_structure_count",
+            "exists": bool(public_n and private_n),
+            "committed_to_public_repo": True,
+            "row_count": public_n,
+            "structure_count": private_n,
+            "bytes": 0,
+            "sha256": "",
+            "label_assignment_status": "count_consistent_no_label_assignment" if public_n == private_n and public_n > 0 else "count_mismatch_or_private_artifact_missing",
+            "guardrail": "Count consistency does not expose coordinates and does not create SourceAware stable/unstable labels.",
+        })
+        prov = pd.DataFrame(rows)
+    prov.to_csv(gen_dir / "generated_candidate_artifact_provenance.csv", index=False)
+    return prov
 
 
 def load_phase1_labels(phase1: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -1544,7 +1697,8 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     view_summary.groupby("pipeline_name", as_index=False).agg(source_uncertain_fraction=("source_uncertain_fraction", "max"), matched_n=("matched_n", "max")).to_csv(gen_dir / "generated_uncertain_fraction_by_model.csv", index=False)
     topk.to_csv(gen_dir / "generated_topk_consequence.csv", index=False)
     formula_support = pd.read_csv(gen_dir / "generated_candidate_formula_support.csv") if (gen_dir / "generated_candidate_formula_support.csv").exists() else pd.DataFrame()
-    return {"inventory": inventory, "search": search, "clean": cand_clean, "matched": matched, "formula_support": formula_support, "labels": cand_labels, "summary": view_summary, "consequence": consequence, "topk": topk}
+    provenance = write_generated_candidate_provenance(gen_dir)
+    return {"inventory": inventory, "search": search, "clean": cand_clean, "matched": matched, "formula_support": formula_support, "provenance": provenance, "labels": cand_labels, "summary": view_summary, "consequence": consequence, "topk": topk}
 
 
 def build_leaderboard(out_dir: Path, inventory: pd.DataFrame, metrics: pd.DataFrame, topk: pd.DataFrame, ratio: pd.DataFrame) -> pd.DataFrame:
@@ -1893,12 +2047,14 @@ def write_key_findings(out_dir: Path, inventory: pd.DataFrame, evals: dict[str, 
     formula_support_path = out_dir / "generative" / "generated_candidate_formula_support.csv"
     formula_support = pd.read_csv(formula_support_path) if formula_support_path.exists() else pd.DataFrame()
     formula_only = int((formula_support.get("formula_support_status", pd.Series(dtype=str)) == "formula_only_overlap_no_label_assignment").sum()) if not formula_support.empty else 0
+    provenance = gen.get("provenance", pd.DataFrame()).copy()
+    private_prov = int(provenance.get("path_scope", pd.Series(dtype=str)).eq("private_local_not_committed").sum()) if not provenance.empty else 0
     audit_rows.append({
         "finding_id": "generated_candidate_support_is_mostly_unmatched",
         "finding": "Generated pools can be ingested, but unsupported/formula-only cases remain separated from exact label assignment.",
         "primary_number": completed_true,
         "secondary_number": formula_only,
-        "evidence": f"Completed true-generator/smoke pipelines: {completed_true}; generated/candidate formula-support rows: {len(formula_support)}; formula-only overlaps without label assignment: {formula_only}.",
+        "evidence": f"Completed true-generator/smoke pipelines: {completed_true}; generated/candidate formula-support rows: {len(formula_support)}; formula-only overlaps without label assignment: {formula_only}; private/local raw-generation artifacts audited by redacted hash/count only: {private_prov}.",
         "claim_scope": "supports_generated_candidate_pipeline_ingestion_and_guardrailed_consequence",
         "guardrail": "Formula-only overlap is support/coverage evidence only and is never converted to a stable/unstable SourceAware label.",
     })
@@ -1946,6 +2102,8 @@ def write_claim_support_matrix(out_dir: Path, inventory: pd.DataFrame, evals: di
     true_completed = int(((gen_inv.get("pipeline_type", pd.Series(dtype=str)) == "true_generator") & gen_inv.get("status", pd.Series(dtype=str)).astype(str).str.startswith("complete")).sum()) if not gen_inv.empty else 0
     formula_support = gen.get("formula_support", pd.DataFrame()).copy()
     formula_only = int((formula_support.get("formula_support_status", pd.Series(dtype=str)) == "formula_only_overlap_no_label_assignment").sum()) if not formula_support.empty else 0
+    provenance = gen.get("provenance", pd.DataFrame()).copy()
+    redacted_private = int(provenance.get("path_scope", pd.Series(dtype=str)).eq("private_local_not_committed").sum()) if not provenance.empty else 0
 
     rows = [
         {
@@ -1997,8 +2155,8 @@ def write_claim_support_matrix(out_dir: Path, inventory: pd.DataFrame, evals: di
             "claim_id": "C6_candidate_consequence",
             "claim_text": "Screened/generated candidate conclusions can be reclassified as source-uncertain or unsupported under consensus/audit views.",
             "support_status": "partially_supported_guardrailed",
-            "primary_evidence": f"screening consequence pipelines={len(screeners)}; completed true-generator/smoke pipelines={true_completed}; formula-only support rows={formula_only}; consequence rows={len(consequence)}",
-            "primary_artifacts": "generative/generated_candidate_inventory.csv; generative/generated_pipeline_consequence_summary.csv; generative/generated_candidate_formula_support.csv; figure_source_data/fig5_generated_consequence.csv",
+            "primary_evidence": f"screening consequence pipelines={len(screeners)}; completed true-generator/smoke pipelines={true_completed}; formula-only support rows={formula_only}; consequence rows={len(consequence)}; redacted private/local raw-generation provenance rows={redacted_private}",
+            "primary_artifacts": "generative/generated_candidate_inventory.csv; generative/generated_pipeline_consequence_summary.csv; generative/generated_candidate_formula_support.csv; generative/generated_candidate_artifact_provenance.csv; figure_source_data/fig5_generated_consequence.csv",
             "manuscript_safe_language": "State this as public-source-aware candidate consequence; distinguish matched screeners from unmatched/formula-only generated pools.",
             "overclaim_to_avoid": "Do not claim homogeneous DFT validation, exact label assignment for formula-only generated pools, or a measured real-world synthesis yield.",
         },
@@ -2048,6 +2206,7 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
     gen_inv = gen["inventory"]
     consequence = gen["consequence"]
     formula_support = gen.get("formula_support", pd.DataFrame())
+    candidate_provenance = gen.get("provenance", pd.DataFrame())
     figure_files_ok = all((out_dir / "figures" / f"fig{i}_{name}.{ext}").exists() for i, name in [
         (1, "leaderboard_bands"), (2, "uncertainty_vs_spread"), (3, "rank_inversions"), (4, "topk_heatmap"), (5, "generated_consequence"), (6, "workflow")
     ] for ext in ["svg", "pdf"])
@@ -2090,8 +2249,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "6_generative_candidate_consequence",
             "status": "partial_guardrailed_but_artifact_complete",
-            "evidence": f"candidate pipelines={len(gen_inv)}; completed true-generator pipelines={int(((gen_inv['pipeline_type']=='true_generator') & gen_inv['status'].str.startswith('complete')).sum())}; screening completed={int((gen_inv['status']=='complete_screening_consequence').sum())}; consequence rows={len(consequence)}; formula-support rows={len(formula_support)}",
-            "primary_artifacts": "outputs/phase2_v1/generative/generated_candidate_inventory.csv; generated_candidates_clean.parquet; generated_candidates_matched_to_sourceaware.parquet; generated_candidate_labels_by_view.parquet; generated_stable_yield_by_model_label_view.csv; generated_candidate_formula_support.csv; generated_pipeline_consequence_summary.csv",
+            "evidence": f"candidate pipelines={len(gen_inv)}; completed true-generator pipelines={int(((gen_inv['pipeline_type']=='true_generator') & gen_inv['status'].str.startswith('complete')).sum())}; screening completed={int((gen_inv['status']=='complete_screening_consequence').sum())}; consequence rows={len(consequence)}; formula-support rows={len(formula_support)}; artifact-provenance rows={len(candidate_provenance)}",
+            "primary_artifacts": "outputs/phase2_v1/generative/generated_candidate_inventory.csv; generated_candidates_clean.parquet; generated_candidates_matched_to_sourceaware.parquet; generated_candidate_labels_by_view.parquet; generated_stable_yield_by_model_label_view.csv; generated_candidate_formula_support.csv; generated_pipeline_consequence_summary.csv; generated_candidate_artifact_provenance.csv",
             "guardrail": "Generated pools without exact SourceAware structure matches remain unmatched/unsupported; formula-only overlap is not label assignment; no homogeneous DFT validation is claimed.",
         },
         {
@@ -2153,7 +2312,7 @@ pytest -q
 - `denominators/`: D5 full-complete, family-complete, pairwise-complete and per-model max-coverage denominators.
 - `model_metrics/`: model × label-view metrics, top-K tables, bootstrap intervals, uncertainty/spread ratios and rank correlations.
 - `rank_inversions/`: aggregate, pairwise-complete, family, budget and real-model rank-change audits.
-- `generative/`: public-source-aware screened/generated candidate consequence, with unmatched/formula-only cases kept separate.
+- `generative/`: public-source-aware screened/generated candidate consequence, with unmatched/formula-only cases and redacted private/local raw-generation provenance kept separate.
 - `leaderboard/`: SourceAware leaderboard alpha and one model card per inventory row.
 - `figure_source_data/` and `figures/`: source tables plus SVG/PDF artifacts for Figures 1–6.
 
@@ -2262,14 +2421,17 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
 
     gen_path = out_dir / "generative" / "generated_candidate_inventory.csv"
     consequence_path = out_dir / "generative" / "generated_pipeline_consequence_summary.csv"
+    provenance_path = out_dir / "generative" / "generated_candidate_artifact_provenance.csv"
     gen_inv = pd.read_csv(gen_path) if gen_path.exists() else pd.DataFrame()
     consequence = pd.read_csv(consequence_path) if consequence_path.exists() else pd.DataFrame()
+    provenance = pd.read_csv(provenance_path) if provenance_path.exists() else pd.DataFrame()
     screeners = consequence[consequence.get("pipeline_type", pd.Series(dtype=str)).eq("screening_pipeline_not_true_generator")] if not consequence.empty else pd.DataFrame()
     true_completed = int(((gen_inv.get("pipeline_type", pd.Series(dtype=str)) == "true_generator") & gen_inv.get("status", pd.Series(dtype=str)).astype(str).str.startswith("complete")).sum()) if not gen_inv.empty else 0
+    provenance_ok = (not provenance.empty) and {"path_scope", "label_assignment_status", "sha256"}.issubset(provenance.columns)
     add(
         "generative_candidate_consequence",
-        "guarded_partial" if len(screeners) >= 3 and true_completed >= 1 else "fail",
-        f"inventory_rows={len(gen_inv)}; screening_consequence_pipelines={len(screeners)}; completed_true_generator_pipelines={true_completed}; consequence_rows={len(consequence)}",
+        "guarded_partial" if len(screeners) >= 3 and true_completed >= 1 and provenance_ok else "fail",
+        f"inventory_rows={len(gen_inv)}; screening_consequence_pipelines={len(screeners)}; completed_true_generator_pipelines={true_completed}; consequence_rows={len(consequence)}; artifact_provenance_rows={len(provenance)}; provenance_ok={provenance_ok}",
         "Matched screeners are public-source-aware candidate consequences; unmatched generated pools are not assigned stable/unstable labels; no homogeneous DFT validation is claimed.",
     )
 

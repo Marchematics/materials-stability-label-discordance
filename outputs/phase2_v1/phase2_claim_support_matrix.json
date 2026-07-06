@@ -48,8 +48,8 @@
     "claim_id": "C6_candidate_consequence",
     "claim_text": "Screened/generated candidate conclusions can be reclassified as source-uncertain or unsupported under consensus/audit views.",
     "support_status": "partially_supported_guardrailed",
-    "primary_evidence": "screening consequence pipelines=5; completed true-generator/smoke pipelines=2; formula-only support rows=647; consequence rows=8",
-    "primary_artifacts": "generative/generated_candidate_inventory.csv; generative/generated_pipeline_consequence_summary.csv; generative/generated_candidate_formula_support.csv; figure_source_data/fig5_generated_consequence.csv",
+    "primary_evidence": "screening consequence pipelines=5; completed true-generator/smoke pipelines=2; formula-only support rows=647; consequence rows=8; redacted private/local raw-generation provenance rows=4",
+    "primary_artifacts": "generative/generated_candidate_inventory.csv; generative/generated_pipeline_consequence_summary.csv; generative/generated_candidate_formula_support.csv; generative/generated_candidate_artifact_provenance.csv; figure_source_data/fig5_generated_consequence.csv",
     "manuscript_safe_language": "State this as public-source-aware candidate consequence; distinguish matched screeners from unmatched/formula-only generated pools.",
     "overclaim_to_avoid": "Do not claim homogeneous DFT validation, exact label assignment for formula-only generated pools, or a measured real-world synthesis yield."
   },

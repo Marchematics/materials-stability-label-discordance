@@ -38,7 +38,7 @@
   {
     "check_id":"generative_candidate_consequence",
     "status":"guarded_partial",
-    "evidence":"inventory_rows=13; screening_consequence_pipelines=5; completed_true_generator_pipelines=2; consequence_rows=8",
+    "evidence":"inventory_rows=13; screening_consequence_pipelines=5; completed_true_generator_pipelines=2; consequence_rows=8; artifact_provenance_rows=9; provenance_ok=True",
     "guardrail":"Matched screeners are public-source-aware candidate consequences; unmatched generated pools are not assigned stable\/unstable labels; no homogeneous DFT validation is claimed."
   },
   {
