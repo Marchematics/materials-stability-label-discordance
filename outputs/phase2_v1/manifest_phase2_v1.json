@@ -1,5 +1,5 @@
 {
-  "file_count": 72,
+  "file_count": 76,
   "files": [
     {
       "bytes": 4553134,
@@ -97,84 +97,84 @@
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig1_leaderboard_bands.pdf",
       "rows": null,
-      "sha256": "b08e00ad8d5535b4c431cc6039eae2cd5697fde37aa2c961d610957cada13f88"
+      "sha256": "0ee1dd77dbcd90a0d51978df5fc1e29d8a797ec1be9d05a1668ae3ade4599354"
     },
     {
       "bytes": 142158,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig1_leaderboard_bands.svg",
       "rows": null,
-      "sha256": "9f0f0dc6ed0f15e0e45f5162d88f872d6a374b54550c9c9e02d0bc6a73265ac2"
+      "sha256": "19d2728140f7b49ccb2853f28324cf0d639bbdec5e3261daf6a3394b8afff1dc"
     },
     {
       "bytes": 17436,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig2_uncertainty_vs_spread.pdf",
       "rows": null,
-      "sha256": "9da64b57122b98b0f28ba6e3d44fc4fcfe5671327bc40ee06dcb50b58d7b9fb9"
+      "sha256": "0cd0e7f9b01792b9b2ebe05187a5d098729f2d8b984a02e726e7cd8771d1b192"
     },
     {
       "bytes": 178963,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig2_uncertainty_vs_spread.svg",
       "rows": null,
-      "sha256": "768347b2e0af1e7617728e0c9530fdf7d81beafa7684364823ea784802be376f"
+      "sha256": "1c91bed2656d455c8d97accf12f4e8e75d5c9c2ff21364eb55fcbce92f114fed"
     },
     {
       "bytes": 15198,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig3_rank_inversions.pdf",
       "rows": null,
-      "sha256": "24896570746f6104b25fcb211a9873bcd0994c48b5384ef2ee5cb2c631c989aa"
+      "sha256": "34328637bc643a6ba8c07839c8515abbf7ee0ccc9fc3c1e15c426e3970da13b8"
     },
     {
       "bytes": 70745,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig3_rank_inversions.svg",
       "rows": null,
-      "sha256": "bf60a4069408a6ac4b411ba6b962f9c06e26bdec0ba7483aeda647ab44c232af"
+      "sha256": "01e42c7e9cd5fd395588419b98f4aa29ce4614e76bb976b2b2c4621bd29d42a8"
     },
     {
       "bytes": 21938,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig4_topk_heatmap.pdf",
       "rows": null,
-      "sha256": "cac93a5c09999e2832c65701ceff04fd48e311bf935d384b3ba045ba8f536d52"
+      "sha256": "a945409cf9d8942d7d636686c10ef883a509bc945bb88719af7dec9ef454999e"
     },
     {
       "bytes": 89672,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig4_topk_heatmap.svg",
       "rows": null,
-      "sha256": "567b8d26d9586b901fe40cd3273347db6aa9f1556138b7b9cfa73ded515538df"
+      "sha256": "a6619d27aa3c22e7c332630312939e6a601206813437a40c25bf84c1e2c851f9"
     },
     {
       "bytes": 16110,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig5_generated_consequence.pdf",
       "rows": null,
-      "sha256": "dec7e25daccc4f01166d77f3f1c82023159fdb567529b2d0786596f263270fca"
+      "sha256": "69a6f3ae27a28cdd77757a4377f1a06f7d4d0d42aed2b9259bacc0b7893bfe0e"
     },
     {
       "bytes": 52357,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig5_generated_consequence.svg",
       "rows": null,
-      "sha256": "55c69e1e30836d23146c7803dabfcee5d28a00a9a0bbbabd1dbe0735b51e6260"
+      "sha256": "63ce0f000e4fcc9e397dd21e4b32ac85d9c14412cfedd9043844a6532b6beb9c"
     },
     {
       "bytes": 17046,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig6_workflow.pdf",
       "rows": null,
-      "sha256": "6453c14f30497c531d77378378c027f1736b7d5c842307fc69e13a49d55544b7"
+      "sha256": "36b22aa4010ce0f0e269a9bd0f2b05d40ebe912f1e8a79029616d33da8b74972"
     },
     {
       "bytes": 68511,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig6_workflow.svg",
       "rows": null,
-      "sha256": "8f248509a686f4e92d09b6c854297f65d696f0fdfc745f50046ab98f6264cdab"
+      "sha256": "022c3b83d14d38c5efe86b2942abe36df11bcba72bc560a211eb85315edd9178"
     },
     {
       "bytes": 1767,
@@ -380,6 +380,20 @@
       "sha256": "083c18ea5bf05bd2251f717c7e704629bf55830a86297cbb142c0a1d2cdb8416"
     },
     {
+      "bytes": 2217862,
+      "columns": 10,
+      "path": "outputs/phase2_v1/model_metrics/pairwise_complete_label_dependent_inversions.csv",
+      "rows": 10468,
+      "sha256": "1a568d59d007402288ef7b36f73ce8c08a460c798e7939cd960e273b0a9dccfe"
+    },
+    {
+      "bytes": 4323642,
+      "columns": 12,
+      "path": "outputs/phase2_v1/model_metrics/pairwise_complete_model_margins.csv",
+      "rows": 22176,
+      "sha256": "bb88d3a279f55a660f97d6042970cbdd3a738f8325db0906bfd2d6ae6d21bd42"
+    },
+    {
       "bytes": 261757,
       "columns": 10,
       "path": "outputs/phase2_v1/model_metrics/rank_inversions_by_metric.csv",
@@ -450,18 +464,18 @@
       "sha256": "d46447dab4312da2ac76cbcc58e1073ef7a6189db48d1b0ad1f4be03a76012c7"
     },
     {
-      "bytes": 4066,
+      "bytes": 4166,
       "columns": 5,
       "path": "outputs/phase2_v1/phase2_requirement_audit.csv",
       "rows": 9,
-      "sha256": "90f5bcbd50c56c666da0efcfbb000c7526a50cda752d3ba2a16da6d8e8b07228"
+      "sha256": "00df16e6651381b02156067e84992d0e69fe1c9a29005d4dcdf36e2af5a6ea95"
     },
     {
       "bytes": 9043,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_requirement_audit.md",
       "rows": null,
-      "sha256": "1404bc15175f73e264bcbc5311b51308fd1b3f17a6631365dd35758902d506fe"
+      "sha256": "1b40ac391030c7008b6089a0123cbc977aca368a02818f5c4e04c6f04efabb2f"
     },
     {
       "bytes": 261757,
@@ -490,6 +504,20 @@
       "path": "outputs/phase2_v1/rank_inversions/label_dependent_inversions.csv",
       "rows": 756,
       "sha256": "93bd8b340ca0e6424f1c8faf0f2e97c96805df31a813762dc8a55de3c0bf8ab7"
+    },
+    {
+      "bytes": 2217862,
+      "columns": 10,
+      "path": "outputs/phase2_v1/rank_inversions/pairwise_complete_label_dependent_inversions.csv",
+      "rows": 10468,
+      "sha256": "1a568d59d007402288ef7b36f73ce8c08a460c798e7939cd960e273b0a9dccfe"
+    },
+    {
+      "bytes": 4323642,
+      "columns": 12,
+      "path": "outputs/phase2_v1/rank_inversions/pairwise_complete_model_margins.csv",
+      "rows": 22176,
+      "sha256": "bb88d3a279f55a660f97d6042970cbdd3a738f8325db0906bfd2d6ae6d21bd42"
     },
     {
       "bytes": 250571,

@@ -703,6 +703,124 @@ def rank_inversions(rankings: pd.DataFrame, inventory: pd.DataFrame, out_dir: Pa
     return {"all": inv, "top": top, "family": family_inv, "budget": budget}
 
 
+def build_pairwise_complete_margins(phase1: Path, out_dir: Path, scores: pd.DataFrame, denominators: dict[str, pd.DataFrame], inventory: pd.DataFrame) -> pd.DataFrame:
+    """Evaluate model-pair margins on each pair's D5_pairwise_complete overlap.
+
+    The main leaderboard uses full/family/max-coverage denominators. This table
+    preserves the explicit pairwise-complete denominator requested for rank-
+    inversion and margin analysis without shrinking every model comparison to a
+    single all-model intersection.
+    """
+    labels, _ = load_phase1_labels(phase1)
+    pairwise = denominators.get("pairwise", pd.DataFrame())
+    mdir = ensure_dir(out_dir / "model_metrics")
+    rdir = ensure_dir(out_dir / "rank_inversions")
+    margin_rows: list[dict[str, Any]] = []
+    inversion_rows: list[dict[str, Any]] = []
+    if pairwise.empty:
+        empty = pd.DataFrame()
+        empty.to_csv(mdir / "pairwise_complete_model_margins.csv", index=False)
+        empty.to_csv(rdir / "pairwise_complete_label_dependent_inversions.csv", index=False)
+        return empty
+    scored_models = set(inventory[inventory["score_status"].eq("scored")]["model_name"])
+    for (model_a, model_b), pg in pairwise.groupby(["model_a", "model_b"], sort=True):
+        if model_a not in scored_models or model_b not in scored_models:
+            continue
+        ids = set(pg["row_id"])
+        pair_scores = scores[scores["model_name"].isin([model_a, model_b]) & scores["row_id"].isin(ids)].copy()
+        if pair_scores.empty:
+            continue
+        m, t, _ = compute_metrics_for(pair_scores, labels, ids, "D5_pairwise_complete")
+        metric_cols = [c for c in PRIMARY_METRICS if c in m.columns]
+        metric_long = m.melt(
+            id_vars=["denominator", "model_name", "label_view", "n", "metric_status"],
+            value_vars=metric_cols,
+            var_name="metric",
+            value_name="metric_value",
+        )
+        top_frames = []
+        top_metric_map = {
+            "precision_at_k": "precision@",
+            "recall_at_k": "recall@",
+            "stable_yield_at_k": "stable_yield@",
+            "uncertain_fraction_at_k": "uncertain_fraction@",
+            "DAF_at_k": "DAF@",
+            "false_positive_burden_at_k": "false_positive_burden@",
+        }
+        for col, prefix in top_metric_map.items():
+            if col not in t.columns:
+                continue
+            tmp = t[["denominator", "model_name", "label_view", "K", "n_ranked", "metric_status", col]].copy()
+            tmp["metric"] = prefix + tmp["K"].astype(str)
+            tmp = tmp.rename(columns={col: "metric_value", "n_ranked": "n"})
+            top_frames.append(tmp[["denominator", "model_name", "label_view", "n", "metric_status", "metric", "metric_value"]])
+        all_long = pd.concat([metric_long] + top_frames, ignore_index=True) if top_frames else metric_long
+        for (view, metric), sub in all_long.groupby(["label_view", "metric"], sort=True):
+            vals = sub.set_index("model_name")
+            va = pd.to_numeric(vals.loc[model_a, "metric_value"], errors="coerce") if model_a in vals.index else np.nan
+            vb = pd.to_numeric(vals.loc[model_b, "metric_value"], errors="coerce") if model_b in vals.index else np.nan
+            na = pd.to_numeric(vals.loc[model_a, "n"], errors="coerce") if model_a in vals.index else 0
+            nb = pd.to_numeric(vals.loc[model_b, "n"], errors="coerce") if model_b in vals.index else 0
+            status_a = vals.loc[model_a, "metric_status"] if model_a in vals.index else "missing_score"
+            status_b = vals.loc[model_b, "metric_status"] if model_b in vals.index else "missing_score"
+            margin = float(va - vb) if pd.notna(va) and pd.notna(vb) else np.nan
+            if pd.isna(margin):
+                winner = "not_evaluable"
+            elif margin > 0:
+                winner = model_a
+            elif margin < 0:
+                winner = model_b
+            else:
+                winner = "tie"
+            margin_rows.append({
+                "denominator": "D5_pairwise_complete",
+                "model_a": model_a,
+                "model_b": model_b,
+                "label_view": view,
+                "metric": metric,
+                "pairwise_n": int(min(na, nb)) if pd.notna(na) and pd.notna(nb) else 0,
+                "metric_value_a": va,
+                "metric_value_b": vb,
+                "margin_a_minus_b": margin,
+                "winner": winner,
+                "metric_status_a": status_a,
+                "metric_status_b": status_b,
+            })
+    margins = pd.DataFrame(margin_rows)
+    if not margins.empty:
+        margins.to_csv(mdir / "pairwise_complete_model_margins.csv", index=False)
+        margins.to_csv(rdir / "pairwise_complete_model_margins.csv", index=False)
+        evaluable = margins.dropna(subset=["margin_a_minus_b"]).copy()
+        evaluable = evaluable[evaluable["winner"].ne("tie")]
+        for (model_a, model_b, metric), sub in evaluable.groupby(["model_a", "model_b", "metric"], sort=True):
+            views = sorted(sub["label_view"].unique())
+            values = sub.set_index("label_view")["margin_a_minus_b"].to_dict()
+            winners = sub.set_index("label_view")["winner"].to_dict()
+            for va, vb in itertools.combinations(views, 2):
+                ma = values.get(va, np.nan)
+                mb = values.get(vb, np.nan)
+                if pd.notna(ma) and pd.notna(mb) and ma * mb < 0:
+                    inversion_rows.append({
+                        "denominator": "D5_pairwise_complete",
+                        "model_a": model_a,
+                        "model_b": model_b,
+                        "metric": metric,
+                        "label_view_a": va,
+                        "label_view_b": vb,
+                        "margin_a": ma,
+                        "margin_b": mb,
+                        "winner_a": winners.get(va),
+                        "winner_b": winners.get(vb),
+                    })
+    else:
+        margins.to_csv(mdir / "pairwise_complete_model_margins.csv", index=False)
+        margins.to_csv(rdir / "pairwise_complete_model_margins.csv", index=False)
+    pair_inv = pd.DataFrame(inversion_rows)
+    pair_inv.to_csv(rdir / "pairwise_complete_label_dependent_inversions.csv", index=False)
+    pair_inv.to_csv(mdir / "pairwise_complete_label_dependent_inversions.csv", index=False)
+    return margins
+
+
 def build_model_evaluation(phase1: Path, out_dir: Path, scores: pd.DataFrame, denominators: dict[str, pd.DataFrame], inventory: pd.DataFrame) -> dict[str, pd.DataFrame]:
     labels, _ = load_phase1_labels(phase1)
     ids = {
@@ -729,7 +847,8 @@ def build_model_evaluation(phase1: Path, out_dir: Path, scores: pd.DataFrame, de
     # compatibility copy requested in plan
     rank_inversions(rankings, inventory, out_dir)["all"].to_csv(mdir / "rank_inversions_by_metric.csv", index=False)
     band, ratio = uncertainty_tables(metrics, topk, out_dir)
-    return {"metrics": metrics, "topk": topk, "rankings": rankings, "band": band, "ratio": ratio}
+    pairwise_margins = build_pairwise_complete_margins(phase1, out_dir, scores, denominators, inventory)
+    return {"metrics": metrics, "topk": topk, "rankings": rankings, "band": band, "ratio": ratio, "pairwise_margins": pairwise_margins}
 
 
 def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
@@ -1143,8 +1262,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "2_model_denominators",
             "status": "complete",
-            "evidence": f"D5_full={len(denominators['full'])}; D5_family={len(denominators['family'])}; D5_pairwise_rows={len(denominators['pairwise'])}; D5_maxcov_rows={len(denominators['maxcov'])}",
-            "primary_artifacts": "outputs/phase2_v1/denominators/denominator_d5_full_complete.parquet; denominator_d5_family_complete.parquet; denominator_d5_pairwise_complete.parquet; denominator_d5_max_coverage_by_model.parquet; model_denominator_audit.csv",
+            "evidence": f"D5_full={len(denominators['full'])}; D5_family={len(denominators['family'])}; D5_pairwise_rows={len(denominators['pairwise'])}; D5_pairwise_margin_rows={len(evals.get('pairwise_margins', pd.DataFrame()))}; D5_maxcov_rows={len(denominators['maxcov'])}",
+            "primary_artifacts": "outputs/phase2_v1/denominators/denominator_d5_full_complete.parquet; denominator_d5_family_complete.parquet; denominator_d5_pairwise_complete.parquet; denominator_d5_max_coverage_by_model.parquet; model_denominator_audit.csv; outputs/phase2_v1/model_metrics/pairwise_complete_model_margins.csv",
             "guardrail": "D5 definitions are model-coverage denominators, not physical-truth labels.",
         },
         {
