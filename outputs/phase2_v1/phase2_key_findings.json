@@ -49,7 +49,7 @@
     "finding": "A screened-candidate stable-claim rate changes materially under audit/uncertainty-aware label views.",
     "primary_number": 0.14658587741785134,
     "secondary_number": 0.33442088091353994,
-    "evidence": "CHGNet screened pool: apparent/mp_native yield=0.406, audit-view yield=0.260, source-uncertain fraction=0.334, unmatched fraction=0.142.",
+    "evidence": "5 screening pipelines evaluated; largest apparent-to-audit drop is 0.147 for CHGNet_screened_public_hull_top5000 (apparent/mp_native=0.406, audit-view=0.260, source-uncertain=0.334, unmatched=0.142).",
     "claim_scope": "supports_screened_candidate_consequence_not_generator_validation",
     "guardrail": "This is public-source-aware candidate consequence, not homogeneous DFT validation."
   },
@@ -58,7 +58,7 @@
     "finding": "Generated pools can be ingested, but unsupported/formula-only cases remain separated from exact label assignment.",
     "primary_number": 1,
     "secondary_number": 226,
-    "evidence": "Completed true-generator/smoke pipelines: 1; generated/candidate formula-support rows: 8002; formula-only overlaps without label assignment: 226.",
+    "evidence": "Completed true-generator/smoke pipelines: 1; generated/candidate formula-support rows: 28002; formula-only overlaps without label assignment: 226.",
     "claim_scope": "supports_generated_candidate_pipeline_ingestion_and_guardrailed_consequence",
     "guardrail": "Formula-only overlap is support/coverage evidence only and is never converted to a stable/unstable SourceAware label."
   }

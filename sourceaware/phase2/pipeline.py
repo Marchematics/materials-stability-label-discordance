@@ -174,6 +174,13 @@ def normalize_formula(formula: Any) -> str | None:
     return text.replace(" ", "")
 
 
+def slug_token(value: Any) -> str:
+    text = str(value).strip().lower()
+    for old, new in [(" ", "_"), ("/", "_"), ("-", "_"), ("+", "p"), ("(", ""), (")", "")]:
+        text = text.replace(old, new)
+    return "".join(ch for ch in text if ch.isalnum() or ch == "_").strip("_") or "unknown"
+
+
 def parse_extxyz_formulas(path: Path) -> pd.DataFrame:
     """Parse a small generated extxyz file into candidate formula rows.
 
@@ -962,6 +969,45 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
         inventory_rows.append({"pipeline_name": gen, "pipeline_type": "true_generator", "status": status, "candidate_n": 0, "matched_n": 0, "claim_scope": "attempt_record_only_not_evidence"})
 
     candidate_frames: list[pd.DataFrame] = []
+
+    # Phase 2 is primarily about model-facing discovery consequence, not just
+    # one hand-picked CHGNet candidate file. Treat the top-ranked rows from each
+    # real SourceAware-scored model as public-safe screening pipelines. These are
+    # screening consequences, not true generated-material validation.
+    score_path = out_dir / "model_scores" / "all_model_scores_long.parquet"
+    if score_path.exists():
+        score_rows = pd.read_parquet(score_path)
+        real_scores = score_rows[score_rows.get("score_kind", pd.Series(dtype=str)).eq("real_model_proxy_score")].copy()
+        for model, mf in real_scores.groupby("model_name", sort=True):
+            top = mf.sort_values(["score_standardized", "row_id"], ascending=[False, True], kind="mergesort").head(5000).copy()
+            if top.empty:
+                continue
+            model_slug = slug_token(model)
+            pipeline = f"{model_slug}_screened_sourceaware_top5000"
+            top["pipeline_name"] = pipeline
+            top["pipeline_type"] = "screening_pipeline_not_true_generator"
+            top["candidate_id"] = [f"{model_slug.upper()}-SCREEN-{i:05d}" for i in range(1, len(top) + 1)]
+            top["is_duplicate"] = top.duplicated("row_id", keep="first")
+            top["predicted_e_above_hull"] = np.nan
+            clean = top[["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate"]].copy()
+            clean["candidate_source"] = str(score_path)
+            candidate_frames.append(clean)
+            search_rows.append({
+                "pipeline_name": pipeline,
+                "pipeline_type": "screening_pipeline_not_true_generator",
+                "local_package_detected": True,
+                "search_status": "constructed_from_sourceaware_model_score_top5000",
+                "evidence": f"{score_path}::{model}",
+            })
+    else:
+        search_rows.append({
+            "pipeline_name": "sourceaware_model_score_screeners",
+            "pipeline_type": "screening_pipeline_not_true_generator",
+            "local_package_detected": False,
+            "search_status": "not_found",
+            "evidence": str(score_path),
+        })
+
     if CANDIDATE_SCORES.exists():
         cand = pd.read_csv(CANDIDATE_SCORES, low_memory=False)
         cand = cand.rename(columns={"material_id": "mp_id"})
@@ -1074,6 +1120,9 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
             if pipeline == "CHGNet_screened_public_hull_top5000":
                 status = "complete_screening_consequence"
                 claim_scope = "public_sourceaware_screening_consequence_not_homogeneous_dft_validation"
+            elif ptype == "screening_pipeline_not_true_generator":
+                status = "complete_screening_consequence"
+                claim_scope = "public_sourceaware_model_score_screening_consequence_not_homogeneous_dft_validation"
             elif pipeline == "PGCGM_public_safe_generated_pool":
                 status = "complete_generated_pool_unmatched_to_sourceaware_exact_denominator"
                 claim_scope = "public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment"
@@ -1427,16 +1476,18 @@ def write_key_findings(out_dir: Path, inventory: pd.DataFrame, evals: dict[str, 
         "guardrail": "source_union is a diagnostic status when full reconstruction is incomplete, not a relabeled exact-match baseline.",
     })
 
-    if not consequence.empty and "CHGNet_screened_public_hull_top5000" in set(consequence["pipeline_name"]):
-        chg = consequence[consequence["pipeline_name"].eq("CHGNet_screened_public_hull_top5000")].iloc[0]
-        apparent = float(chg.get("apparent_stable_yield", np.nan))
-        audit_yield = float(chg.get("audit_view_stable_yield", np.nan))
-        uncertain = float(chg.get("source_uncertain_fraction", np.nan))
-        unmatched = float(chg.get("unmatched_fraction", np.nan))
-        evidence = f"CHGNet screened pool: apparent/mp_native yield={apparent:.3f}, audit-view yield={audit_yield:.3f}, source-uncertain fraction={uncertain:.3f}, unmatched fraction={unmatched:.3f}."
-        primary = apparent - audit_yield if pd.notna(apparent) and pd.notna(audit_yield) else np.nan
+    screeners = consequence[consequence.get("pipeline_type", pd.Series(dtype=str)).eq("screening_pipeline_not_true_generator")].copy() if not consequence.empty else pd.DataFrame()
+    if not screeners.empty:
+        screeners["apparent_minus_audit"] = pd.to_numeric(screeners["apparent_stable_yield"], errors="coerce") - pd.to_numeric(screeners["audit_view_stable_yield"], errors="coerce")
+        best = screeners.sort_values("apparent_minus_audit", ascending=False).iloc[0]
+        apparent = float(best.get("apparent_stable_yield", np.nan))
+        audit_yield = float(best.get("audit_view_stable_yield", np.nan))
+        uncertain = float(best.get("source_uncertain_fraction", np.nan))
+        unmatched = float(best.get("unmatched_fraction", np.nan))
+        primary = float(best.get("apparent_minus_audit", np.nan))
+        evidence = f"{len(screeners)} screening pipelines evaluated; largest apparent-to-audit drop is {primary:.3f} for {best.get('pipeline_name')} (apparent/mp_native={apparent:.3f}, audit-view={audit_yield:.3f}, source-uncertain={uncertain:.3f}, unmatched={unmatched:.3f})."
     else:
-        evidence = "No CHGNet screened consequence row found."
+        evidence = "No matched screening consequence row found."
         primary = np.nan
         uncertain = np.nan
     audit_rows.append({

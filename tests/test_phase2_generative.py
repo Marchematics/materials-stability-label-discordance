@@ -17,14 +17,15 @@ def test_phase2_generative_outputs_are_honest_about_scope():
     assert int(mg.candidate_n) == 2
     assert int(mg.matched_n) == 0
     screening = inv[inv.status.eq("complete_screening_consequence")]
-    assert len(screening) >= 1
+    assert len(screening) >= 3
+    assert {"alignn_ff_screened_sourceaware_top5000", "mace_mp_screened_sourceaware_top5000", "m3gnet_screened_sourceaware_top5000"}.issubset(set(screening.pipeline_name))
     assert "PGCGM_public_safe_generated_pool" in set(inv.pipeline_name)
     pg = inv[inv.pipeline_name.eq("PGCGM_public_safe_generated_pool")].iloc[0]
     assert int(pg.candidate_n) == 3000
     assert int(pg.matched_n) == 0
     matched = pd.read_parquet(OUT / "generative" / "generated_candidates_matched_to_sourceaware.parquet")
-    assert len(matched) >= 8002
-    assert matched.matched_to_sourceaware.sum() >= 4000
+    assert len(matched) >= 28002
+    assert matched.matched_to_sourceaware.sum() >= 24000
     pg_matched = matched[matched.pipeline_name.eq("PGCGM_public_safe_generated_pool")]
     assert len(pg_matched) == 3000
     assert pg_matched.matched_to_sourceaware.sum() == 0
@@ -37,6 +38,9 @@ def test_phase2_generative_outputs_are_honest_about_scope():
     required = {"apparent_stable_yield", "all_source_native_stable_yield", "consensus_stable_yield", "audit_view_stable_yield", "source_uncertain_fraction", "near_threshold_fraction", "duplicate_fraction", "unmatched_fraction"}
     assert required.issubset(consequence.columns)
     assert consequence.consensus_stable_yield.notna().any()
+    screened_consequence = consequence[consequence.pipeline_type.eq("screening_pipeline_not_true_generator")]
+    assert len(screened_consequence) >= 3
+    assert screened_consequence.audit_view_stable_yield.notna().all()
     pg_cons = consequence[consequence.pipeline_name.eq("PGCGM_public_safe_generated_pool")].iloc[0]
     assert float(pg_cons.unmatched_fraction) == 1.0
     assert 0 < float(pg_cons.formula_support_fraction) < 0.1

@@ -8,7 +8,7 @@
 - Matbench Discovery Figshare target artifacts audited but unavailable here: 9
 - True generator/smoke pipelines completed: 1
 - Available generated-candidate pools completed/audited: 1
-- Screening/candidate consequence pipelines completed: 1
+- Screening/candidate consequence pipelines completed: 5
 - Any uncertainty dominance ratio > 1: True
 - Top-model inversions found: 702
 
