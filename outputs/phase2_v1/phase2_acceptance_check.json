@@ -56,7 +56,7 @@
   {
     "check_id":"tests_and_reproducibility",
     "status":"pass",
-    "evidence":"phase2_test_files=10; regeneration_command=python -m sourceaware.phase2.cli build-all --phase1 outputs\/phase1_v2 --out outputs\/phase2_v1 --external-cache \/home\/waas\/paper_experiments\/phase2_external",
+    "evidence":"phase2_test_files=11; regeneration_command=python -m sourceaware.phase2.cli build-all --phase1 outputs\/phase1_v2 --out outputs\/phase2_v1 --external-cache \/home\/waas\/paper_experiments\/phase2_external",
     "guardrail":"Run pytest after regeneration to verify current code and artifacts."
   }
 ]

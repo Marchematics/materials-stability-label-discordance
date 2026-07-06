@@ -636,10 +636,11 @@ def compute_metrics_for(scores: pd.DataFrame, labels: pd.DataFrame, denominator_
     topk_rows: list[dict[str, Any]] = []
     ranking_rows: list[dict[str, Any]] = []
     score_sub = scores[scores["row_id"].isin(denominator_ids)].copy()
+    label_by_view = {view: label_frame(labels, view) for view in LABEL_VIEWS}
     for model, sf in score_sub.groupby("model_name"):
         sf = sf[["row_id", "score_standardized"]].dropna()
         for view in LABEL_VIEWS:
-            lf = label_frame(labels, view)
+            lf = label_by_view[view]
             merged = sf.merge(lf, on="row_id", how="inner")
             semantics = str(lf["label_semantics"].iloc[0]) if len(lf) else ("uncertainty_indicator" if view == "uncertain" else "stability")
             status = "ok"
@@ -744,7 +745,7 @@ def metric_values_from_arrays(y: np.ndarray, score: np.ndarray) -> dict[str, flo
     return out
 
 
-def bootstrap_metrics_resampled(scores: pd.DataFrame, labels: pd.DataFrame, denominator_ids: set[str], denominator_name: str, n_boot: int = 40) -> pd.DataFrame:
+def bootstrap_metrics_resampled(scores: pd.DataFrame, labels: pd.DataFrame, denominator_ids: set[str], denominator_name: str, n_boot: int = 40, max_bootstrap_n: int = 2000) -> pd.DataFrame:
     """Deterministic row-resampling bootstrap CIs for the primary model table.
 
     This complements the lightweight binomial approximation and provides actual
@@ -753,10 +754,11 @@ def bootstrap_metrics_resampled(scores: pd.DataFrame, labels: pd.DataFrame, deno
     """
     rows: list[dict[str, Any]] = []
     score_sub = scores[scores["row_id"].isin(denominator_ids)].copy()
+    label_by_view = {view: label_frame(labels, view) for view in LABEL_VIEWS}
     for model, sf in score_sub.groupby("model_name", sort=True):
         sf = sf[["row_id", "score_standardized"]].dropna()
         for view in LABEL_VIEWS:
-            lf = label_frame(labels, view)
+            lf = label_by_view[view]
             merged = sf.merge(lf, on="row_id", how="inner")
             status = "ok"
             if view == "source_union" and merged.empty:
@@ -781,11 +783,20 @@ def bootstrap_metrics_resampled(scores: pd.DataFrame, labels: pd.DataFrame, deno
             point = metric_values_from_arrays(y, score)
             seed = int(sha256_text(f"phase2_bootstrap|{denominator_name}|{model}|{view}")[:12], 16) % (2**32 - 1)
             rng = np.random.default_rng(seed)
+            # Keep full-sample point estimates, but cap the resampling frame so
+            # a fresh public regeneration remains tractable. The cap is
+            # deterministic and applied only to CI estimation.
+            boot_y = y
+            boot_score = score
+            if len(y) > max_bootstrap_n:
+                base_idx = rng.choice(len(y), size=max_bootstrap_n, replace=False)
+                boot_y = y[base_idx]
+                boot_score = score[base_idx]
             reps = {metric: [] for metric in PRIMARY_METRICS}
-            n = len(y)
+            n = len(boot_y)
             for _ in range(n_boot):
                 idx = rng.integers(0, n, size=n)
-                vals = metric_values_from_arrays(y[idx], score[idx])
+                vals = metric_values_from_arrays(boot_y[idx], boot_score[idx])
                 for metric in PRIMARY_METRICS:
                     reps[metric].append(vals[metric])
             for metric in PRIMARY_METRICS:
@@ -1099,71 +1110,108 @@ def build_pairwise_complete_margins(phase1: Path, out_dir: Path, scores: pd.Data
         empty.to_csv(rdir / "pairwise_complete_label_dependent_inversions.csv", index=False)
         return empty
     scored_models = set(inventory[inventory["score_status"].eq("scored")]["model_name"])
+    score_by_model = {
+        model: sf[["row_id", "score_standardized"]].dropna().drop_duplicates("row_id").set_index("row_id")["score_standardized"].astype(float)
+        for model, sf in scores[scores["model_name"].isin(scored_models)].groupby("model_name", sort=True)
+    }
+    label_by_view = {view: label_frame(labels, view).drop_duplicates("row_id").set_index("row_id") for view in LABEL_VIEWS}
+    view_semantics = {
+        view: (str(frame["label_semantics"].iloc[0]) if len(frame) else ("uncertainty_indicator" if view == "uncertain" else "stability"))
+        for view, frame in label_by_view.items()
+    }
     for (model_a, model_b), pg in pairwise.groupby(["model_a", "model_b"], sort=True):
         if model_a not in scored_models or model_b not in scored_models:
             continue
-        ids = set(pg["row_id"])
-        pair_scores = scores[scores["model_name"].isin([model_a, model_b]) & scores["row_id"].isin(ids)].copy()
-        if pair_scores.empty:
+        row_order = pd.Index(pg["row_id"].drop_duplicates())
+        if model_a not in score_by_model or model_b not in score_by_model:
             continue
-        m, t, _ = compute_metrics_for(pair_scores, labels, ids, "D5_pairwise_complete")
-        metric_cols = [c for c in PRIMARY_METRICS if c in m.columns]
-        metric_long = m.melt(
-            id_vars=["denominator", "model_name", "label_view", "n", "metric_status"],
-            value_vars=metric_cols,
-            var_name="metric",
-            value_name="metric_value",
-        )
-        top_frames = []
-        top_metric_map = {
-            "precision_at_k": "precision@",
-            "recall_at_k": "recall@",
-            "stable_yield_at_k": "stable_yield@",
-            "uncertain_fraction_at_k": "uncertain_fraction@",
-            "DAF_at_k": "DAF@",
-            "false_positive_burden_at_k": "false_positive_burden@",
-        }
-        for col, prefix in top_metric_map.items():
-            if col not in t.columns:
-                continue
-            tmp = t[["denominator", "model_name", "label_view", "K", "n_ranked", "metric_status", col]].copy()
-            tmp["metric"] = prefix + tmp["K"].astype(str)
-            tmp = tmp.rename(columns={col: "metric_value", "n_ranked": "n"})
-            top_frames.append(tmp[["denominator", "model_name", "label_view", "n", "metric_status", "metric", "metric_value"]])
-        all_long = pd.concat([metric_long] + top_frames, ignore_index=True) if top_frames else metric_long
-        for (view, metric), sub in all_long.groupby(["label_view", "metric"], sort=True):
-            vals = sub.set_index("model_name")
-            va = pd.to_numeric(vals.loc[model_a, "metric_value"], errors="coerce") if model_a in vals.index else np.nan
-            vb = pd.to_numeric(vals.loc[model_b, "metric_value"], errors="coerce") if model_b in vals.index else np.nan
-            na = pd.to_numeric(vals.loc[model_a, "n"], errors="coerce") if model_a in vals.index else 0
-            nb = pd.to_numeric(vals.loc[model_b, "n"], errors="coerce") if model_b in vals.index else 0
-            status_a = vals.loc[model_a, "metric_status"] if model_a in vals.index else "missing_score"
-            status_b = vals.loc[model_b, "metric_status"] if model_b in vals.index else "missing_score"
-            margin = float(va - vb) if pd.notna(va) and pd.notna(vb) else np.nan
-            if pd.isna(margin):
-                winner = "not_evaluable"
-            elif margin > 0:
-                winner = model_a
-            elif margin < 0:
-                winner = model_b
-            else:
-                winner = "tie"
-            margin_rows.append({
-                "denominator": "D5_pairwise_complete",
-                "model_a": model_a,
-                "model_b": model_b,
-                "label_view": view,
-                "metric": metric,
-                "pairwise_n": int(min(na, nb)) if pd.notna(na) and pd.notna(nb) else 0,
-                "metric_value_a": va,
-                "metric_value_b": vb,
-                "margin_a_minus_b": margin,
-                "winner": winner,
-                "metric_status_a": status_a,
-                "metric_status_b": status_b,
-            })
+        values: dict[tuple[str, str, str], tuple[float, int, str]] = {}
+        for model in [model_a, model_b]:
+            sf = score_by_model[model].reindex(row_order).dropna()
+            for view in LABEL_VIEWS:
+                lf = label_by_view[view]
+                status = "ok"
+                if len(lf) == 0:
+                    status = "not_evaluable_full_source_union_incomplete" if view == "source_union" else "no_evaluable_labels"
+                    for metric in PRIMARY_METRICS:
+                        values[(model, view, metric)] = (np.nan, 0, status)
+                    for k in K_GRID:
+                        for metric in [f"precision@{k}", f"recall@{k}", f"stable_yield@{k}", f"uncertain_fraction@{k}", f"DAF@{k}", f"false_positive_burden@{k}"]:
+                            values[(model, view, metric)] = (np.nan, 0, status)
+                    continue
+                merged = pd.concat([sf.rename("score_standardized"), lf.reindex(sf.index)], axis=1).dropna(subset=["score_standardized", "label"])
+                if merged.empty:
+                    if view == "source_union":
+                        status = "not_evaluable_full_source_union_incomplete"
+                    for metric in PRIMARY_METRICS:
+                        values[(model, view, metric)] = (np.nan, 0, status)
+                    for k in K_GRID:
+                        for metric in [f"precision@{k}", f"recall@{k}", f"stable_yield@{k}", f"uncertain_fraction@{k}", f"DAF@{k}", f"false_positive_burden@{k}"]:
+                            values[(model, view, metric)] = (np.nan, 0, status)
+                    continue
+                y = merged["label"].astype(bool).astype(int).to_numpy()
+                score = merged["score_standardized"].astype(float).to_numpy()
+                primary = metric_values_from_arrays(y, score)
+                metric_status = "uncertainty_indicator_not_primary_stability_metric" if view == "uncertain" else status
+                for metric in PRIMARY_METRICS:
+                    values[(model, view, metric)] = (primary.get(metric, np.nan), len(merged), metric_status)
+                ranked = merged.sort_values("score_standardized", ascending=False, kind="mergesort")
+                base_rate = float(ranked["label"].astype(bool).mean()) if len(ranked) else np.nan
+                total_pos = int(ranked["label"].astype(bool).sum())
+                for k in K_GRID:
+                    kk = min(k, len(ranked))
+                    top = ranked.head(kk)
+                    stable_n = int(top["label"].astype(bool).sum()) if kk else 0
+                    stable_yield = float(stable_n / kk) if kk else np.nan
+                    uncertain_fraction = float(top["is_uncertain"].astype(bool).mean()) if kk else np.nan
+                    recall_at_k = float(stable_n / total_pos) if total_pos else np.nan
+                    daf = float(stable_yield / base_rate) if base_rate and not np.isnan(base_rate) else np.nan
+                    vals = {
+                        f"precision@{k}": stable_yield,
+                        f"recall@{k}": recall_at_k,
+                        f"stable_yield@{k}": stable_yield,
+                        f"uncertain_fraction@{k}": uncertain_fraction,
+                        f"DAF@{k}": daf,
+                        f"false_positive_burden@{k}": float(1.0 - stable_yield) if not np.isnan(stable_yield) else np.nan,
+                    }
+                    for metric, value in vals.items():
+                        values[(model, view, metric)] = (value, len(ranked), metric_status)
+        pair_metrics = PRIMARY_METRICS + [
+            f"{prefix}@{k}"
+            for prefix in ["precision", "recall", "stable_yield", "uncertain_fraction", "DAF", "false_positive_burden"]
+            for k in K_GRID
+        ]
+        for view in LABEL_VIEWS:
+            _ = view_semantics.get(view)
+            for metric in pair_metrics:
+                va, na, status_a = values.get((model_a, view, metric), (np.nan, 0, "missing_score"))
+                vb, nb, status_b = values.get((model_b, view, metric), (np.nan, 0, "missing_score"))
+                margin = float(va - vb) if pd.notna(va) and pd.notna(vb) else np.nan
+                if pd.isna(margin):
+                    winner = "not_evaluable"
+                elif margin > 0:
+                    winner = model_a
+                elif margin < 0:
+                    winner = model_b
+                else:
+                    winner = "tie"
+                margin_rows.append({
+                    "denominator": "D5_pairwise_complete",
+                    "model_a": model_a,
+                    "model_b": model_b,
+                    "label_view": view,
+                    "metric": metric,
+                    "pairwise_n": int(min(na, nb)) if pd.notna(na) and pd.notna(nb) else 0,
+                    "metric_value_a": va,
+                    "metric_value_b": vb,
+                    "margin_a_minus_b": margin,
+                    "winner": winner,
+                    "metric_status_a": status_a,
+                    "metric_status_b": status_b,
+                })
     margins = pd.DataFrame(margin_rows)
     if not margins.empty:
+        margins = margins.sort_values(["model_a", "model_b", "label_view", "metric"], kind="mergesort").reset_index(drop=True)
         margins.to_csv(mdir / "pairwise_complete_model_margins.csv", index=False)
         margins.to_csv(rdir / "pairwise_complete_model_margins.csv", index=False)
         evaluable = margins.dropna(subset=["margin_a_minus_b"]).copy()
@@ -1407,24 +1455,17 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     matched.to_parquet(gen_dir / "generated_candidates_matched_to_sourceaware.parquet", index=False)
     matched[["candidate_id", "pipeline_name", "formula", "candidate_reduced_formula", "chemical_system", "matched_to_sourceaware", "formula_overlap_with_sourceaware", "formula_sourceaware_row_count", "formula_support_status", "formula_sourceaware_mp_examples"]].to_csv(gen_dir / "generated_candidate_formula_support.csv", index=False)
 
-    label_rows = []
-    for _, c in matched.iterrows():
-        rid = c.get("row_id")
-        sub = labels[labels["row_id"].eq(rid)] if pd.notna(rid) else pd.DataFrame()
-        for view in gen_label_views:
-            lv = sub[sub["label_view"].eq(view)] if len(sub) else pd.DataFrame()
-            label_rows.append({
-                "candidate_id": c["candidate_id"],
-                "pipeline_name": c["pipeline_name"],
-                "pipeline_type": c["pipeline_type"],
-                "row_id": rid,
-                "label_view": view,
-                "label": lv["label"].iloc[0] if len(lv) else pd.NA,
-                "is_uncertain": lv["is_uncertain"].iloc[0] if len(lv) else pd.NA,
-                "is_evaluable": bool(len(lv) and bool(lv["is_evaluable"].iloc[0])),
-                "matched_to_sourceaware": bool(c["matched_to_sourceaware"]),
-            })
-    cand_labels = pd.DataFrame(label_rows)
+    # Build candidate × label-view rows vectorially.  An earlier row loop
+    # filtered the full Phase 1 label table once per candidate and made fresh
+    # regeneration unnecessarily slow for 30k+ candidate rows.
+    candidate_index = matched[["candidate_id", "pipeline_name", "pipeline_type", "row_id", "matched_to_sourceaware"]].copy()
+    candidate_index["_phase2_cross_key"] = 1
+    view_index = pd.DataFrame({"label_view": gen_label_views, "_phase2_cross_key": 1})
+    label_base = labels[["row_id", "label_view", "label", "is_uncertain", "is_evaluable"]].drop_duplicates(["row_id", "label_view"])
+    cand_labels = candidate_index.merge(view_index, on="_phase2_cross_key", how="outer").drop(columns=["_phase2_cross_key"])
+    cand_labels = cand_labels.merge(label_base, on=["row_id", "label_view"], how="left")
+    cand_labels["matched_to_sourceaware"] = cand_labels["matched_to_sourceaware"].fillna(False).astype(bool)
+    cand_labels["is_evaluable"] = cand_labels["is_evaluable"].fillna(False).astype(bool)
     cand_labels.to_parquet(gen_dir / "generated_candidate_labels_by_view.parquet", index=False)
 
     view_summary_rows = []
@@ -1872,6 +1913,118 @@ def write_key_findings(out_dir: Path, inventory: pd.DataFrame, evals: dict[str, 
     (out_dir / "phase2_key_findings.md").write_text("\n".join(md), encoding="utf-8")
 
 
+def write_claim_support_matrix(out_dir: Path, inventory: pd.DataFrame, evals: dict[str, pd.DataFrame], inversions: dict[str, pd.DataFrame], gen: dict[str, pd.DataFrame]) -> None:
+    """Write a manuscript-facing claim support matrix.
+
+    The Phase 2 objective is broad enough that a green test suite alone is not
+    sufficient evidence for manuscript claims. This matrix separates supported
+    claims from scoped/guardrailed claims so the paper can say exactly what the
+    regenerated artifacts prove without drifting into homogeneous-DFT or
+    physical-truth language.
+    """
+    metrics = evals["metrics"].copy()
+    topk = evals["topk"].copy()
+    ratio = evals["ratio"].copy()
+    scored = inventory[inventory["score_status"].eq("scored")].copy()
+    real = scored[scored["model_role"].eq("real_model")].copy()
+    external_rows = int(pd.to_numeric(inventory.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
+    external_formula_rows = int(pd.to_numeric(inventory.get("external_formula_overlap_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
+    dom = ratio[pd.to_numeric(ratio.get("uncertainty_dominance_ratio", pd.Series(dtype=float)), errors="coerce") > 1].copy()
+    dom_metrics = sorted(dom.get("metric", pd.Series(dtype=str)).astype(str).unique())
+    source_union_status = sorted(metrics[metrics["label_view"].eq("source_union")].get("metric_status", pd.Series(dtype=str)).astype(str).unique())
+
+    all_inv = inversions.get("all", pd.DataFrame()).copy()
+    real_audit = inversions.get("real_model_audit", pd.DataFrame()).copy()
+    real_top = int(real_audit.get("top_real_model_inversion", pd.Series(dtype=bool)).astype(bool).sum()) if not real_audit.empty else 0
+    real_lower = int((pd.to_numeric(real_audit.get("real_model_rank_inversion_count", pd.Series(dtype=float)), errors="coerce").fillna(0) > 0).sum()) if not real_audit.empty else 0
+    pair_inv_path = out_dir / "rank_inversions" / "pairwise_complete_label_dependent_inversions.csv"
+    pair_inv_rows = len(pd.read_csv(pair_inv_path)) if pair_inv_path.exists() else 0
+
+    consequence = gen.get("consequence", pd.DataFrame()).copy()
+    screeners = consequence[consequence.get("pipeline_type", pd.Series(dtype=str)).eq("screening_pipeline_not_true_generator")].copy() if not consequence.empty else pd.DataFrame()
+    gen_inv = gen.get("inventory", pd.DataFrame()).copy()
+    true_completed = int(((gen_inv.get("pipeline_type", pd.Series(dtype=str)) == "true_generator") & gen_inv.get("status", pd.Series(dtype=str)).astype(str).str.startswith("complete")).sum()) if not gen_inv.empty else 0
+    formula_support = gen.get("formula_support", pd.DataFrame()).copy()
+    formula_only = int((formula_support.get("formula_support_status", pd.Series(dtype=str)) == "formula_only_overlap_no_label_assignment").sum()) if not formula_support.empty else 0
+
+    rows = [
+        {
+            "claim_id": "C1_model_facing_framework",
+            "claim_text": "SourceAware-Stability Phase 2 extends the frozen Phase 1 label layer into a model-facing evaluation framework.",
+            "support_status": "supported",
+            "primary_evidence": f"{len(scored)} SourceAware-scored entries; {len(real)} real SourceAware-scored models; label views={','.join(sorted(metrics.label_view.unique()))}; K={','.join(map(str, sorted(topk.K.unique())))}",
+            "primary_artifacts": "model_scores/all_model_scores_long.parquet; denominators/*.parquet; model_metrics/metrics_by_model_label_view.csv; model_metrics/topk_by_model_label_view.csv",
+            "manuscript_safe_language": "Use 'model-facing benchmark evaluation framework' and report the exact SourceAware-scored matrix size.",
+            "overclaim_to_avoid": "Do not call this a complete Matbench Discovery replacement or a final public leaderboard.",
+        },
+        {
+            "claim_id": "C2_matbench_ecosystem_coverage",
+            "claim_text": "Phase 2 inventories Matbench Discovery-style model families and audits external WBM predictions when exact SourceAware mapping is unavailable.",
+            "support_status": "supported_with_scope_guardrails",
+            "primary_evidence": f"inventory rows={len(inventory)}; external WBM rows audited={external_rows}; formula-overlap-only rows={external_formula_rows}",
+            "primary_artifacts": "model_scores/model_score_inventory.csv; model_scores/matbench_external_score_audit.csv; model_scores/matbench_external_formula_overlap_audit.csv",
+            "manuscript_safe_language": "Say external WBM artifacts are audited for ecosystem scope and excluded from SourceAware metrics without exact row mapping.",
+            "overclaim_to_avoid": "Do not use formula-only overlap as stable/unstable label assignment.",
+        },
+        {
+            "claim_id": "C3_label_uncertainty_changes_metrics",
+            "claim_text": "Source-aware label views convert point model metrics into uncertainty bands that can be comparable to or larger than model margins.",
+            "support_status": "supported",
+            "primary_evidence": f"{len(dom)} model/metric rows have uncertainty_dominance_ratio > 1 across {len(dom_metrics)} metrics: {dom_metrics}",
+            "primary_artifacts": "model_metrics/label_view_band_vs_model_spread.csv; model_metrics/model_margin_to_label_uncertainty_ratio.csv",
+            "manuscript_safe_language": "Report uncertainty-dominance ratios by metric and avoid selecting a single source as truth.",
+            "overclaim_to_avoid": "Do not state that label uncertainty invalidates all model comparisons; qualify by metric and denominator, and do not treat any label view as physical-truth stability.",
+        },
+        {
+            "claim_id": "C4_rank_interpretation_changes",
+            "claim_text": "Model ranking interpretation changes under source-aware label views, including lower-rank and pairwise-complete inversions.",
+            "support_status": "supported_with_leader_guardrail",
+            "primary_evidence": f"aggregate rank-comparison rows={len(all_inv)}; real-model top-inversion rows={real_top}; real-model lower-rank inversion rows={real_lower}; pairwise label-dependent winner flips={pair_inv_rows}",
+            "primary_artifacts": "rank_inversions/all_rank_inversions.csv; rank_inversions/real_model_rank_claim_audit.csv; rank_inversions/pairwise_complete_label_dependent_inversions.csv",
+            "manuscript_safe_language": "If the leading model remains robust in a subset, say so; emphasize rank bands, lower-rank flips and budget/label-dependent changes.",
+            "overclaim_to_avoid": "Do not claim a definitive best model is overturned unless the relevant real-model audit row supports it.",
+        },
+        {
+            "claim_id": "C5_topk_discovery_consequence",
+            "claim_text": "Top-K stable-yield and uncertainty burdens depend on the source-aware label view and discovery budget.",
+            "support_status": "supported",
+            "primary_evidence": f"topK rows={len(topk)} across K={','.join(map(str, sorted(topk.K.unique())))} and label views={','.join(sorted(topk.label_view.unique()))}",
+            "primary_artifacts": "model_metrics/topk_by_model_label_view.csv; model_metrics/topk_by_model_label_view_bootstrap.csv; figure_source_data/fig4_topk_heatmap.csv",
+            "manuscript_safe_language": "Describe these as benchmark-label-view stable-yield estimates and uncertainty burdens.",
+            "overclaim_to_avoid": "Do not treat top-K stable-yield under any single label view as generated-material validation.",
+        },
+        {
+            "claim_id": "C6_candidate_consequence",
+            "claim_text": "Screened/generated candidate conclusions can be reclassified as source-uncertain or unsupported under consensus/audit views.",
+            "support_status": "partially_supported_guardrailed",
+            "primary_evidence": f"screening consequence pipelines={len(screeners)}; completed true-generator/smoke pipelines={true_completed}; formula-only support rows={formula_only}; consequence rows={len(consequence)}",
+            "primary_artifacts": "generative/generated_candidate_inventory.csv; generative/generated_pipeline_consequence_summary.csv; generative/generated_candidate_formula_support.csv; figure_source_data/fig5_generated_consequence.csv",
+            "manuscript_safe_language": "State this as public-source-aware candidate consequence; distinguish matched screeners from unmatched/formula-only generated pools.",
+            "overclaim_to_avoid": "Do not claim homogeneous DFT validation, exact label assignment for formula-only generated pools, or a measured real-world synthesis yield.",
+        },
+        {
+            "claim_id": "C7_source_union_incomplete_guardrail",
+            "claim_text": "Incomplete full-source-union reconstruction is exposed as a diagnostic status rather than silently replaced by exact-match union labels.",
+            "support_status": "supported",
+            "primary_evidence": f"source_union metric_status={source_union_status}",
+            "primary_artifacts": "model_metrics/metrics_by_model_label_view.csv; model_metrics/topk_by_model_label_view.csv; phase2_acceptance_check.md",
+            "manuscript_safe_language": "Say source-union is an explicit incomplete/not-evaluable diagnostic when full reconstruction is unavailable.",
+            "overclaim_to_avoid": "Do not report exact-match source-union as the full-source-union hull diagnostic.",
+        },
+    ]
+    matrix = pd.DataFrame(rows)
+    matrix.to_csv(out_dir / "phase2_claim_support_matrix.csv", index=False)
+    (out_dir / "phase2_claim_support_matrix.json").write_text(json.dumps(rows, indent=2), encoding="utf-8")
+    md = [
+        "# Phase 2 claim support matrix",
+        "",
+        "This matrix is the manuscript-facing audit bridge from regenerated artifacts to safe Phase 2 claims. It is intentionally conservative: `partially_supported_guardrailed` means the artifact exists and is useful, but the paper must keep the stated scope guardrail.",
+        "",
+        matrix.to_markdown(index=False),
+    ]
+    (out_dir / "phase2_claim_support_matrix.md").write_text("\n".join(md), encoding="utf-8")
+
+
 def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators: dict[str, pd.DataFrame], evals: dict[str, pd.DataFrame], inversions: dict[str, pd.DataFrame], gen: dict[str, pd.DataFrame]) -> None:
     """Write an explicit requirement-by-requirement Phase 2 audit.
 
@@ -1967,6 +2120,52 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
     audit.to_csv(out_dir / "phase2_requirement_audit.csv", index=False)
     md = ["# Phase 2 requirement audit", "", "This audit records evidence and scope guardrails for the Phase 2 objective. `partial_guardrailed` rows are intentionally not rewritten as full physical-truth completion.", "", audit.to_markdown(index=False)]
     (out_dir / "phase2_requirement_audit.md").write_text("\n".join(md), encoding="utf-8")
+
+
+def write_phase2_readme(out_dir: Path) -> None:
+    """Write a compact README for the regenerated Phase 2 output tree."""
+    accept_path = out_dir / "phase2_acceptance_check.csv"
+    # acceptance is stored as JSON; keep this variable for readable prose below.
+    _ = accept_path
+    readme = """# SourceAware-Stability Phase 2 outputs
+
+Phase 2 builds a full model-facing and candidate-consequence layer on top of the frozen `outputs/phase1_v2/` benchmark layer. It evaluates how source-aware stability label views change model metrics, rankings, top-K discovery-yield estimates and public-source-aware candidate conclusions.
+
+## Scope guardrail
+
+These outputs are **not homogeneous DFT validation** and do **not** provide physical-truth stability labels. Source-native, common-pool, source-union, consensus, uncertain and audit-view labels remain separate benchmark views. Formula-only overlaps and unmapped Matbench/WBM predictions are provenance/coverage evidence only.
+
+## Primary regeneration command
+
+```bash
+python -m sourceaware.phase2.cli build-all \\
+  --phase1 outputs/phase1_v2 \\
+  --out outputs/phase2_v1 \\
+  --external-cache /home/waas/paper_experiments/phase2_external
+
+python -m sourceaware.phase2.cli check --phase1 outputs/phase1_v2 --out outputs/phase2_v1
+pytest -q
+```
+
+## Main artifact groups
+
+- `model_scores/`: SourceAware-scored model/baseline matrix plus audited external Matbench/WBM artifacts.
+- `denominators/`: D5 full-complete, family-complete, pairwise-complete and per-model max-coverage denominators.
+- `model_metrics/`: model × label-view metrics, top-K tables, bootstrap intervals, uncertainty/spread ratios and rank correlations.
+- `rank_inversions/`: aggregate, pairwise-complete, family, budget and real-model rank-change audits.
+- `generative/`: public-source-aware screened/generated candidate consequence, with unmatched/formula-only cases kept separate.
+- `leaderboard/`: SourceAware leaderboard alpha and one model card per inventory row.
+- `figure_source_data/` and `figures/`: source tables plus SVG/PDF artifacts for Figures 1–6.
+
+## Manuscript safety artifacts
+
+- `phase2_acceptance_check.md/json`: machine-readable pass/guardrail check.
+- `phase2_requirement_audit.md/csv`: requirement-by-requirement artifact audit.
+- `phase2_claim_support_matrix.md/csv/json`: safe claim language and overclaim guardrails.
+- `phase2_key_findings.md/csv/json`: quantitative findings supported by the regenerated outputs.
+- `manifest_phase2_v1.json`: SHA256 hashes, file sizes, and table row/column counts.
+"""
+    (out_dir / "README.md").write_text(readme, encoding="utf-8")
 
 
 def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.DataFrame:
@@ -2161,8 +2360,10 @@ def build_all(phase1: Path = PHASE1, out_dir: Path = PHASE2, external_cache: Pat
     build_figures(out_dir, evals["metrics"], evals["topk"], evals["rankings"], evals["ratio"], inversions, gen)
     write_tests_report(out_dir, inventory, gen["inventory"], evals["ratio"], inversions)
     write_key_findings(out_dir, inventory, evals, inversions, gen)
+    write_claim_support_matrix(out_dir, inventory, evals, inversions, gen)
     write_requirement_audit(out_dir, inventory, den, evals, inversions, gen)
     write_acceptance_check(phase1, out_dir)
+    write_phase2_readme(out_dir)
     write_manifest(out_dir, phase1)
 
 

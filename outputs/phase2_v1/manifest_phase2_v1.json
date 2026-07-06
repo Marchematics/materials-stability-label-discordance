@@ -1,6 +1,13 @@
 {
-  "file_count": 102,
+  "file_count": 106,
   "files": [
+    {
+      "bytes": 2244,
+      "columns": null,
+      "path": "outputs/phase2_v1/README.md",
+      "rows": null,
+      "sha256": "cb1541908e263be5aa6c73510fe8819b34f3bc27ce1ec793a72d148ca5e1a9b7"
+    },
     {
       "bytes": 4553134,
       "columns": 13,
@@ -198,11 +205,11 @@
       "sha256": "4366ebf50323dc71bb181a219fb133300fda1dc762893b3e7d6a1a220b0d6bd3"
     },
     {
-      "bytes": 536934,
+      "bytes": 536944,
       "columns": 9,
       "path": "outputs/phase2_v1/generative/generated_candidate_labels_by_view.parquet",
       "rows": 297018,
-      "sha256": "aea73584881fecca4767f9d79d2d3a5e5242782e300656090908dde5edfcb34c"
+      "sha256": "1cbbe55f5f8db0a4e5b307d77232d4d3d88d9b37a8334a8cf2f894d824379e61"
     },
     {
       "bytes": 1152217,
@@ -450,11 +457,11 @@
       "sha256": "8ebea2a22713571f3cee9aa853b17e2eac462970ab37c57474cf88955f1b1783"
     },
     {
-      "bytes": 92290,
+      "bytes": 92282,
       "columns": 10,
       "path": "outputs/phase2_v1/model_metrics/metrics_by_model_label_view_bootstrap_resampled.csv",
       "rows": 576,
-      "sha256": "d2e28cbeafc88b1299c3180fb3531b31cc7de4ffaf5664ecd792bc667a78c41f"
+      "sha256": "8ae0261df844c1bd560097be4135d2ddfb3ed3cbef444afe66899858851d4f73"
     },
     {
       "bytes": 59189,
@@ -594,14 +601,35 @@
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.json",
       "rows": null,
-      "sha256": "e705978884437e9ab0c2988cba1450b0b8215e40d17753307f06cbc97b70cc3a"
+      "sha256": "10c43ff57e02d6de3b0607b1bba1d68f2108f120682751eebeefbd9d32c193d9"
     },
     {
       "bytes": 6164,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.md",
       "rows": null,
-      "sha256": "e1d8c7c8553dadd6d4398d215cb15ef40066118df4772fa5f50b8f73a3f463d4"
+      "sha256": "9e041c53d687d19dd5529baab291fc41b90ed97f48fc4150b09dc758d31d204d"
+    },
+    {
+      "bytes": 4997,
+      "columns": 7,
+      "path": "outputs/phase2_v1/phase2_claim_support_matrix.csv",
+      "rows": 7,
+      "sha256": "e6f2ef75e70228d5e159d77d3e82afc41d92e4b11062094c0b817c21b33d5537"
+    },
+    {
+      "bytes": 6215,
+      "columns": null,
+      "path": "outputs/phase2_v1/phase2_claim_support_matrix.json",
+      "rows": null,
+      "sha256": "39d35dc1c307e6f71e770b4ee25f4454b7cfc901d6c497be9cd303a10a457c1e"
+    },
+    {
+      "bytes": 9303,
+      "columns": null,
+      "path": "outputs/phase2_v1/phase2_claim_support_matrix.md",
+      "rows": null,
+      "sha256": "97165a6f6f4711f368fb62c4d3b8bbf2ff65d5858b6317f348fd1f84dd43e6db"
     },
     {
       "bytes": 3799,

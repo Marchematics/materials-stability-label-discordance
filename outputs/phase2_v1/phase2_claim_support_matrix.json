@@ -1,0 +1,65 @@
+[
+  {
+    "claim_id": "C1_model_facing_framework",
+    "claim_text": "SourceAware-Stability Phase 2 extends the frozen Phase 1 label layer into a model-facing evaluation framework.",
+    "support_status": "supported",
+    "primary_evidence": "12 SourceAware-scored entries; 4 real SourceAware-scored models; label views=alex_pbe_native,alexmp20_native,audit_view,common_pool,consensus,mp_native,source_union,uncertain; K=100,300,500,1000,5000,10000",
+    "primary_artifacts": "model_scores/all_model_scores_long.parquet; denominators/*.parquet; model_metrics/metrics_by_model_label_view.csv; model_metrics/topk_by_model_label_view.csv",
+    "manuscript_safe_language": "Use 'model-facing benchmark evaluation framework' and report the exact SourceAware-scored matrix size.",
+    "overclaim_to_avoid": "Do not call this a complete Matbench Discovery replacement or a final public leaderboard."
+  },
+  {
+    "claim_id": "C2_matbench_ecosystem_coverage",
+    "claim_text": "Phase 2 inventories Matbench Discovery-style model families and audits external WBM predictions when exact SourceAware mapping is unavailable.",
+    "support_status": "supported_with_scope_guardrails",
+    "primary_evidence": "inventory rows=24; external WBM rows audited=1799233; formula-overlap-only rows=197267",
+    "primary_artifacts": "model_scores/model_score_inventory.csv; model_scores/matbench_external_score_audit.csv; model_scores/matbench_external_formula_overlap_audit.csv",
+    "manuscript_safe_language": "Say external WBM artifacts are audited for ecosystem scope and excluded from SourceAware metrics without exact row mapping.",
+    "overclaim_to_avoid": "Do not use formula-only overlap as stable/unstable label assignment."
+  },
+  {
+    "claim_id": "C3_label_uncertainty_changes_metrics",
+    "claim_text": "Source-aware label views convert point model metrics into uncertainty bands that can be comparable to or larger than model margins.",
+    "support_status": "supported",
+    "primary_evidence": "114 model/metric rows have uncertainty_dominance_ratio > 1 across 12 metrics: ['auprc', 'auroc', 'balanced_accuracy', 'f1', 'precision', 'recall', 'stable_yield@100', 'stable_yield@1000', 'stable_yield@10000', 'stable_yield@300', 'stable_yield@500', 'stable_yield@5000']",
+    "primary_artifacts": "model_metrics/label_view_band_vs_model_spread.csv; model_metrics/model_margin_to_label_uncertainty_ratio.csv",
+    "manuscript_safe_language": "Report uncertainty-dominance ratios by metric and avoid selecting a single source as truth.",
+    "overclaim_to_avoid": "Do not state that label uncertainty invalidates all model comparisons; qualify by metric and denominator, and do not treat any label view as physical-truth stability."
+  },
+  {
+    "claim_id": "C4_rank_interpretation_changes",
+    "claim_text": "Model ranking interpretation changes under source-aware label views, including lower-rank and pairwise-complete inversions.",
+    "support_status": "supported_with_leader_guardrail",
+    "primary_evidence": "aggregate rank-comparison rows=756; real-model top-inversion rows=99; real-model lower-rank inversion rows=306; pairwise label-dependent winner flips=10468",
+    "primary_artifacts": "rank_inversions/all_rank_inversions.csv; rank_inversions/real_model_rank_claim_audit.csv; rank_inversions/pairwise_complete_label_dependent_inversions.csv",
+    "manuscript_safe_language": "If the leading model remains robust in a subset, say so; emphasize rank bands, lower-rank flips and budget/label-dependent changes.",
+    "overclaim_to_avoid": "Do not claim a definitive best model is overturned unless the relevant real-model audit row supports it."
+  },
+  {
+    "claim_id": "C5_topk_discovery_consequence",
+    "claim_text": "Top-K stable-yield and uncertainty burdens depend on the source-aware label view and discovery budget.",
+    "support_status": "supported",
+    "primary_evidence": "topK rows=1728 across K=100,300,500,1000,5000,10000 and label views=alex_pbe_native,alexmp20_native,audit_view,common_pool,consensus,mp_native,source_union,uncertain",
+    "primary_artifacts": "model_metrics/topk_by_model_label_view.csv; model_metrics/topk_by_model_label_view_bootstrap.csv; figure_source_data/fig4_topk_heatmap.csv",
+    "manuscript_safe_language": "Describe these as benchmark-label-view stable-yield estimates and uncertainty burdens.",
+    "overclaim_to_avoid": "Do not treat top-K stable-yield under any single label view as generated-material validation."
+  },
+  {
+    "claim_id": "C6_candidate_consequence",
+    "claim_text": "Screened/generated candidate conclusions can be reclassified as source-uncertain or unsupported under consensus/audit views.",
+    "support_status": "partially_supported_guardrailed",
+    "primary_evidence": "screening consequence pipelines=5; completed true-generator/smoke pipelines=2; formula-only support rows=647; consequence rows=8",
+    "primary_artifacts": "generative/generated_candidate_inventory.csv; generative/generated_pipeline_consequence_summary.csv; generative/generated_candidate_formula_support.csv; figure_source_data/fig5_generated_consequence.csv",
+    "manuscript_safe_language": "State this as public-source-aware candidate consequence; distinguish matched screeners from unmatched/formula-only generated pools.",
+    "overclaim_to_avoid": "Do not claim homogeneous DFT validation, exact label assignment for formula-only generated pools, or a measured real-world synthesis yield."
+  },
+  {
+    "claim_id": "C7_source_union_incomplete_guardrail",
+    "claim_text": "Incomplete full-source-union reconstruction is exposed as a diagnostic status rather than silently replaced by exact-match union labels.",
+    "support_status": "supported",
+    "primary_evidence": "source_union metric_status=['not_evaluable_full_source_union_incomplete']",
+    "primary_artifacts": "model_metrics/metrics_by_model_label_view.csv; model_metrics/topk_by_model_label_view.csv; phase2_acceptance_check.md",
+    "manuscript_safe_language": "Say source-union is an explicit incomplete/not-evaluable diagnostic when full reconstruction is unavailable.",
+    "overclaim_to_avoid": "Do not report exact-match source-union as the full-source-union hull diagnostic."
+  }
+]
