@@ -16,6 +16,9 @@ Known caveat: Phase 2 labels are source-aware benchmark diagnostics, not homogen
 
 Rank stability score: 9.0
 Label uncertainty band stable_yield@1000: 0.746
+Top-K stable-yield band @1000: 0.254
+Best label view stable_yield@1000: alexmp20_native
+Worst label view stable_yield@1000: audit_view
 Top-K uncertain burden audit_view@1000: 0.254
 
 ## Label-view metrics

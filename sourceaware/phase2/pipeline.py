@@ -1524,6 +1524,30 @@ def build_leaderboard(out_dir: Path, inventory: pd.DataFrame, metrics: pd.DataFr
     lb["rank_stability_score"] = lb[rank_cols].max(axis=1) - lb[rank_cols].min(axis=1)
     band_map = ratio[(ratio["denominator"].eq("D5_family_complete")) & (ratio["metric"].eq("stable_yield@1000"))].set_index("model_name")["label_view_band"].to_dict()
     lb["label_uncertainty_band_stable_yield@1000"] = lb["model_name"].map(band_map)
+    stable_yield_cols = [
+        "stable_yield_@mp_native",
+        "stable_yield_@alexmp20_native",
+        "stable_yield_@alex_pbe_native",
+        "stable_yield_@common_pool",
+        "stable_yield_@consensus",
+        "stable_yield_@audit_view",
+    ]
+    present_stable_cols = [c for c in stable_yield_cols if c in lb.columns]
+    if present_stable_cols:
+        stable_values = lb[present_stable_cols].apply(pd.to_numeric, errors="coerce")
+        lb["topK_stable_yield_min@1000"] = stable_values.min(axis=1)
+        lb["topK_stable_yield_max@1000"] = stable_values.max(axis=1)
+        lb["topK_stable_yield_band@1000"] = lb["topK_stable_yield_max@1000"] - lb["topK_stable_yield_min@1000"]
+        best_col = stable_values.idxmax(axis=1)
+        worst_col = stable_values.idxmin(axis=1)
+        lb["best_label_view_stable_yield@1000"] = best_col.str.replace("stable_yield_@", "", regex=False)
+        lb["worst_label_view_stable_yield@1000"] = worst_col.str.replace("stable_yield_@", "", regex=False)
+    else:
+        lb["topK_stable_yield_min@1000"] = np.nan
+        lb["topK_stable_yield_max@1000"] = np.nan
+        lb["topK_stable_yield_band@1000"] = np.nan
+        lb["best_label_view_stable_yield@1000"] = pd.NA
+        lb["worst_label_view_stable_yield@1000"] = pd.NA
     unc = primary[primary["label_view"].eq("audit_view")].set_index("model_name")["uncertain_fraction_at_k"].to_dict()
     lb["topK_uncertain_burden_audit_view@1000"] = lb["model_name"].map(unc)
     lb.to_csv(lb_dir / "sourceaware_leaderboard_alpha.csv", index=False)
@@ -1558,6 +1582,9 @@ def build_leaderboard(out_dir: Path, inventory: pd.DataFrame, metrics: pd.DataFr
                 "",
                 f"Rank stability score: {lb_row.get('rank_stability_score')}",
                 f"Label uncertainty band stable_yield@1000: {lb_row.get('label_uncertainty_band_stable_yield@1000')}",
+                f"Top-K stable-yield band @1000: {lb_row.get('topK_stable_yield_band@1000')}",
+                f"Best label view stable_yield@1000: {lb_row.get('best_label_view_stable_yield@1000')}",
+                f"Worst label view stable_yield@1000: {lb_row.get('worst_label_view_stable_yield@1000')}",
                 f"Top-K uncertain burden audit_view@1000: {lb_row.get('topK_uncertain_burden_audit_view@1000')}",
                 "",
             ])
