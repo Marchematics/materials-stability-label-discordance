@@ -37,11 +37,11 @@
       "sha256": "8e1a122850a79f3e7089e45c3952ea624a81d4dfce7be1a40f946eac7c8478a9"
     },
     {
-      "bytes": 14245,
+      "bytes": 14253,
       "columns": 31,
       "path": "outputs/phase2_v1/denominators/model_denominator_audit.csv",
       "rows": 24,
-      "sha256": "4159c5992584585cd99da52d0d632e2291cdb48f3e13fb6dcec3ad3ba1215f6d"
+      "sha256": "11da91a93a672de38348dcf0f16a3c5d219bf9212d79b95869ae8ed1b43418e8"
     },
     {
       "bytes": 14780,
