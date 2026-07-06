@@ -17,6 +17,16 @@ def test_phase2_rank_inversion_outputs_exist():
     assert (inv.rank_inversion_count >= 0).all()
     assert (OUT / "rank_inversions" / "family_level_inversions.csv").exists()
     assert (OUT / "rank_inversions" / "budget_dependent_inversions.csv").exists()
+    corr = pd.read_csv(OUT / "model_metrics" / "rank_correlation_by_label_view.csv")
+    assert len(corr) > 0
+    assert {"spearman_rank_correlation", "kendall_tau_b", "discordant_pair_fraction"}.issubset(corr.columns)
+    ok = corr[corr.metric_status.eq("ok")]
+    for col in ["spearman_rank_correlation", "kendall_tau_b"]:
+        vals = pd.to_numeric(ok[col], errors="coerce").dropna()
+        assert ((-1 <= vals) & (vals <= 1)).all()
+    discord = pd.to_numeric(ok.discordant_pair_fraction, errors="coerce").dropna()
+    assert ((0 <= discord) & (discord <= 1)).all()
+    assert not set(corr.label_view_a).union(set(corr.label_view_b)).intersection({"source_union"})
 
 
 def test_rank_inversion_toy_case(tmp_path):

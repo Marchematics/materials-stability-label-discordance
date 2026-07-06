@@ -20,7 +20,7 @@
   {
     "check_id":"model_evaluation_label_views",
     "status":"pass",
-    "evidence":"metrics_rows=288; topk_rows=1728; views_ok=True; K_ok=True; bootstrap_files_ok=True",
+    "evidence":"metrics_rows=288; topk_rows=1728; rank_correlation_rows=756; views_ok=True; K_ok=True; bootstrap_files_ok=True; rank_correlation_ok=True",
     "guardrail":"source_union rows are explicit not-evaluable rows if full source-union reconstruction is incomplete."
   },
   {

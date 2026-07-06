@@ -1,5 +1,5 @@
 {
-  "file_count": 95,
+  "file_count": 97,
   "files": [
     {
       "bytes": 4553134,
@@ -97,84 +97,84 @@
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig1_leaderboard_bands.pdf",
       "rows": null,
-      "sha256": "927124c7ecf514d1d099f13b867443ffdcc107f4ed8bb8a4343be3bfa7c51264"
+      "sha256": "dfc2226bb07b82bbd439cc1dbca0a758aa409a5373a8232b1a0df55db43ba912"
     },
     {
       "bytes": 141116,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig1_leaderboard_bands.svg",
       "rows": null,
-      "sha256": "63df831e960da3d54b3170fe3ef665c6114b08024d8225b1345be5e57db38be6"
+      "sha256": "1e8ecc1ebcff3eb3c148a817249817970b82a7a7fbd78b90fb9e841d41d3d406"
     },
     {
       "bytes": 17436,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig2_uncertainty_vs_spread.pdf",
       "rows": null,
-      "sha256": "850b1d2800d3dc2f618165e5c5bd0bb5d88c8b487f2555a172fab8e011258336"
+      "sha256": "8265e010ca4e7b1fd8a5071ed1a1d98a8d0491788534468267454862329b43fe"
     },
     {
       "bytes": 178068,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig2_uncertainty_vs_spread.svg",
       "rows": null,
-      "sha256": "c6d40355e773d1545a8476968d754e3aa049b90f3622fec47e322c81dd7bbaf4"
+      "sha256": "b178325866d36f6a5ae84c585089873febdfa50ea106f6a4fbf27f5070c9fe21"
     },
     {
       "bytes": 15198,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig3_rank_inversions.pdf",
       "rows": null,
-      "sha256": "73b85d8704e6e0d23a43e74fe38c52c0a8f2d4a0567d6fd6a775d09f158d5f15"
+      "sha256": "0810c5e0e71cec82ab2f4ac269c155d4274ec7e7e10395b8b5593388249fc572"
     },
     {
       "bytes": 69946,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig3_rank_inversions.svg",
       "rows": null,
-      "sha256": "ca4b7293d5d5c5b462d1555af675a6d8e3f06c9978913afdc4db21bd3b1b4196"
+      "sha256": "9c9422cddc858d05c70d0f2853b8614202658a61a76938b26db2a93ad654c938"
     },
     {
       "bytes": 21938,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig4_topk_heatmap.pdf",
       "rows": null,
-      "sha256": "fd0bac4397f83c7520615aa40811242edc19d5bade84937a0f706904dbae709c"
+      "sha256": "3a432313b6b2794e73e2f309244ea5a612265a47aec645e646cf7c02bcb6b2d3"
     },
     {
       "bytes": 88738,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig4_topk_heatmap.svg",
       "rows": null,
-      "sha256": "fcb9fefefa7bbb8516e0b7dcdaf8a2e7672f18579f9e64f29e5c3e9a16adbe50"
+      "sha256": "17e239453816631ed3409f5907d61f0344873567ed7ebdf0d54eab5b5c95f0f7"
     },
     {
       "bytes": 17418,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig5_generated_consequence.pdf",
       "rows": null,
-      "sha256": "fe5c81f15556a4f56cb8eb9d88262a8a385ff785622a5f475b5c9fed7151e078"
+      "sha256": "0d6a4b0cc7884038078cb8ea70616574434063a44163b92f191daa42a543c0cc"
     },
     {
       "bytes": 73002,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig5_generated_consequence.svg",
       "rows": null,
-      "sha256": "a7ab9b813f221025140c6e47c03ec8c159e9782879cb89485e65912ae2a72b3b"
+      "sha256": "dcdb76ddcc39555d7d0d710eb8b75e9b065ba80194e8516b9a78186bf0040701"
     },
     {
       "bytes": 17046,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig6_workflow.pdf",
       "rows": null,
-      "sha256": "882ab43d6c7f532e67a096738665bc04da4395a2a15c4ff193333604209b629f"
+      "sha256": "eda64fae19387ae104e17a88fcdeff93b869dc909ebaae781944e2bb93f19353"
     },
     {
       "bytes": 67671,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig6_workflow.svg",
       "rows": null,
-      "sha256": "8d0b9cf6ad3c48cab40c0bfecf49400556805e7f40a3a51c96a796dd613920c8"
+      "sha256": "241f2e01b4b8bfa8fdbada94b399366edd4e2b85455a280480a82f8e37feb966"
     },
     {
       "bytes": 2827,
@@ -485,6 +485,13 @@
       "sha256": "bb88d3a279f55a660f97d6042970cbdd3a738f8325db0906bfd2d6ae6d21bd42"
     },
     {
+      "bytes": 89723,
+      "columns": 9,
+      "path": "outputs/phase2_v1/model_metrics/rank_correlation_by_label_view.csv",
+      "rows": 756,
+      "sha256": "bf67625bcfe2e9bcee9648446262a0624a38d5977b4e4577721225e6b4959222"
+    },
+    {
       "bytes": 261757,
       "columns": 10,
       "path": "outputs/phase2_v1/model_metrics/rank_inversions_by_metric.csv",
@@ -562,18 +569,18 @@
       "sha256": "a6a48e09a7cbbac6a4441969bd279e22360079a5673c36aa11623181cea8bbc6"
     },
     {
-      "bytes": 3272,
+      "bytes": 3325,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.json",
       "rows": null,
-      "sha256": "744f2007b256d041ac3095e05db2dbb6c37bf3ac43cad7e56fc7752c1e6b4cfa"
+      "sha256": "2ac826cd1d3f417e16855cc9d6b45a80249b5e605284072cdccaab36488c4651"
     },
     {
       "bytes": 6164,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.md",
       "rows": null,
-      "sha256": "9c70be618fb20417631c28ec1d11a09ac247466bb35b68402c7bab3fefd1821b"
+      "sha256": "06ac1505cfdc018939469196179a102625dd2540c87d225cd38cddaa70628136"
     },
     {
       "bytes": 3697,
@@ -597,18 +604,18 @@
       "sha256": "1fedcd603be5903e3e246e1a0ca7212d68f09f5797a50c0da84c3cec02b979b2"
     },
     {
-      "bytes": 4415,
+      "bytes": 4478,
       "columns": 5,
       "path": "outputs/phase2_v1/phase2_requirement_audit.csv",
       "rows": 9,
-      "sha256": "0f51215e53a5543361b6f105c0cef5f82412e2da9a0b08a9c019e7eb01f3c74a"
+      "sha256": "b4ac6b78b046e8a8fa49b6ed8227b05c84faed3815a79651791a346382949ac2"
     },
     {
       "bytes": 9461,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_requirement_audit.md",
       "rows": null,
-      "sha256": "907cf9067457bb8c2758a90a44e74fcec662ab814d814db487c6bf93df86da18"
+      "sha256": "8f6b8b3caac82d674f57ac4c4a8803f7a793cbc3353e93c91ba39747c82beda1"
     },
     {
       "bytes": 261757,
@@ -651,6 +658,13 @@
       "path": "outputs/phase2_v1/rank_inversions/pairwise_complete_model_margins.csv",
       "rows": 22176,
       "sha256": "bb88d3a279f55a660f97d6042970cbdd3a738f8325db0906bfd2d6ae6d21bd42"
+    },
+    {
+      "bytes": 89723,
+      "columns": 9,
+      "path": "outputs/phase2_v1/rank_inversions/rank_correlation_by_label_view.csv",
+      "rows": 756,
+      "sha256": "bf67625bcfe2e9bcee9648446262a0624a38d5977b4e4577721225e6b4959222"
     },
     {
       "bytes": 250571,

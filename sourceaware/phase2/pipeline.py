@@ -829,6 +829,62 @@ def uncertainty_tables(metrics: pd.DataFrame, topk: pd.DataFrame, out_dir: Path)
     return band, ratio
 
 
+def rank_correlations(rankings: pd.DataFrame, out_dir: Path) -> pd.DataFrame:
+    """Compute rank correlations between label views for each metric.
+
+    Phase 2 reports not only rank-inversion counts but also a continuous rank
+    stability diagnostic. Source-union is absent when not evaluable, preserving
+    the Phase 1 full-source-union guardrail.
+    """
+    rows: list[dict[str, Any]] = []
+    if rankings.empty:
+        corr = pd.DataFrame(columns=["denominator", "metric", "label_view_a", "label_view_b", "common_model_n", "spearman_rank_correlation", "kendall_tau_b", "discordant_pair_fraction", "metric_status"])
+        corr.to_csv(ensure_dir(out_dir / "model_metrics") / "rank_correlation_by_label_view.csv", index=False)
+        return corr
+    for (den, metric), sub in rankings.groupby(["denominator", "metric"], sort=True):
+        views = sorted(sub["label_view"].unique())
+        ranks = {v: sub[sub["label_view"].eq(v)].set_index("model_name")["rank"].astype(float).to_dict() for v in views}
+        for a, b in itertools.combinations(views, 2):
+            common = sorted(set(ranks[a]) & set(ranks[b]))
+            if len(common) < 2:
+                rows.append({"denominator": den, "metric": metric, "label_view_a": a, "label_view_b": b, "common_model_n": len(common), "spearman_rank_correlation": np.nan, "kendall_tau_b": np.nan, "discordant_pair_fraction": np.nan, "metric_status": "not_evaluable_fewer_than_two_common_models"})
+                continue
+            ra = np.asarray([ranks[a][m] for m in common], dtype=float)
+            rb = np.asarray([ranks[b][m] for m in common], dtype=float)
+            spearman = float(pd.Series(ra).corr(pd.Series(rb), method="spearman"))
+            concordant = discordant = tied = 0
+            for i, j in itertools.combinations(range(len(common)), 2):
+                da = ra[i] - ra[j]
+                db = rb[i] - rb[j]
+                prod = da * db
+                if prod > 0:
+                    concordant += 1
+                elif prod < 0:
+                    discordant += 1
+                else:
+                    tied += 1
+            total_pairs = concordant + discordant + tied
+            denom_tau = concordant + discordant
+            tau = float((concordant - discordant) / denom_tau) if denom_tau else np.nan
+            rows.append({
+                "denominator": den,
+                "metric": metric,
+                "label_view_a": a,
+                "label_view_b": b,
+                "common_model_n": len(common),
+                "spearman_rank_correlation": spearman,
+                "kendall_tau_b": tau,
+                "discordant_pair_fraction": float(discordant / total_pairs) if total_pairs else np.nan,
+                "metric_status": "ok",
+            })
+    corr = pd.DataFrame(rows)
+    mdir = ensure_dir(out_dir / "model_metrics")
+    rdir = ensure_dir(out_dir / "rank_inversions")
+    corr.to_csv(mdir / "rank_correlation_by_label_view.csv", index=False)
+    corr.to_csv(rdir / "rank_correlation_by_label_view.csv", index=False)
+    return corr
+
+
 def rank_inversions(rankings: pd.DataFrame, inventory: pd.DataFrame, out_dir: Path) -> dict[str, pd.DataFrame]:
     inv_rows = []
     top_rows = []
@@ -1021,11 +1077,12 @@ def build_model_evaluation(phase1: Path, out_dir: Path, scores: pd.DataFrame, de
     bootstrap_resampled.to_csv(mdir / "metrics_by_model_label_view_bootstrap_resampled.csv", index=False)
     topk.to_csv(mdir / "topk_by_model_label_view.csv", index=False)
     rankings.to_csv(mdir / "model_rankings_by_label_view.csv", index=False)
+    rank_corr = rank_correlations(rankings, out_dir)
     # compatibility copy requested in plan
     rank_inversions(rankings, inventory, out_dir)["all"].to_csv(mdir / "rank_inversions_by_metric.csv", index=False)
     band, ratio = uncertainty_tables(metrics, topk, out_dir)
     pairwise_margins = build_pairwise_complete_margins(phase1, out_dir, scores, denominators, inventory)
-    return {"metrics": metrics, "topk": topk, "rankings": rankings, "band": band, "ratio": ratio, "pairwise_margins": pairwise_margins, "bootstrap_resampled": bootstrap_resampled}
+    return {"metrics": metrics, "topk": topk, "rankings": rankings, "rank_correlations": rank_corr, "band": band, "ratio": ratio, "pairwise_margins": pairwise_margins, "bootstrap_resampled": bootstrap_resampled}
 
 
 def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
@@ -1646,6 +1703,7 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
     metrics = evals["metrics"]
     topk = evals["topk"]
     ratio = evals["ratio"]
+    rank_corr = evals.get("rank_correlations", pd.DataFrame())
     gen_inv = gen["inventory"]
     consequence = gen["consequence"]
     formula_support = gen.get("formula_support", pd.DataFrame())
@@ -1670,8 +1728,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "3_model_evaluation_label_views",
             "status": "complete_for_sourceaware_scored_models",
-            "evidence": f"metrics rows={len(metrics)}; topK rows={len(topk)}; row-resampled bootstrap rows={len(evals.get('bootstrap_resampled', pd.DataFrame()))}; label views={','.join(sorted(metrics.label_view.unique()))}; K={','.join(map(str, sorted(topk.K.unique())))}",
-            "primary_artifacts": "outputs/phase2_v1/model_metrics/metrics_by_model_label_view.csv; topk_by_model_label_view.csv; metrics_by_model_label_view_bootstrap.csv; metrics_by_model_label_view_bootstrap_resampled.csv",
+            "evidence": f"metrics rows={len(metrics)}; topK rows={len(topk)}; rank-correlation rows={len(rank_corr)}; row-resampled bootstrap rows={len(evals.get('bootstrap_resampled', pd.DataFrame()))}; label views={','.join(sorted(metrics.label_view.unique()))}; K={','.join(map(str, sorted(topk.K.unique())))}",
+            "primary_artifacts": "outputs/phase2_v1/model_metrics/metrics_by_model_label_view.csv; topk_by_model_label_view.csv; rank_correlation_by_label_view.csv; metrics_by_model_label_view_bootstrap.csv; metrics_by_model_label_view_bootstrap_resampled.csv",
             "guardrail": "source_union rows are explicit not-evaluable rows when Phase 1 full-source-union reconstruction is incomplete.",
         },
         {
@@ -1775,16 +1833,19 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
     metrics_path = out_dir / "model_metrics" / "metrics_by_model_label_view.csv"
     topk_path = out_dir / "model_metrics" / "topk_by_model_label_view.csv"
     ratio_path = out_dir / "model_metrics" / "model_margin_to_label_uncertainty_ratio.csv"
+    rank_corr_path = out_dir / "model_metrics" / "rank_correlation_by_label_view.csv"
     metrics = pd.read_csv(metrics_path) if metrics_path.exists() else pd.DataFrame()
     topk = pd.read_csv(topk_path) if topk_path.exists() else pd.DataFrame()
     ratio = pd.read_csv(ratio_path) if ratio_path.exists() else pd.DataFrame()
+    rank_corr = pd.read_csv(rank_corr_path) if rank_corr_path.exists() else pd.DataFrame()
     view_ok = set(LABEL_VIEWS).issubset(set(metrics.get("label_view", []))) and set(LABEL_VIEWS).issubset(set(topk.get("label_view", [])))
     k_ok = set(K_GRID).issubset(set(pd.to_numeric(topk.get("K", pd.Series(dtype=float)), errors="coerce").dropna().astype(int))) if not topk.empty else False
     bootstrap_ok = (out_dir / "model_metrics" / "metrics_by_model_label_view_bootstrap.csv").exists() and (out_dir / "model_metrics" / "metrics_by_model_label_view_bootstrap_resampled.csv").exists()
+    rank_corr_ok = (not rank_corr.empty) and {"spearman_rank_correlation", "discordant_pair_fraction"}.issubset(rank_corr.columns)
     add(
         "model_evaluation_label_views",
-        "pass" if view_ok and k_ok and bootstrap_ok else "fail",
-        f"metrics_rows={len(metrics)}; topk_rows={len(topk)}; views_ok={view_ok}; K_ok={k_ok}; bootstrap_files_ok={bootstrap_ok}",
+        "pass" if view_ok and k_ok and bootstrap_ok and rank_corr_ok else "fail",
+        f"metrics_rows={len(metrics)}; topk_rows={len(topk)}; rank_correlation_rows={len(rank_corr)}; views_ok={view_ok}; K_ok={k_ok}; bootstrap_files_ok={bootstrap_ok}; rank_correlation_ok={rank_corr_ok}",
         "source_union rows are explicit not-evaluable rows if full source-union reconstruction is incomplete.",
     )
     dom_metrics = set(ratio[pd.to_numeric(ratio.get("uncertainty_dominance_ratio", pd.Series(dtype=float)), errors="coerce") > 1].get("metric", pd.Series(dtype=str)).astype(str)) if not ratio.empty else set()
