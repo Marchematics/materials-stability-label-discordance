@@ -43,6 +43,7 @@ CANDIDATE_SCORES = ROOT / "outputs" / "milestones" / "model_facing_benchmark_sen
 PGCGM_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "pgcgm_unlabeled_candidate_pool_public_safe_input.csv"
 MATTERGEN_SMOKE_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "mattergen_hf_base_smoke_generated_crystals.extxyz"
 MATTERGEN_PILOT_FORMULAS = ROOT / "inputs" / "phase2_v1" / "mattergen_pilot_5k_public_safe_formulas.csv"
+WBM_SUMMARY = Path("/home/waas/paper_experiments/data/matbench_discovery/2023-12-13-wbm-summary.csv.gz")
 
 LABEL_VIEWS = [
     "mp_native",
@@ -380,11 +381,82 @@ def collect_matbench_external_scores(out_dir: Path, external_cache: Path) -> tup
     return external, audit
 
 
+def build_external_wbm_formula_overlap_audit(out_dir: Path, external_scores: pd.DataFrame, base: pd.DataFrame, wbm_summary: Path = WBM_SUMMARY) -> pd.DataFrame:
+    """Audit formula-level overlap for unmapped Matbench/WBM predictions.
+
+    Formula overlap is public coverage evidence only. WBM material IDs are not
+    SourceAware row IDs, so this table must never be used as stable/unstable
+    label assignment or as an exact crystal-structure mapping.
+    """
+    model_dir = ensure_dir(out_dir / "model_scores")
+    cols = [
+        "model_name",
+        "external_rows_n",
+        "external_unique_formula_n",
+        "formula_overlap_rows_n",
+        "formula_overlap_fraction",
+        "formula_overlap_unique_formula_n",
+        "formula_unique_in_sourceaware_rows_n",
+        "mapping_status",
+        "guardrail",
+    ]
+    if external_scores.empty or not wbm_summary.exists():
+        audit = pd.DataFrame([{
+            "model_name": "matbench_wbm_external",
+            "external_rows_n": int(len(external_scores)),
+            "external_unique_formula_n": 0,
+            "formula_overlap_rows_n": 0,
+            "formula_overlap_fraction": np.nan,
+            "formula_overlap_unique_formula_n": 0,
+            "formula_unique_in_sourceaware_rows_n": 0,
+            "mapping_status": "not_computed_missing_external_scores_or_wbm_summary",
+            "guardrail": "No formula-only overlap was converted to SourceAware labels.",
+        }], columns=cols)
+        audit.to_csv(model_dir / "matbench_external_formula_overlap_audit.csv", index=False)
+        return audit
+
+    wbm = pd.read_csv(wbm_summary, usecols=["material_id", "formula"], low_memory=False)
+    wbm = wbm.rename(columns={"material_id": "external_material_id", "formula": "wbm_formula"})
+    wbm["wbm_reduced_formula"] = wbm["wbm_formula"].map(normalize_formula)
+    source_formula_counts = (
+        base.assign(sourceaware_reduced_formula=base["formula"].map(normalize_formula))
+        .groupby("sourceaware_reduced_formula", dropna=True)["row_id"]
+        .nunique()
+    )
+    source_formula_set = set(source_formula_counts.index.astype(str))
+    joined = external_scores[["model_name", "external_material_id"]].merge(
+        wbm[["external_material_id", "wbm_reduced_formula"]],
+        on="external_material_id",
+        how="left",
+    )
+    joined["formula_overlap_with_sourceaware"] = joined["wbm_reduced_formula"].astype(str).isin(source_formula_set)
+    joined["sourceaware_formula_row_count"] = joined["wbm_reduced_formula"].map(source_formula_counts).fillna(0).astype(int)
+    rows = []
+    for model, sub in joined.groupby("model_name", sort=True):
+        n = int(len(sub))
+        overlap = sub[sub["formula_overlap_with_sourceaware"]].copy()
+        rows.append({
+            "model_name": model,
+            "external_rows_n": n,
+            "external_unique_formula_n": int(sub["wbm_reduced_formula"].nunique(dropna=True)),
+            "formula_overlap_rows_n": int(len(overlap)),
+            "formula_overlap_fraction": float(len(overlap) / n) if n else np.nan,
+            "formula_overlap_unique_formula_n": int(overlap["wbm_reduced_formula"].nunique(dropna=True)),
+            "formula_unique_in_sourceaware_rows_n": int(overlap["sourceaware_formula_row_count"].eq(1).sum()),
+            "mapping_status": "formula_overlap_only_no_exact_structure_mapping",
+            "guardrail": "Formula overlap is public coverage evidence only; it is never used for SourceAware stable/unstable label assignment.",
+        })
+    audit = pd.DataFrame(rows, columns=cols)
+    audit.to_csv(model_dir / "matbench_external_formula_overlap_audit.csv", index=False)
+    return audit
+
+
 def build_model_scores(phase1: Path, out_dir: Path, external_cache: Path | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
     labels, base = load_phase1_labels(phase1)
     total_n = len(base)
     external_cache = external_cache or Path("/home/waas/paper_experiments/phase2_external")
     external_scores, external_audit = collect_matbench_external_scores(out_dir, external_cache)
+    external_formula_audit = build_external_wbm_formula_overlap_audit(out_dir, external_scores, base)
     external_rows_by_model = dict(zip(external_audit["model_name"], external_audit["external_score_rows_n"])) if len(external_audit) else {}
     external_status_by_model = dict(zip(external_audit["model_name"], external_audit["external_score_status"])) if len(external_audit) else {}
     if not SEED_SCORES.exists():
@@ -461,6 +533,14 @@ def build_model_scores(phase1: Path, out_dir: Path, external_cache: Path | None 
     inventory["external_score_rows_n"] = inventory["model_name"].map(external_rows_by_model).fillna(0).astype(int)
     inventory["external_score_status"] = inventory["model_name"].map(external_status_by_model).fillna("not_applicable")
     inventory.loc[inventory["external_score_rows_n"].gt(0) & inventory["coverage_n"].eq(0), "source_of_score"] = "matbench_discovery_public_wbm_prediction_downloaded_unmapped"
+    if not external_formula_audit.empty and "model_name" in external_formula_audit:
+        formula_frac = external_formula_audit.set_index("model_name")["formula_overlap_fraction"].to_dict()
+        formula_rows = external_formula_audit.set_index("model_name")["formula_overlap_rows_n"].to_dict()
+        inventory["external_formula_overlap_fraction"] = inventory["model_name"].map(formula_frac).fillna(0.0)
+        inventory["external_formula_overlap_rows_n"] = inventory["model_name"].map(formula_rows).fillna(0).astype(int)
+    else:
+        inventory["external_formula_overlap_fraction"] = 0.0
+        inventory["external_formula_overlap_rows_n"] = 0
     inventory = inventory.sort_values(["score_status", "model_family", "model_name"]).reset_index(drop=True)
 
     model_dir = ensure_dir(out_dir / "model_scores")
@@ -1562,6 +1642,7 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
     external_downloaded = int((pd.to_numeric(inventory.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0) > 0).sum())
     external_rows = int(pd.to_numeric(inventory.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
     figshare_unavailable = int(inventory.get("external_score_status", pd.Series(dtype=str)).astype(str).str.contains("figshare_download_unavailable", na=False).sum())
+    external_formula_overlap_rows = int(pd.to_numeric(inventory.get("external_formula_overlap_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum())
     metrics = evals["metrics"]
     topk = evals["topk"]
     ratio = evals["ratio"]
@@ -1575,9 +1656,9 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "1_model_score_inventory",
             "status": "complete_with_scope_guardrails",
-            "evidence": f"{len(inventory)} inventory rows; {len(scored)} SourceAware-scored entries including baselines; {len(real)} real SourceAware-scored models; {external_downloaded} external WBM tables and {external_rows} WBM rows audited; {figshare_unavailable} Figshare targets unavailable in this environment",
-            "primary_artifacts": "outputs/phase2_v1/model_scores/model_score_inventory.csv; outputs/phase2_v1/model_scores/all_model_scores_long.parquet; outputs/phase2_v1/model_scores/all_model_scores_wide.parquet; outputs/phase2_v1/model_scores/matbench_external_score_audit.csv",
-            "guardrail": "External WBM rows use WBM IDs and are not used for SourceAware label-view metrics without exact mapping.",
+            "evidence": f"{len(inventory)} inventory rows; {len(scored)} SourceAware-scored entries including baselines; {len(real)} real SourceAware-scored models; {external_downloaded} external WBM tables and {external_rows} WBM rows audited; formula-overlap-only WBM rows={external_formula_overlap_rows}; {figshare_unavailable} Figshare targets unavailable in this environment",
+            "primary_artifacts": "outputs/phase2_v1/model_scores/model_score_inventory.csv; outputs/phase2_v1/model_scores/all_model_scores_long.parquet; outputs/phase2_v1/model_scores/all_model_scores_wide.parquet; outputs/phase2_v1/model_scores/matbench_external_score_audit.csv; outputs/phase2_v1/model_scores/matbench_external_formula_overlap_audit.csv",
+            "guardrail": "External WBM rows use WBM IDs and formula-only overlap is never used for SourceAware label-view metrics without exact structure mapping.",
         },
         {
             "requirement_id": "2_model_denominators",
@@ -1671,11 +1752,12 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
     real = scored[scored.get("model_role", pd.Series(dtype=str)).eq("real_model")] if not scored.empty else pd.DataFrame()
     target_models = {"Voronoi RF", "CGCNN", "CGCNN+P", "MEGNet", "ALIGNN", "ALIGNN-FF", "Wrenformer", "BOWSR", "M3GNet", "CHGNet", "MACE-MP", "SevenNet", "ORB", "EquiformerV2+DeNS"}
     external_rows = int(pd.to_numeric(inv.get("external_score_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum()) if not inv.empty else 0
+    external_formula_rows = int(pd.to_numeric(inv.get("external_formula_overlap_rows_n", pd.Series(dtype=int)), errors="coerce").fillna(0).sum()) if not inv.empty else 0
     add(
         "model_score_inventory",
         "pass" if len(scored) >= 10 and target_models.intersection(set(inv.get("model_name", []))) >= {"ALIGNN-FF", "M3GNet", "CHGNet", "MACE-MP"} else "fail",
-        f"inventory_rows={len(inv)}; scored_entries={len(scored)}; real_sourceaware_scored_models={len(real)}; external_wbm_rows={external_rows}; target_models_recorded={len(target_models.intersection(set(inv.get('model_name', []))))}",
-        "External Matbench/WBM rows are inventoried but not used in SourceAware metrics without exact row mapping.",
+        f"inventory_rows={len(inv)}; scored_entries={len(scored)}; real_sourceaware_scored_models={len(real)}; external_wbm_rows={external_rows}; formula_overlap_only_external_rows={external_formula_rows}; target_models_recorded={len(target_models.intersection(set(inv.get('model_name', []))))}",
+        "External Matbench/WBM rows are inventoried, and formula-only overlaps are audited, but neither is used in SourceAware metrics without exact row mapping.",
     )
 
     den_dir = out_dir / "denominators"

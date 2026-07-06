@@ -8,8 +8,8 @@
   {
     "check_id":"model_score_inventory",
     "status":"pass",
-    "evidence":"inventory_rows=24; scored_entries=12; real_sourceaware_scored_models=4; external_wbm_rows=1799233; target_models_recorded=14",
-    "guardrail":"External Matbench\/WBM rows are inventoried but not used in SourceAware metrics without exact row mapping."
+    "evidence":"inventory_rows=24; scored_entries=12; real_sourceaware_scored_models=4; external_wbm_rows=1799233; formula_overlap_only_external_rows=197267; target_models_recorded=14",
+    "guardrail":"External Matbench\/WBM rows are inventoried, and formula-only overlaps are audited, but neither is used in SourceAware metrics without exact row mapping."
   },
   {
     "check_id":"model_denominators",

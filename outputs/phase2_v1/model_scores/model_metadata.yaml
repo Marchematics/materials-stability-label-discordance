@@ -1,5 +1,7 @@
 ALIGNN:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -21,6 +23,8 @@ ALIGNN:
   whether_hull_distance: false
 ALIGNN-FF:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.10968116032269237
+  external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256963
   external_score_status: downloaded_external_unmapped
   failure_reason: .nan
@@ -40,6 +44,8 @@ ALIGNN-FF:
   whether_hull_distance: false
 BOWSR:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -61,6 +67,8 @@ BOWSR:
   whether_hull_distance: false
 CGCNN:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.10968201400212484
+  external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256961
   external_score_status: downloaded_external_unmapped
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -82,6 +90,8 @@ CGCNN:
   whether_hull_distance: false
 CGCNN+P:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.10968201400212484
+  external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256961
   external_score_status: downloaded_external_unmapped
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -103,6 +113,8 @@ CGCNN+P:
   whether_hull_distance: false
 CHGNet:
   coverage_n: 36801
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: .nan
@@ -122,6 +134,8 @@ CHGNet:
   whether_hull_distance: true
 EquiformerV2+DeNS:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -143,6 +157,8 @@ EquiformerV2+DeNS:
   whether_hull_distance: false
 M3GNet:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: .nan
@@ -162,6 +178,8 @@ M3GNet:
   whether_hull_distance: false
 MACE-MP:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: .nan
@@ -181,6 +199,8 @@ MACE-MP:
   whether_hull_distance: false
 MEGNet:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.10968116032269237
+  external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256963
   external_score_status: downloaded_external_unmapped
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -202,6 +222,8 @@ MEGNet:
   whether_hull_distance: false
 MEGNet-RS2RE:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.10966207827890703
+  external_formula_overlap_rows_n: 28178
   external_score_rows_n: 256953
   external_score_status: downloaded_external_unmapped
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -223,6 +245,8 @@ MEGNet-RS2RE:
   whether_hull_distance: false
 MP_common_pool_public_hull_rank:
   coverage_n: 36770
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
   failure_reason: .nan
@@ -242,6 +266,8 @@ MP_common_pool_public_hull_rank:
   whether_hull_distance: true
 MP_source_native_public_hull_rank:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
   failure_reason: .nan
@@ -261,6 +287,8 @@ MP_source_native_public_hull_rank:
   whether_hull_distance: true
 MatterGen_alex_mp20_source_native_public_hull_rank:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
   failure_reason: .nan
@@ -280,6 +308,8 @@ MatterGen_alex_mp20_source_native_public_hull_rank:
   whether_hull_distance: true
 ORB:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -301,6 +331,8 @@ ORB:
   whether_hull_distance: false
 SevenNet:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -322,6 +354,8 @@ SevenNet:
   whether_hull_distance: false
 Voronoi RF:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.10940734612710656
+  external_formula_overlap_rows_n: 28169
   external_score_rows_n: 257469
   external_score_status: downloaded_external_unmapped
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -343,6 +377,8 @@ Voronoi RF:
   whether_hull_distance: false
 Wrenformer:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: figshare_download_unavailable_http_403
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -364,6 +400,8 @@ Wrenformer:
   whether_hull_distance: false
 consensus_oracle_proxy:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
   failure_reason: .nan
@@ -383,6 +421,8 @@ consensus_oracle_proxy:
   whether_hull_distance: false
 eSEN-30M-MP:
   coverage_n: 0
+  external_formula_overlap_fraction: 0.10968116032269237
+  external_formula_overlap_rows_n: 28184
   external_score_rows_n: 256963
   external_score_status: downloaded_external_unmapped
   failure_reason: Matbench/WBM predictions require WBM-to-SourceAware exact mapping
@@ -404,6 +444,8 @@ eSEN-30M-MP:
   whether_hull_distance: false
 official_Alexandria_PBE_common_pool_public_hull_rank:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
   failure_reason: .nan
@@ -423,6 +465,8 @@ official_Alexandria_PBE_common_pool_public_hull_rank:
   whether_hull_distance: true
 official_Alexandria_PBE_source_native_public_hull_rank:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
   failure_reason: .nan
@@ -442,6 +486,8 @@ official_Alexandria_PBE_source_native_public_hull_rank:
   whether_hull_distance: true
 prevalence_dummy:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
   failure_reason: .nan
@@ -461,6 +507,8 @@ prevalence_dummy:
   whether_hull_distance: false
 random_baseline:
   coverage_n: 36802
+  external_formula_overlap_fraction: 0.0
+  external_formula_overlap_rows_n: 0
   external_score_rows_n: 0
   external_score_status: not_applicable
   failure_reason: .nan
