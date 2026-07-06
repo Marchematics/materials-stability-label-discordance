@@ -800,6 +800,66 @@ def bootstrap_metrics(metrics: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def bootstrap_topk(topk: pd.DataFrame) -> pd.DataFrame:
+    """Lightweight deterministic CIs for top-K discovery-consequence metrics.
+
+    These intervals are analytic binomial approximations around the regenerated
+    top-K table. They complement row-resampled CIs for aggregate metrics and make
+    the top-K stable-yield/uncertain-burden uncertainty explicit.
+    """
+    metric_specs = [
+        ("precision_at_k", "precision@K", "K_effective"),
+        ("stable_yield_at_k", "stable_yield@K", "K_effective"),
+        ("uncertain_fraction_at_k", "uncertain_fraction@K", "K_effective"),
+        ("false_positive_burden_at_k", "false_positive_burden@K", "K_effective"),
+        ("recall_at_k", "recall@K", "n_positive_estimated"),
+        ("DAF_at_k", "DAF@K", "ratio_metric_not_interval_estimated"),
+    ]
+    rows: list[dict[str, Any]] = []
+    for _, r in topk.iterrows():
+        k = int(r.get("K", 0) or 0)
+        k_eff = int(r.get("K_effective", 0) or 0)
+        stable_n = float(pd.to_numeric(r.get("stable_n"), errors="coerce") or 0)
+        recall_val = pd.to_numeric(r.get("recall_at_k"), errors="coerce")
+        n_pos = stable_n / float(recall_val) if pd.notna(recall_val) and float(recall_val) > 0 else np.nan
+        for col, metric_name, denom_kind in metric_specs:
+            val = pd.to_numeric(r.get(col), errors="coerce")
+            n = k_eff
+            status = r.get("metric_status", "ok")
+            if status != "ok" or pd.isna(val):
+                lo = hi = np.nan
+                ci_status = status
+            elif denom_kind == "ratio_metric_not_interval_estimated":
+                lo = hi = np.nan
+                ci_status = "point_estimate_only_ratio_metric"
+            else:
+                if denom_kind == "n_positive_estimated":
+                    n = int(round(n_pos)) if pd.notna(n_pos) and n_pos > 0 else 0
+                if n <= 1:
+                    lo = hi = np.nan
+                    ci_status = "not_evaluable_small_denominator"
+                else:
+                    p = max(0.0, min(1.0, float(val)))
+                    se = math.sqrt(max(p * (1 - p), 0.0) / n)
+                    lo = max(0.0, p - 1.96 * se)
+                    hi = min(1.0, p + 1.96 * se)
+                    ci_status = "ok"
+            rows.append({
+                "denominator": r.get("denominator"),
+                "model_name": r.get("model_name"),
+                "label_view": r.get("label_view"),
+                "K": k,
+                "metric": metric_name.replace("@K", f"@{k}"),
+                "value": val,
+                "ci_low_95": lo,
+                "ci_high_95": hi,
+                "ci_denominator_n": n if denom_kind != "ratio_metric_not_interval_estimated" else np.nan,
+                "bootstrap_method": "deterministic_binomial_topk_approximation_phase2_v1",
+                "metric_status": ci_status,
+            })
+    return pd.DataFrame(rows)
+
+
 def uncertainty_tables(metrics: pd.DataFrame, topk: pd.DataFrame, out_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     rows = []
     metric_long = metrics.melt(id_vars=["denominator", "model_name", "label_view"], value_vars=[m for m in PRIMARY_METRICS if m in metrics], var_name="metric", value_name="metric_value")
@@ -1076,13 +1136,15 @@ def build_model_evaluation(phase1: Path, out_dir: Path, scores: pd.DataFrame, de
     bootstrap_resampled = bootstrap_metrics_resampled(scores, labels, ids["D5_family_complete"], "D5_family_complete")
     bootstrap_resampled.to_csv(mdir / "metrics_by_model_label_view_bootstrap_resampled.csv", index=False)
     topk.to_csv(mdir / "topk_by_model_label_view.csv", index=False)
+    topk_bootstrap = bootstrap_topk(topk)
+    topk_bootstrap.to_csv(mdir / "topk_by_model_label_view_bootstrap.csv", index=False)
     rankings.to_csv(mdir / "model_rankings_by_label_view.csv", index=False)
     rank_corr = rank_correlations(rankings, out_dir)
     # compatibility copy requested in plan
     rank_inversions(rankings, inventory, out_dir)["all"].to_csv(mdir / "rank_inversions_by_metric.csv", index=False)
     band, ratio = uncertainty_tables(metrics, topk, out_dir)
     pairwise_margins = build_pairwise_complete_margins(phase1, out_dir, scores, denominators, inventory)
-    return {"metrics": metrics, "topk": topk, "rankings": rankings, "rank_correlations": rank_corr, "band": band, "ratio": ratio, "pairwise_margins": pairwise_margins, "bootstrap_resampled": bootstrap_resampled}
+    return {"metrics": metrics, "topk": topk, "topk_bootstrap": topk_bootstrap, "rankings": rankings, "rank_correlations": rank_corr, "band": band, "ratio": ratio, "pairwise_margins": pairwise_margins, "bootstrap_resampled": bootstrap_resampled}
 
 
 def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
@@ -1728,8 +1790,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "3_model_evaluation_label_views",
             "status": "complete_for_sourceaware_scored_models",
-            "evidence": f"metrics rows={len(metrics)}; topK rows={len(topk)}; rank-correlation rows={len(rank_corr)}; row-resampled bootstrap rows={len(evals.get('bootstrap_resampled', pd.DataFrame()))}; label views={','.join(sorted(metrics.label_view.unique()))}; K={','.join(map(str, sorted(topk.K.unique())))}",
-            "primary_artifacts": "outputs/phase2_v1/model_metrics/metrics_by_model_label_view.csv; topk_by_model_label_view.csv; rank_correlation_by_label_view.csv; metrics_by_model_label_view_bootstrap.csv; metrics_by_model_label_view_bootstrap_resampled.csv",
+            "evidence": f"metrics rows={len(metrics)}; topK rows={len(topk)}; topK bootstrap rows={len(evals.get('topk_bootstrap', pd.DataFrame()))}; rank-correlation rows={len(rank_corr)}; row-resampled bootstrap rows={len(evals.get('bootstrap_resampled', pd.DataFrame()))}; label views={','.join(sorted(metrics.label_view.unique()))}; K={','.join(map(str, sorted(topk.K.unique())))}",
+            "primary_artifacts": "outputs/phase2_v1/model_metrics/metrics_by_model_label_view.csv; topk_by_model_label_view.csv; topk_by_model_label_view_bootstrap.csv; rank_correlation_by_label_view.csv; metrics_by_model_label_view_bootstrap.csv; metrics_by_model_label_view_bootstrap_resampled.csv",
             "guardrail": "source_union rows are explicit not-evaluable rows when Phase 1 full-source-union reconstruction is incomplete.",
         },
         {
@@ -1834,18 +1896,21 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
     topk_path = out_dir / "model_metrics" / "topk_by_model_label_view.csv"
     ratio_path = out_dir / "model_metrics" / "model_margin_to_label_uncertainty_ratio.csv"
     rank_corr_path = out_dir / "model_metrics" / "rank_correlation_by_label_view.csv"
+    topk_boot_path = out_dir / "model_metrics" / "topk_by_model_label_view_bootstrap.csv"
     metrics = pd.read_csv(metrics_path) if metrics_path.exists() else pd.DataFrame()
     topk = pd.read_csv(topk_path) if topk_path.exists() else pd.DataFrame()
     ratio = pd.read_csv(ratio_path) if ratio_path.exists() else pd.DataFrame()
     rank_corr = pd.read_csv(rank_corr_path) if rank_corr_path.exists() else pd.DataFrame()
+    topk_boot = pd.read_csv(topk_boot_path) if topk_boot_path.exists() else pd.DataFrame()
     view_ok = set(LABEL_VIEWS).issubset(set(metrics.get("label_view", []))) and set(LABEL_VIEWS).issubset(set(topk.get("label_view", [])))
     k_ok = set(K_GRID).issubset(set(pd.to_numeric(topk.get("K", pd.Series(dtype=float)), errors="coerce").dropna().astype(int))) if not topk.empty else False
     bootstrap_ok = (out_dir / "model_metrics" / "metrics_by_model_label_view_bootstrap.csv").exists() and (out_dir / "model_metrics" / "metrics_by_model_label_view_bootstrap_resampled.csv").exists()
     rank_corr_ok = (not rank_corr.empty) and {"spearman_rank_correlation", "discordant_pair_fraction"}.issubset(rank_corr.columns)
+    topk_boot_ok = (not topk_boot.empty) and {"stable_yield@100", "precision@100", "uncertain_fraction@100", "DAF@100"}.issubset(set(topk_boot.get("metric", pd.Series(dtype=str))))
     add(
         "model_evaluation_label_views",
-        "pass" if view_ok and k_ok and bootstrap_ok and rank_corr_ok else "fail",
-        f"metrics_rows={len(metrics)}; topk_rows={len(topk)}; rank_correlation_rows={len(rank_corr)}; views_ok={view_ok}; K_ok={k_ok}; bootstrap_files_ok={bootstrap_ok}; rank_correlation_ok={rank_corr_ok}",
+        "pass" if view_ok and k_ok and bootstrap_ok and rank_corr_ok and topk_boot_ok else "fail",
+        f"metrics_rows={len(metrics)}; topk_rows={len(topk)}; topk_bootstrap_rows={len(topk_boot)}; rank_correlation_rows={len(rank_corr)}; views_ok={view_ok}; K_ok={k_ok}; bootstrap_files_ok={bootstrap_ok}; topk_bootstrap_ok={topk_boot_ok}; rank_correlation_ok={rank_corr_ok}",
         "source_union rows are explicit not-evaluable rows if full source-union reconstruction is incomplete.",
     )
     dom_metrics = set(ratio[pd.to_numeric(ratio.get("uncertainty_dominance_ratio", pd.Series(dtype=float)), errors="coerce") > 1].get("metric", pd.Series(dtype=str)).astype(str)) if not ratio.empty else set()
