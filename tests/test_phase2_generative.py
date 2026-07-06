@@ -39,8 +39,13 @@ def test_phase2_generative_outputs_are_honest_about_scope():
     assert consequence.consensus_stable_yield.notna().any()
     pg_cons = consequence[consequence.pipeline_name.eq("PGCGM_public_safe_generated_pool")].iloc[0]
     assert float(pg_cons.unmatched_fraction) == 1.0
+    assert 0 < float(pg_cons.formula_support_fraction) < 0.1
     mg_cons = consequence[consequence.pipeline_name.eq("MatterGen_hf_base_smoke_unconditional")].iloc[0]
     assert float(mg_cons.unmatched_fraction) == 1.0
+    assert float(mg_cons.unsupported_no_formula_overlap_fraction) == 1.0
+    support = pd.read_csv(OUT / "generative" / "generated_candidate_formula_support.csv")
+    assert {"formula_support_status", "formula_sourceaware_row_count", "formula_sourceaware_mp_examples"}.issubset(support.columns)
+    assert "formula_only_overlap_no_label_assignment" in set(support.formula_support_status)
     fig5 = pd.read_csv(OUT / "figure_source_data" / "fig5_generated_consequence.csv")
     assert required.issubset(fig5.columns)
     search = pd.read_csv(OUT / "generative" / "candidate_source_search_audit.csv")

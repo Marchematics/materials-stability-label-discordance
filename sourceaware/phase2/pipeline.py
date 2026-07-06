@@ -17,6 +17,10 @@ try:
     import requests
 except Exception:  # pragma: no cover
     requests = None
+try:
+    from pymatgen.core import Composition
+except Exception:  # pragma: no cover
+    Composition = None
 from sklearn.metrics import (
     average_precision_score,
     balanced_accuracy_score,
@@ -154,6 +158,20 @@ def threshold_predictions(scores: pd.Series, labels: pd.Series) -> np.ndarray:
     ranked = scores.sort_values(ascending=False, kind="mergesort")
     pred_ids = set(ranked.head(n_pos).index)
     return np.array([idx in pred_ids for idx in scores.index], dtype=bool)
+
+
+def normalize_formula(formula: Any) -> str | None:
+    if pd.isna(formula):
+        return None
+    text = str(formula).strip()
+    if not text or text.lower() in {"nan", "none", "<na>"}:
+        return None
+    if Composition is not None:
+        try:
+            return Composition(text).reduced_formula
+        except Exception:
+            pass
+    return text.replace(" ", "")
 
 
 def parse_extxyz_formulas(path: Path) -> pd.DataFrame:
@@ -786,22 +804,39 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     else:
         search_rows.append({"pipeline_name": "PGCGM_public_safe_generated_pool", "pipeline_type": "available_crystal_generation_pipeline", "local_package_detected": False, "search_status": "not_found", "evidence": str(PGCGM_CANDIDATES)})
 
-    clean_cols = ["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate", "candidate_source"]
+    clean_cols = ["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "candidate_reduced_formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate", "candidate_source"]
     cand_clean = pd.concat(candidate_frames, ignore_index=True) if candidate_frames else pd.DataFrame(columns=clean_cols)
+    cand_clean["candidate_reduced_formula"] = cand_clean.get("formula", pd.Series(dtype=object)).map(normalize_formula)
     for col in clean_cols:
         if col not in cand_clean:
             cand_clean[col] = pd.NA
     cand_clean = cand_clean[clean_cols]
     cand_clean.to_parquet(gen_dir / "generated_candidates_clean.parquet", index=False)
 
-    matched = cand_clean.merge(base[["row_id", "mp_id", "structure_hash", "source_native_mp_ehull", "source_native_mattergen_ehull", "source_native_alexandria_ehull", "common_pool_mp_ehull", "common_pool_alexandria_ehull"]], on="mp_id", how="left")
+    base_match = base[["row_id", "mp_id", "formula", "structure_hash", "source_native_mp_ehull", "source_native_mattergen_ehull", "source_native_alexandria_ehull", "common_pool_mp_ehull", "common_pool_alexandria_ehull"]].copy()
+    base_match["sourceaware_reduced_formula"] = base_match["formula"].map(normalize_formula)
+    formula_counts = base_match.groupby("sourceaware_reduced_formula", dropna=True).agg(
+        formula_sourceaware_row_count=("row_id", "nunique"),
+        formula_sourceaware_mp_examples=("mp_id", lambda x: ";".join(map(str, list(x.dropna().head(5))))),
+    ).reset_index().rename(columns={"sourceaware_reduced_formula": "candidate_reduced_formula"})
+
+    matched = cand_clean.merge(base_match.drop(columns=["formula"]), on="mp_id", how="left")
     matched["matched_to_sourceaware"] = matched["row_id"].notna()
+    matched = matched.merge(formula_counts, on="candidate_reduced_formula", how="left")
+    matched["formula_sourceaware_row_count"] = pd.to_numeric(matched["formula_sourceaware_row_count"], errors="coerce").fillna(0).astype(int)
+    matched["formula_overlap_with_sourceaware"] = matched["formula_sourceaware_row_count"].gt(0)
+    matched["formula_support_status"] = np.select(
+        [matched["matched_to_sourceaware"].astype(bool), matched["formula_overlap_with_sourceaware"].astype(bool)],
+        ["exact_sourceaware_structure_label_match", "formula_only_overlap_no_label_assignment"],
+        default="no_formula_overlap_no_label_assignment",
+    )
     ehull_cols = ["source_native_mp_ehull", "source_native_mattergen_ehull", "source_native_alexandria_ehull", "common_pool_mp_ehull", "common_pool_alexandria_ehull"]
     if len(matched):
         matched["near_threshold_25meV"] = matched[ehull_cols].apply(pd.to_numeric, errors="coerce").abs().le(0.025).any(axis=1)
     else:
         matched["near_threshold_25meV"] = []
     matched.to_parquet(gen_dir / "generated_candidates_matched_to_sourceaware.parquet", index=False)
+    matched[["candidate_id", "pipeline_name", "formula", "candidate_reduced_formula", "chemical_system", "matched_to_sourceaware", "formula_overlap_with_sourceaware", "formula_sourceaware_row_count", "formula_support_status", "formula_sourceaware_mp_examples"]].to_csv(gen_dir / "generated_candidate_formula_support.csv", index=False)
 
     label_rows = []
     for _, c in matched.iterrows():
@@ -877,6 +912,9 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
             "near_threshold_fraction": float(sub["near_threshold_25meV"].astype(bool).mean()) if len(sub) else np.nan,
             "duplicate_fraction": float(sub["is_duplicate"].astype(bool).mean()) if len(sub) else np.nan,
             "unmatched_fraction": float(1 - sub["matched_to_sourceaware"].mean()) if len(sub) else np.nan,
+            "formula_support_fraction": float(sub["formula_overlap_with_sourceaware"].astype(bool).mean()) if len(sub) else np.nan,
+            "formula_only_support_fraction": float((sub["formula_overlap_with_sourceaware"].astype(bool) & ~sub["matched_to_sourceaware"].astype(bool)).mean()) if len(sub) else np.nan,
+            "unsupported_no_formula_overlap_fraction": float((~sub["formula_overlap_with_sourceaware"].astype(bool)).mean()) if len(sub) else np.nan,
             "claim_scope": "public_safe_true_generator_smoke_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "MatterGen_hf_base_smoke_unconditional" else ("public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "PGCGM_public_safe_generated_pool" else "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation"),
         })
     consequence = pd.DataFrame(consequence_rows)
@@ -889,7 +927,8 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     consequence.to_csv(gen_dir / "generated_pipeline_consequence_summary.csv", index=False)
     view_summary.groupby("pipeline_name", as_index=False).agg(source_uncertain_fraction=("source_uncertain_fraction", "max"), matched_n=("matched_n", "max")).to_csv(gen_dir / "generated_uncertain_fraction_by_model.csv", index=False)
     topk.to_csv(gen_dir / "generated_topk_consequence.csv", index=False)
-    return {"inventory": inventory, "search": search, "clean": cand_clean, "matched": matched, "labels": cand_labels, "summary": view_summary, "consequence": consequence, "topk": topk}
+    formula_support = pd.read_csv(gen_dir / "generated_candidate_formula_support.csv") if (gen_dir / "generated_candidate_formula_support.csv").exists() else pd.DataFrame()
+    return {"inventory": inventory, "search": search, "clean": cand_clean, "matched": matched, "formula_support": formula_support, "labels": cand_labels, "summary": view_summary, "consequence": consequence, "topk": topk}
 
 
 def build_leaderboard(out_dir: Path, inventory: pd.DataFrame, metrics: pd.DataFrame, topk: pd.DataFrame, ratio: pd.DataFrame) -> pd.DataFrame:
