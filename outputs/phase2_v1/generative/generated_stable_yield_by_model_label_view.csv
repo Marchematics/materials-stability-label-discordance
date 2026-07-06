@@ -17,6 +17,15 @@ MatterGen_hf_base_smoke_unconditional,consensus,2,0,0,0,,,1.0
 MatterGen_hf_base_smoke_unconditional,mp_native,2,0,0,0,,,1.0
 MatterGen_hf_base_smoke_unconditional,source_union,2,0,0,0,,,1.0
 MatterGen_hf_base_smoke_unconditional,uncertain,2,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,alex_pbe_native,5000,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,alexmp20_native,5000,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,all_source_native,5000,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,audit_view,5000,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,common_pool,5000,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,consensus,5000,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,mp_native,5000,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,source_union,5000,0,0,0,,,1.0
+MatterGen_pilot_5k_public_safe_formulas,uncertain,5000,0,0,0,,,1.0
 PGCGM_public_safe_generated_pool,alex_pbe_native,3000,0,0,0,,,1.0
 PGCGM_public_safe_generated_pool,alexmp20_native,3000,0,0,0,,,1.0
 PGCGM_public_safe_generated_pool,all_source_native,3000,0,0,0,,,1.0

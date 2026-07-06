@@ -42,6 +42,7 @@ SEED_SCORES = ROOT / "inputs" / "phase2_v1" / "sourceaware_model_scores_public_s
 CANDIDATE_SCORES = ROOT / "outputs" / "milestones" / "model_facing_benchmark_sensitivity_check" / "candidate_scores_chgnet_5000_v2_ehull.csv"
 PGCGM_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "pgcgm_unlabeled_candidate_pool_public_safe_input.csv"
 MATTERGEN_SMOKE_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "mattergen_hf_base_smoke_generated_crystals.extxyz"
+MATTERGEN_PILOT_FORMULAS = ROOT / "inputs" / "phase2_v1" / "mattergen_pilot_5k_public_safe_formulas.csv"
 
 LABEL_VIEWS = [
     "mp_native",
@@ -1040,6 +1041,25 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     else:
         search_rows.append({"pipeline_name": "MatterGen_hf_base_smoke_unconditional", "pipeline_type": "true_generator", "local_package_detected": False, "search_status": "not_found", "evidence": str(MATTERGEN_SMOKE_CANDIDATES)})
 
+    if MATTERGEN_PILOT_FORMULAS.exists():
+        mg5k = pd.read_csv(MATTERGEN_PILOT_FORMULAS, low_memory=False)
+        mg5k = mg5k.copy()
+        mg5k["pipeline_name"] = "MatterGen_pilot_5k_public_safe_formulas"
+        mg5k["pipeline_type"] = "true_generator"
+        mg5k["mp_id"] = pd.NA
+        mg5k["score_standardized"] = -pd.to_numeric(mg5k.get("raw_generation_rank"), errors="coerce")
+        mg5k["predicted_e_above_hull"] = np.nan
+        if "duplicate_status" in mg5k:
+            mg5k["is_duplicate"] = mg5k["duplicate_status"].astype(str).str.contains("duplicate", na=False)
+        else:
+            mg5k["is_duplicate"] = mg5k.duplicated("candidate_reduced_formula", keep="first")
+        mg5k_clean = mg5k[["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate"]].copy()
+        mg5k_clean["candidate_source"] = str(MATTERGEN_PILOT_FORMULAS)
+        candidate_frames.append(mg5k_clean)
+        search_rows.append({"pipeline_name": "MatterGen_pilot_5k_public_safe_formulas", "pipeline_type": "true_generator", "local_package_detected": True, "search_status": "found_public_safe_formula_rank_table_without_coordinates_or_energies", "evidence": str(MATTERGEN_PILOT_FORMULAS)})
+    else:
+        search_rows.append({"pipeline_name": "MatterGen_pilot_5k_public_safe_formulas", "pipeline_type": "true_generator", "local_package_detected": False, "search_status": "not_found", "evidence": str(MATTERGEN_PILOT_FORMULAS)})
+
     if PGCGM_CANDIDATES.exists():
         pg = pd.read_csv(PGCGM_CANDIDATES, low_memory=False)
         pg = pg.copy()
@@ -1129,6 +1149,9 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
             elif pipeline == "MatterGen_hf_base_smoke_unconditional":
                 status = "complete_true_generator_smoke_unmatched_to_sourceaware_exact_denominator"
                 claim_scope = "public_safe_true_generator_smoke_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment"
+            elif pipeline == "MatterGen_pilot_5k_public_safe_formulas":
+                status = "complete_true_generator_formula_only_unmatched_to_sourceaware_exact_denominator"
+                claim_scope = "public_safe_true_generator_formula_rank_only_no_coordinates_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment"
             else:
                 status = "complete_candidate_consequence"
                 claim_scope = "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation"
@@ -1172,7 +1195,7 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
             "formula_support_fraction": float(sub["formula_overlap_with_sourceaware"].astype(bool).mean()) if len(sub) else np.nan,
             "formula_only_support_fraction": float((sub["formula_overlap_with_sourceaware"].astype(bool) & ~sub["matched_to_sourceaware"].astype(bool)).mean()) if len(sub) else np.nan,
             "unsupported_no_formula_overlap_fraction": float((~sub["formula_overlap_with_sourceaware"].astype(bool)).mean()) if len(sub) else np.nan,
-            "claim_scope": "public_safe_true_generator_smoke_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "MatterGen_hf_base_smoke_unconditional" else ("public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "PGCGM_public_safe_generated_pool" else "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation"),
+            "claim_scope": "public_safe_true_generator_smoke_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "MatterGen_hf_base_smoke_unconditional" else ("public_safe_true_generator_formula_rank_only_no_coordinates_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "MatterGen_pilot_5k_public_safe_formulas" else ("public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "PGCGM_public_safe_generated_pool" else "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation")),
         })
     consequence = pd.DataFrame(consequence_rows)
 
@@ -1587,7 +1610,7 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "6_generative_candidate_consequence",
             "status": "partial_guardrailed_but_artifact_complete",
-            "evidence": f"candidate pipelines={len(gen_inv)}; completed true-generator/smoke={int(((gen_inv['pipeline_type']=='true_generator') & gen_inv['status'].str.startswith('complete')).sum())}; screening completed={int((gen_inv['status']=='complete_screening_consequence').sum())}; consequence rows={len(consequence)}; formula-support rows={len(formula_support)}",
+            "evidence": f"candidate pipelines={len(gen_inv)}; completed true-generator pipelines={int(((gen_inv['pipeline_type']=='true_generator') & gen_inv['status'].str.startswith('complete')).sum())}; screening completed={int((gen_inv['status']=='complete_screening_consequence').sum())}; consequence rows={len(consequence)}; formula-support rows={len(formula_support)}",
             "primary_artifacts": "outputs/phase2_v1/generative/generated_candidate_inventory.csv; generated_candidates_clean.parquet; generated_candidates_matched_to_sourceaware.parquet; generated_candidate_labels_by_view.parquet; generated_stable_yield_by_model_label_view.csv; generated_candidate_formula_support.csv; generated_pipeline_consequence_summary.csv",
             "guardrail": "Generated pools without exact SourceAware structure matches remain unmatched/unsupported; formula-only overlap is not label assignment; no homogeneous DFT validation is claimed.",
         },
@@ -1710,7 +1733,7 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
     add(
         "generative_candidate_consequence",
         "guarded_partial" if len(screeners) >= 3 and true_completed >= 1 else "fail",
-        f"inventory_rows={len(gen_inv)}; screening_consequence_pipelines={len(screeners)}; completed_true_generator_smoke={true_completed}; consequence_rows={len(consequence)}",
+        f"inventory_rows={len(gen_inv)}; screening_consequence_pipelines={len(screeners)}; completed_true_generator_pipelines={true_completed}; consequence_rows={len(consequence)}",
         "Matched screeners are public-source-aware candidate consequences; unmatched generated pools are not assigned stable/unstable labels; no homogeneous DFT validation is claimed.",
     )
 
@@ -1779,7 +1802,7 @@ def write_tests_report(out_dir: Path, inventory: pd.DataFrame, gen_inv: pd.DataF
 - Matbench Discovery external WBM score tables downloaded: {external_downloaded}
 - Matbench Discovery external WBM rows collected: {external_rows}
 - Matbench Discovery Figshare target artifacts audited but unavailable here: {external_figshare_attempted}
-- True generator/smoke pipelines completed: {int(((gen_inv['pipeline_type'] == 'true_generator') & (gen_inv['status'].str.startswith('complete'))).sum())}
+- True generator pipelines completed/audited: {int(((gen_inv['pipeline_type'] == 'true_generator') & (gen_inv['status'].str.startswith('complete'))).sum())}
 - Available generated-candidate pools completed/audited: {int((gen_inv['status'] == 'complete_generated_pool_unmatched_to_sourceaware_exact_denominator').sum())}
 - Screening/candidate consequence pipelines completed: {int((gen_inv['status'] == 'complete_screening_consequence').sum())}
 - Any uncertainty dominance ratio > 1: {bool((pd.to_numeric(ratio.get('uncertainty_dominance_ratio', pd.Series(dtype=float)), errors='coerce') > 1).any())}

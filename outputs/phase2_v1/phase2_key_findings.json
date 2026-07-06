@@ -56,9 +56,9 @@
   {
     "finding_id": "generated_candidate_support_is_mostly_unmatched",
     "finding": "Generated pools can be ingested, but unsupported/formula-only cases remain separated from exact label assignment.",
-    "primary_number": 1,
-    "secondary_number": 226,
-    "evidence": "Completed true-generator/smoke pipelines: 1; generated/candidate formula-support rows: 28002; formula-only overlaps without label assignment: 226.",
+    "primary_number": 2,
+    "secondary_number": 647,
+    "evidence": "Completed true-generator/smoke pipelines: 2; generated/candidate formula-support rows: 33002; formula-only overlaps without label assignment: 647.",
     "claim_scope": "supports_generated_candidate_pipeline_ingestion_and_guardrailed_consequence",
     "guardrail": "Formula-only overlap is support/coverage evidence only and is never converted to a stable/unstable SourceAware label."
   }
