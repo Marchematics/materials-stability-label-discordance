@@ -1,3 +1,4 @@
 pipeline_name,source_uncertain_fraction,matched_n
 CHGNet_screened_public_hull_top5000,0.33442088091353994,4291
+MatterGen_hf_base_smoke_unconditional,,0
 PGCGM_public_safe_generated_pool,,0

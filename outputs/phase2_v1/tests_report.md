@@ -6,7 +6,7 @@
 - Matbench Discovery external WBM score tables downloaded: 7
 - Matbench Discovery external WBM rows collected: 1799233
 - Matbench Discovery Figshare target artifacts audited but unavailable here: 9
-- True target generator pipelines completed: 0
+- True generator/smoke pipelines completed: 1
 - Available generated-candidate pools completed/audited: 1
 - Screening/candidate consequence pipelines completed: 1
 - Any uncertainty dominance ratio > 1: True

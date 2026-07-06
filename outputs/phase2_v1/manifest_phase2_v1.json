@@ -65,11 +65,11 @@
       "sha256": "625cb81365876dff3edc863c35e59e7375bf1e2aca363055814c1d6065c0184e"
     },
     {
-      "bytes": 827,
+      "bytes": 1004,
       "columns": 15,
       "path": "outputs/phase2_v1/figure_source_data/fig5_generated_consequence.csv",
-      "rows": 2,
-      "sha256": "d90c9c015be1cdf95f5af45ca396e9ed5d41ef348a7663982d6b83f60e04f411"
+      "rows": 3,
+      "sha256": "b116b37aee8925c61d2b02558331723e2d7257da940a19ff47a613958cfa8537"
     },
     {
       "bytes": 650,
@@ -97,147 +97,147 @@
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig1_leaderboard_bands.pdf",
       "rows": null,
-      "sha256": "7815c31fb9840da97676e64c010d2862481ee67eb5bb0c45cc750a31394acf91"
+      "sha256": "5925d663c35355a0afc57e070380634c8bf182eb7dcad9f1b8b2a52dc5a8b7e3"
     },
     {
       "bytes": 142158,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig1_leaderboard_bands.svg",
       "rows": null,
-      "sha256": "16f0f898a7d4dd70fd5fdd52dd5d53e1da7c2b34d3a69a1ca4ada1dea8f6ac33"
+      "sha256": "191229a37f32c4e9f3687f034c1bf851abc2b88821a894ededa5db7d876f2f47"
     },
     {
       "bytes": 17436,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig2_uncertainty_vs_spread.pdf",
       "rows": null,
-      "sha256": "b4464a0a368f44b01745670d8f4f937ed1727b2b023aafe941e2ae29af5a0925"
+      "sha256": "a7db9d4753a755467d55419c66d0f6ec5dfc6e593107fd85099e43bc79bae436"
     },
     {
       "bytes": 178963,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig2_uncertainty_vs_spread.svg",
       "rows": null,
-      "sha256": "818d2263a122afb340a3ecc5d02669b3b5196d594371bd018b9f13623b017acb"
+      "sha256": "cb67e911f197fe2560837566cd983caefaef903d112abce672199c6f4e13b884"
     },
     {
       "bytes": 15198,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig3_rank_inversions.pdf",
       "rows": null,
-      "sha256": "546f0a6d3f965d0c8a716b536432b96c7c0a673932c3c86bdeea64d9b427b2fc"
+      "sha256": "5ba9cf57a1afb82b6f3fc30de62370b0120faaf2c56dc9b4b923070722edd054"
     },
     {
       "bytes": 70745,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig3_rank_inversions.svg",
       "rows": null,
-      "sha256": "2d3fdbe618bd28a9e7e960daf8aead0deef20c2fb5168321d6abf5129ea43588"
+      "sha256": "8b6bc80bd5997ab3977791eb9e26c88312188f7c9079bbf27120cf2e4998b5df"
     },
     {
       "bytes": 21938,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig4_topk_heatmap.pdf",
       "rows": null,
-      "sha256": "bdd63e38cd38730691e43bc189181a30c60516497c40d19471c810127030fafa"
+      "sha256": "4b05b13da174d2415a861c27e1fa69d4370f1ef2a0f58e066e0c592b33c40483"
     },
     {
       "bytes": 89672,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig4_topk_heatmap.svg",
       "rows": null,
-      "sha256": "c204e4abc52ed6c0e041ec9fe327952e68ce653483955c38d19299572b2554e4"
+      "sha256": "db1aca8f3f9b095e247d065d37dcba83f0a9ddb4d33484692b82d53c42d7dee2"
     },
     {
-      "bytes": 15745,
+      "bytes": 16110,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig5_generated_consequence.pdf",
       "rows": null,
-      "sha256": "ef9f2b49fbb142a5d404af85f5d7cb7fce97a2698f7ae6ec4efe5ed0f1881328"
+      "sha256": "46ba139a347f592eb2e529c278e175b84836618f8e63bbe3f7ef88b515f8f5b9"
     },
     {
-      "bytes": 47720,
+      "bytes": 52357,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig5_generated_consequence.svg",
       "rows": null,
-      "sha256": "fb8006bb1a096225a1afebb6caf44d60b1839a441b590fed45bfe20175cdc09d"
+      "sha256": "aaddf921ecf00f41d8d300f0900fe950c90a9b1867fc87498d3eaf41cf99f885"
     },
     {
       "bytes": 17046,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig6_workflow.pdf",
       "rows": null,
-      "sha256": "6f0f65a16bc79ca09127872e3c4e1d8ae5e27a9da6c05822523580455932381f"
+      "sha256": "3d5152494fba70b87184ed6116e656b568a587b3c1e2e45e1b7742bdaeaa7d22"
     },
     {
       "bytes": 68511,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig6_workflow.svg",
       "rows": null,
-      "sha256": "921b15b3a71f99f2278c7bed850438aed9a966efce0138ce9a9479433252f703"
+      "sha256": "53ff66fe58121156ac719dbf1b6880c1880f98c27b3e2f21376c4a19d6355028"
     },
     {
-      "bytes": 1490,
+      "bytes": 1767,
       "columns": 5,
       "path": "outputs/phase2_v1/generative/candidate_source_search_audit.csv",
-      "rows": 7,
-      "sha256": "ace6e46c80eb39848e4e69ab4da8978e0ad0b678eee115b9b48a54e64fb73de9"
+      "rows": 8,
+      "sha256": "b0eb8f819e0410c501f2043e67ccec63d424912285122d7df7349a4ca99b5aee"
     },
     {
-      "bytes": 1134,
+      "bytes": 1365,
       "columns": 6,
       "path": "outputs/phase2_v1/generative/generated_candidate_inventory.csv",
-      "rows": 7,
-      "sha256": "e1971d0828cc2f7d3de3bf236baf752d1c5347537c7616030216914dd2de0ffe"
+      "rows": 8,
+      "sha256": "6062657e8b195797dd42efa059ed561a7c3a38a6808cf52ed7e41b66eead9b44"
     },
     {
-      "bytes": 165584,
+      "bytes": 165630,
       "columns": 9,
       "path": "outputs/phase2_v1/generative/generated_candidate_labels_by_view.parquet",
-      "rows": 72000,
-      "sha256": "05aeac0d9d2ecb569780d958d0ec3aaad264a3a45e5f9c956beaba1313d27ffc"
+      "rows": 72018,
+      "sha256": "fb57debb511af40499cf8e4c8901808df01e5977d66e568a1937a7b31fd44ad9"
     },
     {
-      "bytes": 350408,
+      "bytes": 350565,
       "columns": 10,
       "path": "outputs/phase2_v1/generative/generated_candidates_clean.parquet",
-      "rows": 8000,
-      "sha256": "914f5cb6b5c0553d393c8cc12f58794db95a23376a671a3b80f0b2b58ed2975a"
+      "rows": 8002,
+      "sha256": "ce0f2143ad998636c052734334c01591f9724a9219a07f0c9dfd361bba39f884"
     },
     {
-      "bytes": 807047,
+      "bytes": 807204,
       "columns": 19,
       "path": "outputs/phase2_v1/generative/generated_candidates_matched_to_sourceaware.parquet",
-      "rows": 8000,
-      "sha256": "68d639f5c78ef86807ca037188e0fff54863dba947b0e1d3a1afc04bf346178b"
+      "rows": 8002,
+      "sha256": "fb7bfe6764575230b84c991103ad72e317eb74220115bfcde237080323873121"
     },
     {
-      "bytes": 827,
+      "bytes": 1004,
       "columns": 15,
       "path": "outputs/phase2_v1/generative/generated_pipeline_consequence_summary.csv",
-      "rows": 2,
-      "sha256": "d90c9c015be1cdf95f5af45ca396e9ed5d41ef348a7663982d6b83f60e04f411"
+      "rows": 3,
+      "sha256": "b116b37aee8925c61d2b02558331723e2d7257da940a19ff47a613958cfa8537"
     },
     {
-      "bytes": 1707,
+      "bytes": 2291,
       "columns": 9,
       "path": "outputs/phase2_v1/generative/generated_stable_yield_by_model_label_view.csv",
-      "rows": 18,
-      "sha256": "6f15f5cfca0f68a143baa27db100bf9b124a131cfd7a521a6f67a078d0a75cce"
+      "rows": 27,
+      "sha256": "06d52256a5fe421e1091870d33d2f09fc394612f444df211f27a2070c651faa0"
     },
     {
-      "bytes": 9129,
+      "bytes": 12669,
       "columns": 8,
       "path": "outputs/phase2_v1/generative/generated_topk_consequence.csv",
-      "rows": 108,
-      "sha256": "8e9984f027931172ea0a590e152e35194215c6e181408108983fa07225dc4d0e"
+      "rows": 162,
+      "sha256": "5c813c6dfa4fa239184ff96d31c69cd4c5f6e00cafc625f2a419bb37db6fa0d8"
     },
     {
-      "bytes": 147,
+      "bytes": 188,
       "columns": 3,
       "path": "outputs/phase2_v1/generative/generated_uncertain_fraction_by_model.csv",
-      "rows": 2,
-      "sha256": "1f1549d0bd244097b12e45bf27b03df80934893313763d6da2f240295d252183"
+      "rows": 3,
+      "sha256": "48b445e550d03ad7843ca817c60611cd5862f21b1a71bf4c72681e90163a1dab"
     },
     {
       "bytes": 5750,
@@ -478,11 +478,11 @@
       "sha256": "d6070008db1dee8728e86104e10039d8ff644726893ae62e614160c31f5652b8"
     },
     {
-      "bytes": 971,
+      "bytes": 970,
       "columns": null,
       "path": "outputs/phase2_v1/tests_report.md",
       "rows": null,
-      "sha256": "13f683fb49e08c2700ce37a4c2a9553409fa7e51282629cae7f6d69515573971"
+      "sha256": "5af2a25c842fa78c3001cc1a911cc4dc23b30175345994992c9a8dd37b542bdd"
     }
   ],
   "framing": "full model-facing and generative-candidate consequence layer; not homogeneous DFT referee truth",

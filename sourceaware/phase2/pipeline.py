@@ -37,6 +37,7 @@ PHASE2 = ROOT / "outputs" / "phase2_v1"
 SEED_SCORES = ROOT / "inputs" / "phase2_v1" / "sourceaware_model_scores_public_safe.parquet"
 CANDIDATE_SCORES = ROOT / "outputs" / "milestones" / "model_facing_benchmark_sensitivity_check" / "candidate_scores_chgnet_5000_v2_ehull.csv"
 PGCGM_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "pgcgm_unlabeled_candidate_pool_public_safe_input.csv"
+MATTERGEN_SMOKE_CANDIDATES = ROOT / "inputs" / "phase2_v1" / "mattergen_hf_base_smoke_generated_crystals.extxyz"
 
 LABEL_VIEWS = [
     "mp_native",
@@ -153,6 +154,43 @@ def threshold_predictions(scores: pd.Series, labels: pd.Series) -> np.ndarray:
     ranked = scores.sort_values(ascending=False, kind="mergesort")
     pred_ids = set(ranked.head(n_pos).index)
     return np.array([idx in pred_ids for idx in scores.index], dtype=bool)
+
+
+def parse_extxyz_formulas(path: Path) -> pd.DataFrame:
+    """Parse a small generated extxyz file into candidate formula rows.
+
+    This intentionally avoids storing structure coordinates in public Phase 2
+    tables. Matching remains unsupported unless a future exact structure-matching
+    pass is added.
+    """
+    rows: list[dict[str, Any]] = []
+    if not path.exists():
+        return pd.DataFrame(columns=["candidate_id", "formula", "chemical_system", "n_sites"])
+    lines = path.read_text(encoding="utf-8").splitlines()
+    i = 0
+    idx = 1
+    while i < len(lines):
+        if not lines[i].strip():
+            i += 1
+            continue
+        try:
+            n = int(lines[i].strip())
+        except ValueError:
+            break
+        atom_lines = lines[i + 2 : i + 2 + n]
+        counts: dict[str, int] = {}
+        for line in atom_lines:
+            parts = line.split()
+            if not parts:
+                continue
+            el = parts[0]
+            counts[el] = counts.get(el, 0) + 1
+        formula = "".join(f"{el}{counts[el] if counts[el] > 1 else ''}" for el in sorted(counts))
+        chem = "-".join(sorted(counts))
+        rows.append({"candidate_id": f"MATTERGEN-HF-SMOKE-{idx:04d}", "formula": formula, "chemical_system": chem, "n_sites": n})
+        idx += 1
+        i += 2 + n
+    return pd.DataFrame(rows)
 
 
 def load_phase1_labels(phase1: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -714,6 +752,22 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     else:
         search_rows.append({"pipeline_name": "CHGNet_screened_public_hull_top5000", "pipeline_type": "screening_pipeline_not_true_generator", "local_package_detected": False, "search_status": "not_found", "evidence": str(CANDIDATE_SCORES)})
 
+    if MATTERGEN_SMOKE_CANDIDATES.exists():
+        mg = parse_extxyz_formulas(MATTERGEN_SMOKE_CANDIDATES)
+        if len(mg):
+            mg["pipeline_name"] = "MatterGen_hf_base_smoke_unconditional"
+            mg["pipeline_type"] = "true_generator"
+            mg["mp_id"] = pd.NA
+            mg["score_standardized"] = -np.arange(1, len(mg) + 1, dtype=float)
+            mg["predicted_e_above_hull"] = np.nan
+            mg["is_duplicate"] = mg.duplicated(["formula", "chemical_system"], keep="first")
+            mg_clean = mg[["candidate_id", "pipeline_name", "pipeline_type", "mp_id", "formula", "chemical_system", "score_standardized", "predicted_e_above_hull", "is_duplicate"]].copy()
+            mg_clean["candidate_source"] = str(MATTERGEN_SMOKE_CANDIDATES)
+            candidate_frames.append(mg_clean)
+            search_rows.append({"pipeline_name": "MatterGen_hf_base_smoke_unconditional", "pipeline_type": "true_generator", "local_package_detected": True, "search_status": "completed_hf_base_smoke_generation_unmatched_to_sourceaware_exact_denominator", "evidence": str(MATTERGEN_SMOKE_CANDIDATES)})
+    else:
+        search_rows.append({"pipeline_name": "MatterGen_hf_base_smoke_unconditional", "pipeline_type": "true_generator", "local_package_detected": False, "search_status": "not_found", "evidence": str(MATTERGEN_SMOKE_CANDIDATES)})
+
     if PGCGM_CANDIDATES.exists():
         pg = pd.read_csv(PGCGM_CANDIDATES, low_memory=False)
         pg = pg.copy()
@@ -780,6 +834,9 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
             elif pipeline == "PGCGM_public_safe_generated_pool":
                 status = "complete_generated_pool_unmatched_to_sourceaware_exact_denominator"
                 claim_scope = "public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment"
+            elif pipeline == "MatterGen_hf_base_smoke_unconditional":
+                status = "complete_true_generator_smoke_unmatched_to_sourceaware_exact_denominator"
+                claim_scope = "public_safe_true_generator_smoke_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment"
             else:
                 status = "complete_candidate_consequence"
                 claim_scope = "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation"
@@ -820,7 +877,7 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
             "near_threshold_fraction": float(sub["near_threshold_25meV"].astype(bool).mean()) if len(sub) else np.nan,
             "duplicate_fraction": float(sub["is_duplicate"].astype(bool).mean()) if len(sub) else np.nan,
             "unmatched_fraction": float(1 - sub["matched_to_sourceaware"].mean()) if len(sub) else np.nan,
-            "claim_scope": "public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "PGCGM_public_safe_generated_pool" else "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation",
+            "claim_scope": "public_safe_true_generator_smoke_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "MatterGen_hf_base_smoke_unconditional" else ("public_safe_generated_candidate_pool_no_homogeneous_dft_validation_no_exact_sourceaware_label_assignment" if pipeline == "PGCGM_public_safe_generated_pool" else "public_sourceaware_candidate_consequence_not_homogeneous_dft_validation"),
         })
     consequence = pd.DataFrame(consequence_rows)
 
@@ -1050,7 +1107,7 @@ def write_tests_report(out_dir: Path, inventory: pd.DataFrame, gen_inv: pd.DataF
 - Matbench Discovery external WBM score tables downloaded: {external_downloaded}
 - Matbench Discovery external WBM rows collected: {external_rows}
 - Matbench Discovery Figshare target artifacts audited but unavailable here: {external_figshare_attempted}
-- True target generator pipelines completed: {int(((gen_inv['pipeline_type'] == 'true_generator') & (gen_inv['status'].str.startswith('complete'))).sum())}
+- True generator/smoke pipelines completed: {int(((gen_inv['pipeline_type'] == 'true_generator') & (gen_inv['status'].str.startswith('complete'))).sum())}
 - Available generated-candidate pools completed/audited: {int((gen_inv['status'] == 'complete_generated_pool_unmatched_to_sourceaware_exact_denominator').sum())}
 - Screening/candidate consequence pipelines completed: {int((gen_inv['status'] == 'complete_screening_consequence').sum())}
 - Any uncertainty dominance ratio > 1: {bool((pd.to_numeric(ratio.get('uncertainty_dominance_ratio', pd.Series(dtype=float)), errors='coerce') > 1).any())}
