@@ -102,3 +102,38 @@ def test_phase2_generated_candidate_artifact_provenance_is_public_safe():
     assert int(consistency.structure_count) == 5000
     assert consistency.label_assignment_status == "count_consistent_no_label_assignment"
     assert "does not create SourceAware stable/unstable labels" in consistency.guardrail
+
+
+def test_phase2_generated_candidate_match_quality_policy_is_explicit():
+    quality = pd.read_csv(OUT / "generative" / "generated_candidate_match_quality_by_pipeline.csv")
+    assert len(quality) >= 8
+    required = {
+        "pipeline_name",
+        "candidate_n",
+        "exact_sourceaware_match_n",
+        "formula_only_overlap_n",
+        "no_formula_overlap_n",
+        "duplicate_n",
+        "near_threshold_25meV_n",
+        "exact_sourceaware_match_fraction",
+        "formula_only_overlap_fraction",
+        "unsupported_no_formula_overlap_fraction",
+        "label_assignment_policy",
+        "guardrail",
+    }
+    assert required.issubset(quality.columns)
+    assert quality.label_assignment_policy.str.contains("only for exact SourceAware matches", regex=False).all()
+    assert quality.guardrail.str.contains("not homogeneous DFT validation", regex=False).all()
+    for _, row in quality.iterrows():
+        assert int(row.exact_sourceaware_match_n) + int(row.formula_only_overlap_n) + int(row.no_formula_overlap_n) == int(row.candidate_n)
+    screeners = quality[quality.pipeline_type.eq("screening_pipeline_not_true_generator")]
+    assert len(screeners) >= 3
+    assert pd.to_numeric(screeners.exact_sourceaware_match_n, errors="coerce").gt(0).all()
+    mg5k = quality[quality.pipeline_name.eq("MatterGen_pilot_5k_public_safe_formulas")].iloc[0]
+    assert int(mg5k.candidate_n) == 5000
+    assert int(mg5k.exact_sourceaware_match_n) == 0
+    assert int(mg5k.formula_only_overlap_n) > 0
+    assert int(mg5k.no_formula_overlap_n) > 0
+    pg = quality[quality.pipeline_name.eq("PGCGM_public_safe_generated_pool")].iloc[0]
+    assert int(pg.exact_sourceaware_match_n) == 0
+    assert int(pg.formula_only_overlap_n) > 0

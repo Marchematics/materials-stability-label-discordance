@@ -1,12 +1,12 @@
 {
-  "file_count": 112,
+  "file_count": 113,
   "files": [
     {
-      "bytes": 2471,
+      "bytes": 2500,
       "columns": null,
       "path": "outputs/phase2_v1/README.md",
       "rows": null,
-      "sha256": "a17872e58aafbe352fb682197ae46580bbbdc965f9a9f5770e4f33d7af09c614"
+      "sha256": "482b404fd01488b4bb8899ac8d16c6319e3dc6070b640c2598ffec863eee6a8b"
     },
     {
       "bytes": 4553134,
@@ -217,6 +217,13 @@
       "path": "outputs/phase2_v1/generative/generated_candidate_labels_by_view.parquet",
       "rows": 297018,
       "sha256": "1cbbe55f5f8db0a4e5b307d77232d4d3d88d9b37a8334a8cf2f894d824379e61"
+    },
+    {
+      "bytes": 3025,
+      "columns": 15,
+      "path": "outputs/phase2_v1/generative/generated_candidate_match_quality_by_pipeline.csv",
+      "rows": 8,
+      "sha256": "695bf33651210bd1ae58843f1d4e92dedac2f4b6e63d505b6265ecf60e0df405"
     },
     {
       "bytes": 1152217,
@@ -639,74 +646,74 @@
       "sha256": "e14b9c5560f3fafa6ec7b576c75f2d512be17742de547ad60644fef1254d7a60"
     },
     {
-      "bytes": 3786,
+      "bytes": 3831,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.json",
       "rows": null,
-      "sha256": "21a11c849e598b4e11f0812bf6b93c0ba79222950669631b6cf1c84ddaf8a467"
+      "sha256": "d768ebd83bf988e48409d062a476b1b42e4662f0a1ce646b90c961a66cef8b0b"
     },
     {
       "bytes": 6716,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_acceptance_check.md",
       "rows": null,
-      "sha256": "273d96dd22cfe7a7b8c2e97a3f4a55740fa25d2fea11b25b880b85bf2b94192f"
+      "sha256": "a627b223be82bf0723da5355872bfd8147975b788b4c3cff3dd35796285188fa"
     },
     {
-      "bytes": 5409,
+      "bytes": 5514,
       "columns": 7,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.csv",
       "rows": 7,
-      "sha256": "c207a4578b334c00613e5baeaca26af76a0890aec62e15e3a70594f9c9a91c25"
+      "sha256": "7b5beff544f0e9b8ae95a7a4ef76d66680f825790766e92b42fa83d45d93b2d4"
     },
     {
-      "bytes": 6627,
+      "bytes": 6732,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.json",
       "rows": null,
-      "sha256": "b34b8b377471eb59a91a2396439e3fd4ba815d60f9d25aa1753111ce9fa25f32"
+      "sha256": "08c6a165b56949c052b04182de21466c755aa8d8f182d4f6216eb833c933d753"
     },
     {
       "bytes": 10761,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_claim_support_matrix.md",
       "rows": null,
-      "sha256": "0e4f0e529a4acafe13d43104ef639323c47868999678c440af34a4bfe55319a8"
+      "sha256": "9c8dd4088ff9ee396d333e3b77b5d9c2c25474e317d297aa3abde58227d6e8e8"
     },
     {
-      "bytes": 4017,
+      "bytes": 4076,
       "columns": 7,
       "path": "outputs/phase2_v1/phase2_key_findings.csv",
       "rows": 7,
-      "sha256": "8333c78d2577cc5185acddb1c20f83b80e5266d4bd5b11d0402f14d8a3c01a34"
+      "sha256": "3fee0b70608ac4df0551c167e105f9be7eec37a79ff0a71bf901a9b039b4c342"
     },
     {
-      "bytes": 4985,
+      "bytes": 5044,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_key_findings.json",
       "rows": null,
-      "sha256": "c8895d05a40c58599fc110370bacf22d50eb8281dabed509e2338eccb8a3d1bf"
+      "sha256": "f10955d36de94952876fd503255251a7d41cbe820b713d204303b9ec12a43eba"
     },
     {
       "bytes": 7228,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_key_findings.md",
       "rows": null,
-      "sha256": "7b1a64bb9d4d04594d3a6e1b88526c0681017e7db6c3d43d552d5b16216b4194"
+      "sha256": "131707feb256674d1b94300de48e6687d28d0268587aff832e17bc7a86ddbbd1"
     },
     {
-      "bytes": 4952,
+      "bytes": 5025,
       "columns": 5,
       "path": "outputs/phase2_v1/phase2_requirement_audit.csv",
       "rows": 9,
-      "sha256": "09730bcc1df4b64fbebfd30be7dedd86f70e8902633354483207bcef5649bdcb"
+      "sha256": "2ce9dda650f3098f101df188891d79498bb07f1e604edced4cf46207c717c1fe"
     },
     {
       "bytes": 12244,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_requirement_audit.md",
       "rows": null,
-      "sha256": "f6e7c59359daa78a05715b5442cfe7e64bb5328d904c2941d34c2b766a03b1e7"
+      "sha256": "ef55bc653fe9f40fa1adbaac1c838f775f562b560615faf1932c1e8199bc4820"
     },
     {
       "bytes": 261757,

@@ -1771,6 +1771,34 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
         matched["near_threshold_25meV"] = []
     matched.to_parquet(gen_dir / "generated_candidates_matched_to_sourceaware.parquet", index=False)
     matched[["candidate_id", "pipeline_name", "formula", "candidate_reduced_formula", "chemical_system", "matched_to_sourceaware", "formula_overlap_with_sourceaware", "formula_sourceaware_row_count", "formula_support_status", "formula_sourceaware_mp_examples"]].to_csv(gen_dir / "generated_candidate_formula_support.csv", index=False)
+    match_quality_rows: list[dict[str, Any]] = []
+    if len(matched):
+        for pipeline, sub in matched.groupby("pipeline_name", sort=True):
+            n = int(len(sub))
+            exact = int(sub["matched_to_sourceaware"].astype(bool).sum())
+            formula_only = int((sub["formula_overlap_with_sourceaware"].astype(bool) & ~sub["matched_to_sourceaware"].astype(bool)).sum())
+            no_formula = int((~sub["formula_overlap_with_sourceaware"].astype(bool)).sum())
+            dup = int(sub["is_duplicate"].astype(bool).sum())
+            near = int(sub["near_threshold_25meV"].astype(bool).sum())
+            match_quality_rows.append({
+                "pipeline_name": pipeline,
+                "pipeline_type": str(sub["pipeline_type"].iloc[0]),
+                "candidate_n": n,
+                "exact_sourceaware_match_n": exact,
+                "formula_only_overlap_n": formula_only,
+                "no_formula_overlap_n": no_formula,
+                "duplicate_n": dup,
+                "near_threshold_25meV_n": near,
+                "exact_sourceaware_match_fraction": float(exact / n) if n else np.nan,
+                "formula_only_overlap_fraction": float(formula_only / n) if n else np.nan,
+                "unsupported_no_formula_overlap_fraction": float(no_formula / n) if n else np.nan,
+                "duplicate_fraction": float(dup / n) if n else np.nan,
+                "near_threshold_25meV_fraction": float(near / n) if n else np.nan,
+                "label_assignment_policy": "stable/unstable labels assigned only for exact SourceAware matches; formula-only overlaps remain support evidence only",
+                "guardrail": "Generated-candidate match quality is a public-source-aware audit and is not homogeneous DFT validation.",
+            })
+    match_quality = pd.DataFrame(match_quality_rows)
+    match_quality.to_csv(gen_dir / "generated_candidate_match_quality_by_pipeline.csv", index=False)
 
     # Build candidate × label-view rows vectorially.  An earlier row loop
     # filtered the full Phase 1 label table once per candidate and made fresh
@@ -1862,7 +1890,7 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
     topk.to_csv(gen_dir / "generated_topk_consequence.csv", index=False)
     formula_support = pd.read_csv(gen_dir / "generated_candidate_formula_support.csv") if (gen_dir / "generated_candidate_formula_support.csv").exists() else pd.DataFrame()
     provenance = write_generated_candidate_provenance(gen_dir)
-    return {"inventory": inventory, "search": search, "clean": cand_clean, "matched": matched, "formula_support": formula_support, "provenance": provenance, "labels": cand_labels, "summary": view_summary, "consequence": consequence, "topk": topk}
+    return {"inventory": inventory, "search": search, "clean": cand_clean, "matched": matched, "formula_support": formula_support, "match_quality": match_quality, "provenance": provenance, "labels": cand_labels, "summary": view_summary, "consequence": consequence, "topk": topk}
 
 
 def build_external_wbm_context_leaderboard(out_dir: Path) -> pd.DataFrame:
@@ -2294,13 +2322,15 @@ def write_key_findings(out_dir: Path, inventory: pd.DataFrame, evals: dict[str, 
     formula_support = pd.read_csv(formula_support_path) if formula_support_path.exists() else pd.DataFrame()
     formula_only = int((formula_support.get("formula_support_status", pd.Series(dtype=str)) == "formula_only_overlap_no_label_assignment").sum()) if not formula_support.empty else 0
     provenance = gen.get("provenance", pd.DataFrame()).copy()
+    match_quality = gen.get("match_quality", pd.DataFrame()).copy()
     private_prov = int(provenance.get("path_scope", pd.Series(dtype=str)).eq("private_local_not_committed").sum()) if not provenance.empty else 0
+    exact_match_pipelines = int((pd.to_numeric(match_quality.get("exact_sourceaware_match_n", pd.Series(dtype=float)), errors="coerce").fillna(0) > 0).sum()) if not match_quality.empty else 0
     audit_rows.append({
         "finding_id": "generated_candidate_support_is_mostly_unmatched",
         "finding": "Generated pools can be ingested, but unsupported/formula-only cases remain separated from exact label assignment.",
         "primary_number": completed_true,
         "secondary_number": formula_only,
-        "evidence": f"Completed true-generator/smoke pipelines: {completed_true}; generated/candidate formula-support rows: {len(formula_support)}; formula-only overlaps without label assignment: {formula_only}; private/local raw-generation artifacts audited by redacted hash/count only: {private_prov}.",
+        "evidence": f"Completed true-generator/smoke pipelines: {completed_true}; generated/candidate formula-support rows: {len(formula_support)}; formula-only overlaps without label assignment: {formula_only}; match-quality pipelines with exact SourceAware matches: {exact_match_pipelines}; private/local raw-generation artifacts audited by redacted hash/count only: {private_prov}.",
         "claim_scope": "supports_generated_candidate_pipeline_ingestion_and_guardrailed_consequence",
         "guardrail": "Formula-only overlap is support/coverage evidence only and is never converted to a stable/unstable SourceAware label.",
     })
@@ -2353,7 +2383,9 @@ def write_claim_support_matrix(out_dir: Path, inventory: pd.DataFrame, evals: di
     formula_support = gen.get("formula_support", pd.DataFrame()).copy()
     formula_only = int((formula_support.get("formula_support_status", pd.Series(dtype=str)) == "formula_only_overlap_no_label_assignment").sum()) if not formula_support.empty else 0
     provenance = gen.get("provenance", pd.DataFrame()).copy()
+    match_quality = gen.get("match_quality", pd.DataFrame()).copy()
     redacted_private = int(provenance.get("path_scope", pd.Series(dtype=str)).eq("private_local_not_committed").sum()) if not provenance.empty else 0
+    exact_match_n = int(pd.to_numeric(match_quality.get("exact_sourceaware_match_n", pd.Series(dtype=float)), errors="coerce").fillna(0).sum()) if not match_quality.empty else 0
 
     rows = [
         {
@@ -2405,8 +2437,8 @@ def write_claim_support_matrix(out_dir: Path, inventory: pd.DataFrame, evals: di
             "claim_id": "C6_candidate_consequence",
             "claim_text": "Screened/generated candidate conclusions can be reclassified as source-uncertain or unsupported under consensus/audit views.",
             "support_status": "partially_supported_guardrailed",
-            "primary_evidence": f"screening consequence pipelines={len(screeners)}; completed true-generator/smoke pipelines={true_completed}; formula-only support rows={formula_only}; consequence rows={len(consequence)}; redacted private/local raw-generation provenance rows={redacted_private}",
-            "primary_artifacts": "generative/generated_candidate_inventory.csv; generative/generated_pipeline_consequence_summary.csv; generative/generated_candidate_formula_support.csv; generative/generated_candidate_artifact_provenance.csv; figure_source_data/fig5_generated_consequence.csv",
+            "primary_evidence": f"screening consequence pipelines={len(screeners)}; completed true-generator/smoke pipelines={true_completed}; exact SourceAware candidate matches={exact_match_n}; formula-only support rows={formula_only}; consequence rows={len(consequence)}; redacted private/local raw-generation provenance rows={redacted_private}",
+            "primary_artifacts": "generative/generated_candidate_inventory.csv; generative/generated_pipeline_consequence_summary.csv; generative/generated_candidate_formula_support.csv; generative/generated_candidate_match_quality_by_pipeline.csv; generative/generated_candidate_artifact_provenance.csv; figure_source_data/fig5_generated_consequence.csv",
             "manuscript_safe_language": "State this as public-source-aware candidate consequence; distinguish matched screeners from unmatched/formula-only generated pools.",
             "overclaim_to_avoid": "Do not claim homogeneous DFT validation, exact label assignment for formula-only generated pools, or a measured real-world synthesis yield.",
         },
@@ -2461,6 +2493,7 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
     consequence = gen["consequence"]
     formula_support = gen.get("formula_support", pd.DataFrame())
     candidate_provenance = gen.get("provenance", pd.DataFrame())
+    match_quality = gen.get("match_quality", pd.DataFrame())
     figure_files_ok = all((out_dir / "figures" / f"fig{i}_{name}.{ext}").exists() for i, name in [
         (1, "leaderboard_bands"), (2, "uncertainty_vs_spread"), (3, "rank_inversions"), (4, "topk_heatmap"), (5, "generated_consequence"), (6, "workflow")
     ] for ext in ["svg", "pdf"])
@@ -2503,8 +2536,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "6_generative_candidate_consequence",
             "status": "partial_guardrailed_but_artifact_complete",
-            "evidence": f"candidate pipelines={len(gen_inv)}; completed true-generator pipelines={int(((gen_inv['pipeline_type']=='true_generator') & gen_inv['status'].str.startswith('complete')).sum())}; screening completed={int((gen_inv['status']=='complete_screening_consequence').sum())}; consequence rows={len(consequence)}; formula-support rows={len(formula_support)}; artifact-provenance rows={len(candidate_provenance)}",
-            "primary_artifacts": "outputs/phase2_v1/generative/generated_candidate_inventory.csv; generated_candidates_clean.parquet; generated_candidates_matched_to_sourceaware.parquet; generated_candidate_labels_by_view.parquet; generated_stable_yield_by_model_label_view.csv; generated_candidate_formula_support.csv; generated_pipeline_consequence_summary.csv; generated_candidate_artifact_provenance.csv",
+            "evidence": f"candidate pipelines={len(gen_inv)}; completed true-generator pipelines={int(((gen_inv['pipeline_type']=='true_generator') & gen_inv['status'].str.startswith('complete')).sum())}; screening completed={int((gen_inv['status']=='complete_screening_consequence').sum())}; consequence rows={len(consequence)}; formula-support rows={len(formula_support)}; match-quality rows={len(match_quality)}; artifact-provenance rows={len(candidate_provenance)}",
+            "primary_artifacts": "outputs/phase2_v1/generative/generated_candidate_inventory.csv; generated_candidates_clean.parquet; generated_candidates_matched_to_sourceaware.parquet; generated_candidate_labels_by_view.parquet; generated_stable_yield_by_model_label_view.csv; generated_candidate_formula_support.csv; generated_candidate_match_quality_by_pipeline.csv; generated_pipeline_consequence_summary.csv; generated_candidate_artifact_provenance.csv",
             "guardrail": "Generated pools without exact SourceAware structure matches remain unmatched/unsupported; formula-only overlap is not label assignment; no homogeneous DFT validation is claimed.",
         },
         {
@@ -2566,7 +2599,7 @@ pytest -q
 - `denominators/`: D5 full-complete, family-complete, pairwise-complete and per-model max-coverage denominators.
 - `model_metrics/`: model × label-view metrics, top-K tables, bootstrap intervals, uncertainty/spread ratios and rank correlations.
 - `rank_inversions/`: aggregate, pairwise-complete, family, budget and real-model rank-change audits.
-- `generative/`: public-source-aware screened/generated candidate consequence, with unmatched/formula-only cases and redacted private/local raw-generation provenance kept separate.
+- `generative/`: public-source-aware screened/generated candidate consequence, with exact-match/formula-only/unsupported match-quality audits and redacted private/local raw-generation provenance kept separate.
 - `leaderboard/`: SourceAware leaderboard alpha, one model card per inventory row, and a separate WBM-native context leaderboard for unmapped external scores.
 - `figure_source_data/` and `figures/`: source tables plus SVG/PDF artifacts for Figures 1–6.
 
@@ -2682,16 +2715,19 @@ def write_acceptance_check(phase1: Path = PHASE1, out_dir: Path = PHASE2) -> pd.
     gen_path = out_dir / "generative" / "generated_candidate_inventory.csv"
     consequence_path = out_dir / "generative" / "generated_pipeline_consequence_summary.csv"
     provenance_path = out_dir / "generative" / "generated_candidate_artifact_provenance.csv"
+    match_quality_path = out_dir / "generative" / "generated_candidate_match_quality_by_pipeline.csv"
     gen_inv = pd.read_csv(gen_path) if gen_path.exists() else pd.DataFrame()
     consequence = pd.read_csv(consequence_path) if consequence_path.exists() else pd.DataFrame()
     provenance = pd.read_csv(provenance_path) if provenance_path.exists() else pd.DataFrame()
+    match_quality = pd.read_csv(match_quality_path) if match_quality_path.exists() else pd.DataFrame()
     screeners = consequence[consequence.get("pipeline_type", pd.Series(dtype=str)).eq("screening_pipeline_not_true_generator")] if not consequence.empty else pd.DataFrame()
     true_completed = int(((gen_inv.get("pipeline_type", pd.Series(dtype=str)) == "true_generator") & gen_inv.get("status", pd.Series(dtype=str)).astype(str).str.startswith("complete")).sum()) if not gen_inv.empty else 0
     provenance_ok = (not provenance.empty) and {"path_scope", "label_assignment_status", "sha256"}.issubset(provenance.columns)
+    match_quality_ok = (not match_quality.empty) and {"exact_sourceaware_match_n", "formula_only_overlap_n", "no_formula_overlap_n", "label_assignment_policy"}.issubset(match_quality.columns)
     add(
         "generative_candidate_consequence",
-        "guarded_partial" if len(screeners) >= 3 and true_completed >= 1 and provenance_ok else "fail",
-        f"inventory_rows={len(gen_inv)}; screening_consequence_pipelines={len(screeners)}; completed_true_generator_pipelines={true_completed}; consequence_rows={len(consequence)}; artifact_provenance_rows={len(provenance)}; provenance_ok={provenance_ok}",
+        "guarded_partial" if len(screeners) >= 3 and true_completed >= 1 and provenance_ok and match_quality_ok else "fail",
+        f"inventory_rows={len(gen_inv)}; screening_consequence_pipelines={len(screeners)}; completed_true_generator_pipelines={true_completed}; consequence_rows={len(consequence)}; artifact_provenance_rows={len(provenance)}; match_quality_rows={len(match_quality)}; provenance_ok={provenance_ok}; match_quality_ok={match_quality_ok}",
         "Matched screeners are public-source-aware candidate consequences; unmatched generated pools are not assigned stable/unstable labels; no homogeneous DFT validation is claimed.",
     )
 
