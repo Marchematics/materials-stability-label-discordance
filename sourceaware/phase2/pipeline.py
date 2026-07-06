@@ -120,6 +120,33 @@ GENERATOR_SEARCH_TARGETS = {
     "CDVAE": "available as FlowMM submodule upstream but not installed locally",
     "CrystalFlow": "paper/repo search target; no local candidate artifact found",
 }
+GENERATOR_SOURCE_PROVENANCE = {
+    "MatterGen": {
+        "public_source_url": "https://github.com/microsoft/mattergen",
+        "candidate_artifact_status": "local_public_safe_formula_rank_table_available_for_pilot_5k",
+        "exact_sourceaware_mapping_status": "not_available_without_public_structure_matching_or_source_ids",
+    },
+    "FlowMM": {
+        "public_source_url": "https://github.com/facebookresearch/flowmm",
+        "candidate_artifact_status": "no_local_public_safe_candidate_table_found",
+        "exact_sourceaware_mapping_status": "not_available",
+    },
+    "DiffCSP": {
+        "public_source_url": "https://github.com/jiaor17/DiffCSP",
+        "candidate_artifact_status": "no_local_public_safe_candidate_table_found",
+        "exact_sourceaware_mapping_status": "not_available",
+    },
+    "CDVAE": {
+        "public_source_url": "https://github.com/txie-93/cdvae",
+        "candidate_artifact_status": "no_local_public_safe_candidate_table_found",
+        "exact_sourceaware_mapping_status": "not_available",
+    },
+    "CrystalFlow": {
+        "public_source_url": "public_source_not_verified_in_phase2_v1",
+        "candidate_artifact_status": "no_local_public_safe_candidate_table_found",
+        "exact_sourceaware_mapping_status": "not_available",
+    },
+}
 GENERATOR_TARGETS = ["MatterGen", "FlowMM", "DiffCSP", "CDVAE", "CrystalFlow"]
 
 
@@ -1165,7 +1192,18 @@ def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
         except Exception:
             installed = False
         status = "not_run_missing_official_checkpoint_or_local_generation_artifact"
-        search_rows.append({"pipeline_name": gen, "pipeline_type": "true_generator", "local_package_detected": installed, "search_status": status, "evidence": note})
+        prov = GENERATOR_SOURCE_PROVENANCE.get(gen, {})
+        search_rows.append({
+            "pipeline_name": gen,
+            "pipeline_type": "true_generator",
+            "local_package_detected": installed,
+            "search_status": status,
+            "evidence": note,
+            "public_source_url": prov.get("public_source_url", ""),
+            "candidate_artifact_status": prov.get("candidate_artifact_status", ""),
+            "exact_sourceaware_mapping_status": prov.get("exact_sourceaware_mapping_status", ""),
+            "guardrail": "Source provenance is not label assignment; generated candidates require exact SourceAware matching or remain unsupported.",
+        })
         inventory_rows.append({"pipeline_name": gen, "pipeline_type": "true_generator", "status": status, "candidate_n": 0, "matched_n": 0, "claim_scope": "attempt_record_only_not_evidence"})
 
     candidate_frames: list[pd.DataFrame] = []

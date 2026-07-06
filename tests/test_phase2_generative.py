@@ -65,3 +65,7 @@ def test_phase2_generative_outputs_are_honest_about_scope():
     assert required.issubset(fig5.columns)
     search = pd.read_csv(OUT / "generative" / "candidate_source_search_audit.csv")
     assert {"MatterGen", "FlowMM", "DiffCSP", "CDVAE", "CrystalFlow"}.issubset(set(search.pipeline_name))
+    assert {"public_source_url", "candidate_artifact_status", "exact_sourceaware_mapping_status", "guardrail"}.issubset(search.columns)
+    named = search[search.pipeline_name.isin(["MatterGen", "FlowMM", "DiffCSP", "CDVAE", "CrystalFlow"])]
+    assert named.public_source_url.notna().all()
+    assert named.guardrail.str.contains("not label assignment", regex=False).all()
