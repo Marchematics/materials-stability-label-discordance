@@ -608,6 +608,93 @@ def compute_metrics_for(scores: pd.DataFrame, labels: pd.DataFrame, denominator_
     return metrics, topk, rankings
 
 
+def metric_values_from_arrays(y: np.ndarray, score: np.ndarray) -> dict[str, float]:
+    y = np.asarray(y).astype(int)
+    score = np.asarray(score).astype(float)
+    if len(y) == 0:
+        return {m: np.nan for m in PRIMARY_METRICS}
+    n_pos = int(y.sum())
+    pred = np.zeros(len(y), dtype=bool)
+    if n_pos > 0:
+        order = np.argsort(-score, kind="mergesort")[:n_pos]
+        pred[order] = True
+    out = {
+        "f1": float(f1_score(y, pred, zero_division=0)),
+        "precision": float(precision_score(y, pred, zero_division=0)),
+        "recall": float(recall_score(y, pred, zero_division=0)),
+        "balanced_accuracy": float(balanced_accuracy_score(y, pred)) if len(np.unique(y)) > 1 else np.nan,
+        "auroc": safe_metric(roc_auc_score, y, score),
+        "auprc": safe_metric(average_precision_score, y, score),
+    }
+    return out
+
+
+def bootstrap_metrics_resampled(scores: pd.DataFrame, labels: pd.DataFrame, denominator_ids: set[str], denominator_name: str, n_boot: int = 40) -> pd.DataFrame:
+    """Deterministic row-resampling bootstrap CIs for the primary model table.
+
+    This complements the lightweight binomial approximation and provides actual
+    row-resampled CIs on D5_family_complete without using external unmapped WBM
+    rows. Source-union remains not evaluable when Phase 1 marked it incomplete.
+    """
+    rows: list[dict[str, Any]] = []
+    score_sub = scores[scores["row_id"].isin(denominator_ids)].copy()
+    for model, sf in score_sub.groupby("model_name", sort=True):
+        sf = sf[["row_id", "score_standardized"]].dropna()
+        for view in LABEL_VIEWS:
+            lf = label_frame(labels, view)
+            merged = sf.merge(lf, on="row_id", how="inner")
+            status = "ok"
+            if view == "source_union" and merged.empty:
+                status = "not_evaluable_full_source_union_incomplete"
+            if merged.empty or merged["label"].nunique(dropna=True) < 2:
+                for metric in PRIMARY_METRICS:
+                    rows.append({
+                        "denominator": denominator_name,
+                        "model_name": model,
+                        "label_view": view,
+                        "metric": metric,
+                        "value": np.nan,
+                        "ci_low_95": np.nan,
+                        "ci_high_95": np.nan,
+                        "bootstrap_replicates": n_boot,
+                        "bootstrap_method": "deterministic_row_resampling_phase2_v1",
+                        "metric_status": status if merged.empty else "not_evaluable_single_class",
+                    })
+                continue
+            y = merged["label"].astype(bool).astype(int).to_numpy()
+            score = merged["score_standardized"].astype(float).to_numpy()
+            point = metric_values_from_arrays(y, score)
+            seed = int(sha256_text(f"phase2_bootstrap|{denominator_name}|{model}|{view}")[:12], 16) % (2**32 - 1)
+            rng = np.random.default_rng(seed)
+            reps = {metric: [] for metric in PRIMARY_METRICS}
+            n = len(y)
+            for _ in range(n_boot):
+                idx = rng.integers(0, n, size=n)
+                vals = metric_values_from_arrays(y[idx], score[idx])
+                for metric in PRIMARY_METRICS:
+                    reps[metric].append(vals[metric])
+            for metric in PRIMARY_METRICS:
+                arr = np.asarray(reps[metric], dtype=float)
+                arr = arr[~np.isnan(arr)]
+                if len(arr):
+                    lo, hi = np.quantile(arr, [0.025, 0.975])
+                else:
+                    lo = hi = np.nan
+                rows.append({
+                    "denominator": denominator_name,
+                    "model_name": model,
+                    "label_view": view,
+                    "metric": metric,
+                    "value": point.get(metric, np.nan),
+                    "ci_low_95": max(0.0, min(1.0, float(lo))) if pd.notna(lo) else np.nan,
+                    "ci_high_95": max(0.0, min(1.0, float(hi))) if pd.notna(hi) else np.nan,
+                    "bootstrap_replicates": n_boot,
+                    "bootstrap_method": "deterministic_row_resampling_phase2_v1",
+                    "metric_status": status,
+                })
+    return pd.DataFrame(rows)
+
+
 def bootstrap_metrics(metrics: pd.DataFrame) -> pd.DataFrame:
     # Lightweight deterministic CIs around already-computed point metrics. Full cluster bootstrap can be enabled later.
     rows = []
@@ -842,13 +929,15 @@ def build_model_evaluation(phase1: Path, out_dir: Path, scores: pd.DataFrame, de
     mdir = ensure_dir(out_dir / "model_metrics")
     metrics.to_csv(mdir / "metrics_by_model_label_view.csv", index=False)
     bootstrap_metrics(metrics).to_csv(mdir / "metrics_by_model_label_view_bootstrap.csv", index=False)
+    bootstrap_resampled = bootstrap_metrics_resampled(scores, labels, ids["D5_family_complete"], "D5_family_complete")
+    bootstrap_resampled.to_csv(mdir / "metrics_by_model_label_view_bootstrap_resampled.csv", index=False)
     topk.to_csv(mdir / "topk_by_model_label_view.csv", index=False)
     rankings.to_csv(mdir / "model_rankings_by_label_view.csv", index=False)
     # compatibility copy requested in plan
     rank_inversions(rankings, inventory, out_dir)["all"].to_csv(mdir / "rank_inversions_by_metric.csv", index=False)
     band, ratio = uncertainty_tables(metrics, topk, out_dir)
     pairwise_margins = build_pairwise_complete_margins(phase1, out_dir, scores, denominators, inventory)
-    return {"metrics": metrics, "topk": topk, "rankings": rankings, "band": band, "ratio": ratio, "pairwise_margins": pairwise_margins}
+    return {"metrics": metrics, "topk": topk, "rankings": rankings, "band": band, "ratio": ratio, "pairwise_margins": pairwise_margins, "bootstrap_resampled": bootstrap_resampled}
 
 
 def build_generative(phase1: Path, out_dir: Path) -> dict[str, pd.DataFrame]:
@@ -1426,8 +1515,8 @@ def write_requirement_audit(out_dir: Path, inventory: pd.DataFrame, denominators
         {
             "requirement_id": "3_model_evaluation_label_views",
             "status": "complete_for_sourceaware_scored_models",
-            "evidence": f"metrics rows={len(metrics)}; topK rows={len(topk)}; label views={','.join(sorted(metrics.label_view.unique()))}; K={','.join(map(str, sorted(topk.K.unique())))}",
-            "primary_artifacts": "outputs/phase2_v1/model_metrics/metrics_by_model_label_view.csv; topk_by_model_label_view.csv; metrics_by_model_label_view_bootstrap.csv",
+            "evidence": f"metrics rows={len(metrics)}; topK rows={len(topk)}; row-resampled bootstrap rows={len(evals.get('bootstrap_resampled', pd.DataFrame()))}; label views={','.join(sorted(metrics.label_view.unique()))}; K={','.join(map(str, sorted(topk.K.unique())))}",
+            "primary_artifacts": "outputs/phase2_v1/model_metrics/metrics_by_model_label_view.csv; topk_by_model_label_view.csv; metrics_by_model_label_view_bootstrap.csv; metrics_by_model_label_view_bootstrap_resampled.csv",
             "guardrail": "source_union rows are explicit not-evaluable rows when Phase 1 full-source-union reconstruction is incomplete.",
         },
         {

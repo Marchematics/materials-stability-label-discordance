@@ -1,5 +1,5 @@
 {
-  "file_count": 91,
+  "file_count": 92,
   "files": [
     {
       "bytes": 4553134,
@@ -97,84 +97,84 @@
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig1_leaderboard_bands.pdf",
       "rows": null,
-      "sha256": "12e72a8c752fd9085e2d2343ff269fa570fd6ad55096d28e5dff4b9ac23d821f"
+      "sha256": "820883feec697c77b04ec39f6049f7371eb9d723a324ba141ec51ac6d8a0c82e"
     },
     {
-      "bytes": 142158,
+      "bytes": 141116,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig1_leaderboard_bands.svg",
       "rows": null,
-      "sha256": "589574d196e4c7889ba2dd9e59760bcb46c29c1c605e1912fec30f1a16efb252"
+      "sha256": "e95a9834ffd89c97202c70c782b5d3768c35dbdb8015833a55f17ec7d7ca8c2a"
     },
     {
       "bytes": 17436,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig2_uncertainty_vs_spread.pdf",
       "rows": null,
-      "sha256": "4da2867173dc2112cf9e47ea032f8a9b8c274422ce8ddf96d5c45e38057e4b5f"
+      "sha256": "291ecee03a57e84e8fb2a8739bea6383e608a267c084e64200c6c4fe581f4ebb"
     },
     {
-      "bytes": 178963,
+      "bytes": 178068,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig2_uncertainty_vs_spread.svg",
       "rows": null,
-      "sha256": "e4577cf3520a855c0e44c422f572c2f755745147e1b848055eaad9accffd72d4"
+      "sha256": "f1ff1d74d1577bb66caa29ee59c6aa648d39458fe6452b6b921b484ea47fe911"
     },
     {
       "bytes": 15198,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig3_rank_inversions.pdf",
       "rows": null,
-      "sha256": "20ed60a6cb121dc06072287aab6500fb665c1d99210c63e9ac1267b5ebc52891"
+      "sha256": "767afb4b79090fef225700e5f9c7a1ff28358c3ece3321f5df2d18cf137ee9e7"
     },
     {
-      "bytes": 70745,
+      "bytes": 69946,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig3_rank_inversions.svg",
       "rows": null,
-      "sha256": "c540cc8592d997e1d107d03de8e8c9642e8d6744dcb092501b0475b0f98055d1"
+      "sha256": "9e4f72c0d2d09137c9ddd06da8f85f186cf3e60812e110899d20f0a858d1451a"
     },
     {
       "bytes": 21938,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig4_topk_heatmap.pdf",
       "rows": null,
-      "sha256": "9d0de44629e58c977657e9834854d184c6e490c6839e8e303e5b624ce60479a1"
+      "sha256": "3ccdcb48c131e4b5f9973d280a4d09dbe191805bc9ac819f33df71ebc4ef2f10"
     },
     {
-      "bytes": 89672,
+      "bytes": 88738,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig4_topk_heatmap.svg",
       "rows": null,
-      "sha256": "95a2da7c4661281859ef47670675251a5acd3ae4c226853b4d58e65ff3c73229"
+      "sha256": "6fa6e87a03409eeac25b6c952e2faa9b6572f13308a0940827c7dc8227abc927"
     },
     {
       "bytes": 16110,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig5_generated_consequence.pdf",
       "rows": null,
-      "sha256": "af0e213d69bbfa466444753588647e97dfae34a76c97ba14f9ce8a6a7b985a2c"
+      "sha256": "213328966a5c429af77a1d850381262545bdc9aeb0ef0b06a93c67961688c062"
     },
     {
-      "bytes": 52357,
+      "bytes": 51529,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig5_generated_consequence.svg",
       "rows": null,
-      "sha256": "0260eed559c57c3135a2120781f929ed17743e8541300353590ac02e03f5cd4c"
+      "sha256": "ae6858fbaadb297bd6f7e69124c7563ae313c64a787191754d52450d913ab108"
     },
     {
       "bytes": 17046,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig6_workflow.pdf",
       "rows": null,
-      "sha256": "9033e37a62b34498ad6ba1eddbe3daca46a23c7cc502481f72a4a39a1ae13ce1"
+      "sha256": "325430e7e7514eec7311427e13f643bc088eda187b7e0045647eb1e92f3dd949"
     },
     {
-      "bytes": 68511,
+      "bytes": 67671,
       "columns": null,
       "path": "outputs/phase2_v1/figures/fig6_workflow.svg",
       "rows": null,
-      "sha256": "0e9c8fbe22c4a42788633739545ab80b353c9f1196f029a465eb1470d872d557"
+      "sha256": "75194c5ab908807c946650542808ae8b7196c2fc4f3b8f766c22e0d486999916"
     },
     {
       "bytes": 1767,
@@ -450,6 +450,13 @@
       "sha256": "8ebea2a22713571f3cee9aa853b17e2eac462970ab37c57474cf88955f1b1783"
     },
     {
+      "bytes": 92290,
+      "columns": 10,
+      "path": "outputs/phase2_v1/model_metrics/metrics_by_model_label_view_bootstrap_resampled.csv",
+      "rows": 576,
+      "sha256": "d2e28cbeafc88b1299c3180fb3531b31cc7de4ffaf5664ecd792bc667a78c41f"
+    },
+    {
       "bytes": 59189,
       "columns": 10,
       "path": "outputs/phase2_v1/model_metrics/model_margin_to_label_uncertainty_ratio.csv",
@@ -569,18 +576,18 @@
       "sha256": "9501b326364cdaa0849861510c6da9c35d293cb8d519856de24d71219b80a94b"
     },
     {
-      "bytes": 4176,
+      "bytes": 4263,
       "columns": 5,
       "path": "outputs/phase2_v1/phase2_requirement_audit.csv",
       "rows": 9,
-      "sha256": "47714ce71b9fff1124218d879a2feba226b6d3ff48fce81732d8921912ee9f0d"
+      "sha256": "a01595c1ead5dfeda1e0430f8f431c35c93ae2db3280ba276f5da3572982b57c"
     },
     {
-      "bytes": 9043,
+      "bytes": 9065,
       "columns": null,
       "path": "outputs/phase2_v1/phase2_requirement_audit.md",
       "rows": null,
-      "sha256": "466d7d53861e44301f0f7904b8e3a7b095a4905264d42c43d9c968f5f39ba182"
+      "sha256": "f4114dbc8d190cfb2fb6c751ecc4da14fa72ec4b2cd261b12bb1aebb1b194791"
     },
     {
       "bytes": 261757,

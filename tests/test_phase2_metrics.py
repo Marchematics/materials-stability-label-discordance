@@ -29,3 +29,19 @@ def test_phase2_topk_and_uncertainty_ratio():
     ratio = pd.read_csv(OUT / "model_metrics" / "model_margin_to_label_uncertainty_ratio.csv")
     assert "uncertainty_dominance_ratio" in ratio.columns
     assert (pd.to_numeric(ratio.uncertainty_dominance_ratio, errors="coerce") > 1).any()
+
+
+def test_phase2_resampled_bootstrap_intervals_exist():
+    boot = pd.read_csv(OUT / "model_metrics" / "metrics_by_model_label_view_bootstrap_resampled.csv")
+    assert len(boot) > 0
+    assert boot.bootstrap_method.eq("deterministic_row_resampling_phase2_v1").all()
+    assert boot.bootstrap_replicates.ge(40).all()
+    assert {"f1", "precision", "recall", "balanced_accuracy", "auroc", "auprc"}.issubset(set(boot.metric))
+    assert {"mp_native", "alexmp20_native", "alex_pbe_native", "common_pool", "source_union", "consensus", "uncertain", "audit_view"}.issubset(set(boot.label_view))
+    ok = boot[boot.metric_status.eq("ok")].copy()
+    for col in ["value", "ci_low_95", "ci_high_95"]:
+        vals = pd.to_numeric(ok[col], errors="coerce").dropna()
+        assert ((0 <= vals) & (vals <= 1)).all()
+    assert (pd.to_numeric(ok.ci_low_95, errors="coerce") <= pd.to_numeric(ok.ci_high_95, errors="coerce")).all()
+    source_union = boot[boot.label_view.eq("source_union")]
+    assert source_union.metric_status.eq("not_evaluable_full_source_union_incomplete").all()
