@@ -5,10 +5,10 @@
   "files": [
     {
       "path": "outputs/dd_submission_v2/figure_qa.json",
-      "bytes": 2665,
+      "bytes": 2187,
       "rows": 2,
       "columns": 1,
-      "sha256": "52f19ca8e0f30a8ff7815858900783d821700f8f7f8a2cbc6e5f90741717d449",
+      "sha256": "177e19116b001fecb472af94b35e4577e04586a1964644498f9054244017c80d",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -120,7 +120,7 @@
       "bytes": 46593,
       "rows": null,
       "columns": null,
-      "sha256": "7388d31b743ee95032ed24b421dd21dd60c028329de070bbeb29985dd1ab6c0e",
+      "sha256": "a56b8b539c9270af803644f9f3078a18b685ef4089d6f6f6ef423e18dad52a8d",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -128,7 +128,7 @@
       "bytes": 103038,
       "rows": null,
       "columns": null,
-      "sha256": "383b64794507252671e1347d93d01d73d0fe8e05ee9e2e82ab87e88cf9a3ed57",
+      "sha256": "44f0022765f12b52ac75c32277f38b9b09f93d5e0430fd485e56f4c41a038010",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -144,7 +144,7 @@
       "bytes": 29418,
       "rows": null,
       "columns": null,
-      "sha256": "352b7320c5fd243f3d1b6c730b7a25b5b709898f565f2448aad0393880f52035",
+      "sha256": "47d3b370c463055c41c28cac09ac0e82ddda39f990f04f6191f4f00a55ebc3ef",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -152,7 +152,7 @@
       "bytes": 42054,
       "rows": null,
       "columns": null,
-      "sha256": "cc244b066e8645084bcd010796268044dc8616ebf1527f56e2421ad58e0741e0",
+      "sha256": "95b326f5b6e5d03249d075b3b6ca93707b7373d8887785c3c13039825130b83c",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -168,7 +168,7 @@
       "bytes": 21162,
       "rows": null,
       "columns": null,
-      "sha256": "1d190dd1fdbfa7b20e2e835be15efa0be2ac10923f3d9ef66d96181c0166b730",
+      "sha256": "d2ecd47cc623f0d0623b583cdaf77e79bf52cfe455cc7d4301673ef9b74da76a",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -176,7 +176,7 @@
       "bytes": 27319,
       "rows": null,
       "columns": null,
-      "sha256": "fb89ddab45880679cee1e9510c4c7313b8c165411641c770d039ef05828ac014",
+      "sha256": "42cefe4bec97177cd1f6c8b848b38d0bcea879ec16ee382458a45c2536881b54",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -192,7 +192,7 @@
       "bytes": 26331,
       "rows": null,
       "columns": null,
-      "sha256": "5fbac675443fc7bf228cb553da0a94d5bd90be2691bc60fa2114db8f6b059ed6",
+      "sha256": "6b9ff5bb78afe23caf26a566d29ae47e7095bd7fea609c153ceac2933041efd8",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -200,7 +200,7 @@
       "bytes": 51557,
       "rows": null,
       "columns": null,
-      "sha256": "40a403aff9b66508f9ef004ca552a19eca57b6e4e6fcbc32719eadf987fa6806",
+      "sha256": "d7c963aafa3e0458fc88627ba5aeeb641a1ac1428a763717b344228964a394af",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -216,7 +216,7 @@
       "bytes": 20264,
       "rows": null,
       "columns": null,
-      "sha256": "1eb352692b7e5b9ffdbe58819c2dbe7afd3a743d036a9265e92535558c01928b",
+      "sha256": "dc5d6d629187295dffb5c6e964ae76da451c6f7f5a57df8b5c46d6f7e772f6db",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -224,7 +224,7 @@
       "bytes": 23919,
       "rows": null,
       "columns": null,
-      "sha256": "22d221f82440497f654083775d6ef7795dfd4a9b90583ae3be125b9b5b6d5b85",
+      "sha256": "c00ac9b36946eb710920330c544da8a89620f40c816d09acb7376f13fd4214e1",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -240,7 +240,7 @@
       "bytes": 21574,
       "rows": null,
       "columns": null,
-      "sha256": "d0539786bd54387cdab77c438c72b6e9873e1d3f63d63e1f75ccc3462e61defd",
+      "sha256": "b60f8938e1f7de33e8e4492a1d46a6c6b1aee892e807c1a69103c79084bd5555",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -248,7 +248,7 @@
       "bytes": 16917,
       "rows": null,
       "columns": null,
-      "sha256": "e8a83d9f269c924c50e9e9d1aca455235beea0dfc9ad912df9bc371c9690891f",
+      "sha256": "f6e7fdc20e601967165d82df0e6c27aa6eddf5a56113ae53ee8bbe36c37b937f",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {

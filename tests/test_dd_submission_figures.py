@@ -15,7 +15,7 @@ def test_dd_submission_figure_bundle_exists():
     for row in qa["figures"]:
         assert row["tiff_dpi"] == 600
         assert row["vector_pdf"] is True
-        for key in ["pdf", "svg", "tiff"]:
+        for key in ["pdf", "tiff"]:
             path = Path(row[key])
             assert path.exists()
             assert path.stat().st_size > 10_000

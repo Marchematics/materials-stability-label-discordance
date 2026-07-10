@@ -122,11 +122,9 @@ def export_figure(
     exact_canvas: bool = False,
 ) -> dict[str, object]:
     pdf = figure_dir / f"{stem}.pdf"
-    svg = figure_dir / f"{stem}.svg"
     tiff = figure_dir / f"{stem}.tiff"
     save_kwargs = {} if exact_canvas else {"bbox_inches": "tight", "pad_inches": 0.035}
     fig.savefig(pdf, **save_kwargs)
-    fig.savefig(svg, **save_kwargs)
     fig.savefig(tiff, dpi=600, pil_kwargs={"compression": "tiff_lzw"}, **save_kwargs)
     width, height = fig.get_size_inches()
     plt.close(fig)
@@ -135,7 +133,6 @@ def export_figure(
         "width_cm": width / CM,
         "height_cm": height / CM,
         "pdf": str(pdf.resolve().relative_to(REPO)),
-        "svg": str(svg.resolve().relative_to(REPO)),
         "tiff": str(tiff.resolve().relative_to(REPO)),
         "tiff_dpi": 600,
         "vector_pdf": True,
