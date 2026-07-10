@@ -50,8 +50,15 @@ def audit_text(path: Path, claims: dict[str, object]) -> list[str]:
             problems.append(f"forbidden unqualified claim matches: {pattern}")
     # Main narrative should not contain internal project-management terms.
     body = text.split("\\section*{Data availability}", 1)[0]
-    for token in ["Phase 1", "Phase 2", "branch", "workspace clean", "tests passed", "git diff"]:
-        if token.lower() in body.lower():
+    project_patterns = {
+        "Phase 1/2": r"\bPhase\s*~?\s*[12](?:\s*/\s*2)?\b",
+        "branch": r"\bbranch\b",
+        "workspace clean": r"\bworkspace\s+clean\b",
+        "tests passed": r"\btests?\s+passed\b",
+        "git diff": r"\bgit\s+diff\b",
+    }
+    for token, pattern in project_patterns.items():
+        if re.search(pattern, body, flags=re.IGNORECASE):
             problems.append(f"internal project-management term in scientific narrative: {token}")
     # Section order required by DD lock.
     order = [
