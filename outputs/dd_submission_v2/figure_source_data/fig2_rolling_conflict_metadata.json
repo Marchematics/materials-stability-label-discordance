@@ -1,0 +1,13 @@
+{
+  "reference_axis": "MP-native e_above_hull",
+  "window_definition": "closed interval [max(0, centre-20 meV), centre+20 meV]",
+  "window_width_eV": 0.04,
+  "step_eV": 0.0025,
+  "x_max_eV": 0.2,
+  "minimum_n": 1000,
+  "interval_method": "Wilson binomial 95% confidence interval",
+  "bootstrap_seed": null,
+  "bootstrap_iterations": 0,
+  "bootstrap_note": "not applicable because binomial intervals, not bootstrap intervals, are used",
+  "under_supported_windows": "masked"
+}

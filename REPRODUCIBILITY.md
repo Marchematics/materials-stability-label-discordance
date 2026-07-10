@@ -1,5 +1,41 @@
 # Reproducibility guide
 
+## Digital Discovery submission lock
+
+The `v2.0.0-dd-submission` release uses only the frozen
+`outputs/phase1_v2/` and `outputs/phase2_v1/` evidence trees. Outputs under
+`outputs/nmi_upgrade/` and `outputs/phase3_referee_core_v*/` are development
+scaffolds and are not scientific evidence for the Digital Discovery article.
+
+Create the pinned environment with either:
+
+```bash
+conda env create -f environment.yml
+conda activate sourceaware-dd-2.0.0
+```
+
+or:
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements-lock.txt
+python -m pip install --no-deps -e .
+```
+
+Regenerate cards, figures, claims, manifests and tests with:
+
+```bash
+bash run_all.sh
+```
+
+Every quantitative panel has a source CSV (and, for all-rank discovery
+curves, parquet) under `outputs/dd_submission_v2/figure_source_data/`.
+Submission figures are vector PDF plus 600-dpi TIFF. The rolling-window
+metadata records the interval method, support threshold, seed and iterations.
+The clean-environment log is archived at
+`outputs/dd_submission_v2/logs/clean_environment_regeneration.log`.
+
 This repository contains public-safe scripts, derived tables, figure inputs and
 SHA256 manifests for the source-native stability-label audit. Raw third-party
 database exports are not redistributed here.

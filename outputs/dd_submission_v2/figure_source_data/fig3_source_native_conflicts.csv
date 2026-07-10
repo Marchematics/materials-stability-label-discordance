@@ -1,0 +1,5 @@
+source_pair,denominator,denominator_n,conflict_n,conflict_rate
+MP vs official Alexandria-PBE,D2,36802,5666,0.1539590239660888
+alex-mp-20 vs official Alexandria-PBE,D2,36802,3862,0.10493994891581979
+MP vs alex-mp-20,D2,36802,4244,0.1153198195750231
+MP vs alex-mp-20 (strict full),D1,43139,5060,0.1172952548737801

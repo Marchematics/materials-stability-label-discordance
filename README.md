@@ -1,5 +1,20 @@
 # Source-aware convex-hull benchmark framework
 
+> **Digital Discovery submission release (`v2.0.0-dd-submission`).** The
+> submitted article uses the frozen source-aware benchmark layer and
+> model-facing evaluation layer only. It is not a homogeneous-DFT referee
+> benchmark and does not validate generated materials. Consensus, common-pool,
+> source-union and audit labels are benchmark diagnostics, not physical truth.
+
+The Digital Discovery evidence chain is restricted to
+`outputs/phase1_v2/` and `outputs/phase2_v1/`. NMI-upgrade/referee scaffolds are
+development artifacts and do not enter the submitted scientific results. The
+primary exact model comparison contains ALIGNN-FF, CHGNet, M3GNet and MACE-MP
+on 36,801 common rows; all other entries are external WBM context, artifact
+inventory, baselines or oracle diagnostics. Run `bash run_all.sh` to regenerate
+the claim ledger, figure source data, vector PDF/600-dpi TIFF figures, manifests
+and tests under `outputs/dd_submission_v2/`.
+
 **Phase 1 release: reusable source-aware benchmark layer, not a full homogeneous-DFT referee benchmark.**
 
 **Phase 2 working layer:** `outputs/phase2_v1/` extends the frozen Phase 1
@@ -10,6 +25,189 @@ leaderboard alpha, figure source data and an explicit candidate-consequence
 scope audit. Phase 2 remains a public-source-aware benchmark evaluation layer;
 it is **not** homogeneous DFT validation and does **not** assert physical-truth
 stability labels.
+
+
+**SA-Discovery / Referee-Core scaffold:** `outputs/phase3_referee_core_v0/`
+adds a submission evaluator, leaderboard-alpha builder, static site scaffold,
+model-card template, Referee-Core-5K selection, DFT job manifests and generated-
+candidate referee-planning audits. These artifacts prepare an NMI-scale
+homogeneous-DFT referee extension but deliberately create **no** DFT energies,
+referee hulls or referee truth labels.
+
+Quick public-source-aware submission commands:
+
+```bash
+python -m sourceaware.cli evaluate --submission templates/SA_DISCOVERY_SUBMISSION_TEMPLATE.csv --task sa-discovery --out /tmp/sa_eval
+python -m sourceaware.cli card --submission templates/SA_DISCOVERY_SUBMISSION_TEMPLATE.csv --out /tmp/sa_card
+python -m sourceaware.cli leaderboard add --submission templates/SA_DISCOVERY_SUBMISSION_TEMPLATE.csv --model-card examples/model_card.yaml --out /tmp/leaderboard_add
+python -m sourceaware.cli leaderboard build --out /tmp/leaderboard_site
+```
+
+The frozen export form is available under `outputs/leaderboard_alpha/` as
+`leaderboard.csv`, `leaderboard.json`, `leaderboard.md`, `model_cards/` and
+`submission_cards/`.
+
+
+
+Explicit target DFT outputs and homogeneous phase-pool energies can be combined into derived referee hull labels with:
+
+```bash
+python -m sourceaware.cli sa-referee-hull-labels \
+  --target-outputs path/to/referee_target_outputs.csv \
+  --phase-pool path/to/referee_phase_pool.csv \
+  --out outputs/phase3_referee_core_v1/referee_hull_labels
+```
+
+This command derives labels only from explicit DFT target and phase-pool energies; it never uses public SourceAware labels as referee truth.
+
+
+Derived referee hull-label tables from `sa-referee-hull-labels` can also be passed to the SA-Discovery evaluator as `--referee-labels`; referee metrics are written separately from public SourceAware metrics.
+
+
+When `--referee-labels` is supplied to `sourceaware evaluate`, the evaluator also writes referee metrics/top-K tables and includes referee fields in the submitted model-card/leaderboard row while keeping public SourceAware metrics unchanged.
+
+Explicit homogeneous phase-pool energies can be converted into guarded referee phase-diagram diagnostics with:
+
+```bash
+python -m sourceaware.cli sa-referee-phase-diagrams \
+  --phase-pool path/to/referee_phase_pool.csv \
+  --out outputs/phase3_referee_core_v1/referee_phase_diagrams
+```
+
+Without an explicit phase-pool file this writes a blocked status. Constructed hull distances remain workflow diagnostics until coverage/provenance audits pass.
+
+Referee DFT ingestion readiness is exposed as:
+
+```bash
+python -m sourceaware.cli sa-referee-ingest --out outputs/phase3_referee_core_v1
+```
+
+Without explicit DFT output files this writes a blocked status only and creates no referee labels.
+
+Conflict-decomposition readiness can be regenerated with:
+
+```bash
+python -m sourceaware.cli sa-conflict-decomposition --out outputs/nmi_upgrade/conflict_decomposition
+```
+
+This decomposes source-native conflicts through matched common-pool labels and marks full-source-union/referee stages as pending when labels are unavailable.
+
+Generated-candidate referee-validation readiness can be regenerated with:
+
+```bash
+python -m sourceaware.cli sa-generation-validation --out outputs/nmi_upgrade/generation_validation
+```
+
+This creates future DFT job manifests and null referee-label placeholders only; it does not validate generated materials.
+
+
+Missing NMI target-model scores can be planned as exact SourceAware row-id inference chunks with:
+
+```bash
+python -m sourceaware.cli sa-model-inference-plan \
+  --out outputs/nmi_upgrade/model_inference_plan \
+  --gpu-count 2
+```
+
+This creates job manifests and an expected score schema only; it does not run inference or create Gate-1 model evidence.
+
+NMI model-ecosystem readiness, including optional exact row-id-mapped additional score files, can be regenerated with:
+
+```bash
+python -m sourceaware.cli sa-model-ecosystem \
+  --out outputs/nmi_upgrade/model_ecosystem \
+  --extra-scores path/to/row_id_mapped_model_scores.csv
+```
+
+The command rejects score rows that are not exact SourceAware `row_id` matches and does not perform formula-only mapping.
+
+A reproducibility smoke suite for the NMI scaffolds can be run with:
+
+```bash
+python scripts/run_nmi_reproducibility_checks.py --out outputs/nmi_upgrade/reproducibility
+```
+
+Use `--skip-pytest` for a faster CLI-only smoke run; full verification still requires `pytest -q`.
+
+
+
+External-input schemas/templates for the blocked NMI gates can be regenerated with:
+
+```bash
+python -m sourceaware.cli sa-external-contracts --out outputs/nmi_upgrade/external_input_contracts
+```
+
+These contracts define admissible model-score, source-union, referee-DFT and generated-candidate label inputs; they do not create those external data.
+
+
+Validate a supplied external input before using it to resume a blocked gate:
+
+```bash
+python -m sourceaware.cli sa-validate-external-input \
+  --kind model-scores \
+  --input path/to/model_score_extra.csv \
+  --out outputs/nmi_upgrade/external_input_validation/model_scores
+```
+
+Supported `--kind` values are `model-scores`, `source-union`, `referee-dft` and `generated-candidate-labels`.
+
+
+
+Source-union phase-pool inputs can be ingested/audited without constructing hull labels:
+
+```bash
+python -m sourceaware.cli sa-source-union-ingest \
+  --phase-pool path/to/source_union_phase_pool.csv \
+  --out outputs/nmi_upgrade/source_union_phase_pool
+```
+
+This writes target-chemical-system coverage audits only; it does not create full-source-union labels or physical-truth hulls.
+
+After external files pass validation, resume the corresponding blocked gates with:
+
+```bash
+python -m sourceaware.cli sa-nmi-resume \
+  --extra-scores path/to/model_score_extra.csv \
+  --referee-dft-outputs path/to/referee_dft_outputs.csv \
+  --generated-candidate-referee-labels path/to/generated_candidate_referee_labels.csv \
+  --out outputs/nmi_upgrade/resume_attempt
+```
+
+The resume command validates before routing inputs and then refreshes the conservative readiness audit; it does not by itself assert `NMI_READY`.
+
+Top-level NMI manifest hashes can be refreshed with:
+
+```bash
+python -m sourceaware.cli sa-nmi-manifest --out outputs/nmi_upgrade
+```
+
+The manifest records scaffold/readiness status and SHA256 hashes; it does not imply NMI readiness.
+
+Release/Zenodo readiness manifests can be prepared with:
+
+```bash
+python -m sourceaware.cli sa-release-package --out outputs/nmi_upgrade/release_package
+```
+
+This inventories files and checks for a release tag/DOI; it does not create or claim a Zenodo DOI.
+
+NMI readiness gates can be audited with:
+
+```bash
+python -m sourceaware.cli sa-nmi-check --out outputs/nmi_upgrade/readiness_audit
+```
+
+The checker writes `NMI_READY_SUMMARY.md` and remains conservative: scaffolds or passing tests do not satisfy gates that require external DFT outputs or additional mapped model scores.
+
+Guarded NMI manuscript scaffolds can be regenerated with:
+
+```bash
+python -m sourceaware.cli sa-nmi-assets --out outputs/nmi_upgrade/manuscript_assets
+```
+
+The generated `main_NMI_draft.md` and figure/table source files are explicitly marked not NMI-ready until the model-ecosystem, referee-DFT and generated-candidate blockers are resolved.
+
+Claim boundaries are summarized in `docs/CLAIM_GUARDRAILS.md`; the current NMI readiness audit is `NMI_READY_SUMMARY.md`.
 
 A reproducibility-focused toolkit for **source-native stability-label audits**,
 **common-pool convex-hull relabeling**, **source-aware benchmark datasets** and

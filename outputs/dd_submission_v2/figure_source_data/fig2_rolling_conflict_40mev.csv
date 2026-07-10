@@ -1,0 +1,244 @@
+reference_mp_native_e_above_hull_eV,window_lower_eV,window_upper_eV,window_width_eV,source_pair,n_rows,switch_n,endpoint_switch_rate,ci_low,ci_high,supported,minimum_n,interval_method
+0.0,0.0,0.02,0.04,MP vs official Alexandria-PBE,22438,5269,0.23482485069970585,0.22932416538118047,0.2404163181778127,True,1000,Wilson binomial 95% confidence interval
+0.0,0.0,0.02,0.04,alex-mp-20 vs official Alexandria-PBE,22438,3537,0.15763437026472948,0.1529250711187699,0.16246087757033695,True,1000,Wilson binomial 95% confidence interval
+0.0,0.0,0.02,0.04,MP vs alex-mp-20,22438,3848,0.17149478563151796,0.16661905021112122,0.17648298412725505,True,1000,Wilson binomial 95% confidence interval
+0.0025,0.0,0.0225,0.04,MP vs official Alexandria-PBE,23159,5309,0.22924133166371605,0.22387280259595027,0.23469966908047984,True,1000,Wilson binomial 95% confidence interval
+0.0025,0.0,0.0225,0.04,alex-mp-20 vs official Alexandria-PBE,23159,3568,0.15406537415259727,0.14947324691058175,0.1587722449697659,True,1000,Wilson binomial 95% confidence interval
+0.0025,0.0,0.0225,0.04,MP vs alex-mp-20,23159,3889,0.16792607625545145,0.16316698820122222,0.1727953104077541,True,1000,Wilson binomial 95% confidence interval
+0.005,0.0,0.025,0.04,MP vs official Alexandria-PBE,23791,5328,0.223950233281493,0.2186976449759903,0.22929195299080407,True,1000,Wilson binomial 95% confidence interval
+0.005,0.0,0.025,0.04,alex-mp-20 vs official Alexandria-PBE,23791,3589,0.15085536547433903,0.14636382800417805,0.15545963533973936,True,1000,Wilson binomial 95% confidence interval
+0.005,0.0,0.025,0.04,MP vs alex-mp-20,23791,3913,0.16447396074145684,0.15981766129382827,0.16923859538983158,True,1000,Wilson binomial 95% confidence interval
+0.0075,0.0,0.0275,0.04,MP vs official Alexandria-PBE,24390,5358,0.21968019680196801,0.21452850458998318,0.22492017662395702,True,1000,Wilson binomial 95% confidence interval
+0.0075,0.0,0.0275,0.04,alex-mp-20 vs official Alexandria-PBE,24390,3608,0.14792947929479294,0.14352931644399572,0.15244052787136256,True,1000,Wilson binomial 95% confidence interval
+0.0075,0.0,0.0275,0.04,MP vs alex-mp-20,24390,3938,0.16145961459614597,0.15689517180070425,0.16613068175838666,True,1000,Wilson binomial 95% confidence interval
+0.01,0.0,0.03,0.04,MP vs official Alexandria-PBE,24995,5375,0.21504300860172035,0.20999360761577782,0.22017998568993372,True,1000,Wilson binomial 95% confidence interval
+0.01,0.0,0.03,0.04,alex-mp-20 vs official Alexandria-PBE,24995,3624,0.1449889977995599,0.14067863919161921,0.1494084622753139,True,1000,Wilson binomial 95% confidence interval
+0.01,0.0,0.03,0.04,MP vs alex-mp-20,24995,3955,0.15823164632926584,0.15375977071085178,0.16280855793976817,True,1000,Wilson binomial 95% confidence interval
+0.0125,0.0,0.0325,0.04,MP vs official Alexandria-PBE,25532,5390,0.21110762964123453,0.20614555717238803,0.21615662058082236,True,1000,Wilson binomial 95% confidence interval
+0.0125,0.0,0.0325,0.04,alex-mp-20 vs official Alexandria-PBE,25532,3636,0.14240952530158232,0.1381766821735897,0.14674995596182389,True,1000,Wilson binomial 95% confidence interval
+0.0125,0.0,0.0325,0.04,MP vs alex-mp-20,25532,3970,0.15549114836283878,0.15109812055980043,0.15998782785631105,True,1000,Wilson binomial 95% confidence interval
+0.015,0.0,0.035,0.04,MP vs official Alexandria-PBE,26046,5405,0.2075174690931429,0.20263584801672588,0.2124853524679333,True,1000,Wilson binomial 95% confidence interval
+0.015,0.0,0.035,0.04,alex-mp-20 vs official Alexandria-PBE,26046,3650,0.14013668125623896,0.13597404014253273,0.1444054573821077,True,1000,Wilson binomial 95% confidence interval
+0.015,0.0,0.035,0.04,MP vs alex-mp-20,26046,3983,0.15292175382016432,0.14860202736660863,0.15734384456583025,True,1000,Wilson binomial 95% confidence interval
+0.0175,0.0,0.037500000000000006,0.04,MP vs official Alexandria-PBE,26533,5415,0.20408547846078468,0.19927900779857183,0.20897762197526232,True,1000,Wilson binomial 95% confidence interval
+0.0175,0.0,0.037500000000000006,0.04,alex-mp-20 vs official Alexandria-PBE,26533,3663,0.1380544981720876,0.133956174862699,0.1422576115517462,True,1000,Wilson binomial 95% confidence interval
+0.0175,0.0,0.037500000000000006,0.04,MP vs alex-mp-20,26533,3996,0.15060490709682284,0.1463519249010215,0.1549590457820747,True,1000,Wilson binomial 95% confidence interval
+0.02,0.0,0.04,0.04,MP vs official Alexandria-PBE,27042,5422,0.20050292138155462,0.1957736422421873,0.20531727871648725,True,1000,Wilson binomial 95% confidence interval
+0.02,0.0,0.04,0.04,alex-mp-20 vs official Alexandria-PBE,27042,3668,0.13564085496634865,0.13161152647209828,0.13977368703646081,True,1000,Wilson binomial 95% confidence interval
+0.02,0.0,0.04,0.04,MP vs alex-mp-20,27042,4006,0.1481399304785149,0.1439559318788553,0.1524238820391331,True,1000,Wilson binomial 95% confidence interval
+0.0225,0.0024999999999999988,0.042499999999999996,0.04,MP vs official Alexandria-PBE,11146,760,0.06818589628566302,0.0636535996293937,0.07301573907364013,True,1000,Wilson binomial 95% confidence interval
+0.0225,0.0024999999999999988,0.042499999999999996,0.04,alex-mp-20 vs official Alexandria-PBE,11146,733,0.06576350260183025,0.061309864966127954,0.07051635554554539,True,1000,Wilson binomial 95% confidence interval
+0.0225,0.0024999999999999988,0.042499999999999996,0.04,MP vs alex-mp-20,11146,719,0.06450744661762067,0.06009529213983807,0.06921968190224093,True,1000,Wilson binomial 95% confidence interval
+0.025,0.005000000000000001,0.045,0.04,MP vs official Alexandria-PBE,10554,590,0.05590297517528899,0.05167944081220253,0.06044967795114447,True,1000,Wilson binomial 95% confidence interval
+0.025,0.005000000000000001,0.045,0.04,alex-mp-20 vs official Alexandria-PBE,10554,565,0.05353420504074285,0.04939990923084532,0.05799339301214401,True,1000,Wilson binomial 95% confidence interval
+0.025,0.005000000000000001,0.045,0.04,MP vs alex-mp-20,10554,571,0.05410270987303392,0.04994678874535853,0.058583109462516644,True,1000,Wilson binomial 95% confidence interval
+0.0275,0.0075,0.0475,0.04,MP vs official Alexandria-PBE,10112,477,0.047171677215189875,0.04320868081910585,0.0514785938599063,True,1000,Wilson binomial 95% confidence interval
+0.0275,0.0075,0.0475,0.04,alex-mp-20 vs official Alexandria-PBE,10112,456,0.04509493670886076,0.04122018421836385,0.04931518671927666,True,1000,Wilson binomial 95% confidence interval
+0.0275,0.0075,0.0475,0.04,MP vs alex-mp-20,10112,473,0.04677610759493671,0.04282974573249859,0.05106669013863324,True,1000,Wilson binomial 95% confidence interval
+0.03,0.009999999999999998,0.05,0.04,MP vs official Alexandria-PBE,9665,400,0.04138644593895499,0.03759428156266969,0.045543027311845515,True,1000,Wilson binomial 95% confidence interval
+0.03,0.009999999999999998,0.05,0.04,alex-mp-20 vs official Alexandria-PBE,9665,373,0.03859286083807553,0.03493236407986052,0.04261999439185985,True,1000,Wilson binomial 95% confidence interval
+0.03,0.009999999999999998,0.05,0.04,MP vs alex-mp-20,9665,407,0.04211070874288671,0.038285228806318086,0.046300030172625406,True,1000,Wilson binomial 95% confidence interval
+0.0325,0.0125,0.052500000000000005,0.04,MP vs official Alexandria-PBE,9123,350,0.03836457305710841,0.03461352380810199,0.04250422410023514,True,1000,Wilson binomial 95% confidence interval
+0.0325,0.0125,0.052500000000000005,0.04,alex-mp-20 vs official Alexandria-PBE,9123,312,0.03419927655376521,0.030661628962018683,0.0381290322599874,True,1000,Wilson binomial 95% confidence interval
+0.0325,0.0125,0.052500000000000005,0.04,MP vs alex-mp-20,9123,352,0.038583799188863316,0.03482188302276812,0.042734132605902225,True,1000,Wilson binomial 95% confidence interval
+0.035,0.015000000000000003,0.05500000000000001,0.04,MP vs official Alexandria-PBE,8723,301,0.03450647712942795,0.03087638247387629,0.038546381956928985,True,1000,Wilson binomial 95% confidence interval
+0.035,0.015000000000000003,0.05500000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,8723,264,0.03026481715006305,0.026871339858303117,0.034071838877129626,True,1000,Wilson binomial 95% confidence interval
+0.035,0.015000000000000003,0.05500000000000001,0.04,MP vs alex-mp-20,8723,305,0.03496503496503497,0.03131033805878141,0.03902913833909117,True,1000,Wilson binomial 95% confidence interval
+0.0375,0.017499999999999998,0.057499999999999996,0.04,MP vs official Alexandria-PBE,8404,263,0.03129462160875773,0.027780953739665267,0.03523658309374346,True,1000,Wilson binomial 95% confidence interval
+0.0375,0.017499999999999998,0.057499999999999996,0.04,alex-mp-20 vs official Alexandria-PBE,8404,230,0.027367920038077104,0.024089787666329104,0.031077934167207194,True,1000,Wilson binomial 95% confidence interval
+0.0375,0.017499999999999998,0.057499999999999996,0.04,MP vs alex-mp-20,8404,265,0.031532603522132316,0.028005190547497272,0.03548809264954009,True,1000,Wilson binomial 95% confidence interval
+0.04,0.02,0.06,0.04,MP vs official Alexandria-PBE,8117,238,0.02932117777504004,0.025867837890962295,0.03321981469453425,True,1000,Wilson binomial 95% confidence interval
+0.04,0.02,0.06,0.04,alex-mp-20 vs official Alexandria-PBE,8117,198,0.024393248737218185,0.021255483257828105,0.027980973437973337,True,1000,Wilson binomial 95% confidence interval
+0.04,0.02,0.06,0.04,MP vs alex-mp-20,8117,230,0.02833559196747567,0.024942941139407135,0.03217447226815039,True,1000,Wilson binomial 95% confidence interval
+0.0425,0.022500000000000003,0.0625,0.04,MP vs official Alexandria-PBE,7765,205,0.026400515132002575,0.023061956941025044,0.030207434771277325,True,1000,Wilson binomial 95% confidence interval
+0.0425,0.022500000000000003,0.0625,0.04,alex-mp-20 vs official Alexandria-PBE,7765,170,0.02189311010946555,0.01886694831526807,0.025392090904833235,True,1000,Wilson binomial 95% confidence interval
+0.0425,0.022500000000000003,0.0625,0.04,MP vs alex-mp-20,7765,197,0.025370251126851255,0.022100423997742882,0.02910945857348496,True,1000,Wilson binomial 95% confidence interval
+0.045,0.024999999999999998,0.065,0.04,MP vs official Alexandria-PBE,7516,200,0.026609898882384245,0.023206148541603296,0.0304973053187161,True,1000,Wilson binomial 95% confidence interval
+0.045,0.024999999999999998,0.065,0.04,alex-mp-20 vs official Alexandria-PBE,7516,156,0.020755721128259713,0.017769010525860884,0.024232068958363537,True,1000,Wilson binomial 95% confidence interval
+0.045,0.024999999999999998,0.065,0.04,MP vs alex-mp-20,7516,184,0.024481106971793506,0.02122275833557869,0.028225286660706166,True,1000,Wilson binomial 95% confidence interval
+0.0475,0.0275,0.0675,0.04,MP vs official Alexandria-PBE,7308,178,0.02435686918445539,0.021064549930861758,0.02814897047261973,True,1000,Wilson binomial 95% confidence interval
+0.0475,0.0275,0.0675,0.04,alex-mp-20 vs official Alexandria-PBE,7308,145,0.01984126984126984,0.01688714637363404,0.023299920109627337,True,1000,Wilson binomial 95% confidence interval
+0.0475,0.0275,0.0675,0.04,MP vs alex-mp-20,7308,165,0.02257799671592775,0.019414585853627313,0.026243058763100797,True,1000,Wilson binomial 95% confidence interval
+0.05,0.030000000000000002,0.07,0.04,MP vs official Alexandria-PBE,7105,170,0.023926812104152005,0.020622283358445972,0.027745859441257847,True,1000,Wilson binomial 95% confidence interval
+0.05,0.030000000000000002,0.07,0.04,alex-mp-20 vs official Alexandria-PBE,7105,136,0.019141449683321606,0.016205494697172546,0.02259709506637161,True,1000,Wilson binomial 95% confidence interval
+0.05,0.030000000000000002,0.07,0.04,MP vs alex-mp-20,7105,158,0.02223786066150598,0.01905855301483299,0.025933512242696823,True,1000,Wilson binomial 95% confidence interval
+0.0525,0.0325,0.0725,0.04,MP vs official Alexandria-PBE,6971,160,0.022952230669918233,0.019690760973637297,0.02673917736010789,True,1000,Wilson binomial 95% confidence interval
+0.0525,0.0325,0.0725,0.04,alex-mp-20 vs official Alexandria-PBE,6971,130,0.018648687419308564,0.015727939701296448,0.022099652564192038,True,1000,Wilson binomial 95% confidence interval
+0.0525,0.0325,0.0725,0.04,MP vs alex-mp-20,6971,146,0.02094391048630039,0.017836838534517105,0.02457867163404162,True,1000,Wilson binomial 95% confidence interval
+0.055,0.035,0.075,0.04,MP vs official Alexandria-PBE,6817,152,0.02229719818101804,0.01905197586528687,0.02608049945747471,True,1000,Wilson binomial 95% confidence interval
+0.055,0.035,0.075,0.04,alex-mp-20 vs official Alexandria-PBE,6817,124,0.018189819568725247,0.015278140630321596,0.021644203972046104,True,1000,Wilson binomial 95% confidence interval
+0.055,0.035,0.075,0.04,MP vs alex-mp-20,6817,138,0.020243508874871644,0.017160611289277764,0.023866798673286876,True,1000,Wilson binomial 95% confidence interval
+0.0575,0.037500000000000006,0.0775,0.04,MP vs official Alexandria-PBE,6709,143,0.02131465196005366,0.018122680319821352,0.025054484014939093,True,1000,Wilson binomial 95% confidence interval
+0.0575,0.037500000000000006,0.0775,0.04,alex-mp-20 vs official Alexandria-PBE,6709,114,0.01699210016395886,0.014164476005919326,0.020372531942637797,True,1000,Wilson binomial 95% confidence interval
+0.0575,0.037500000000000006,0.0775,0.04,MP vs alex-mp-20,6709,127,0.01892979579669101,0.015933485309827227,0.02247669619116587,True,1000,Wilson binomial 95% confidence interval
+0.06,0.039999999999999994,0.08,0.04,MP vs official Alexandria-PBE,6538,138,0.02110737228510248,0.017894017081265028,0.02488315209689807,True,1000,Wilson binomial 95% confidence interval
+0.06,0.039999999999999994,0.08,0.04,alex-mp-20 vs official Alexandria-PBE,6538,112,0.017130620985010708,0.014257047717428577,0.020571289266110515,True,1000,Wilson binomial 95% confidence interval
+0.06,0.039999999999999994,0.08,0.04,MP vs alex-mp-20,6538,118,0.018048332823493423,0.015092971240786447,0.02156971163381972,True,1000,Wilson binomial 95% confidence interval
+0.0625,0.042499999999999996,0.0825,0.04,MP vs official Alexandria-PBE,6390,127,0.019874804381846637,0.016730076953088268,0.023596456083633515,True,1000,Wilson binomial 95% confidence interval
+0.0625,0.042499999999999996,0.0825,0.04,alex-mp-20 vs official Alexandria-PBE,6390,107,0.01674491392801252,0.013876730978261066,0.020193782065219004,True,1000,Wilson binomial 95% confidence interval
+0.0625,0.042499999999999996,0.0825,0.04,MP vs alex-mp-20,6390,108,0.016901408450704224,0.014018789492481785,0.020364524550660363,True,1000,Wilson binomial 95% confidence interval
+0.065,0.045,0.085,0.04,MP vs official Alexandria-PBE,6269,119,0.018982293826766628,0.015887061742107945,0.022666671906081653,True,1000,Wilson binomial 95% confidence interval
+0.065,0.045,0.085,0.04,alex-mp-20 vs official Alexandria-PBE,6269,102,0.016270537565799967,0.013421992070267546,0.019711550389734097,True,1000,Wilson binomial 95% confidence interval
+0.065,0.045,0.085,0.04,MP vs alex-mp-20,6269,103,0.016430052639974477,0.013566430718222527,0.019885946517554876,True,1000,Wilson binomial 95% confidence interval
+0.0675,0.0475,0.08750000000000001,0.04,MP vs official Alexandria-PBE,6092,106,0.017399868680236377,0.014407524675344976,0.021000459649505063,True,1000,Wilson binomial 95% confidence interval
+0.0675,0.0475,0.08750000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,6092,95,0.015594221930400526,0.01277425409154127,0.01902471248758542,True,1000,Wilson binomial 95% confidence interval
+0.0675,0.0475,0.08750000000000001,0.04,MP vs alex-mp-20,6092,99,0.016250820748522653,0.013367031963403414,0.019744304705077216,True,1000,Wilson binomial 95% confidence interval
+0.07,0.05,0.09000000000000001,0.04,MP vs official Alexandria-PBE,6008,103,0.017143808255659122,0.014156593300130407,0.0207480960962958,True,1000,Wilson binomial 95% confidence interval
+0.07,0.05,0.09000000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,6008,85,0.01414780292942743,0.011456808600500452,0.017459698930753637,True,1000,Wilson binomial 95% confidence interval
+0.07,0.05,0.09000000000000001,0.04,MP vs alex-mp-20,6008,98,0.016311584553928095,0.013403772223263246,0.019837533321726258,True,1000,Wilson binomial 95% confidence interval
+0.0725,0.05249999999999999,0.0925,0.04,MP vs official Alexandria-PBE,5908,96,0.016249153689911984,0.013325313942877658,0.019801666911538042,True,1000,Wilson binomial 95% confidence interval
+0.0725,0.05249999999999999,0.0925,0.04,alex-mp-20 vs official Alexandria-PBE,5908,79,0.013371699390656737,0.010742976906131348,0.016632834835102077,True,1000,Wilson binomial 95% confidence interval
+0.0725,0.05249999999999999,0.0925,0.04,MP vs alex-mp-20,5908,91,0.015402843601895734,0.012562795262778651,0.018872665264230492,True,1000,Wilson binomial 95% confidence interval
+0.075,0.05499999999999999,0.095,0.04,MP vs official Alexandria-PBE,5753,89,0.015470189466365374,0.01258915686601816,0.018997861835369684,True,1000,Wilson binomial 95% confidence interval
+0.075,0.05499999999999999,0.095,0.04,alex-mp-20 vs official Alexandria-PBE,5753,73,0.0126890318094907,0.010104652597936834,0.015923762443979153,True,1000,Wilson binomial 95% confidence interval
+0.075,0.05499999999999999,0.095,0.04,MP vs alex-mp-20,5753,84,0.014601077698592039,0.011809573232795842,0.018040381825007043,True,1000,Wilson binomial 95% confidence interval
+0.0775,0.057499999999999996,0.0975,0.04,MP vs official Alexandria-PBE,5618,83,0.014773940904236383,0.011934386666273797,0.018276614491400636,True,1000,Wilson binomial 95% confidence interval
+0.0775,0.057499999999999996,0.0975,0.04,alex-mp-20 vs official Alexandria-PBE,5618,63,0.011213955144179423,0.008775182149997432,0.014320712633191854,True,1000,Wilson binomial 95% confidence interval
+0.0775,0.057499999999999996,0.0975,0.04,MP vs alex-mp-20,5618,78,0.013883944464222144,0.011139482310379584,0.017292742253673565,True,1000,Wilson binomial 95% confidence interval
+0.08,0.06,0.1,0.04,MP vs official Alexandria-PBE,5427,77,0.014188317670904735,0.011367829254493592,0.017696075486148446,True,1000,Wilson binomial 95% confidence interval
+0.08,0.06,0.1,0.04,alex-mp-20 vs official Alexandria-PBE,5427,62,0.01142435968306615,0.008922488274224925,0.014617410614382082,True,1000,Wilson binomial 95% confidence interval
+0.08,0.06,0.1,0.04,MP vs alex-mp-20,5427,71,0.013082734475769301,0.010385520868321584,0.01646878153150644,True,1000,Wilson binomial 95% confidence interval
+0.0825,0.0625,0.10250000000000001,0.04,MP vs official Alexandria-PBE,5167,70,0.013547513063673312,0.010737340259497899,0.017080464630907663,True,1000,Wilson binomial 95% confidence interval
+0.0825,0.0625,0.10250000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,5167,60,0.011612154054577124,0.009032494367309228,0.01491746809178702,True,1000,Wilson binomial 95% confidence interval
+0.0825,0.0625,0.10250000000000001,0.04,MP vs alex-mp-20,5167,64,0.0123862976582156,0.009712248120315226,0.01578485131130475,True,1000,Wilson binomial 95% confidence interval
+0.085,0.065,0.10500000000000001,0.04,MP vs official Alexandria-PBE,4880,59,0.01209016393442623,0.00938492270924969,0.015562950772727607,True,1000,Wilson binomial 95% confidence interval
+0.085,0.065,0.10500000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,4880,54,0.011065573770491803,0.008491203092873337,0.014409101874786397,True,1000,Wilson binomial 95% confidence interval
+0.085,0.065,0.10500000000000001,0.04,MP vs alex-mp-20,4880,57,0.01168032786885246,0.009026733911472176,0.015102112164778097,True,1000,Wilson binomial 95% confidence interval
+0.08750000000000001,0.0675,0.10750000000000001,0.04,MP vs official Alexandria-PBE,4551,52,0.011426060206548011,0.008724243919806732,0.014951982749258413,True,1000,Wilson binomial 95% confidence interval
+0.08750000000000001,0.0675,0.10750000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,4551,47,0.01032740057130301,0.007775499695792011,0.0137052608762843,True,1000,Wilson binomial 95% confidence interval
+0.08750000000000001,0.0675,0.10750000000000001,0.04,MP vs alex-mp-20,4551,53,0.011645792133597012,0.008914879044980163,0.015200440843482751,True,1000,Wilson binomial 95% confidence interval
+0.09,0.06999999999999999,0.11,0.04,MP vs official Alexandria-PBE,4199,44,0.01047868540128602,0.007815246342844195,0.014036983802059859,True,1000,Wilson binomial 95% confidence interval
+0.09,0.06999999999999999,0.11,0.04,alex-mp-20 vs official Alexandria-PBE,4199,42,0.010002381519409383,0.007408624984705683,0.013491868093932165,True,1000,Wilson binomial 95% confidence interval
+0.09,0.06999999999999999,0.11,0.04,MP vs alex-mp-20,4199,46,0.010954989283162658,0.008223441095773465,0.014580526115396801,True,1000,Wilson binomial 95% confidence interval
+0.0925,0.0725,0.1125,0.04,MP vs official Alexandria-PBE,3835,40,0.010430247718383311,0.0076692282551457,0.014171074273641338,True,1000,Wilson binomial 95% confidence interval
+0.0925,0.0725,0.1125,0.04,alex-mp-20 vs official Alexandria-PBE,3835,36,0.00938722294654498,0.006788433597256059,0.012967906859688181,True,1000,Wilson binomial 95% confidence interval
+0.0925,0.0725,0.1125,0.04,MP vs alex-mp-20,3835,44,0.011473272490221642,0.008557965255681017,0.015366299344948818,True,1000,Wilson binomial 95% confidence interval
+0.095,0.075,0.115,0.04,MP vs official Alexandria-PBE,3498,36,0.010291595197255575,0.00744322495507586,0.014214368546097395,True,1000,Wilson binomial 95% confidence interval
+0.095,0.075,0.115,0.04,alex-mp-20 vs official Alexandria-PBE,3498,28,0.008004574042309892,0.005543971467530627,0.01154459736814898,True,1000,Wilson binomial 95% confidence interval
+0.095,0.075,0.115,0.04,MP vs alex-mp-20,3498,42,0.012006861063464836,0.008895300441249735,0.016189061559043746,True,1000,Wilson binomial 95% confidence interval
+0.0975,0.0775,0.11750000000000001,0.04,MP vs official Alexandria-PBE,3148,37,0.011753494282083863,0.008539253265953528,0.01615788326128144,True,1000,Wilson binomial 95% confidence interval
+0.0975,0.0775,0.11750000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,3148,27,0.008576874205844982,0.005901288294272724,0.012450351398396437,True,1000,Wilson binomial 95% confidence interval
+0.0975,0.0775,0.11750000000000001,0.04,MP vs alex-mp-20,3148,42,0.013341804320203304,0.009885766033210081,0.017984118911307793,True,1000,Wilson binomial 95% confidence interval
+0.1,0.08,0.12000000000000001,0.04,MP vs official Alexandria-PBE,2829,37,0.013078826440438318,0.00950360979186507,0.01797461655868381,True,1000,Wilson binomial 95% confidence interval
+0.1,0.08,0.12000000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,2829,27,0.009544008483563097,0.006567535159022403,0.013850642018027739,True,1000,Wilson binomial 95% confidence interval
+0.1,0.08,0.12000000000000001,0.04,MP vs alex-mp-20,2829,42,0.014846235418875928,0.011002338363448702,0.020005912573849545,True,1000,Wilson binomial 95% confidence interval
+0.10250000000000001,0.0825,0.12250000000000001,0.04,MP vs official Alexandria-PBE,2493,34,0.01363818692338548,0.009775992686847677,0.018996943042370075,True,1000,Wilson binomial 95% confidence interval
+0.10250000000000001,0.0825,0.12250000000000001,0.04,alex-mp-20 vs official Alexandria-PBE,2493,22,0.008824709185720016,0.00583495791171125,0.013325833676269893,True,1000,Wilson binomial 95% confidence interval
+0.10250000000000001,0.0825,0.12250000000000001,0.04,MP vs alex-mp-20,2493,38,0.0152426795026073,0.01112535969092822,0.0208516240853684,True,1000,Wilson binomial 95% confidence interval
+0.105,0.08499999999999999,0.125,0.04,MP vs official Alexandria-PBE,2168,35,0.01614391143911439,0.01163074078939276,0.022368729347248754,True,1000,Wilson binomial 95% confidence interval
+0.105,0.08499999999999999,0.125,0.04,alex-mp-20 vs official Alexandria-PBE,2168,19,0.008763837638376383,0.005617718711550107,0.013647710931465343,True,1000,Wilson binomial 95% confidence interval
+0.105,0.08499999999999999,0.125,0.04,MP vs alex-mp-20,2168,36,0.016605166051660517,0.012018314531079075,0.022902033136414066,True,1000,Wilson binomial 95% confidence interval
+0.1075,0.0875,0.1275,0.04,MP vs official Alexandria-PBE,1875,37,0.019733333333333332,0.014350172652144028,0.027080390025322885,True,1000,Wilson binomial 95% confidence interval
+0.1075,0.0875,0.1275,0.04,alex-mp-20 vs official Alexandria-PBE,1875,19,0.010133333333333333,0.006496837567079997,0.015772981221652212,True,1000,Wilson binomial 95% confidence interval
+0.1075,0.0875,0.1275,0.04,MP vs alex-mp-20,1875,36,0.0192,0.01390062183757479,0.02646545506829575,True,1000,Wilson binomial 95% confidence interval
+0.11,0.09,0.13,0.04,MP vs official Alexandria-PBE,1538,34,0.022106631989596878,0.01586236079940861,0.03073222154866458,True,1000,Wilson binomial 95% confidence interval
+0.11,0.09,0.13,0.04,alex-mp-20 vs official Alexandria-PBE,1538,21,0.013654096228868661,0.0089478252488014,0.020783804133999613,True,1000,Wilson binomial 95% confidence interval
+0.11,0.09,0.13,0.04,MP vs alex-mp-20,1538,35,0.022756827048114433,0.016407855751307262,0.03148387682486378,True,1000,Wilson binomial 95% confidence interval
+0.1125,0.0925,0.1325,0.04,MP vs official Alexandria-PBE,1251,30,0.023980815347721823,0.016848775374485737,0.03402733998808176,True,1000,Wilson binomial 95% confidence interval
+0.1125,0.0925,0.1325,0.04,alex-mp-20 vs official Alexandria-PBE,1251,18,0.014388489208633094,0.009120553709935333,0.022629639544069293,True,1000,Wilson binomial 95% confidence interval
+0.1125,0.0925,0.1325,0.04,MP vs alex-mp-20,1251,32,0.025579536370903277,0.01817676431198371,0.03588700473534426,True,1000,Wilson binomial 95% confidence interval
+0.115,0.095,0.135,0.04,MP vs official Alexandria-PBE,998,27,,,,False,1000,Wilson binomial 95% confidence interval
+0.115,0.095,0.135,0.04,alex-mp-20 vs official Alexandria-PBE,998,18,,,,False,1000,Wilson binomial 95% confidence interval
+0.115,0.095,0.135,0.04,MP vs alex-mp-20,998,29,,,,False,1000,Wilson binomial 95% confidence interval
+0.11750000000000001,0.0975,0.1375,0.04,MP vs official Alexandria-PBE,732,27,,,,False,1000,Wilson binomial 95% confidence interval
+0.11750000000000001,0.0975,0.1375,0.04,alex-mp-20 vs official Alexandria-PBE,732,19,,,,False,1000,Wilson binomial 95% confidence interval
+0.11750000000000001,0.0975,0.1375,0.04,MP vs alex-mp-20,732,30,,,,False,1000,Wilson binomial 95% confidence interval
+0.12,0.09999999999999999,0.13999999999999999,0.04,MP vs official Alexandria-PBE,535,29,,,,False,1000,Wilson binomial 95% confidence interval
+0.12,0.09999999999999999,0.13999999999999999,0.04,alex-mp-20 vs official Alexandria-PBE,535,22,,,,False,1000,Wilson binomial 95% confidence interval
+0.12,0.09999999999999999,0.13999999999999999,0.04,MP vs alex-mp-20,535,33,,,,False,1000,Wilson binomial 95% confidence interval
+0.1225,0.1025,0.1425,0.04,MP vs official Alexandria-PBE,439,31,,,,False,1000,Wilson binomial 95% confidence interval
+0.1225,0.1025,0.1425,0.04,alex-mp-20 vs official Alexandria-PBE,439,21,,,,False,1000,Wilson binomial 95% confidence interval
+0.1225,0.1025,0.1425,0.04,MP vs alex-mp-20,439,34,,,,False,1000,Wilson binomial 95% confidence interval
+0.125,0.105,0.145,0.04,MP vs official Alexandria-PBE,351,29,,,,False,1000,Wilson binomial 95% confidence interval
+0.125,0.105,0.145,0.04,alex-mp-20 vs official Alexandria-PBE,351,22,,,,False,1000,Wilson binomial 95% confidence interval
+0.125,0.105,0.145,0.04,MP vs alex-mp-20,351,33,,,,False,1000,Wilson binomial 95% confidence interval
+0.1275,0.1075,0.1475,0.04,MP vs official Alexandria-PBE,296,29,,,,False,1000,Wilson binomial 95% confidence interval
+0.1275,0.1075,0.1475,0.04,alex-mp-20 vs official Alexandria-PBE,296,22,,,,False,1000,Wilson binomial 95% confidence interval
+0.1275,0.1075,0.1475,0.04,MP vs alex-mp-20,296,33,,,,False,1000,Wilson binomial 95% confidence interval
+0.13,0.11,0.15,0.04,MP vs official Alexandria-PBE,256,31,,,,False,1000,Wilson binomial 95% confidence interval
+0.13,0.11,0.15,0.04,alex-mp-20 vs official Alexandria-PBE,256,21,,,,False,1000,Wilson binomial 95% confidence interval
+0.13,0.11,0.15,0.04,MP vs alex-mp-20,256,32,,,,False,1000,Wilson binomial 95% confidence interval
+0.1325,0.1125,0.1525,0.04,MP vs official Alexandria-PBE,225,32,,,,False,1000,Wilson binomial 95% confidence interval
+0.1325,0.1125,0.1525,0.04,alex-mp-20 vs official Alexandria-PBE,225,22,,,,False,1000,Wilson binomial 95% confidence interval
+0.1325,0.1125,0.1525,0.04,MP vs alex-mp-20,225,32,,,,False,1000,Wilson binomial 95% confidence interval
+0.135,0.115,0.155,0.04,MP vs official Alexandria-PBE,211,32,,,,False,1000,Wilson binomial 95% confidence interval
+0.135,0.115,0.155,0.04,alex-mp-20 vs official Alexandria-PBE,211,23,,,,False,1000,Wilson binomial 95% confidence interval
+0.135,0.115,0.155,0.04,MP vs alex-mp-20,211,33,,,,False,1000,Wilson binomial 95% confidence interval
+0.1375,0.11750000000000001,0.1575,0.04,MP vs official Alexandria-PBE,189,30,,,,False,1000,Wilson binomial 95% confidence interval
+0.1375,0.11750000000000001,0.1575,0.04,alex-mp-20 vs official Alexandria-PBE,189,21,,,,False,1000,Wilson binomial 95% confidence interval
+0.1375,0.11750000000000001,0.1575,0.04,MP vs alex-mp-20,189,31,,,,False,1000,Wilson binomial 95% confidence interval
+0.14,0.12000000000000001,0.16,0.04,MP vs official Alexandria-PBE,179,29,,,,False,1000,Wilson binomial 95% confidence interval
+0.14,0.12000000000000001,0.16,0.04,alex-mp-20 vs official Alexandria-PBE,179,21,,,,False,1000,Wilson binomial 95% confidence interval
+0.14,0.12000000000000001,0.16,0.04,MP vs alex-mp-20,179,34,,,,False,1000,Wilson binomial 95% confidence interval
+0.14250000000000002,0.12250000000000001,0.1625,0.04,MP vs official Alexandria-PBE,173,29,,,,False,1000,Wilson binomial 95% confidence interval
+0.14250000000000002,0.12250000000000001,0.1625,0.04,alex-mp-20 vs official Alexandria-PBE,173,22,,,,False,1000,Wilson binomial 95% confidence interval
+0.14250000000000002,0.12250000000000001,0.1625,0.04,MP vs alex-mp-20,173,35,,,,False,1000,Wilson binomial 95% confidence interval
+0.145,0.12499999999999999,0.16499999999999998,0.04,MP vs official Alexandria-PBE,162,26,,,,False,1000,Wilson binomial 95% confidence interval
+0.145,0.12499999999999999,0.16499999999999998,0.04,alex-mp-20 vs official Alexandria-PBE,162,19,,,,False,1000,Wilson binomial 95% confidence interval
+0.145,0.12499999999999999,0.16499999999999998,0.04,MP vs alex-mp-20,162,35,,,,False,1000,Wilson binomial 95% confidence interval
+0.1475,0.1275,0.16749999999999998,0.04,MP vs official Alexandria-PBE,154,23,,,,False,1000,Wilson binomial 95% confidence interval
+0.1475,0.1275,0.16749999999999998,0.04,alex-mp-20 vs official Alexandria-PBE,154,18,,,,False,1000,Wilson binomial 95% confidence interval
+0.1475,0.1275,0.16749999999999998,0.04,MP vs alex-mp-20,154,33,,,,False,1000,Wilson binomial 95% confidence interval
+0.15,0.13,0.16999999999999998,0.04,MP vs official Alexandria-PBE,150,24,,,,False,1000,Wilson binomial 95% confidence interval
+0.15,0.13,0.16999999999999998,0.04,alex-mp-20 vs official Alexandria-PBE,150,18,,,,False,1000,Wilson binomial 95% confidence interval
+0.15,0.13,0.16999999999999998,0.04,MP vs alex-mp-20,150,32,,,,False,1000,Wilson binomial 95% confidence interval
+0.1525,0.1325,0.1725,0.04,MP vs official Alexandria-PBE,142,24,,,,False,1000,Wilson binomial 95% confidence interval
+0.1525,0.1325,0.1725,0.04,alex-mp-20 vs official Alexandria-PBE,142,18,,,,False,1000,Wilson binomial 95% confidence interval
+0.1525,0.1325,0.1725,0.04,MP vs alex-mp-20,142,32,,,,False,1000,Wilson binomial 95% confidence interval
+0.155,0.135,0.175,0.04,MP vs official Alexandria-PBE,136,25,,,,False,1000,Wilson binomial 95% confidence interval
+0.155,0.135,0.175,0.04,alex-mp-20 vs official Alexandria-PBE,136,17,,,,False,1000,Wilson binomial 95% confidence interval
+0.155,0.135,0.175,0.04,MP vs alex-mp-20,136,34,,,,False,1000,Wilson binomial 95% confidence interval
+0.1575,0.1375,0.1775,0.04,MP vs official Alexandria-PBE,127,22,,,,False,1000,Wilson binomial 95% confidence interval
+0.1575,0.1375,0.1775,0.04,alex-mp-20 vs official Alexandria-PBE,127,16,,,,False,1000,Wilson binomial 95% confidence interval
+0.1575,0.1375,0.1775,0.04,MP vs alex-mp-20,127,30,,,,False,1000,Wilson binomial 95% confidence interval
+0.16,0.14,0.18,0.04,MP vs official Alexandria-PBE,117,20,,,,False,1000,Wilson binomial 95% confidence interval
+0.16,0.14,0.18,0.04,alex-mp-20 vs official Alexandria-PBE,117,14,,,,False,1000,Wilson binomial 95% confidence interval
+0.16,0.14,0.18,0.04,MP vs alex-mp-20,117,28,,,,False,1000,Wilson binomial 95% confidence interval
+0.1625,0.14250000000000002,0.1825,0.04,MP vs official Alexandria-PBE,108,18,,,,False,1000,Wilson binomial 95% confidence interval
+0.1625,0.14250000000000002,0.1825,0.04,alex-mp-20 vs official Alexandria-PBE,108,14,,,,False,1000,Wilson binomial 95% confidence interval
+0.1625,0.14250000000000002,0.1825,0.04,MP vs alex-mp-20,108,26,,,,False,1000,Wilson binomial 95% confidence interval
+0.165,0.14500000000000002,0.185,0.04,MP vs official Alexandria-PBE,104,19,,,,False,1000,Wilson binomial 95% confidence interval
+0.165,0.14500000000000002,0.185,0.04,alex-mp-20 vs official Alexandria-PBE,104,13,,,,False,1000,Wilson binomial 95% confidence interval
+0.165,0.14500000000000002,0.185,0.04,MP vs alex-mp-20,104,24,,,,False,1000,Wilson binomial 95% confidence interval
+0.1675,0.14750000000000002,0.1875,0.04,MP vs official Alexandria-PBE,101,20,,,,False,1000,Wilson binomial 95% confidence interval
+0.1675,0.14750000000000002,0.1875,0.04,alex-mp-20 vs official Alexandria-PBE,101,14,,,,False,1000,Wilson binomial 95% confidence interval
+0.1675,0.14750000000000002,0.1875,0.04,MP vs alex-mp-20,101,24,,,,False,1000,Wilson binomial 95% confidence interval
+0.17,0.15000000000000002,0.19,0.04,MP vs official Alexandria-PBE,96,17,,,,False,1000,Wilson binomial 95% confidence interval
+0.17,0.15000000000000002,0.19,0.04,alex-mp-20 vs official Alexandria-PBE,96,14,,,,False,1000,Wilson binomial 95% confidence interval
+0.17,0.15000000000000002,0.19,0.04,MP vs alex-mp-20,96,23,,,,False,1000,Wilson binomial 95% confidence interval
+0.17250000000000001,0.15250000000000002,0.1925,0.04,MP vs official Alexandria-PBE,91,15,,,,False,1000,Wilson binomial 95% confidence interval
+0.17250000000000001,0.15250000000000002,0.1925,0.04,alex-mp-20 vs official Alexandria-PBE,91,13,,,,False,1000,Wilson binomial 95% confidence interval
+0.17250000000000001,0.15250000000000002,0.1925,0.04,MP vs alex-mp-20,91,22,,,,False,1000,Wilson binomial 95% confidence interval
+0.17500000000000002,0.15500000000000003,0.195,0.04,MP vs official Alexandria-PBE,84,12,,,,False,1000,Wilson binomial 95% confidence interval
+0.17500000000000002,0.15500000000000003,0.195,0.04,alex-mp-20 vs official Alexandria-PBE,84,12,,,,False,1000,Wilson binomial 95% confidence interval
+0.17500000000000002,0.15500000000000003,0.195,0.04,MP vs alex-mp-20,84,18,,,,False,1000,Wilson binomial 95% confidence interval
+0.1775,0.1575,0.19749999999999998,0.04,MP vs official Alexandria-PBE,80,12,,,,False,1000,Wilson binomial 95% confidence interval
+0.1775,0.1575,0.19749999999999998,0.04,alex-mp-20 vs official Alexandria-PBE,80,14,,,,False,1000,Wilson binomial 95% confidence interval
+0.1775,0.1575,0.19749999999999998,0.04,MP vs alex-mp-20,80,20,,,,False,1000,Wilson binomial 95% confidence interval
+0.18,0.16,0.19999999999999998,0.04,MP vs official Alexandria-PBE,74,12,,,,False,1000,Wilson binomial 95% confidence interval
+0.18,0.16,0.19999999999999998,0.04,alex-mp-20 vs official Alexandria-PBE,74,12,,,,False,1000,Wilson binomial 95% confidence interval
+0.18,0.16,0.19999999999999998,0.04,MP vs alex-mp-20,74,16,,,,False,1000,Wilson binomial 95% confidence interval
+0.1825,0.1625,0.20249999999999999,0.04,MP vs official Alexandria-PBE,69,12,,,,False,1000,Wilson binomial 95% confidence interval
+0.1825,0.1625,0.20249999999999999,0.04,alex-mp-20 vs official Alexandria-PBE,69,11,,,,False,1000,Wilson binomial 95% confidence interval
+0.1825,0.1625,0.20249999999999999,0.04,MP vs alex-mp-20,69,15,,,,False,1000,Wilson binomial 95% confidence interval
+0.185,0.165,0.205,0.04,MP vs official Alexandria-PBE,64,10,,,,False,1000,Wilson binomial 95% confidence interval
+0.185,0.165,0.205,0.04,alex-mp-20 vs official Alexandria-PBE,64,11,,,,False,1000,Wilson binomial 95% confidence interval
+0.185,0.165,0.205,0.04,MP vs alex-mp-20,64,13,,,,False,1000,Wilson binomial 95% confidence interval
+0.1875,0.1675,0.2075,0.04,MP vs official Alexandria-PBE,64,10,,,,False,1000,Wilson binomial 95% confidence interval
+0.1875,0.1675,0.2075,0.04,alex-mp-20 vs official Alexandria-PBE,64,11,,,,False,1000,Wilson binomial 95% confidence interval
+0.1875,0.1675,0.2075,0.04,MP vs alex-mp-20,64,13,,,,False,1000,Wilson binomial 95% confidence interval
+0.19,0.17,0.21,0.04,MP vs official Alexandria-PBE,59,9,,,,False,1000,Wilson binomial 95% confidence interval
+0.19,0.17,0.21,0.04,alex-mp-20 vs official Alexandria-PBE,59,9,,,,False,1000,Wilson binomial 95% confidence interval
+0.19,0.17,0.21,0.04,MP vs alex-mp-20,59,12,,,,False,1000,Wilson binomial 95% confidence interval
+0.1925,0.17250000000000001,0.2125,0.04,MP vs official Alexandria-PBE,58,9,,,,False,1000,Wilson binomial 95% confidence interval
+0.1925,0.17250000000000001,0.2125,0.04,alex-mp-20 vs official Alexandria-PBE,58,8,,,,False,1000,Wilson binomial 95% confidence interval
+0.1925,0.17250000000000001,0.2125,0.04,MP vs alex-mp-20,58,11,,,,False,1000,Wilson binomial 95% confidence interval
+0.195,0.17500000000000002,0.215,0.04,MP vs official Alexandria-PBE,52,7,,,,False,1000,Wilson binomial 95% confidence interval
+0.195,0.17500000000000002,0.215,0.04,alex-mp-20 vs official Alexandria-PBE,52,8,,,,False,1000,Wilson binomial 95% confidence interval
+0.195,0.17500000000000002,0.215,0.04,MP vs alex-mp-20,52,9,,,,False,1000,Wilson binomial 95% confidence interval
+0.1975,0.17750000000000002,0.2175,0.04,MP vs official Alexandria-PBE,49,7,,,,False,1000,Wilson binomial 95% confidence interval
+0.1975,0.17750000000000002,0.2175,0.04,alex-mp-20 vs official Alexandria-PBE,49,8,,,,False,1000,Wilson binomial 95% confidence interval
+0.1975,0.17750000000000002,0.2175,0.04,MP vs alex-mp-20,49,9,,,,False,1000,Wilson binomial 95% confidence interval
+0.2,0.18000000000000002,0.22,0.04,MP vs official Alexandria-PBE,47,7,,,,False,1000,Wilson binomial 95% confidence interval
+0.2,0.18000000000000002,0.22,0.04,alex-mp-20 vs official Alexandria-PBE,47,7,,,,False,1000,Wilson binomial 95% confidence interval
+0.2,0.18000000000000002,0.22,0.04,MP vs alex-mp-20,47,8,,,,False,1000,Wilson binomial 95% confidence interval

@@ -1,0 +1,3 @@
+scope,winner_flip_n,possible_pairwise_label_view_comparisons_n,winner_flip_rate,model_pair_n,metric_n,label_view_n,guardrail
+aggregate_diagnostic,10468,77616,0.13486909915481343,66,42,8,aggregate includes baselines/oracles
+real_models_only,377,7056,0.0534297052154195,6,42,8,four real SourceAware-scored models only

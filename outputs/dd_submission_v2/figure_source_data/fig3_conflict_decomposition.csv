@@ -1,0 +1,8 @@
+component,display_name,n,d2_denominator_n,fraction_of_d2,reconstructable_native_equals_phase_plus_persistent,common_pool_conflicts_equals_persistent_plus_hidden,native_full_equals_reconstructable_plus_unreconstructable
+native_full,native MP--Alex-PBE conflicts,5666,36802,0.1539590239660888,True,True,True
+reconstructable_native,native conflicts reconstructable in matched common pool,5661,36802,0.1538231617846856,True,True,True
+phase_pool_sensitive,phase-pool-sensitive native conflicts,3659,36802,0.0994239443508505,True,True,True
+persistent,persistent native conflicts,2002,36802,0.05439921743383512,True,True,True
+common_pool_conflicts,matched common-pool conflicts,4897,36802,0.133063420466279,True,True,True
+hidden_common_pool,hidden common-pool conflicts,2895,36802,0.07866420303244388,True,True,True
+unreconstructable,native conflicts unreconstructable in matched common pool,5,36802,0.0001358621814031846,True,True,True

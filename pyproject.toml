@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sourceaware-stability"
+version = "2.0.0"
+description = "Source-aware crystal-stability benchmark and model-facing evaluation framework"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "pandas",
+  "scikit-learn",
+  "pyarrow",
+]
+
+[tool.setuptools.packages.find]
+include = ["sourceaware*"]
+
+[project.scripts]
+sourceaware = "sourceaware.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

@@ -3,6 +3,8 @@ numpy
 pandas
 scipy
 scikit-learn
+pyarrow
+PyYAML
 pymatgen
 mp-api
 

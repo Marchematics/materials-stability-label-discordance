@@ -1,0 +1,21 @@
+{
+  "title": "SourceAware-Stability v2.0.0: Digital Discovery submission release",
+  "description": "Immutable source-aware crystal-stability benchmark and model-facing evaluation release supporting exact denominators, label views, row-level discovery curves, metric-band and rank audits, guarded candidate consequence, benchmark/model cards, manifests, tests and publication figure source data. No homogeneous DFT referee labels or generated-material validation are claimed.",
+  "creators": [
+    {"name": "Wen, Xinling"},
+    {"name": "Zhang, Jiahao"},
+    {"name": "Hou, Yawei"},
+    {"name": "Chen, Yu"}
+  ],
+  "license": "MIT",
+  "keywords": [
+    "crystal discovery",
+    "materials informatics",
+    "stability benchmark",
+    "DFT",
+    "source-aware labels",
+    "leaderboard"
+  ],
+  "upload_type": "software",
+  "access_right": "open"
+}

@@ -1,0 +1,12 @@
+==> python -m sourceaware.phase2.cli check --phase1 outputs/phase1_v2 --out outputs/phase2_v1
+                         check_id          status
+      phase1_frozen_input_present            pass
+            model_score_inventory            pass
+               model_denominators            pass
+     model_evaluation_label_views            pass
+label_uncertainty_vs_model_spread            pass
+          rank_inversion_analysis            pass
+ generative_candidate_consequence guarded_partial
+                leaderboard_alpha            pass
+          figures_and_source_data            pass
+        tests_and_reproducibility            pass
