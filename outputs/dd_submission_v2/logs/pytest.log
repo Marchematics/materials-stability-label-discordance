@@ -1,5 +1,4 @@
-==> pytest -q
-........................................................................ [ 39%]
-........................................................................ [ 78%]
-........................................                                 [100%]
-184 passed in 231.72s (0:03:51)
+==> pytest -q tests/test_artifact_integrity.py tests/test_phase1_benchmark_card_schema.py tests/test_phase1_denominator_membership.py tests/test_phase1_hash_integrity.py tests/test_phase1_hull_reconstruction.py tests/test_phase1_label_definitions.py tests/test_phase1_metric_reproducibility.py tests/test_phase1_row_counts.py tests/test_phase2_claim_support.py tests/test_phase2_denominators.py tests/test_phase2_figures.py tests/test_phase2_generative.py tests/test_phase2_key_findings.py tests/test_phase2_manifest.py tests/test_phase2_metrics.py tests/test_phase2_pairwise_complete.py tests/test_phase2_rank_inversions.py tests/test_phase2_requirement_audit.py tests/test_phase2_score_inventory.py tests/test_dd_submission_claims.py tests/test_dd_submission_curves.py tests/test_dd_submission_figures.py
+........................................................................ [ 94%]
+....                                                                     [100%]
+76 passed in 20.40s

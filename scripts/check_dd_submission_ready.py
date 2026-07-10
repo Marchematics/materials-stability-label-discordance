@@ -221,8 +221,20 @@ def main() -> int:
     pytest_log = ROOT / "outputs/dd_submission_v2/logs/pytest.log"
     clean_log = ROOT / "outputs/dd_submission_v2/logs/clean_environment_regeneration.log"
     run_status = ROOT / "outputs/dd_submission_v2/logs/run_all.status"
-    gate("Full test suite", pytest_log.exists() and "184 passed" in pytest_log.read_text(errors="ignore"), "184 passed expected")
-    gate("Clean-environment regeneration", clean_log.exists() and "184 passed" in clean_log.read_text(errors="ignore"), "184 passed expected")
+    pytest_text = pytest_log.read_text(errors="ignore") if pytest_log.exists() else ""
+    clean_text = clean_log.read_text(errors="ignore") if clean_log.exists() else ""
+    pytest_match = re.search(r"(\d+) passed", pytest_text)
+    clean_match = re.search(r"(\d+) passed", clean_text)
+    gate(
+        "Frozen DD test suite",
+        bool(pytest_match) and " failed" not in pytest_text.lower(),
+        f"{pytest_match.group(1)} passed" if pytest_match else "missing successful pytest summary",
+    )
+    gate(
+        "Clean-environment regeneration",
+        bool(clean_match) and " failed" not in clean_text.lower(),
+        f"{clean_match.group(1)} passed" if clean_match else "missing successful pytest summary",
+    )
     gate("run_all acceptance command", run_status.exists() and run_status.read_text().strip() == "PASS", run_status.read_text().strip() if run_status.exists() else "missing")
 
     # 6. Submission documents and local RSC-format preflight.

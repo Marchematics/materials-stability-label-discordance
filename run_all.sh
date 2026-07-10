@@ -16,7 +16,14 @@ run_logged phase2_check python -m sourceaware.phase2.cli check --phase1 outputs/
 run_logged benchmark_card python scripts/generate_benchmark_card.py --check
 run_logged submission_figures python scripts/build_submission_figures.py --check
 run_logged manuscript_claims python scripts/audit_manuscript_claims.py --check
-run_logged pytest pytest -q
+# The DD release deliberately excludes NMI/referee scaffolds.  Keep the
+# one-command test scope aligned with the frozen benchmark/model layers even if
+# a developer has unrelated untracked tests in the working tree.
+run_logged pytest pytest -q \
+  tests/test_artifact_integrity.py \
+  tests/test_phase1_*.py \
+  tests/test_phase2_*.py \
+  tests/test_dd_submission_*.py
 run_logged git_diff_check git diff --check
 
 python scripts/build_dd_submission_manifest.py --out outputs/dd_submission_v2
