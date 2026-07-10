@@ -1,4 +1,20 @@
-........................................................................ [ 39%]
-........................................................................ [ 78%]
-........................................                                 [100%]
-184 passed in 223.93s (0:03:43)
+==> python -m sourceaware.phase2.cli check --phase1 outputs/phase1_v2 --out outputs/phase2_v1
+                         check_id          status
+      phase1_frozen_input_present            pass
+            model_score_inventory            pass
+               model_denominators            pass
+     model_evaluation_label_views            pass
+label_uncertainty_vs_model_spread            pass
+          rank_inversion_analysis            pass
+ generative_candidate_consequence guarded_partial
+                leaderboard_alpha            pass
+          figures_and_source_data            pass
+        tests_and_reproducibility            pass
+==> python scripts/generate_benchmark_card.py --check
+==> python scripts/build_submission_figures.py --check
+==> python scripts/audit_manuscript_claims.py --check
+==> pytest -q tests/test_artifact_integrity.py tests/test_phase1_benchmark_card_schema.py tests/test_phase1_denominator_membership.py tests/test_phase1_hash_integrity.py tests/test_phase1_hull_reconstruction.py tests/test_phase1_label_definitions.py tests/test_phase1_metric_reproducibility.py tests/test_phase1_row_counts.py tests/test_phase2_claim_support.py tests/test_phase2_denominators.py tests/test_phase2_figures.py tests/test_phase2_generative.py tests/test_phase2_key_findings.py tests/test_phase2_manifest.py tests/test_phase2_metrics.py tests/test_phase2_pairwise_complete.py tests/test_phase2_rank_inversions.py tests/test_phase2_requirement_audit.py tests/test_phase2_score_inventory.py tests/test_dd_submission_claims.py tests/test_dd_submission_curves.py tests/test_dd_submission_figures.py
+........................................................................ [ 94%]
+....                                                                     [100%]
+76 passed in 17.89s
+==> git diff --check

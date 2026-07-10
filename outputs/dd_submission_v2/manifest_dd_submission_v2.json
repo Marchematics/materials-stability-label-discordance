@@ -269,18 +269,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/logs/clean_environment_install.log",
-      "bytes": 15719,
+      "bytes": 12231,
       "rows": null,
       "columns": null,
-      "sha256": "4dab3c342d20adc3a69d063895156a52aaca6e1335c22ad14c9b3594f8d37767",
+      "sha256": "f81f85b64cdf158e331161ed8b7f6006185d6910085de2b893dc022407450232",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/logs/clean_environment_regeneration.log",
-      "bytes": 272,
+      "bytes": 1815,
       "rows": null,
       "columns": null,
-      "sha256": "3fc0b1d9fc483a024e0bc1d7705698a78f2c47b6ed6154f6ece32418837237f5",
+      "sha256": "1d1943a11d81c3cb887edf4608bca2d492a525fe9b96bda6b8f9d8da65765c15",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
