@@ -1,7 +1,7 @@
 {
   "release": "v2.0.0-dd-submission",
   "evidence_scope": "frozen Phase 1/2 only; no NMI/referee scaffold evidence",
-  "file_count": 42,
+  "file_count": 44,
   "files": [
     {
       "path": "outputs/dd_submission_v2/figure_qa.json",
@@ -217,6 +217,22 @@
       "rows": null,
       "columns": null,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "generating_script": "run_all.sh or cited phase builder"
+    },
+    {
+      "path": "outputs/dd_submission_v2/logs/clean_environment_install.log",
+      "bytes": 414,
+      "rows": null,
+      "columns": null,
+      "sha256": "19b56621f23db0c3789abb114f1bb326426067b623e018906b548e85910cf71b",
+      "generating_script": "run_all.sh or cited phase builder"
+    },
+    {
+      "path": "outputs/dd_submission_v2/logs/clean_environment_regeneration.log",
+      "bytes": 1815,
+      "rows": null,
+      "columns": null,
+      "sha256": "d3633dcf8ba6a1b29570e293703a4335881b6072a7c2657cdb776ec4aedf15ad",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
