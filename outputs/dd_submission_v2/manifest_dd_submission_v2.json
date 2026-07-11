@@ -5,10 +5,10 @@
   "files": [
     {
       "path": "outputs/dd_submission_v2/figure_qa.json",
-      "bytes": 2187,
+      "bytes": 2175,
       "rows": 2,
       "columns": 1,
-      "sha256": "177e19116b001fecb472af94b35e4577e04586a1964644498f9054244017c80d",
+      "sha256": "e7b1dc88e36c54bc28f30b1110c814a74aa9414e33448bfe937643f8f153820b",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -117,10 +117,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.pdf",
-      "bytes": 46593,
+      "bytes": 44675,
       "rows": null,
       "columns": null,
-      "sha256": "a56b8b539c9270af803644f9f3078a18b685ef4089d6f6f6ef423e18dad52a8d",
+      "sha256": "dbf05a3dca26a765e545999f4ed0e47a830bb07901b37e47a314d1b9cf1d0a42",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -133,18 +133,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.tiff",
-      "bytes": 867286,
+      "bytes": 738478,
       "rows": null,
       "columns": null,
-      "sha256": "819fd653ca6e957490c9833ac5e52aa70b8951a1648294dd9a2f0ae4be5e6e72",
+      "sha256": "2910f4b69f5e4a2ac51943317241098534b1594a06f26d7a05916b8f5b437e62",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.pdf",
-      "bytes": 29418,
+      "bytes": 31628,
       "rows": null,
       "columns": null,
-      "sha256": "47d3b370c463055c41c28cac09ac0e82ddda39f990f04f6191f4f00a55ebc3ef",
+      "sha256": "ac4ce705b85b90c9c18d1061d67220b4ca9a7ef40617d1ba963ada97dd33e279",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -157,18 +157,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.tiff",
-      "bytes": 765376,
+      "bytes": 918764,
       "rows": null,
       "columns": null,
-      "sha256": "b9a503c0ff8732ff4cc97f2e0614d9b9c92e4bf0447498aff74d6b12af4ddcd7",
+      "sha256": "a932f7db963f93e423c1fcf5dc8ad10c359f95127ebcdf0f5aa9f3706b8c01ec",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.pdf",
-      "bytes": 21162,
+      "bytes": 22734,
       "rows": null,
       "columns": null,
-      "sha256": "d2ecd47cc623f0d0623b583cdaf77e79bf52cfe455cc7d4301673ef9b74da76a",
+      "sha256": "0e21d89148e64bd4aa68db9a95eb33268265fceb4832f2b06d8d21f4c0633697",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -181,18 +181,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.tiff",
-      "bytes": 951642,
+      "bytes": 1020298,
       "rows": null,
       "columns": null,
-      "sha256": "48c0ba5b2ec2c4d9e30b4f24cdb480655da4233ec0d606a4623b5eb730d81df5",
+      "sha256": "7d0f394b46bd15dca6d03fe3f603d17382bd14a6c418f8de8a6e8dc6236b82c0",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.pdf",
-      "bytes": 26331,
+      "bytes": 29996,
       "rows": null,
       "columns": null,
-      "sha256": "6b9ff5bb78afe23caf26a566d29ae47e7095bd7fea609c153ceac2933041efd8",
+      "sha256": "677e230eb2a556b5e52018c086ca8402695323a38d3bc6e53a04d2c29671e3ce",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -205,18 +205,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.tiff",
-      "bytes": 669550,
+      "bytes": 774268,
       "rows": null,
       "columns": null,
-      "sha256": "b938baed13ed3782969d8603c106c151a6309492379e1f8e09b6cbfc2d859d5c",
+      "sha256": "4148ae62ff8ee5d7851f97f767ccd5f805b9661ee9c9c343d1f33eaaa7e14336",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.pdf",
-      "bytes": 20264,
+      "bytes": 24775,
       "rows": null,
       "columns": null,
-      "sha256": "dc5d6d629187295dffb5c6e964ae76da451c6f7f5a57df8b5c46d6f7e772f6db",
+      "sha256": "8ae2ba276832bb251fd0daf2274142397ce49da0a046efe7f50dde28032823bb",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -229,18 +229,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.tiff",
-      "bytes": 708768,
+      "bytes": 714198,
       "rows": null,
       "columns": null,
-      "sha256": "abc26c029937b41d1f997afab1c068e089b46a0604ff67cae11be98dfb1d1d62",
+      "sha256": "1884cade5f5ddcb126684297dc13d38fe5ccc0be2b931830a5b6b61d24c9e2b3",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/toc_graphic.pdf",
-      "bytes": 21574,
+      "bytes": 21578,
       "rows": null,
       "columns": null,
-      "sha256": "b60f8938e1f7de33e8e4492a1d46a6c6b1aee892e807c1a69103c79084bd5555",
+      "sha256": "8a379561fee2232ec2fd4bfe563b84ca188ee66c2ab884718341cc08f272c77d",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -253,10 +253,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/toc_graphic.tiff",
-      "bytes": 194548,
+      "bytes": 202864,
       "rows": null,
       "columns": null,
-      "sha256": "8c306b58c5536dcd7c34708029ad9222c2c4ed79ce97ed3e7b0d472d999ef590",
+      "sha256": "cdf8fe637944e9aaac8f04ebb48e6b6859091e436c9f947e4e485e65e2229bbf",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
