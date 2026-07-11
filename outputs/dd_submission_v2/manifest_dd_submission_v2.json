@@ -1,7 +1,7 @@
 {
   "release": "v2.0.0-dd-submission",
   "evidence_scope": "frozen Phase 1/2 only; no NMI/referee scaffold evidence",
-  "file_count": 50,
+  "file_count": 42,
   "files": [
     {
       "path": "outputs/dd_submission_v2/figure_qa.json",
@@ -117,202 +117,138 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.pdf",
-      "bytes": 44681,
+      "bytes": 42865,
       "rows": null,
       "columns": null,
-      "sha256": "63e48ea629c7b5ae81c063a7371c571c45b32fe6c740821cfd0794178c0a97fa",
-      "generating_script": "run_all.sh or cited phase builder"
-    },
-    {
-      "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.svg",
-      "bytes": 103038,
-      "rows": null,
-      "columns": null,
-      "sha256": "44f0022765f12b52ac75c32277f38b9b09f93d5e0430fd485e56f4c41a038010",
+      "sha256": "25b67fcc6bf9b5f5b524664995ff4d594f3a2d4816223b9994cf5958daa7eccc",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.tiff",
-      "bytes": 736046,
+      "bytes": 755908,
       "rows": null,
       "columns": null,
-      "sha256": "c3a71d3664e45dee2a74e8177ef03b98d99bcf240f8174695bc7a7770016197d",
+      "sha256": "22d943e00216ab95eaa0d6eaa9d2c6f9b941de2f28cae29844d8b1bc051791ea",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.pdf",
-      "bytes": 31591,
+      "bytes": 31755,
       "rows": null,
       "columns": null,
-      "sha256": "ab44dcbeb160b0825ad2101d54d67df7b264949a0de19640dae304a494febf74",
-      "generating_script": "run_all.sh or cited phase builder"
-    },
-    {
-      "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.svg",
-      "bytes": 42054,
-      "rows": null,
-      "columns": null,
-      "sha256": "95b326f5b6e5d03249d075b3b6ca93707b7373d8887785c3c13039825130b83c",
+      "sha256": "6df647a450db108b6dd1514fa1d3584881feeeb59b8000f3f0931f75809b2746",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.tiff",
-      "bytes": 1030746,
+      "bytes": 1042400,
       "rows": null,
       "columns": null,
-      "sha256": "adcfd2a056814c62bfd5bbe64a96e250671bf8a4d32db76d8d8a53f24fcb6cad",
+      "sha256": "d8728068481d33e3b8675579a4eedb1c542eec3a92192d8f4c6ebcdbef36afe6",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.pdf",
-      "bytes": 22734,
+      "bytes": 22809,
       "rows": null,
       "columns": null,
-      "sha256": "8686428a29dc1bf5de88389eb10b4a750bc30743addbda4ce4523ff797e5483b",
-      "generating_script": "run_all.sh or cited phase builder"
-    },
-    {
-      "path": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.svg",
-      "bytes": 27319,
-      "rows": null,
-      "columns": null,
-      "sha256": "42cefe4bec97177cd1f6c8b848b38d0bcea879ec16ee382458a45c2536881b54",
+      "sha256": "98b7413989210283d6e67e3c3eba536192faeaec3ba2943a6a2b6ac2ee9b6f81",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.tiff",
-      "bytes": 1020298,
+      "bytes": 1067134,
       "rows": null,
       "columns": null,
-      "sha256": "7d0f394b46bd15dca6d03fe3f603d17382bd14a6c418f8de8a6e8dc6236b82c0",
+      "sha256": "06188ff7d3a814e5f85d963a62e45d224bf059e559d6d3880c6b1666e8a19897",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.pdf",
-      "bytes": 28953,
+      "bytes": 29002,
       "rows": null,
       "columns": null,
-      "sha256": "9c9cf2ead198d13809833eb1cea0645be3c4ced559af69299c1bc8cbe5125f68",
-      "generating_script": "run_all.sh or cited phase builder"
-    },
-    {
-      "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.svg",
-      "bytes": 51557,
-      "rows": null,
-      "columns": null,
-      "sha256": "d7c963aafa3e0458fc88627ba5aeeb641a1ac1428a763717b344228964a394af",
+      "sha256": "5b58f1c5b09924226cc0a45a02465aa4e86e9f8032809b9d93bd3e47efe3817d",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.tiff",
-      "bytes": 743108,
+      "bytes": 782602,
       "rows": null,
       "columns": null,
-      "sha256": "c910ad0b081eb4a9896dafca9c5c1c5dd25b2a118b7a08817f8ac83f19ecd6f0",
+      "sha256": "21a15e2b9f8279178b757f8a7488efdf11adee15882b547c62f1848225c0d60e",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.pdf",
-      "bytes": 24775,
+      "bytes": 24827,
       "rows": null,
       "columns": null,
-      "sha256": "f4cd6a7ceace1d75b08a689e4facc981d421b3d7966699d10eb3c8818ee81ba9",
-      "generating_script": "run_all.sh or cited phase builder"
-    },
-    {
-      "path": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.svg",
-      "bytes": 23919,
-      "rows": null,
-      "columns": null,
-      "sha256": "c00ac9b36946eb710920330c544da8a89620f40c816d09acb7376f13fd4214e1",
+      "sha256": "e9edc84c4cbf75e66741fa908cbe858d06988ae90ab6fe7058b6fc6fe136ed19",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.tiff",
-      "bytes": 745930,
+      "bytes": 778478,
       "rows": null,
       "columns": null,
-      "sha256": "d00fb160bd9337cb7afcadfe65436f54d6a3167108a14aba2290cf260ae8a6ad",
+      "sha256": "ae06f34daf025fc07072a9567ae92c64cbe05d757b0beff3a34daafbb889d139",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/toc_graphic.pdf",
-      "bytes": 21576,
+      "bytes": 21615,
       "rows": null,
       "columns": null,
-      "sha256": "958310c2c21fcd39711b88402e368ee5e01159b96d2146713e7b7ce5185ce107",
-      "generating_script": "run_all.sh or cited phase builder"
-    },
-    {
-      "path": "outputs/dd_submission_v2/figures/toc_graphic.svg",
-      "bytes": 16917,
-      "rows": null,
-      "columns": null,
-      "sha256": "f6e7fdc20e601967165d82df0e6c27aa6eddf5a56113ae53ee8bbe36c37b937f",
+      "sha256": "9ee2fd58d5e145a0f266e081e9d529525e6cfe58b9067ec325f8f6b3c0e9b2cc",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/toc_graphic.tiff",
-      "bytes": 202684,
+      "bytes": 203648,
       "rows": null,
       "columns": null,
-      "sha256": "5112029d6e7aafdcf049d4947ba50cc2b6b0d4501d6bab12acb5b692d273b7ee",
+      "sha256": "1d28b29b350e8f85b8cd36167b643b71210aa7db132cd43017006885a711994c",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/logs/benchmark_card.log",
-      "bytes": 54,
+      "bytes": 0,
       "rows": null,
       "columns": null,
-      "sha256": "5c7fb4572242a4561704c1b92362e42d5a4a29ce9159aa0b24fee615f84b105a",
-      "generating_script": "run_all.sh or cited phase builder"
-    },
-    {
-      "path": "outputs/dd_submission_v2/logs/clean_environment_install.log",
-      "bytes": 12231,
-      "rows": null,
-      "columns": null,
-      "sha256": "f81f85b64cdf158e331161ed8b7f6006185d6910085de2b893dc022407450232",
-      "generating_script": "run_all.sh or cited phase builder"
-    },
-    {
-      "path": "outputs/dd_submission_v2/logs/clean_environment_regeneration.log",
-      "bytes": 1815,
-      "rows": null,
-      "columns": null,
-      "sha256": "c383cca3651d7f29a2b333efaab184bb6d1d5380c1ccb8f4c333da7ebbd61ea7",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/logs/git_diff_check.log",
-      "bytes": 21,
+      "bytes": 0,
       "rows": null,
       "columns": null,
-      "sha256": "e5345833658dbf5ea767f45608b7d41307e66821ce2f8769dda87f72f8029956",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/logs/manuscript_claims.log",
-      "bytes": 54,
+      "bytes": 0,
       "rows": null,
       "columns": null,
-      "sha256": "1dd37ad556b7e843671733198f6de3b1bcb5a1aa55cdc3c2c1f12807fa6f1961",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/logs/phase2_check.log",
-      "bytes": 644,
+      "bytes": 550,
       "rows": null,
       "columns": null,
-      "sha256": "f90918d7a43cf5a537d7e7c7f15fc776f8c6be0ff78efe3336b8c45807dfdb53",
+      "sha256": "a81b0d38630d975ff9e6d02377f9532095abc5294f309ee1b84373c30a2eff8d",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/logs/pytest.log",
-      "bytes": 987,
+      "bytes": 180,
       "rows": null,
       "columns": null,
-      "sha256": "fedb14322f079980b25f15ebcef0f14de51261c271043ecd5cb5fb204eea14ae",
+      "sha256": "0f5cc093e77a4413194be0e02ff2e3675c54238057effca2c44df9ef12f445bc",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -325,10 +261,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/logs/submission_figures.log",
-      "bytes": 55,
+      "bytes": 0,
       "rows": null,
       "columns": null,
-      "sha256": "6f9ceb3ed9bcf1e56e08790059a6d529e04fc6c762466ffed76d0f8906541fad",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {

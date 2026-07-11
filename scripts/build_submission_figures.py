@@ -3,6 +3,12 @@
 
 All curves are row-level cumulative calculations. No spline interpolation is
 used. NMI-upgrade/referee scaffold outputs are outside this script's inputs.
+
+Figure 1/2 use the presentation grammar of the MIT-licensed Matbench Discovery
+v1.1.0 plotting scripts retained under ``third_party/``: Light24 colours,
+line-dash identities, a marginal density panel, external legends and an explicit
+rolling-window scale bar. This is a style reference only; numerical results are
+calculated from frozen SourceAware outputs below.
 """
 from __future__ import annotations
 
@@ -15,7 +21,7 @@ import sys
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from matplotlib.patches import Patch
+from matplotlib.patches import Patch, Rectangle
 from matplotlib.ticker import FuncFormatter, LogLocator
 import numpy as np
 import pandas as pd
@@ -47,25 +53,30 @@ from sourceaware.dd_submission import (
 
 CM = 1 / 2.54
 MODEL_COLORS = {
-    # Qualitative palette calibrated to the published Matbench Discovery visual
-    # grammar: blue/pink/gold/green are separable in colour and greyscale.
-    "ALIGNN-FF": "#5B6EE1",
-    "CHGNet": "#F06491",
-    "M3GNet": "#E9AF2E",
-    "MACE-MP": "#63B74B",
+    # Plotly Light24 entries used in the Matbench Discovery NMI reference figure.
+    "ALIGNN-FF": "#636EFA",
+    "CHGNet": "#FF97FF",
+    "M3GNet": "#FECB52",
+    "MACE-MP": "#B6E880",
 }
 MODEL_MARKERS = {"ALIGNN-FF": "o", "CHGNet": "s", "M3GNet": "^", "MACE-MP": "D"}
+MODEL_LINESTYLES = {
+    "ALIGNN-FF": (0, (5.5, 1.7, 1.1, 1.7)),
+    "CHGNet": (0, (5.5, 2.6)),
+    "M3GNet": (0, (9.0, 2.8)),
+    "MACE-MP": (0, (1.25, 1.55)),
+}
 VIEW_STYLES = {"mp_native": (0, (5, 2)), "consensus": (0, (1.2, 1.5)), "audit_view": "-"}
 VIEW_LABELS = {"mp_native": "MP-native", "consensus": "Consensus", "audit_view": "Audit view"}
 PAIR_COLORS = {
-    "MP vs official Alexandria-PBE": "#18B8D4",
+    "MP vs official Alexandria-PBE": "#19D3F3",
     "alex-mp-20 vs official Alexandria-PBE": "#F08A3C",
-    "MP vs alex-mp-20": "#26A886",
+    "MP vs alex-mp-20": "#00CC96",
 }
 PAIR_STYLES = {
-    "MP vs official Alexandria-PBE": "-",
-    "alex-mp-20 vs official Alexandria-PBE": (0, (5, 2.1)),
-    "MP vs alex-mp-20": (0, (1.2, 1.5)),
+    "MP vs official Alexandria-PBE": (0, (5.5, 1.7, 1.1, 1.7)),
+    "alex-mp-20 vs official Alexandria-PBE": (0, (7.5, 2.8)),
+    "MP vs alex-mp-20": "-",
 }
 METRIC_COLORS = {
     "f1": "#3B6FB6",
@@ -94,10 +105,10 @@ def set_style() -> None:
             "xtick.labelsize": 7.7,
             "ytick.labelsize": 7.7,
             "legend.fontsize": 7.3,
-            "axes.linewidth": 0.75,
-            "axes.edgecolor": "#333333",
-            "axes.spines.top": False,
-            "axes.spines.right": False,
+            "axes.linewidth": 0.65,
+            "axes.edgecolor": "#53565A",
+            "axes.spines.top": True,
+            "axes.spines.right": True,
             "xtick.direction": "out",
             "ytick.direction": "out",
             "xtick.major.width": 0.7,
@@ -118,7 +129,7 @@ def panel_label(ax: plt.Axes, label: str, x: float = -0.12, y: float = 1.04) -> 
 
 
 def clean_axis(ax: plt.Axes, grid_axis: str = "y") -> None:
-    ax.grid(axis=grid_axis, color="#D8D8D8", linewidth=0.45, alpha=0.65)
+    ax.grid(axis=grid_axis, color="#C9CDD2", linewidth=0.65, alpha=0.72)
     ax.set_axisbelow(True)
 
 
@@ -188,13 +199,13 @@ def figure1(curves: pd.DataFrame, source_dir: Path, figure_dir: Path) -> dict[st
                 ]
                 ax.plot(
                     data["rank"], data[metric], color=MODEL_COLORS[model],
-                    linewidth=1.8, solid_capstyle="round", zorder=2,
+                    linestyle=MODEL_LINESTYLES[model], linewidth=2.05,
+                    solid_capstyle="round", zorder=2,
                 )
                 endpoint = data.iloc[-1]
                 ax.scatter(
                     endpoint["rank"], endpoint[metric], color=MODEL_COLORS[model],
-                    marker=MODEL_MARKERS[model], s=13, edgecolor="white",
-                    linewidth=0.4, zorder=3,
+                    marker="o", s=17, edgecolor="white", linewidth=0.45, zorder=3,
                 )
             ax.axvline(1000, color="#69727D", linestyle=(0, (4, 3)), linewidth=0.7, zorder=0)
             ax.set_xlim(0, 36_801)
@@ -206,14 +217,20 @@ def figure1(curves: pd.DataFrame, source_dir: Path, figure_dir: Path) -> dict[st
                 )
             )
             if row_idx == 0:
-                ax.set_title(view_label, pad=4, fontweight="bold")
+                ax.set_title(view_label, pad=4, fontweight="normal")
                 ax.tick_params(axis="x", labelbottom=False)
             if col_idx == 0:
                 ax.set_ylabel(row_label)
             clean_axis(ax)
     panel_label(axes[0, 0], "a", x=0.04, y=0.86)
     panel_label(axes[1, 0], "b", x=0.04, y=0.86)
-    model_handles = [Line2D([0], [0], color=MODEL_COLORS[m], marker=MODEL_MARKERS[m], markersize=4.0, linewidth=2.0, label=m) for m in REAL_MODELS]
+    model_handles = [
+        Line2D(
+            [0], [0], color=MODEL_COLORS[m], linestyle=MODEL_LINESTYLES[m],
+            marker="o", markersize=3.7, linewidth=2.05, label=m,
+        )
+        for m in REAL_MODELS
+    ]
     fig.supxlabel("Candidates evaluated, K", y=0.105, fontsize=8.5)
     fig.subplots_adjust(bottom=0.18, top=0.92, left=0.075, right=0.99)
     fig.legend(
@@ -231,13 +248,13 @@ def figure2(rolling: pd.DataFrame, density: pd.DataFrame, source_dir: Path, figu
     fig = plt.figure(figsize=(17.1 * CM, 10.0 * CM))
     gs = fig.add_gridspec(2, 1, height_ratios=[0.56, 2.25], hspace=0.07)
     top = fig.add_subplot(gs[0])
-    top.fill_between(density["bin_center_eV"], density["row_count"], step="mid", color="#70BCD4", alpha=0.72, linewidth=0)
-    top.plot(density["bin_center_eV"], density["row_count"], color="#188DB8", linewidth=1.2)
+    top.fill_between(density["bin_center_eV"], density["row_count"], step="mid", color="#6EC1D8", alpha=0.85, linewidth=0)
+    top.plot(density["bin_center_eV"], density["row_count"], color="#008FC5", linewidth=1.75)
     top.set_xlim(0, 0.20)
     top.set_ylabel("Rows")
     top.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{int(x/1000)}k" if x else "0"))
     top.tick_params(axis="x", labelbottom=False)
-    clean_axis(top)
+    top.grid(False)
     panel_label(top, "a", x=-0.075, y=0.90)
 
     ax = fig.add_subplot(gs[1], sharex=top)
@@ -260,7 +277,10 @@ def figure2(rolling: pd.DataFrame, density: pd.DataFrame, source_dir: Path, figu
             label=pair, solid_capstyle="round",
         )
     ax.text(0.005, 0.286, "Near-threshold\nlabel-risk zone", color="#8C3D3A", fontsize=7.4, va="top", fontweight="bold")
-    ax.text(0.198, 0.286, "40 meV window · Wilson 95% CI", color="#4D5359", fontsize=7.2, va="top", ha="right")
+    window_x0, window_y0 = 0.154, 0.280
+    ax.add_patch(Rectangle((window_x0, window_y0), 0.040, 0.006, fill=False, edgecolor="#35435E", linewidth=1.25, zorder=4))
+    ax.text(window_x0 - 0.004, 0.286, "Rolling window = 40 meV", color="#20252B", fontsize=7.6, va="center", ha="right")
+    ax.text(0.198, 0.266, "Wilson 95% CI", color="#4D5359", fontsize=6.6, va="top", ha="right")
     ax.text((support_end + 0.20) / 2, 0.145, "$n<1{,}000$\nmasked", color="#6B737C", fontsize=7.2, va="center", ha="center")
     ax.set_xlim(0, 0.20)
     ax.set_ylim(0, 0.30)
