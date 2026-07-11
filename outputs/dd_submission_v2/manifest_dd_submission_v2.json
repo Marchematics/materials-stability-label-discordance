@@ -5,10 +5,10 @@
   "files": [
     {
       "path": "outputs/dd_submission_v2/figure_qa.json",
-      "bytes": 2175,
+      "bytes": 2160,
       "rows": 2,
       "columns": 1,
-      "sha256": "e7b1dc88e36c54bc28f30b1110c814a74aa9414e33448bfe937643f8f153820b",
+      "sha256": "27aa93c82baec91fb2d3820f07983ee5f742f37e9800fbcd2f5222af6bc8e50d",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -117,10 +117,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.pdf",
-      "bytes": 44675,
+      "bytes": 44681,
       "rows": null,
       "columns": null,
-      "sha256": "dbf05a3dca26a765e545999f4ed0e47a830bb07901b37e47a314d1b9cf1d0a42",
+      "sha256": "63e48ea629c7b5ae81c063a7371c571c45b32fe6c740821cfd0794178c0a97fa",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -133,18 +133,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.tiff",
-      "bytes": 738478,
+      "bytes": 736046,
       "rows": null,
       "columns": null,
-      "sha256": "2910f4b69f5e4a2ac51943317241098534b1594a06f26d7a05916b8f5b437e62",
+      "sha256": "c3a71d3664e45dee2a74e8177ef03b98d99bcf240f8174695bc7a7770016197d",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.pdf",
-      "bytes": 31628,
+      "bytes": 31591,
       "rows": null,
       "columns": null,
-      "sha256": "ac4ce705b85b90c9c18d1061d67220b4ca9a7ef40617d1ba963ada97dd33e279",
+      "sha256": "ab44dcbeb160b0825ad2101d54d67df7b264949a0de19640dae304a494febf74",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -157,10 +157,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.tiff",
-      "bytes": 918764,
+      "bytes": 1030746,
       "rows": null,
       "columns": null,
-      "sha256": "a932f7db963f93e423c1fcf5dc8ad10c359f95127ebcdf0f5aa9f3706b8c01ec",
+      "sha256": "adcfd2a056814c62bfd5bbe64a96e250671bf8a4d32db76d8d8a53f24fcb6cad",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -168,7 +168,7 @@
       "bytes": 22734,
       "rows": null,
       "columns": null,
-      "sha256": "0e21d89148e64bd4aa68db9a95eb33268265fceb4832f2b06d8d21f4c0633697",
+      "sha256": "8686428a29dc1bf5de88389eb10b4a750bc30743addbda4ce4523ff797e5483b",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -189,10 +189,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.pdf",
-      "bytes": 29996,
+      "bytes": 28953,
       "rows": null,
       "columns": null,
-      "sha256": "677e230eb2a556b5e52018c086ca8402695323a38d3bc6e53a04d2c29671e3ce",
+      "sha256": "9c9cf2ead198d13809833eb1cea0645be3c4ced559af69299c1bc8cbe5125f68",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -205,10 +205,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.tiff",
-      "bytes": 774268,
+      "bytes": 743108,
       "rows": null,
       "columns": null,
-      "sha256": "4148ae62ff8ee5d7851f97f767ccd5f805b9661ee9c9c343d1f33eaaa7e14336",
+      "sha256": "c910ad0b081eb4a9896dafca9c5c1c5dd25b2a118b7a08817f8ac83f19ecd6f0",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -216,7 +216,7 @@
       "bytes": 24775,
       "rows": null,
       "columns": null,
-      "sha256": "8ae2ba276832bb251fd0daf2274142397ce49da0a046efe7f50dde28032823bb",
+      "sha256": "f4cd6a7ceace1d75b08a689e4facc981d421b3d7966699d10eb3c8818ee81ba9",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -229,18 +229,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.tiff",
-      "bytes": 714198,
+      "bytes": 745930,
       "rows": null,
       "columns": null,
-      "sha256": "1884cade5f5ddcb126684297dc13d38fe5ccc0be2b931830a5b6b61d24c9e2b3",
+      "sha256": "d00fb160bd9337cb7afcadfe65436f54d6a3167108a14aba2290cf260ae8a6ad",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/toc_graphic.pdf",
-      "bytes": 21578,
+      "bytes": 21576,
       "rows": null,
       "columns": null,
-      "sha256": "8a379561fee2232ec2fd4bfe563b84ca188ee66c2ab884718341cc08f272c77d",
+      "sha256": "958310c2c21fcd39711b88402e368ee5e01159b96d2146713e7b7ce5185ce107",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -253,10 +253,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/toc_graphic.tiff",
-      "bytes": 202864,
+      "bytes": 202684,
       "rows": null,
       "columns": null,
-      "sha256": "cdf8fe637944e9aaac8f04ebb48e6b6859091e436c9f947e4e485e65e2229bbf",
+      "sha256": "5112029d6e7aafdcf049d4947ba50cc2b6b0d4501d6bab12acb5b692d273b7ee",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {

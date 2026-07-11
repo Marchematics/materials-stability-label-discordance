@@ -47,18 +47,25 @@ from sourceaware.dd_submission import (
 
 CM = 1 / 2.54
 MODEL_COLORS = {
-    "ALIGNN-FF": "#3B6FB6",
-    "CHGNet": "#D95F59",
-    "M3GNet": "#D49A2A",
-    "MACE-MP": "#3A9D78",
+    # Qualitative palette calibrated to the published Matbench Discovery visual
+    # grammar: blue/pink/gold/green are separable in colour and greyscale.
+    "ALIGNN-FF": "#5B6EE1",
+    "CHGNet": "#F06491",
+    "M3GNet": "#E9AF2E",
+    "MACE-MP": "#63B74B",
 }
 MODEL_MARKERS = {"ALIGNN-FF": "o", "CHGNet": "s", "M3GNet": "^", "MACE-MP": "D"}
 VIEW_STYLES = {"mp_native": (0, (5, 2)), "consensus": (0, (1.2, 1.5)), "audit_view": "-"}
 VIEW_LABELS = {"mp_native": "MP-native", "consensus": "Consensus", "audit_view": "Audit view"}
 PAIR_COLORS = {
-    "MP vs official Alexandria-PBE": "#188DB8",
-    "alex-mp-20 vs official Alexandria-PBE": "#E47D37",
-    "MP vs alex-mp-20": "#3A9D78",
+    "MP vs official Alexandria-PBE": "#18B8D4",
+    "alex-mp-20 vs official Alexandria-PBE": "#F08A3C",
+    "MP vs alex-mp-20": "#26A886",
+}
+PAIR_STYLES = {
+    "MP vs official Alexandria-PBE": "-",
+    "alex-mp-20 vs official Alexandria-PBE": (0, (5, 2.1)),
+    "MP vs alex-mp-20": (0, (1.2, 1.5)),
 }
 METRIC_COLORS = {
     "f1": "#3B6FB6",
@@ -204,8 +211,8 @@ def figure1(curves: pd.DataFrame, source_dir: Path, figure_dir: Path) -> dict[st
             if col_idx == 0:
                 ax.set_ylabel(row_label)
             clean_axis(ax)
-    panel_label(axes[0, 0], "a", x=0.03, y=0.90)
-    panel_label(axes[1, 0], "b", x=0.03, y=0.90)
+    panel_label(axes[0, 0], "a", x=0.04, y=0.86)
+    panel_label(axes[1, 0], "b", x=0.04, y=0.86)
     model_handles = [Line2D([0], [0], color=MODEL_COLORS[m], marker=MODEL_MARKERS[m], markersize=4.0, linewidth=2.0, label=m) for m in REAL_MODELS]
     fig.supxlabel("Candidates evaluated, K", y=0.105, fontsize=8.5)
     fig.subplots_adjust(bottom=0.18, top=0.92, left=0.075, right=0.99)
@@ -248,7 +255,10 @@ def figure2(rolling: pd.DataFrame, density: pd.DataFrame, source_dir: Path, figu
         hi = data["ci_high"].to_numpy(float)
         color = PAIR_COLORS[pair]
         ax.fill_between(x, lo, hi, color=color, alpha=0.13, linewidth=0)
-        ax.plot(x, y, color=color, linewidth=2.0, label=pair, solid_capstyle="round")
+        ax.plot(
+            x, y, color=color, linestyle=PAIR_STYLES[pair], linewidth=2.1,
+            label=pair, solid_capstyle="round",
+        )
     ax.text(0.005, 0.286, "Near-threshold\nlabel-risk zone", color="#8C3D3A", fontsize=7.4, va="top", fontweight="bold")
     ax.text(0.198, 0.286, "40 meV window · Wilson 95% CI", color="#4D5359", fontsize=7.2, va="top", ha="right")
     ax.text((support_end + 0.20) / 2, 0.145, "$n<1{,}000$\nmasked", color="#6B737C", fontsize=7.2, va="center", ha="center")
@@ -257,9 +267,15 @@ def figure2(rolling: pd.DataFrame, density: pd.DataFrame, source_dir: Path, figu
     ax.set_xticks([0, 0.04, 0.08, 0.12, 0.16, 0.20])
     ax.set_xlabel(r"MP-native $E_{\mathrm{above\ hull}}$ (eV atom$^{-1}$)")
     ax.set_ylabel("Rolling endpoint-switch rate")
-    ax.legend(loc="upper right", bbox_to_anchor=(0.99, 0.81), handlelength=2.8, labelspacing=0.45)
+    handles, labels = ax.get_legend_handles_labels()
+    ax.legend().remove()
     clean_axis(ax)
     panel_label(ax, "b", x=-0.075, y=1.02)
+    fig.legend(
+        handles, labels, loc="lower center", bbox_to_anchor=(0.54, 0.005),
+        ncol=3, columnspacing=1.45, handlelength=2.7,
+    )
+    fig.subplots_adjust(bottom=0.17, top=0.98, left=0.09, right=0.99)
     return export_figure(fig, figure_dir, "fig2_near_threshold_discordance")
 
 
@@ -386,9 +402,6 @@ def figure4(dominance: pd.DataFrame, slope: pd.DataFrame, source_dir: Path, figu
     ax.set_yticks([1, 2, 3, 4])
     ax.set_xticks(x, view_labels, rotation=25, ha="right")
     ax.set_ylabel("F1 rank among real models")
-    for model in REAL_MODELS:
-        row = slope[(slope["model_name"].eq(model)) & (slope["label_view"].eq("audit_view"))].iloc[0]
-        ax.text(4.12, row["rank"], model, color=MODEL_COLORS[model], va="center", ha="left", fontsize=6.8, fontweight="bold")
     clean_axis(ax)
     panel_label(ax, "b")
 
@@ -428,7 +441,7 @@ def figure4(dominance: pd.DataFrame, slope: pd.DataFrame, source_dir: Path, figu
 def figure5(exact: pd.DataFrame, unsupported: pd.DataFrame, source_dir: Path, figure_dir: Path) -> dict[str, object]:
     exact.to_csv(source_dir / "fig5_exact_matched_screened_candidates.csv", index=False)
     unsupported.to_csv(source_dir / "fig5_formula_only_unmatched_generated_pools.csv", index=False)
-    fig, axes = plt.subplots(1, 2, figsize=(17.1 * CM, 7.4 * CM), gridspec_kw={"width_ratios": [1.35, 1.0], "wspace": 0.35})
+    fig, axes = plt.subplots(1, 2, figsize=(17.1 * CM, 8.2 * CM), gridspec_kw={"width_ratios": [1.35, 1.0], "wspace": 0.35})
     screen = exact[exact["pipeline_type"].eq("screening_pipeline_not_true_generator")].copy()
     order = [
         "alignn_ff_screened_sourceaware_top5000",
@@ -455,7 +468,7 @@ def figure5(exact: pd.DataFrame, unsupported: pd.DataFrame, source_dir: Path, fi
     ax.set_yticks(y, names)
     ax.set_xlim(0.20, 0.44)
     ax.set_xlabel("Fraction of exact-matched candidates")
-    ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.38), ncol=2, columnspacing=1.0, handletextpad=0.4)
+    ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.56), ncol=2, columnspacing=1.0, handletextpad=0.4)
     clean_axis(ax, "x")
     panel_label(ax, "a")
 
@@ -484,10 +497,10 @@ def figure5(exact: pd.DataFrame, unsupported: pd.DataFrame, source_dir: Path, fi
                 ha="left", va="center", fontsize=6.4, color="#765213",
                 fontweight="bold",
             )
-    ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.38), ncol=2, columnspacing=0.9, handlelength=1.6)
+    ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.56), ncol=2, columnspacing=0.9, handlelength=1.6)
     clean_axis(ax, "x")
     panel_label(ax, "b")
-    fig.subplots_adjust(bottom=0.32, top=0.93, left=0.12, right=0.99)
+    fig.subplots_adjust(bottom=0.37, top=0.93, left=0.12, right=0.99)
     return export_figure(fig, figure_dir, "fig5_candidate_consequence")
 
 
