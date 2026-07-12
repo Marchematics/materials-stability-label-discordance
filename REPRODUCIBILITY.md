@@ -1,11 +1,9 @@
 # Reproducibility guide
 
-## Digital Discovery submission lock
+## Reproducing the submission release
 
-The `v2.0.0-dd-submission` release uses only the frozen
-`outputs/phase1_v2/` and `outputs/phase2_v1/` evidence trees. Outputs under
-`outputs/nmi_upgrade/` and `outputs/phase3_referee_core_v*/` are development
-scaffolds and are not scientific evidence for the Digital Discovery article.
+The submission release uses the frozen source-aware benchmark and model-facing
+evaluation outputs described in the article.
 
 Create the pinned environment with either:
 

@@ -1,13 +1,11 @@
 # Data provenance
 
-## Digital Discovery evidence boundary
+## Scope of the article
 
-The Digital Discovery submission is regenerated exclusively from
-`outputs/phase1_v2/` and `outputs/phase2_v1/`. Development scaffolds under
-`outputs/nmi_upgrade/` and `outputs/phase3_referee_core_v*/` are excluded from
-the article's scientific evidence. The article does not claim homogeneous DFT
-referee labels, generated-material validation or a complete full-source-union
-hull. Formula-only candidate overlap is provenance/coverage evidence and never
+The article is regenerated from the frozen source-aware benchmark and
+model-facing evaluation outputs. It does not claim homogeneous-DFT referee
+labels, generated-material validation or a complete full-source-union hull.
+Formula-only candidate overlap is provenance/coverage evidence and never
 creates an exact SourceAware stability label.
 
 The manuscript calls the historical formula-only artifact

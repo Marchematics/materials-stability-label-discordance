@@ -18,8 +18,7 @@ This immutable release supports the Digital Discovery Full Paper
 This release does **not** provide homogeneous DFT referee truth labels, validate
 generated materials or claim complete full-source-union hull reconstruction.
 Common-pool, source-union, consensus and audit labels are benchmark diagnostics,
-not physical truth. NMI-upgrade and referee-scaffold artifacts are excluded from
-the scientific evidence used in the Digital Discovery manuscript.
+not physical truth.
 
 ## Reproduction
 
