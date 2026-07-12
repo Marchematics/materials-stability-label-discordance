@@ -1,4 +1,4 @@
-# SourceAware-Stability v2.0.0 — Digital Discovery submission
+# SourceAware-Stability v2.0.1 — Digital Discovery submission
 
 This immutable release supports the Digital Discovery Full Paper
 **“Source-aware stability labels reshape AI crystal-discovery benchmarks.”**
