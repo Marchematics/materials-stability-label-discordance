@@ -1,22 +1,14 @@
 # Data provenance
 
-## Scope of the article
+## Overview
 
-The article is regenerated from the frozen source-aware benchmark and
-model-facing evaluation outputs. It does not claim homogeneous-DFT referee
-labels, generated-material validation or a complete full-source-union hull.
-Formula-only candidate overlap is provenance/coverage evidence and never
-creates an exact SourceAware stability label.
+This repository uses structure-matched records from Materials Project,
+MatterGen alex-mp-20 and official Alexandria-PBE. The tables record
+source-native labels and derived benchmark views for the exact matched rows.
 
-The manuscript calls the historical formula-only artifact
-`denominator_d0_formula.parquet` the **F0 formula-support catalogue**. The
-frozen filename is retained for checksum compatibility; F0 is not an exact
-denominator and is not assumed to be a superset of D1.
-
-This repository audits source-native binary stability labels on structure-
-matched Materials Project, MatterGen alex-mp-20 and official Alexandria-PBE
-denominators. It does not reconstruct a common hull and does not treat any
-source as absolute physical truth.
+`denominator_d0_formula.parquet` is referred to in the article as the **F0
+formula-support catalogue**; its filename is retained for compatibility with
+the released checksums.
 
 ## MatterGen alex-mp-20 source
 

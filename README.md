@@ -1,51 +1,31 @@
 # SourceAware-Stability
 
-Data, code and figure-source files for the study **“Source-aware stability labels
-reshape AI crystal-discovery benchmarks.”**
+Code and data for **“Source-aware stability labels reshape AI crystal-discovery
+benchmarks.”**
 
-## What this repository contains
+SourceAware-Stability examines how stability labels from public materials
+databases affect crystal-discovery model evaluation. The repository includes
+structure-matched benchmark tables, label views, model metrics, discovery curves
+and the source data for the article figures.
 
-This repository provides a reproducible evaluation framework for examining how
-published crystal-stability labels affect reported model performance and
-screening conclusions. It contains exact-structure denominator tables,
-source-native and diagnostic label views, model-score evaluations, discovery
-curves, benchmark cards, figure-source tables and integrity tests.
+## Data sources
 
-The primary article analyses a common exact-structure denominator across three
-explicitly distinguished public sources:
+- Materials Project (MP)
+- MatterGen alex-mp-20 (Microsoft MatterGen Alex-MP release)
+- official Alexandria-PBE (Alexandria Materials Database)
 
-- **Materials Project (MP)**;
-- **MatterGen alex-mp-20**, the Alex-MP data release distributed with Microsoft
-  MatterGen. This is not an unmodified official Alexandria label table;
-- **official Alexandria-PBE**, obtained separately from the Alexandria
-  Materials Database.
+Source versions, fields and matching procedures are documented in
+[`DATA_PROVENANCE.md`](DATA_PROVENANCE.md).
 
-The provenance record in [`DATA_PROVENANCE.md`](DATA_PROVENANCE.md) specifies
-snapshots, fields, matching rules and label definitions for each source.
+## Contents
 
-## Scope of the released evidence
+- `sourceaware/` — analysis package
+- `outputs/phase1_v2/` — benchmark tables and label views
+- `outputs/phase2_v1/` — model-evaluation outputs
+- `outputs/dd_submission_v2/` — figure source data, figures and manifests
+- `scripts/` and `tests/` — regeneration scripts and tests
 
-The article reports source-aware benchmark diagnostics. Source-native,
-common-pool, source-union, consensus and audit labels are evaluation views, not
-physical-truth labels. The release does not provide homogeneous-DFT referee
-labels, validate generated materials, or claim a complete source-union hull.
-
-The primary exact model comparison includes ALIGNN-FF, CHGNet, M3GNet and
-MACE-MP on 36,801 commonly mapped structures. Other model artefacts are
-retained as documented external context and are not used for the primary
-real-model rank claims.
-
-## Repository layout
-
-- `sourceaware/` — benchmark, label-view and evaluation implementation;
-- `outputs/phase1_v2/` — frozen source-aware benchmark tables and cards;
-- `outputs/phase2_v1/` — model-facing evaluation outputs and candidate
-  provenance audits;
-- `outputs/dd_submission_v2/` — manuscript claim ledger, figure-source tables,
-  vector figures, TIFF exports and checksums;
-- `scripts/` and `tests/` — regeneration scripts and integrity tests.
-
-## Reproduce the release
+## Reproduce
 
 ```bash
 conda env create -f environment.yml
@@ -53,20 +33,10 @@ conda activate sourceaware-dd-2.0.0
 bash run_all.sh
 ```
 
-`run_all.sh` rebuilds the release checks, benchmark card, figure-source data,
-publication figures, manifests and the frozen test suite. Figure 1 and Figure 2
-use an explicitly attributed, MIT-licensed visual reference from Matbench
-Discovery; all numerical results are calculated from the tables in this
-repository.
-
 ## Citation
 
-Please cite the software record for the tagged release and the associated
-article. Citation metadata are provided in [`CITATION.cff`](CITATION.cff). The
-Zenodo record for the current submission release will be linked here once its
-archive DOI has been issued.
+Citation metadata are in [`CITATION.cff`](CITATION.cff).
 
 ## License
 
-The code in this repository is released under the MIT License. Upstream data
-remain subject to the terms of their original providers.
+MIT License. Upstream data retain their original terms of use.
