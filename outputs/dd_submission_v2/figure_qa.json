@@ -4,7 +4,7 @@
     {
       "stem": "fig1_sourceaware_discovery_curves",
       "width_cm": 17.1,
-      "height_cm": 10.2,
+      "height_cm": 8.6,
       "pdf": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.pdf",
       "tiff": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.tiff",
       "tiff_dpi": 600,
@@ -13,18 +13,18 @@
     },
     {
       "stem": "fig2_near_threshold_discordance",
-      "width_cm": 17.1,
-      "height_cm": 10.0,
+      "width_cm": 8.3,
+      "height_cm": 10.4,
       "pdf": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.pdf",
       "tiff": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.tiff",
       "tiff_dpi": 600,
       "vector_pdf": true,
-      "final_width_contract_cm": 17.1
+      "final_width_contract_cm": 8.3
     },
     {
       "stem": "fig3_sourceaware_benchmark_layer",
       "width_cm": 17.1,
-      "height_cm": 8.1,
+      "height_cm": 8.8,
       "pdf": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.pdf",
       "tiff": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.tiff",
       "tiff_dpi": 600,
@@ -34,7 +34,7 @@
     {
       "stem": "fig4_model_rank_audit",
       "width_cm": 17.1,
-      "height_cm": 8.2,
+      "height_cm": 11.8,
       "pdf": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.pdf",
       "tiff": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.tiff",
       "tiff_dpi": 600,
@@ -44,7 +44,7 @@
     {
       "stem": "fig5_candidate_consequence",
       "width_cm": 17.1,
-      "height_cm": 8.2,
+      "height_cm": 8.5,
       "pdf": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.pdf",
       "tiff": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.tiff",
       "tiff_dpi": 600,

@@ -1,4 +1,0 @@
-cutoff_mev_atom,pair,n,conflict_n,conflict_fraction,ci_low_95,ci_high_95,evidence_scope
-0,MP-JARVIS,23300,4728,0.20291845493562233,0.19777033913692063,0.2081407787441714,triple_exact_match_conflict_rate_result
-0,alex-mp-20-JARVIS,23300,5702,0.24472103004291845,0.23921141862503048,0.2502943851295968,triple_exact_match_conflict_rate_result
-0,MP-alex-mp-20,23300,3040,0.13047210300429185,0.12617208043100947,0.1348645276948282,triple_exact_match_conflict_rate_result

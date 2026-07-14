@@ -1,3 +1,0 @@
-source,count_type,count,source_artifact
-alex-mp v20 train+val,unique_MP_identifier_rows,43984,data/alex-mp/alex_mp_20.zip
-alex-mp v20 train+val,unique_chemical_systems,21473,data/alex-mp/alex_mp_20.zip

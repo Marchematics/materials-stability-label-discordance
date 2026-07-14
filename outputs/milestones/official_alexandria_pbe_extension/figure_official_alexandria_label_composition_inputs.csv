@@ -1,9 +1,0 @@
-cutoff_mev_atom,label_tuple_mp_alexmp20_officialalex,n,fraction,interpretation,evidence_scope
-0,0,19790,0.5377425139938047,unstable in all three sources,three_source_source_native_label_composition
-0,1,723,0.0196456714309004,stable only in official Alexandria-PBE,three_source_source_native_label_composition
-0,10,574,0.0155969784250855,stable only in alex-mp-20,three_source_source_native_label_composition
-0,11,681,0.0185044291071137,stable in alex-mp-20 and official Alexandria-PBE,three_source_source_native_label_composition
-0,100,2343,0.0636650182055323,stable only in MP,three_source_source_native_label_composition
-0,101,646,0.0175533938372914,stable in MP and official Alexandria-PBE,three_source_source_native_label_composition
-0,110,1919,0.0521439052225422,stable in MP and alex-mp-20,three_source_source_native_label_composition
-0,111,10126,0.2751480897777295,stable in all three sources,three_source_source_native_label_composition

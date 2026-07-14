@@ -12,8 +12,9 @@ the released checksums.
 
 ## MatterGen alex-mp-20 source
 
-The second label source is **MatterGen alex-mp-20**, not an unmodified
-Alexandria label table. The local source archive is:
+The second label source is **MatterGen alex-mp-20**, the distinct Alex-MP
+release distributed with Microsoft MatterGen. It is analysed separately from
+the official Alexandria-PBE database. The local source archive is:
 
 ```text
 alex_mp_20.zip
@@ -181,14 +182,13 @@ The single-match denominator is the primary official Alexandria-PBE analysis
 set. Multiple-match rows are reported as a duplicate-match boundary and are
 included only in deterministic tie-breaking sensitivity analyses.
 
-## Redistribution scope
+## Released materials
 
-Raw Materials Project structure caches, restricted local reconstruction inputs
-and upstream local validation exports are not redistributed in this repository.
-The public repository and Zenodo archive instead provide public-safe derived
+Raw upstream structure caches and reconstruction inputs remain with their
+respective providers. This repository and its archival release provide derived
 tables, figure inputs, scripts, tests and SHA256 manifests.
 
-Public-safe derived outputs include:
+Released derived outputs include:
 
 - matched identifiers and source-native labels;
 - source-native hull values used for binary labels;
@@ -205,15 +205,11 @@ Public-safe derived outputs include:
   bootstrap and fixed-ranking uncertainty outputs;
 - integrity tests and file checksums.
 
-## Scope guardrails
+## Interpretation
 
-The study reports source-native label dependence. It does not claim:
-
-- a common-hull reconstruction;
-- prospective materials discovery;
-- independent DFT validation;
-- formula-only JARVIS validation;
-- formula-only official Alexandria-PBE validation;
-- alex-mp-20-wide or database-wide source-conflict prevalence beyond the
-  retained MP-identifier structure-matched denominator;
-- that MatterGen alex-mp-20 labels are unmodified Alexandria labels.
+The released benchmark compares source-native stability endpoints on retained
+strict structure-matched cohorts. Common-pool, consensus and audit views are
+defined evaluation views, with their construction status recorded in the source
+cards. Formula support is used for matching coverage; exact structure matches
+define the evaluation denominators. MatterGen alex-mp-20 and official
+Alexandria-PBE remain distinct sources throughout the release.

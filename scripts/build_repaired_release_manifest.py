@@ -86,7 +86,7 @@ def main() -> None:
             "sha256": sha256(path),
         })
     payload = {
-        "release_series": "v2.0.2-dd-submission",
+        "release_series": "v2.0.3-dd-submission",
         "analysis": "M1 repaired fixed-support model evaluation",
         "generated_on": str(date.today()),
         "file_count": len(files),

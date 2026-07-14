@@ -1,14 +1,14 @@
 {
   "release": "v2.0.0-dd-submission",
-  "evidence_scope": "frozen Phase 1/2 only; no NMI/referee scaffold evidence",
+  "evidence_scope": "released source-aware benchmark and model-evaluation outputs",
   "file_count": 44,
   "files": [
     {
       "path": "outputs/dd_submission_v2/figure_qa.json",
-      "bytes": 2160,
+      "bytes": 2158,
       "rows": 2,
       "columns": 1,
-      "sha256": "27aa93c82baec91fb2d3820f07983ee5f742f37e9800fbcd2f5222af6bc8e50d",
+      "sha256": "3c452694793859017ce750fa36f0ade010f34bcceb5b9e5002952fb77c442f49",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -117,98 +117,98 @@
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.pdf",
-      "bytes": 42865,
+      "bytes": 262972,
       "rows": null,
       "columns": null,
-      "sha256": "25b67fcc6bf9b5f5b524664995ff4d594f3a2d4816223b9994cf5958daa7eccc",
+      "sha256": "30268cd0fae05ed0806c78ac1bb6ed3aba2e41d7a1ccbcbebe0d4d55d41360bb",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig1_sourceaware_discovery_curves.tiff",
-      "bytes": 755908,
+      "bytes": 919552,
       "rows": null,
       "columns": null,
-      "sha256": "22d943e00216ab95eaa0d6eaa9d2c6f9b941de2f28cae29844d8b1bc051791ea",
+      "sha256": "5198728fd018d92f00b2078372a5b39b8e24b7a9151e195341246111233667ce",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.pdf",
-      "bytes": 31755,
+      "bytes": 30973,
       "rows": null,
       "columns": null,
-      "sha256": "6df647a450db108b6dd1514fa1d3584881feeeb59b8000f3f0931f75809b2746",
+      "sha256": "b77b27a44e46318a537e548356a9338f0314613465c1134b74429a52033495ca",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig2_near_threshold_discordance.tiff",
-      "bytes": 1042400,
+      "bytes": 588718,
       "rows": null,
       "columns": null,
-      "sha256": "d8728068481d33e3b8675579a4eedb1c542eec3a92192d8f4c6ebcdbef36afe6",
+      "sha256": "84330191f409ca0712af302f3ae56bb37eb0bd5da31be4b61f508c8f8db4446e",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.pdf",
-      "bytes": 22809,
+      "bytes": 24239,
       "rows": null,
       "columns": null,
-      "sha256": "98b7413989210283d6e67e3c3eba536192faeaec3ba2943a6a2b6ac2ee9b6f81",
+      "sha256": "fedcd5f2b3ce68ffe1d202e3ce949c2b85fc00e352aee2e9abb58dd931f06060",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig3_sourceaware_benchmark_layer.tiff",
-      "bytes": 1067134,
+      "bytes": 1096186,
       "rows": null,
       "columns": null,
-      "sha256": "06188ff7d3a814e5f85d963a62e45d224bf059e559d6d3880c6b1666e8a19897",
+      "sha256": "652f718237f5f52205ee141c840070419eae2ab0338a376d4004afb6964bab65",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.pdf",
-      "bytes": 29002,
+      "bytes": 28787,
       "rows": null,
       "columns": null,
-      "sha256": "5b58f1c5b09924226cc0a45a02465aa4e86e9f8032809b9d93bd3e47efe3817d",
+      "sha256": "0412ed74ffbcb5695b86f0a996c39eea147f6dc8fb1788c0468d4ad67a88f398",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig4_model_rank_audit.tiff",
-      "bytes": 782602,
+      "bytes": 841244,
       "rows": null,
       "columns": null,
-      "sha256": "21a15e2b9f8279178b757f8a7488efdf11adee15882b547c62f1848225c0d60e",
+      "sha256": "eed5c037894042701dd854cb3163039ba3e59df9f567a087ddaca8aa3ab064a4",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.pdf",
-      "bytes": 24827,
+      "bytes": 23704,
       "rows": null,
       "columns": null,
-      "sha256": "e9edc84c4cbf75e66741fa908cbe858d06988ae90ab6fe7058b6fc6fe136ed19",
+      "sha256": "1f468021c690c198797f14853e22f37a6a5fcf54fff0a580d6b74bccf31aa1cd",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/fig5_candidate_consequence.tiff",
-      "bytes": 778478,
+      "bytes": 834502,
       "rows": null,
       "columns": null,
-      "sha256": "ae06f34daf025fc07072a9567ae92c64cbe05d757b0beff3a34daafbb889d139",
+      "sha256": "25f418f7af24763dda673d6c683e628cadd79e70541c1d6ba2e30615c6c8b207",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/toc_graphic.pdf",
-      "bytes": 21615,
+      "bytes": 21549,
       "rows": null,
       "columns": null,
-      "sha256": "9ee2fd58d5e145a0f266e081e9d529525e6cfe58b9067ec325f8f6b3c0e9b2cc",
+      "sha256": "86d187e5641abd5fd10df73ee5b54eab54b00bfe5dd87dfa217f277a25c72354",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/figures/toc_graphic.tiff",
-      "bytes": 203648,
+      "bytes": 185872,
       "rows": null,
       "columns": null,
-      "sha256": "1d28b29b350e8f85b8cd36167b643b71210aa7db132cd43017006885a711994c",
+      "sha256": "6b1a320427ca013e4b2fb59dfae8c8a0e914f2fe6b43326af11fd58ea1dddcc4",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -285,18 +285,18 @@
     },
     {
       "path": "outputs/dd_submission_v2/manuscript_claims.json",
-      "bytes": 4016,
+      "bytes": 4017,
       "rows": 9,
       "columns": 1,
-      "sha256": "41d619687e908e27a8907737c241d88c017acb601ea61962f604528f91a629e8",
+      "sha256": "90715a4b74a0f1d5906a22414ef44d3b085f614dc4e698bae4294e6cbb15a841",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
       "path": "outputs/dd_submission_v2/manuscript_claims_audit.md",
-      "bytes": 1743,
+      "bytes": 1921,
       "rows": null,
       "columns": null,
-      "sha256": "2400e37b4f8802b1c552379041cc27173916105cc9c13242624fb17811803dd8",
+      "sha256": "8775e23dd5bcb5a3be9ab4110248b0808ff2ff80ea1fa33b941550b35d909ee5",
       "generating_script": "run_all.sh or cited phase builder"
     },
     {
@@ -349,10 +349,10 @@
     },
     {
       "path": "outputs/dd_submission_v2/toc_text.txt",
-      "bytes": 201,
+      "bytes": 156,
       "rows": null,
       "columns": null,
-      "sha256": "9a0bb93d910556d7de526549a4eb9d9dc06b41cc3b3c51c15402a865884a4d99",
+      "sha256": "f3ec5e22a27ed74553b3a9c4b00446ff52875ff7f0899817fc376670d3757f88",
       "generating_script": "run_all.sh or cited phase builder"
     }
   ]

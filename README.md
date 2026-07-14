@@ -31,7 +31,6 @@ Source versions, fields and matching procedures are documented in
 
 - `sourceaware/` — analysis package
 - `outputs/phase1_v2/` — benchmark tables and label views
-- `outputs/phase2_v1/` — model-evaluation outputs
 - `outputs/repaired_model_evaluation_v1/` — M1 model metrics, exact discovery
   curves, raw-score validity audit, paired bootstrap differences, winner
   probabilities and fixed subsystem phase-pool manifest

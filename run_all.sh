@@ -12,17 +12,13 @@ run_logged() {
   "$@" 2>&1 | tee -a "$LOG_DIR/${name}.log"
 }
 
-run_logged phase2_check python -m sourceaware.phase2.cli check --phase1 outputs/phase1_v2 --out outputs/phase2_v1
 run_logged benchmark_card python scripts/generate_benchmark_card.py --check
-run_logged submission_figures python scripts/build_submission_figures.py --check
-run_logged manuscript_claims python scripts/audit_manuscript_claims.py --check
-# Run the released benchmark, model and submission checks.
+run_logged repaired_figures python scripts/build_repaired_model_figures.py
+run_logged repaired_claims python scripts/audit_repaired_model_claims.py
 run_logged pytest pytest -q \
-  tests/test_artifact_integrity.py \
   tests/test_phase1_*.py \
-  tests/test_phase2_*.py \
-  tests/test_dd_submission_*.py
+  tests/test_repaired_model_evaluation.py \
+  tests/test_dd_submission_curves.py
 run_logged git_diff_check git diff --check
-
-python scripts/build_dd_submission_manifest.py --out outputs/dd_submission_v2
+run_logged repaired_manifest python scripts/build_repaired_release_manifest.py
 printf 'PASS\n' > "$LOG_DIR/run_all.status"

@@ -1,1 +1,1 @@
-Source-aware label views turn a fixed crystal ranking into distinct discovery curves, exposing benchmark uncertainty in stable yield and recall without treating any diagnostic label as physical truth.
+Source-aware label views turn a fixed crystal ranking into distinct discovery curves, making label provenance visible in stable-yield and recall estimates.

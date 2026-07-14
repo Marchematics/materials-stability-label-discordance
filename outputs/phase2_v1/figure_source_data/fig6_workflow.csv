@@ -1,9 +1,0 @@
-node_id,stage,label,detail
-A,input,Frozen Phase 1 label views,"source-native, common-pool, source-union status, consensus, audit"
-B,input,Model scores,SourceAware-scored models plus Matbench artifact audit
-C,input,Candidate pools,screened candidates and generated-pool audit
-D,analysis,Standardize denominators,D5 full/family/pairwise/max-coverage
-E,analysis,Evaluate label views,"metrics, top-K yield, uncertainty burden"
-F,output,Leaderboard bands,rank stability and label uncertainty
-G,output,Candidate consequence,"stable, uncertain, unsupported, unmatched"
-H,guardrail,Not DFT referee truth,diagnostic labels remain source-aware benchmark views

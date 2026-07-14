@@ -1,4 +1,0 @@
-tolerance,ltol,stol,angle_tol,matched_row_pairs,matched_denominator_rows,matched_fraction_of_43139,claim_scope
-tight,0.1,0.2,3,34887,27791,0.6442198474698069,coverage_sensitivity_not_formula_only_match
-default,0.2,0.3,5,36544,28273,0.6553930318273488,coverage_sensitivity_not_formula_only_match
-loose,0.3,0.4,7,38476,28639,0.6638772340573496,coverage_sensitivity_not_formula_only_match

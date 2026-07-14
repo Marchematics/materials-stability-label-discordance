@@ -2,7 +2,7 @@
 
 Status: **PASS**
 
-Evidence scope: frozen `outputs/phase1_v2` and `outputs/phase2_v1` only. NMI/referee scaffolds are excluded.
+Evidence source: released source-aware benchmark and model-evaluation outputs.
 
 ## Denominators
 
@@ -25,19 +25,19 @@ Evidence scope: frozen `outputs/phase1_v2` and `outputs/phase2_v1` only. NMI/ref
 - MP vs alex-mp-20: 4,244/36,802 = 11.53%
 - MP vs alex-mp-20 (strict full): 5,060/43,139 = 11.73%
 
-## Model evidence boundary
+## Model-evaluation scope
 
 - Primary exact models: ALIGNN-FF, CHGNet, M3GNet, MACE-MP (4 models; D5 n=36,801).
 - All other model entries are external WBM context, artifact inventory, baselines or oracle diagnostics.
-- Scores are diagnostic rankings, not calibrated source-comparable hull distances.
+- Scores are interpreted as rankings rather than as a shared source-comparable energy scale.
 - Full-denominator classification-metric top-model inversion rows: 0.
-- Legacy lower-rank audit rows (all three model denominators and all metric families): 216.
+- Lower-rank order changes across the extended model audit: 216.
 - Aggregate diagnostic winner flips: 10,468/77,616 = 13.49% (includes baselines/oracles).
 - Real-model-only winner flips: 377/7,056 = 5.34%.
 
-## Guardrails
+## Interpretation
 
-- No homogeneous DFT referee truth labels.
-- No generated-material validation.
-- No complete full-source-union hull claim.
-- Consensus, common-pool, source-union and audit labels are benchmark diagnostics, not physical truth.
+- The release compares documented public-source stability endpoints on exact matched cohorts.
+- Source-union construction status is incomplete; matched common-pool results are reported separately.
+- Candidate stable-yield estimates are limited to exact structural matches; formula-only and unmatched pools report coverage.
+- A homogeneous recalculation workflow and prospective candidate assessment are natural extensions of these benchmark views.

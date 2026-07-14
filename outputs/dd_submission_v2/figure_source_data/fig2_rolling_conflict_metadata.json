@@ -5,9 +5,10 @@
   "step_eV": 0.0025,
   "x_max_eV": 0.2,
   "minimum_n": 1000,
-  "interval_method": "Wilson binomial 95% confidence interval",
-  "bootstrap_seed": null,
-  "bootstrap_iterations": 0,
-  "bootstrap_note": "not applicable because binomial intervals, not bootstrap intervals, are used",
+  "minimum_chemical_systems": 20,
+  "interval_method": "chemical-system cluster bootstrap percentile 95% interval",
+  "bootstrap_seed": 20260714,
+  "bootstrap_iterations": 1000,
+  "bootstrap_note": "systems are resampled with replacement independently within each rolling window; all source pairs share each draw",
   "under_supported_windows": "masked"
 }
