@@ -1,0 +1,120 @@
+{
+  "release_series": "v2.0.2-dd-submission",
+  "analysis": "M1 repaired fixed-support model evaluation",
+  "generated_on": "2026-07-14",
+  "file_count": 16,
+  "files": [
+    {
+      "path": "outputs/repaired_model_evaluation_v1/score_construct_validity_audit.csv",
+      "bytes": 806,
+      "rows": 4,
+      "columns": 7,
+      "sha256": "f1ba76ffa64729bde6a9ccb2211917107326c00a6521926d9132a626cdc31a16"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/evaluation_support_and_coverage.csv",
+      "bytes": 469,
+      "rows": 7,
+      "columns": 4,
+      "sha256": "91068127c5c3c9047fb0fff9d60689bce296083440d44a6a5990ca1ec0bf7000"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/metrics_fixed_support.csv",
+      "bytes": 4326,
+      "rows": 20,
+      "columns": 13,
+      "sha256": "e4e5f1e4cf4a5f09231c1b22d648aee4de58c7c5261f2534e4d7824fbea45bd1"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/topk_fixed_support.csv",
+      "bytes": 10615,
+      "rows": 120,
+      "columns": 9,
+      "sha256": "58a5a22dda096345c2187af3a040ee541a05aa054282d343ce71723a1e48e455"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/label_bands_cluster_bootstrap.csv",
+      "bytes": 4531,
+      "rows": 32,
+      "columns": 12,
+      "sha256": "0cf2fb47f8dedce195cb05f1b90b13517ab56834b5c46249b5fdd09ca4817585"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/label_bands_cluster_bootstrap_replicates.parquet",
+      "bytes": 176759,
+      "rows": 20000,
+      "columns": 5,
+      "sha256": "c08c8721b6c6008f5927bc763824a31c9a74a0f8e4ccae80b43d61f4d236568f"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/paired_metric_values_cluster_bootstrap_replicates.parquet",
+      "bytes": 859131,
+      "rows": 100000,
+      "columns": 5,
+      "sha256": "3bf69b45535b9844c548aaad61c45eb851a9a930add82f219b1b7ed50f2222a3"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/elemental_reference_structures.jsonl",
+      "bytes": 18713,
+      "rows": null,
+      "columns": null,
+      "sha256": "751b6d071476d91c3615909390efc4d75586c5ad9fc32459f62f41c6f03e8b14"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/fixed_subsystem_phase_pool_manifest.json",
+      "bytes": 1316,
+      "rows": null,
+      "columns": null,
+      "sha256": "3e91da650c962b57a31a7761956434abeeceae388fda3d265ec138590801318d"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/reproducibility/environment_manifest.json",
+      "bytes": 450,
+      "rows": null,
+      "columns": null,
+      "sha256": "4bbb867e128fd2162e3b2039379524be79f109cf12fd3b1de811bdf3ad671a2b"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/reproducibility/pytest_repaired_model_evaluation.log",
+      "bytes": 186,
+      "rows": null,
+      "columns": null,
+      "sha256": "88c82a3a8c7023b4b85122f8d7f22bc0949f4aacf10dc5d9581318fbd4c46c8d"
+    },
+    {
+      "path": "outputs/repaired_model_evaluation_v1/reproducibility/figure_regeneration.log",
+      "bytes": 98,
+      "rows": null,
+      "columns": null,
+      "sha256": "7221eb71ce06e2abc695b14eebb900e977d1547cbda6494f39a3d6e8ddb59296"
+    },
+    {
+      "path": "environment.yml",
+      "bytes": 317,
+      "rows": null,
+      "columns": null,
+      "sha256": "0db10747981d29886e0eeb129c72949acec7a1313bc4831e3dc585b5c9612105"
+    },
+    {
+      "path": "requirements-lock.txt",
+      "bytes": 179,
+      "rows": null,
+      "columns": null,
+      "sha256": "876913c92de43c3e36535a27d16a0f45031facc1f03e7c7b90c83ae8134f99e2"
+    },
+    {
+      "path": "Dockerfile",
+      "bytes": 565,
+      "rows": null,
+      "columns": null,
+      "sha256": "3c6a46ff5a5e33be6a7e4ed38e6b270fe1cf1ef2cf9913c71403bfcd06fdcdb2"
+    },
+    {
+      "path": "run_all.sh",
+      "bytes": 1033,
+      "rows": null,
+      "columns": null,
+      "sha256": "a16e596f23f479e58af19593cf07c5e4cd7592ff7c1d005d891727ffca8a53ca"
+    }
+  ]
+}

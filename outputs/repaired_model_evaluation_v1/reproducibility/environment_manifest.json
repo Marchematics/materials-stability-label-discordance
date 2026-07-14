@@ -1,0 +1,7 @@
+{
+  "python_version": "3.12.13 | packaged by conda-forge | (main, Mar  5 2026, 16:50:00) [GCC 14.3.0]",
+  "platform": "Linux-6.1.0-42-amd64-x86_64-with-glibc2.35",
+  "environment_yml_sha256": "0db10747981d29886e0eeb129c72949acec7a1313bc4831e3dc585b5c9612105",
+  "requirements_lock_sha256": "876913c92de43c3e36535a27d16a0f45031facc1f03e7c7b90c83ae8134f99e2",
+  "dockerfile_sha256": "3c6a46ff5a5e33be6a7e4ed38e6b270fe1cf1ef2cf9913c71403bfcd06fdcdb2"
+}

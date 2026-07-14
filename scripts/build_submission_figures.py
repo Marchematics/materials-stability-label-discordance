@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Build Digital Discovery submission figures from frozen Phase 1/2 rows.
+"""Build Digital Discovery submission figures from released benchmark rows.
 
 All curves are row-level cumulative calculations. No spline interpolation is
-used. NMI-upgrade/referee scaffold outputs are outside this script's inputs.
+used.
 
 Figure 1/2 use the presentation grammar of the MIT-licensed Matbench Discovery
 v1.1.0 plotting scripts retained under ``third_party/``: Light24 colours,
 line-dash identities, a marginal density panel, external legends and an explicit
 rolling-window scale bar. This is a style reference only; numerical results are
-calculated from frozen SourceAware outputs below.
+calculated from released SourceAware outputs below.
 """
 from __future__ import annotations
 
@@ -53,7 +53,7 @@ from sourceaware.dd_submission import (
 
 CM = 1 / 2.54
 MODEL_COLORS = {
-    # Plotly Light24 entries used in the Matbench Discovery NMI reference figure.
+    # Plotly Light24 entries used in the Matbench Discovery reference figure.
     "ALIGNN-FF": "#636EFA",
     "CHGNet": "#FF97FF",
     "M3GNet": "#FECB52",
@@ -77,6 +77,11 @@ PAIR_STYLES = {
     "MP vs official Alexandria-PBE": (0, (5.5, 1.7, 1.1, 1.7)),
     "alex-mp-20 vs official Alexandria-PBE": (0, (7.5, 2.8)),
     "MP vs alex-mp-20": "-",
+}
+PAIR_SHORT_LABELS = {
+    "MP vs official Alexandria-PBE": "MP vs Alex-PBE",
+    "alex-mp-20 vs official Alexandria-PBE": "alex-mp-20 vs Alex-PBE",
+    "MP vs alex-mp-20": "MP vs alex-mp-20",
 }
 METRIC_COLORS = {
     "f1": "#3B6FB6",
@@ -124,8 +129,12 @@ def set_style() -> None:
     )
 
 
-def panel_label(ax: plt.Axes, label: str, x: float = -0.12, y: float = 1.04) -> None:
-    ax.text(x, y, label, transform=ax.transAxes, fontsize=10, fontweight="bold", va="bottom", ha="left")
+def panel_label(ax: plt.Axes, label: str, x: float = -0.21, y: float = 1.04) -> None:
+    """Add a restrained, consistently placed panel label."""
+    ax.text(
+        x, y, label, transform=ax.transAxes, fontsize=8.7, fontweight="bold",
+        va="bottom", ha="left", clip_on=False,
+    )
 
 
 def clean_axis(ax: plt.Axes, grid_axis: str = "y") -> None:
@@ -177,67 +186,110 @@ def exact_plot_sample(curves: pd.DataFrame, per_curve: int = 650) -> pd.DataFram
 
 
 def figure1(curves: pd.DataFrame, source_dir: Path, figure_dir: Path) -> dict[str, object]:
+    """Plot exact discovery curves using the cumulative-campaign grammar.
+
+    The two panels mirror the discovery decision a reader makes: how many
+    selected candidates are stable, and how much of the corresponding stable
+    set is recovered. Colour identifies a model and line style identifies a
+    label view.  The renderer draws the complete rank-by-rank calculation, not
+    an interpolation of the fixed top-K summaries.
+    """
     sample = exact_plot_sample(curves)
     curves.to_parquet(source_dir / "fig1_exact_discovery_curves_all_ranks.parquet", index=False)
     sample.to_csv(source_dir / "fig1_exact_discovery_curves.csv", index=False)
-    fig, axes = plt.subplots(
-        2, 3, figsize=(17.1 * CM, 10.2 * CM), sharey="row",
-        gridspec_kw={"wspace": 0.13, "hspace": 0.13},
-    )
-    columns = ["mp_native", "consensus", "audit_view"]
-    column_labels = ["MP-native", "Consensus", "Audit view"]
-    rows = [
-        ("stable_yield", "Stable yield"),
-        ("recall", "Recall"),
+
+    # The practical campaign range is intentionally shown at full resolution.
+    # Restricting the canvas to 10k retains the relevant screening budgets while
+    # avoiding a compressed, visually uninformative tail.
+    campaign_max = 10_000
+    plot_data = curves[
+        curves["label_view"].isin(DISCOVERY_LABEL_VIEWS)
+        & curves["rank"].le(campaign_max)
+    ].copy()
+    fig = plt.figure(figsize=(17.1 * CM, 8.6 * CM))
+    grid = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.0, 0.43], wspace=0.30)
+    axes = [fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1])]
+    legend_ax = fig.add_subplot(grid[0, 2])
+    legend_ax.axis("off")
+
+    # Reference style: colour represents model identity; dash represents the
+    # label view.  This keeps the comparison readable even where curves cross.
+    view_styles = {
+        "audit_view": "-",
+        "mp_native": (0, (6.0, 2.4)),
+        "consensus": (0, (1.15, 1.55)),
+    }
+    # Draw the less visually dominant views first, then foreground the audit
+    # view. This preserves the source-aware comparison in dense early ranks.
+    view_order = ["consensus", "mp_native", "audit_view"]
+    panels = [
+        ("stable_yield", "Stable yield", "Stable candidates / candidates evaluated"),
+        ("recall", "Recall", "Stable set recovered"),
     ]
-    for row_idx, (metric, row_label) in enumerate(rows):
-        for col_idx, (view, view_label) in enumerate(zip(columns, column_labels)):
-            ax = axes[row_idx, col_idx]
+    for panel_idx, (ax, (metric, title, ylabel)) in enumerate(zip(axes, panels)):
+        for view in view_order:
             for model in REAL_MODELS:
-                data = sample[
-                    sample["model_name"].eq(model) & sample["label_view"].eq(view)
+                data = plot_data[
+                    plot_data["model_name"].eq(model) & plot_data["label_view"].eq(view)
                 ]
+                if data.empty:
+                    continue
                 ax.plot(
-                    data["rank"], data[metric], color=MODEL_COLORS[model],
-                    linestyle=MODEL_LINESTYLES[model], linewidth=2.05,
+                    data["rank"], data[metric],
+                    color=MODEL_COLORS[model], linestyle=view_styles[view],
+                    linewidth=1.95 if view == "audit_view" else 1.40,
+                    alpha=1.0 if view == "audit_view" else 0.80,
                     solid_capstyle="round", zorder=2,
                 )
-                endpoint = data.iloc[-1]
-                ax.scatter(
-                    endpoint["rank"], endpoint[metric], color=MODEL_COLORS[model],
-                    marker="o", s=17, edgecolor="white", linewidth=0.45, zorder=3,
-                )
-            ax.axvline(1000, color="#69727D", linestyle=(0, (4, 3)), linewidth=0.7, zorder=0)
-            ax.set_xlim(0, 36_801)
-            ax.set_ylim(0, 1.0)
-            ax.set_xticks([0, 10_000, 20_000, 30_000, 36_801])
-            ax.xaxis.set_major_formatter(
-                FuncFormatter(
-                    lambda x, _: "36.8k" if x == 36_801 else (f"{int(x/1000)}k" if x else "0")
-                )
-            )
-            if row_idx == 0:
-                ax.set_title(view_label, pad=4, fontweight="normal")
-                ax.tick_params(axis="x", labelbottom=False)
-            if col_idx == 0:
-                ax.set_ylabel(row_label)
-            clean_axis(ax)
-    panel_label(axes[0, 0], "a", x=0.04, y=0.86)
-    panel_label(axes[1, 0], "b", x=0.04, y=0.86)
+                # One endpoint marker per model prevents a 12-marker cluster.
+                if view == "audit_view":
+                    endpoint = data.iloc[-1]
+                    ax.scatter(
+                        endpoint["rank"], endpoint[metric], color=MODEL_COLORS[model],
+                        marker=MODEL_MARKERS[model], s=19, edgecolor="white",
+                        linewidth=0.45, zorder=3,
+                    )
+        ax.axvline(1000, color="#8090A3", linestyle=(0, (5, 4)), linewidth=0.75, zorder=0)
+        if panel_idx == 0:
+            ax.text(0.13, 0.95, "$K=1{,}000$", color="#596878", fontsize=7.1,
+                    va="top", transform=ax.transAxes)
+        ax.set_xlim(0, campaign_max)
+        ax.set_xticks([0, 2000, 4000, 6000, 8000, 10_000])
+        ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: "10k" if x == 10_000 else (f"{int(x/1000)}k" if x else "0")))
+        # Stable yield is a probability. Keep the full [0, 1] scale so that
+        # the very-small-budget behaviour is not clipped or visually implied.
+        ax.set_ylim((0.0, 1.0) if metric == "stable_yield" else (0.0, 0.40))
+        ax.set_xlabel("Candidates evaluated, $K$")
+        ax.set_ylabel(ylabel)
+        ax.set_title(title, pad=5, fontweight="normal")
+        clean_axis(ax)
+        panel_label(ax, chr(ord("a") + panel_idx))
+
     model_handles = [
         Line2D(
-            [0], [0], color=MODEL_COLORS[m], linestyle=MODEL_LINESTYLES[m],
-            marker="o", markersize=3.7, linewidth=2.05, label=m,
+            [0], [0], color=MODEL_COLORS[m], marker=MODEL_MARKERS[m],
+            markersize=4.1, linewidth=2.0, label=m,
         )
         for m in REAL_MODELS
     ]
-    fig.supxlabel("Candidates evaluated, K", y=0.105, fontsize=8.5)
-    fig.subplots_adjust(bottom=0.18, top=0.92, left=0.075, right=0.99)
-    fig.legend(
-        model_handles, [h.get_label() for h in model_handles],
-        loc="lower center", bbox_to_anchor=(0.5, 0.015), ncol=4,
-        columnspacing=1.5, handlelength=2.2,
+    view_handles = [
+        Line2D([0], [0], color="#39424E", linestyle=view_styles[v], linewidth=1.9, label=VIEW_LABELS[v])
+        for v in ["audit_view", "mp_native", "consensus"]
+    ]
+    legend_ax.text(0.02, 0.93, "Models", transform=legend_ax.transAxes, fontsize=7.4, fontweight="bold", va="top")
+    leg_models = legend_ax.legend(
+        model_handles, [h.get_label() for h in model_handles], loc="upper left",
+        bbox_to_anchor=(0.0, 0.88), frameon=False, handlelength=2.1,
+        handletextpad=0.55, labelspacing=0.70, borderaxespad=0,
     )
+    legend_ax.add_artist(leg_models)
+    legend_ax.text(0.02, 0.42, "Label view", transform=legend_ax.transAxes, fontsize=7.4, fontweight="bold", va="top")
+    legend_ax.legend(
+        view_handles, [h.get_label() for h in view_handles], loc="upper left",
+        bbox_to_anchor=(0.0, 0.37), frameon=False, handlelength=2.7,
+        handletextpad=0.55, labelspacing=0.70, borderaxespad=0,
+    )
+    fig.subplots_adjust(left=0.075, right=0.99, bottom=0.16, top=0.89)
     return export_figure(fig, figure_dir, "fig1_sourceaware_discovery_curves")
 
 
@@ -245,17 +297,21 @@ def figure2(rolling: pd.DataFrame, density: pd.DataFrame, source_dir: Path, figu
     rolling.to_csv(source_dir / "fig2_rolling_conflict_40mev.csv", index=False)
     density.to_csv(source_dir / "fig2_hull_distance_density.csv", index=False)
     (source_dir / "fig2_rolling_conflict_metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
-    fig = plt.figure(figsize=(17.1 * CM, 10.0 * CM))
-    gs = fig.add_gridspec(2, 1, height_ratios=[0.56, 2.25], hspace=0.07)
+    # Use the compact density-plus-rolling-window grammar at a single-column
+    # width. The short source-pair names and two-row legend preserve legibility
+    # at 8.3 cm without moving explanatory text into the plotted data region.
+    fig = plt.figure(figsize=(8.3 * CM, 10.4 * CM))
+    gs = fig.add_gridspec(2, 1, height_ratios=[0.53, 2.23], hspace=0.07)
     top = fig.add_subplot(gs[0])
     top.fill_between(density["bin_center_eV"], density["row_count"], step="mid", color="#6EC1D8", alpha=0.85, linewidth=0)
     top.plot(density["bin_center_eV"], density["row_count"], color="#008FC5", linewidth=1.75)
     top.set_xlim(0, 0.20)
     top.set_ylabel("Rows")
     top.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{int(x/1000)}k" if x else "0"))
+    top.tick_params(axis="y", labelsize=6.35)
     top.tick_params(axis="x", labelbottom=False)
     top.grid(False)
-    panel_label(top, "a", x=-0.075, y=0.90)
+    panel_label(top, "a", x=-0.16, y=0.88)
 
     ax = fig.add_subplot(gs[1], sharex=top)
     supported = rolling[rolling["supported"]]
@@ -274,28 +330,30 @@ def figure2(rolling: pd.DataFrame, density: pd.DataFrame, source_dir: Path, figu
         ax.fill_between(x, lo, hi, color=color, alpha=0.13, linewidth=0)
         ax.plot(
             x, y, color=color, linestyle=PAIR_STYLES[pair], linewidth=2.1,
-            label=pair, solid_capstyle="round",
+            label=PAIR_SHORT_LABELS[pair], solid_capstyle="round",
         )
-    ax.text(0.005, 0.286, "Near-threshold\nlabel-risk zone", color="#8C3D3A", fontsize=7.4, va="top", fontweight="bold")
-    window_x0, window_y0 = 0.154, 0.280
-    ax.add_patch(Rectangle((window_x0, window_y0), 0.040, 0.006, fill=False, edgecolor="#35435E", linewidth=1.25, zorder=4))
-    ax.text(window_x0 - 0.004, 0.286, "Rolling window = 40 meV", color="#20252B", fontsize=7.6, va="center", ha="right")
-    ax.text(0.198, 0.266, "Wilson 95% CI", color="#4D5359", fontsize=6.6, va="top", ha="right")
-    ax.text((support_end + 0.20) / 2, 0.145, "$n<1{,}000$\nmasked", color="#6B737C", fontsize=7.2, va="center", ha="center")
+    ax.text(0.0045, 0.286, "Near-threshold\nrisk zone", color="#8C3D3A", fontsize=6.45, va="top", fontweight="bold", linespacing=0.90)
+    window_x0, window_y0 = 0.159, 0.280
+    ax.add_patch(Rectangle((window_x0, window_y0), 0.034, 0.0055, fill=False, edgecolor="#35435E", linewidth=1.0, zorder=4))
+    ax.text(window_x0 - 0.004, 0.286, "40-meV window", color="#20252B", fontsize=6.25, va="center", ha="right")
+    ax.text(0.198, 0.266, "Chemical-system\nbootstrap 95% CI", color="#4D5359", fontsize=5.45, va="top", ha="right", linespacing=0.92)
+    ax.text((support_end + 0.20) / 2, 0.145, "$n<1{,}000$ or <20 systems\nmasked", color="#6B737C", fontsize=5.9, va="center", ha="center")
     ax.set_xlim(0, 0.20)
     ax.set_ylim(0, 0.30)
     ax.set_xticks([0, 0.04, 0.08, 0.12, 0.16, 0.20])
+    ax.tick_params(axis="both", labelsize=6.45)
     ax.set_xlabel(r"MP-native $E_{\mathrm{above\ hull}}$ (eV atom$^{-1}$)")
     ax.set_ylabel("Rolling endpoint-switch rate")
     handles, labels = ax.get_legend_handles_labels()
     ax.legend().remove()
     clean_axis(ax)
-    panel_label(ax, "b", x=-0.075, y=1.02)
+    panel_label(ax, "b", x=-0.16, y=1.02)
     fig.legend(
-        handles, labels, loc="lower center", bbox_to_anchor=(0.54, 0.005),
-        ncol=3, columnspacing=1.45, handlelength=2.7,
+        handles, labels, loc="lower center", bbox_to_anchor=(0.50, 0.006),
+        ncol=2, columnspacing=0.90, handlelength=2.25, fontsize=5.9,
+        labelspacing=0.55,
     )
-    fig.subplots_adjust(bottom=0.17, top=0.98, left=0.09, right=0.99)
+    fig.subplots_adjust(bottom=0.19, top=0.98, left=0.17, right=0.98)
     return export_figure(fig, figure_dir, "fig2_near_threshold_discordance")
 
 
@@ -303,165 +361,249 @@ def figure3(denom: pd.DataFrame, conflicts: pd.DataFrame, decomp: pd.DataFrame, 
     denom.to_csv(source_dir / "fig3_denominator_hierarchy.csv", index=False)
     conflicts.to_csv(source_dir / "fig3_source_native_conflicts.csv", index=False)
     decomp.to_csv(source_dir / "fig3_conflict_decomposition.csv", index=False)
-    fig, axes = plt.subplots(1, 3, figsize=(17.1 * CM, 8.1 * CM), gridspec_kw={"width_ratios": [0.95, 1.0, 1.28], "wspace": 0.66})
+    fig = plt.figure(figsize=(17.1 * CM, 8.8 * CM))
+    # The decomposition is the interpretive panel, so it receives more width
+    # than the denominator and pairwise-switch summaries.
+    grid = fig.add_gridspec(1, 3, width_ratios=[0.82, 1.08, 1.52], wspace=0.46)
+    axes = [fig.add_subplot(grid[0, idx]) for idx in range(3)]
 
+    # a | Denominator hierarchy. F0 is explicitly named as support rather
+    # than plotted as an apparent predecessor of the exact denominators.
     ax = axes[0]
     order = ["F0", "D1", "D2", "D4", "D5"]
     d = denom.set_index("set_id").loc[order].reset_index()
     y = np.arange(len(d))[::-1]
     colors = ["#B9BDC2", "#4E79A7", "#76B7B2", "#A0CBE8", "#59A14F"]
+    labels = ["F0  formula support", "D1  exact pair", "D2  three-source", "D4  union status", "D5  four-model"]
     ax.barh(y, d["n_rows"], color=colors, height=0.62)
-    ax.set_yticks(y, [f"{a}  {b}" for a, b in zip(d["set_id"], ["formula support", "MP–alex-mp-20", "three-source", "union target", "four-model"])])
+    ax.set_yticks(y, labels)
     ax.set_xlim(0, 50_000)
     ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{int(x/1000)}k" if x else "0"))
     for idx, (yi, value) in enumerate(zip(y, d["n_rows"])):
         ax.text(
             value - 650, yi, f"{value:,}", va="center", ha="right",
-            fontsize=6.7, color="#222222" if idx == 0 else "white",
+            fontsize=6.8, color="#222222" if idx == 0 else "white",
             fontweight="bold",
         )
     ax.set_xlabel("Rows")
+    ax.set_title("Benchmark cohorts", pad=8, fontweight="normal")
     clean_axis(ax, "x")
     panel_label(ax, "a")
 
+    # b | Vertical lollipops avoid long source-pair labels colliding with the
+    # neighbouring denominator panel, while preserving counts and rates.
     ax = axes[1]
     c = conflicts.copy()
-    c["label"] = c["source_pair"].replace({
-        "MP vs official Alexandria-PBE": "MP–Alex-PBE (D2)",
-        "alex-mp-20 vs official Alexandria-PBE": "alex-mp-20–Alex (D2)",
-        "MP vs alex-mp-20": "MP–alex-mp-20 (D2)",
-        "MP vs alex-mp-20 (strict full)": "MP–alex-mp-20 (D1)",
-    })
-    y = np.arange(len(c))[::-1]
-    ax.barh(y, 100 * c["conflict_rate"], color=["#188DB8", "#E47D37", "#3A9D78", "#8297B8"], height=0.62)
-    ax.set_yticks(y, c["label"])
-    ax.set_xlim(0, 18)
-    for yi, rate, count in zip(y, c["conflict_rate"], c["conflict_n"]):
-        ax.text(100 * rate - 0.25, yi, f"{100*rate:.1f}%\n({count:,})", va="center", ha="right", fontsize=6.6, color="white", linespacing=0.9)
-    ax.set_xlabel("Endpoint switches (%)")
-    clean_axis(ax, "x")
+    category = {
+        "MP vs official Alexandria-PBE": (0.0, "o"),
+        "alex-mp-20 vs official Alexandria-PBE": (1.20, "o"),
+        "MP vs alex-mp-20": (2.42, "o"),
+        "MP vs alex-mp-20 (strict full)": (2.70, "s"),
+    }
+    x = np.array([category[pair][0] for pair in c["source_pair"]])
+    markers = [category[pair][1] for pair in c["source_pair"]]
+    rates = 100 * c["conflict_rate"].to_numpy(float)
+    colors = ["#188DB8", "#E47D37", "#3A9D78", "#8297B8"]
+    ax.vlines(x, 0, rates, color=colors, linewidth=2.0, zorder=2)
+    for xi, marker, rate, color in zip(x, markers, rates, colors):
+        ax.scatter(xi, rate, color=color, marker=marker, s=34, zorder=3, edgecolor="white", linewidth=0.5)
+    # Exact rates and counts are reported in the caption/source table.  The
+    # compact panel retains only the lollipop positions, eliminating callout
+    # collisions between the two MP--alex-mp-20 comparisons.
+    ax.set_xlim(-0.55, 3.15)
+    ax.set_ylim(0, 18.3)
+    ax.set_xticks(
+        [0, 1.20, 2.56],
+        ["MP–\nAlex-PBE", "alex-mp-20–\nAlex-PBE", "MP–alex-mp-20"],
+        fontsize=6.05,
+        linespacing=0.90,
+    )
+    ax.set_ylabel("Endpoint switches (%)")
+    ax.set_title("Source-native switches", pad=8, fontweight="normal")
+    ax.legend(
+        handles=[
+            Line2D([0], [0], marker="o", color="#4D5359", linewidth=0, markersize=4, label="D2"),
+            Line2D([0], [0], marker="s", color="#4D5359", linewidth=0, markersize=4, label="D1"),
+        ],
+        loc="upper right", fontsize=5.8, ncol=2, columnspacing=0.65,
+        handletextpad=0.3, borderaxespad=0.2,
+    )
+    clean_axis(ax, "y")
     panel_label(ax, "b")
 
+    # c | The stacked bars present the three count identities in one aligned
+    # coordinate system. The five unreconstructable native rows are retained
+    # as a slate sliver at the end of the top bar and stated in the caption.
     ax = axes[2]
     dc = decomp.set_index("component")["n"]
-    bar_names = ["Native conflicts", "Reconstructable\nnative", "Common-pool\nconflicts"]
+    bar_names = ["Native\nconflicts", "Reconstructable\nnative", "Common-pool\nconflicts"]
     pieces = {
         "Phase-pool-sensitive": np.array([dc["phase_pool_sensitive"], dc["phase_pool_sensitive"], 0]),
         "Persistent": np.array([dc["persistent"], dc["persistent"], dc["persistent"]]),
         "Hidden common-pool": np.array([0, 0, dc["hidden_common_pool"]]),
         "Unreconstructable": np.array([dc["unreconstructable"], 0, 0]),
     }
-    piece_colors = {"Phase-pool-sensitive": "#76B7B2", "Persistent": "#E15759", "Hidden common-pool": "#F2BE5C", "Unreconstructable": "#BAB0AC"}
+    piece_colors = {
+        "Phase-pool-sensitive": "#76B7B2",
+        "Persistent": "#E15759",
+        "Hidden common-pool": "#F2BE5C",
+        "Unreconstructable": "#7F8790",
+    }
+    text_colors = {
+        "Phase-pool-sensitive": "#1F3437",
+        "Persistent": "white",
+        "Hidden common-pool": "#4C3B16",
+        "Unreconstructable": "white",
+    }
     y = np.arange(3)[::-1]
     left = np.zeros(3)
     for name, values in pieces.items():
         ax.barh(y, values, left=left, color=piece_colors[name], height=0.60, label=name)
         for yi, lv, value in zip(y, left, values):
             if value >= 100:
-                ax.text(lv + value / 2, yi, f"{int(value):,}", ha="center", va="center", fontsize=7.0, color="#222222")
+                ax.text(lv + value / 2, yi, f"{int(value):,}", ha="center", va="center", fontsize=6.8, color=text_colors[name])
         left += values
-    ax.set_yticks(y, bar_names)
-    ax.set_xlim(0, 6100)
+    # Short conventional y-axis labels prevent the category text from
+    # intruding into either the bar values or the neighbouring panel.
+    ax.set_yticks(y, ["Native", "Reconst.", "Common"], fontsize=6.5)
+    ax.tick_params(axis="y", pad=2.8)
+    ax.set_xlim(0, 6000)
     ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{int(x/1000)}k" if x else "0"))
     ax.set_xlabel("Rows")
-    ax.annotate(
-        "+5 unreconstructable", xy=(dc["phase_pool_sensitive"] + dc["persistent"], y[0]),
-        xytext=(5550, y[0] + 0.43), ha="center", va="bottom", fontsize=6.7,
-        color="#68615D", arrowprops={"arrowstyle": "-", "color": "#8B837D", "lw": 0.8},
-    )
+    ax.set_title("Matched common-pool decomposition", pad=8, fontweight="normal")
     legend_handles = [
         Patch(facecolor=piece_colors[name], edgecolor="none", label=name)
-        for name in ["Phase-pool-sensitive", "Persistent", "Hidden common-pool"]
+        for name in ["Phase-pool-sensitive", "Persistent", "Hidden common-pool", "Unreconstructable"]
     ]
     ax.legend(
-        handles=legend_handles, loc="lower center", bbox_to_anchor=(0.5, -0.35),
-        ncol=2, columnspacing=0.8, handlelength=1.4, labelspacing=0.35,
+        handles=legend_handles, loc="lower center", bbox_to_anchor=(0.48, -0.39),
+        ncol=2, columnspacing=0.85, handlelength=1.35, labelspacing=0.42,
     )
     clean_axis(ax, "x")
     panel_label(ax, "c")
-    fig.subplots_adjust(bottom=0.23, top=0.93, left=0.08, right=0.99)
+    fig.subplots_adjust(bottom=0.29, top=0.89, left=0.075, right=0.99)
     return export_figure(fig, figure_dir, "fig3_sourceaware_benchmark_layer")
 
 
 def figure4(dominance: pd.DataFrame, slope: pd.DataFrame, source_dir: Path, figure_dir: Path) -> dict[str, object]:
     dominance.to_csv(source_dir / "fig4_uncertainty_dominance.csv", index=False)
     slope.to_csv(source_dir / "fig4_f1_rank_slopegraph.csv", index=False)
-    fig, axes = plt.subplots(1, 3, figsize=(17.1 * CM, 8.2 * CM), gridspec_kw={"width_ratios": [1.08, 1.12, 1.0], "wspace": 0.50})
+    # Give the uncertainty-dominance comparison a full-width hero panel.  The
+    # two lower panels then explain how the same evidence affects ranks and
+    # the absolute size of the metric bands.
+    fig = plt.figure(figsize=(17.1 * CM, 11.8 * CM))
+    grid = fig.add_gridspec(
+        2, 2, height_ratios=[1.06, 1.0], width_ratios=[1.0, 1.0],
+        hspace=0.61, wspace=0.48,
+    )
+    ax_a = fig.add_subplot(grid[0, :])
+    ax_b = fig.add_subplot(grid[1, 0])
+    ax_c = fig.add_subplot(grid[1, 1])
 
-    ax = axes[0]
+    # a | Values above the explicit horizontal reference line indicate that
+    # label-view variation exceeds the median model-to-model margin.
+    ax = ax_a
     metrics = list(PRIMARY_METRICS)
-    ymap = {m: len(metrics) - 1 - i for i, m in enumerate(metrics)}
-    jitter = {m: v for m, v in zip(REAL_MODELS, [-0.18, -0.06, 0.06, 0.18])}
+    xmap = {metric: idx for idx, metric in enumerate(metrics)}
+    jitter = {model: value for model, value in zip(REAL_MODELS, [-0.20, -0.067, 0.067, 0.20])}
     for model in REAL_MODELS:
         data = dominance[dominance["model_name"].eq(model)]
         ax.scatter(
+            [xmap[metric] + jitter[model] for metric in data["metric"]],
             data["uncertainty_dominance_ratio"],
-            [ymap[m] + jitter[model] for m in data["metric"]],
-            color=MODEL_COLORS[model], marker=MODEL_MARKERS[model], s=24,
+            color=MODEL_COLORS[model], marker=MODEL_MARKERS[model], s=31,
             edgecolor="white", linewidth=0.45, zorder=3, label=model,
         )
-    ax.axvline(1, color="#8B2D2D", linestyle=(0, (4, 3)), linewidth=0.9)
-    ax.set_xscale("log")
-    ax.set_xlim(0.55, 15)
-    ax.set_xticks([0.7, 1, 2, 5, 10], ["0.7", "1", "2", "5", "10"])
-    ax.set_yticks(range(len(metrics)), [METRIC_LABELS[m] for m in metrics[::-1]])
-    ax.set_xlabel("Label-view band / model margin")
-    ax.text(1.08, len(metrics) - 0.55, "equal influence", ha="left", va="top", color="#8B2D2D", fontsize=6.8)
-    clean_axis(ax, "x")
-    panel_label(ax, "a")
+    ax.axhline(1, color="#8B2D2D", linestyle=(0, (4, 3)), linewidth=0.9, zorder=1)
+    ax.text(
+        0.995, 1.12, "equal label and model variation", transform=ax.get_yaxis_transform(),
+        color="#8B2D2D", fontsize=6.5, ha="right", va="bottom",
+    )
+    ax.set_yscale("log")
+    ax.set_ylim(0.55, 16.5)
+    ax.set_yticks([0.7, 1, 2, 5, 10], ["0.7", "1", "2", "5", "10"])
+    ax.set_xlim(-0.55, len(metrics) - 0.45)
+    ax.set_xticks(range(len(metrics)), [METRIC_LABELS[m] for m in metrics])
+    ax.set_ylabel("Label-view band / model margin", fontsize=7.8, labelpad=3.5)
+    ax.set_title("Label uncertainty relative to model margins", pad=8, fontweight="normal")
+    clean_axis(ax, "y")
+    panel_label(ax, "a", x=-0.055, y=1.04)
+    model_handles = [
+        Line2D([0], [0], marker=MODEL_MARKERS[m], color=MODEL_COLORS[m],
+               linewidth=1.5, markersize=4.1, label=m)
+        for m in REAL_MODELS
+    ]
+    ax.legend(
+        model_handles, [h.get_label() for h in model_handles],
+        loc="upper right", ncol=4, bbox_to_anchor=(0.99, 1.01),
+        columnspacing=1.2, handlelength=1.6, handletextpad=0.45,
+    )
 
-    ax = axes[1]
+    # b | Rank paths retain the fixed identities used in panel a.
+    ax = ax_b
     views = ["mp_native", "alex_pbe_native", "common_pool", "consensus", "audit_view"]
     view_labels = ["MP", "Alex-PBE", "Common", "Consensus", "Audit"]
     x = np.arange(len(views))
     for model in REAL_MODELS:
         data = slope[slope["model_name"].eq(model)].set_index("label_view").reindex(views)
-        ax.plot(x, data["rank"], color=MODEL_COLORS[model], marker=MODEL_MARKERS[model], markersize=3.3, linewidth=1.5, label=model)
-    ax.set_xlim(-0.18, len(views) - 0.35)
+        ax.plot(x, data["rank"], color=MODEL_COLORS[model], marker=MODEL_MARKERS[model], markersize=3.7, linewidth=1.65, label=model)
+    ax.set_xlim(-0.20, len(views) - 0.30)
     ax.set_ylim(4.35, 0.65)
     ax.set_yticks([1, 2, 3, 4])
-    ax.set_xticks(x, view_labels, rotation=25, ha="right")
+    ax.set_xticks(x, view_labels, rotation=22, ha="right")
     ax.set_ylabel("F1 rank among real models")
+    ax.set_title("F1 rank across label views", pad=8, fontweight="normal")
     clean_axis(ax)
-    panel_label(ax, "b")
+    panel_label(ax, "b", x=-0.11, y=1.04)
 
-    ax = axes[2]
-    for metric, data in dominance.groupby("metric"):
-        for _, row in data.iterrows():
-            ax.scatter(
-                row["between_model_margin_median"], row["label_view_band"],
-                color=METRIC_COLORS[metric], marker=MODEL_MARKERS[row["model_name"]],
-                s=24, alpha=0.88, edgecolor="white", linewidth=0.35,
-            )
+    # c | Model colour and marker remain consistent across all panels. Metric
+    # labels are positioned with short leader lines so that the three large
+    # upper-left bands remain readable at journal width.
+    ax = ax_c
+    for _, row in dominance.iterrows():
+        ax.scatter(
+            row["between_model_margin_median"], row["label_view_band"],
+            color=MODEL_COLORS[row["model_name"]], marker=MODEL_MARKERS[row["model_name"]],
+            s=31, alpha=0.92, edgecolor="white", linewidth=0.4, zorder=3,
+        )
     low = min(dominance["between_model_margin_median"].min(), dominance["label_view_band"].min()) * 0.75
     high = max(dominance["between_model_margin_median"].max(), dominance["label_view_band"].max()) * 1.25
-    ax.plot([low, high], [low, high], color="#8B2D2D", linestyle=(0, (4, 3)), linewidth=0.8)
+    ax.plot([low, high], [low, high], color="#8B2D2D", linestyle=(0, (4, 3)), linewidth=0.85, zorder=1)
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_xlim(low, high)
     ax.set_ylim(low, high)
-    ax.set_xlabel("Model margin")
+    ax.set_xlabel("Median model margin")
     ax.set_ylabel("Label-view band")
-    offsets = {
-        "f1": (-14, 14), "auprc": (8, -10), "auroc": (8, 9),
-        "balanced_accuracy": (8, -10), "stable_yield@1000": (-2, 15),
+    ax.set_title("Band versus model margin", pad=8, fontweight="normal")
+    label_positions = {
+        "f1": (0.043, 0.325),
+        "auprc": (0.0175, 0.202),
+        "auroc": (0.031, 0.032),
+        "balanced_accuracy": (0.048, 0.0145),
+        "stable_yield@1000": (0.094, 0.215),
     }
     for metric, data in dominance.groupby("metric"):
         x0 = float(data["between_model_margin_median"].median())
         y0 = float(data["label_view_band"].median())
-        ax.annotate(METRIC_LABELS[metric], (x0, y0), xytext=offsets[metric], textcoords="offset points", fontsize=6.5, color=METRIC_COLORS[metric], fontweight="bold")
+        ax.annotate(
+            METRIC_LABELS[metric], xy=(x0, y0), xytext=label_positions[metric],
+            textcoords="data", fontsize=6.55, color=METRIC_COLORS[metric],
+            fontweight="bold", ha="center", va="center",
+            arrowprops={"arrowstyle": "-", "color": METRIC_COLORS[metric], "lw": 0.65, "alpha": 0.75},
+        )
     clean_axis(ax, "both")
-    panel_label(ax, "c")
-    model_handles = [Line2D([0], [0], marker=MODEL_MARKERS[m], color=MODEL_COLORS[m], linewidth=1.5, markersize=4, label=m) for m in REAL_MODELS]
-    fig.legend(model_handles, [h.get_label() for h in model_handles], loc="lower center", bbox_to_anchor=(0.5, 0.01), ncol=4, columnspacing=1.3, handlelength=1.6)
-    fig.subplots_adjust(bottom=0.22, top=0.93, left=0.08, right=0.99)
+    panel_label(ax, "c", x=-0.11, y=1.04)
+    fig.subplots_adjust(bottom=0.11, top=0.94, left=0.090, right=0.99)
     return export_figure(fig, figure_dir, "fig4_model_rank_audit")
 
 
 def figure5(exact: pd.DataFrame, unsupported: pd.DataFrame, source_dir: Path, figure_dir: Path) -> dict[str, object]:
     exact.to_csv(source_dir / "fig5_exact_matched_screened_candidates.csv", index=False)
     unsupported.to_csv(source_dir / "fig5_formula_only_unmatched_generated_pools.csv", index=False)
-    fig, axes = plt.subplots(1, 2, figsize=(17.1 * CM, 8.2 * CM), gridspec_kw={"width_ratios": [1.35, 1.0], "wspace": 0.35})
+    fig = plt.figure(figsize=(17.1 * CM, 8.5 * CM))
+    grid = fig.add_gridspec(1, 2, width_ratios=[1.38, 0.94], wspace=0.54)
+    axes = [fig.add_subplot(grid[0, idx]) for idx in range(2)]
     screen = exact[exact["pipeline_type"].eq("screening_pipeline_not_true_generator")].copy()
     order = [
         "alignn_ff_screened_sourceaware_top5000",
@@ -474,28 +616,31 @@ def figure5(exact: pd.DataFrame, unsupported: pd.DataFrame, source_dir: Path, fi
     names = ["ALIGNN-FF", "CHGNet", "M3GNet", "MACE-MP", "CHGNet public"]
     ax = axes[0]
     y = np.arange(len(screen))[::-1]
-    for i, (column, label, color, marker) in enumerate(
-        [
-            ("mp_native_stable_yield", "MP-native", "#4E79A7", "o"),
-            ("consensus_stable_yield", "Consensus", "#3A9D78", "s"),
-            ("audit_view_stable_yield", "Audit view", "#E47D37", "D"),
-        ]
-    ):
-        ax.scatter(screen[column], y + (0.16 - i * 0.16), color=color, marker=marker, s=27, label=label, zorder=3, edgecolor="white", linewidth=0.4)
+    point_specs = [
+        ("mp_native_stable_yield", "MP-native", "#4E79A7", "o", 0.18),
+        ("consensus_stable_yield", "Consensus", "#3A9D78", "s", 0.06),
+        ("audit_view_stable_yield", "Audit view", "#E47D37", "D", -0.06),
+        ("source_uncertain_fraction", "Source-uncertain", "#8B2D2D", "x", -0.18),
+    ]
+    for column, label, color, marker, offset in point_specs:
+        kwargs = {"linewidth": 1.25} if marker == "x" else {"edgecolor": "white", "linewidth": 0.4}
+        ax.scatter(
+            screen[column], y + offset, color=color, marker=marker, s=30,
+            label=label, zorder=3, **kwargs,
+        )
     for yi, lo, hi in zip(y, screen["audit_view_stable_yield"], screen["mp_native_stable_yield"]):
-        ax.plot([lo, hi], [yi - 0.16, yi + 0.16], color="#B7BDC4", linewidth=1.2, zorder=1)
-    ax.scatter(screen["source_uncertain_fraction"], y - 0.30, color="#8B2D2D", marker="x", s=23, linewidth=1.2, label="Source-uncertain", zorder=3)
+        ax.plot([lo, hi], [yi - 0.06, yi + 0.18], color="#B7BDC4", linewidth=1.15, zorder=1)
     ax.set_yticks(y, names)
     ax.set_xlim(0.20, 0.44)
     ax.set_xlabel("Fraction of exact-matched candidates")
-    ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.56), ncol=2, columnspacing=1.0, handletextpad=0.4)
+    ax.set_title("Exact-matched screeners", pad=7, fontweight="normal")
     clean_axis(ax, "x")
     panel_label(ax, "a")
 
     generated = unsupported[unsupported["pipeline_type"].isin(["true_generator", "available_crystal_generation_pipeline"])].copy()
     preferred = ["MatterGen_hf_base_smoke_unconditional", "MatterGen_pilot_5k_public_safe_formulas", "PGCGM_public_safe_generated_pool"]
     generated = generated.set_index("pipeline_name").reindex(preferred).dropna(subset=["candidate_n"]).reset_index()
-    names = ["MatterGen smoke", "MatterGen formula pool", "PGCGM pool"]
+    names = ["MatterGen\nsmoke", "MatterGen\nformula pool", "PGCGM\npool"]
     ax = axes[1]
     y = np.arange(len(generated))[::-1]
     bottom = np.zeros(len(generated))
@@ -506,21 +651,29 @@ def figure5(exact: pd.DataFrame, unsupported: pd.DataFrame, source_dir: Path, fi
         values = generated[column].to_numpy(float)
         ax.barh(y, values, left=bottom, color=color, height=0.58, label=label)
         bottom += values
-    ax.set_yticks(y, names)
+    ax.set_yticks(y, names, fontsize=6.8)
     ax.set_xlim(0, 1.0)
     ax.set_xlabel("Candidate-pool fraction")
-    for yi, formula, unmatched in zip(y, generated["formula_only_overlap_fraction"], generated["unsupported_no_formula_overlap_fraction"]):
-        ax.text(0.98, yi, "0 exact matches", ha="right", va="center", fontsize=6.7, color="#4D5359", fontweight="bold")
+    ax.set_title("Generated-pool support", pad=7, fontweight="normal")
+    for yi, formula in zip(y, generated["formula_only_overlap_fraction"]):
         if formula >= 0.025:
             ax.text(
-                formula + 0.012, yi, f"{100*formula:.1f}% formula-only",
-                ha="left", va="center", fontsize=6.4, color="#765213",
-                fontweight="bold",
+                formula + 0.014, yi, f"{100*formula:.1f}% formula-only",
+                ha="left", va="center", fontsize=6.5, color="#765213", fontweight="bold",
             )
-    ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.56), ncol=2, columnspacing=0.9, handlelength=1.6)
     clean_axis(ax, "x")
     panel_label(ax, "b")
-    fig.subplots_adjust(bottom=0.37, top=0.93, left=0.12, right=0.99)
+
+    handles = [
+        Line2D([0], [0], color="#4E79A7", marker="o", linewidth=0, markersize=4.5, label="MP-native"),
+        Line2D([0], [0], color="#3A9D78", marker="s", linewidth=0, markersize=4.5, label="Consensus"),
+        Line2D([0], [0], color="#E47D37", marker="D", linewidth=0, markersize=4.5, label="Audit view"),
+        Line2D([0], [0], color="#8B2D2D", marker="x", linewidth=0, markersize=5.0, label="Source-uncertain"),
+        Patch(facecolor="#F2BE5C", edgecolor="none", label="Formula-only"),
+        Patch(facecolor="#B9BDC2", edgecolor="none", label="Unmatched"),
+    ]
+    fig.legend(handles, [handle.get_label() for handle in handles], loc="lower center", bbox_to_anchor=(0.52, 0.012), ncol=6, columnspacing=0.82, handletextpad=0.38, handlelength=1.3)
+    fig.subplots_adjust(bottom=0.22, top=0.89, left=0.12, right=0.99)
     return export_figure(fig, figure_dir, "fig5_candidate_consequence")
 
 
@@ -533,14 +686,19 @@ def toc_graphic(curves: pd.DataFrame, source_dir: Path, figure_dir: Path) -> dic
         d = data[data["label_view"].eq(view)]
         ax.plot(d["rank"], d["stable_yield"], linestyle=VIEW_STYLES[view], color=MODEL_COLORS["MACE-MP"], linewidth=1.65, label=VIEW_LABELS[view])
     ax.axvline(1000, color="#6E7781", linestyle=(0, (4, 3)), linewidth=0.65)
-    ax.set_xlim(0, 12_000)
+    # A compact TOC graphic must keep every label inside the fixed 8 x 4 cm
+    # canvas.  The short in-axis title replaces an overflow-prone page title.
+    ax.set_xlim(0, 12_500)
+    ax.set_xticks([0, 4_000, 8_000, 12_000])
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: "0" if x == 0 else f"{int(x / 1000)}k"))
     ax.set_ylim(0.15, 0.70)
-    ax.set_xlabel("Candidates evaluated")
-    ax.set_ylabel("Stable yield")
-    ax.legend(loc="upper right", fontsize=5.5, handlelength=2.4)
+    ax.set_xlabel("Candidates evaluated", labelpad=1.5)
+    ax.set_ylabel("Stable yield", labelpad=1.5)
+    ax.set_title("One ranking, multiple label views", fontsize=6.6, pad=2.0, fontweight="bold")
+    ax.tick_params(labelsize=5.1, pad=1.3)
+    ax.legend(loc="upper right", fontsize=4.6, handlelength=2.1, labelspacing=0.38, borderaxespad=0.55)
     clean_axis(ax)
-    fig.text(0.02, 0.97, "Source-aware labels turn one ranking into multiple discovery outcomes", ha="left", va="top", fontsize=6.5, fontweight="bold")
-    fig.subplots_adjust(left=0.16, right=0.98, bottom=0.22, top=0.82)
+    fig.subplots_adjust(left=0.18, right=0.96, bottom=0.23, top=0.88)
     # RSC specifies a maximum 8 cm x 4 cm TOC canvas.  Do not use a tight
     # bounding box here because it can expand the saved physical page size.
     return export_figure(fig, figure_dir, "toc_graphic", exact_canvas=True)
@@ -589,7 +747,7 @@ def build(args: argparse.Namespace) -> list[dict[str, object]]:
     ]
     copy_manuscript_figures(figure_dir, args.manuscript_figures)
     (out / "figure_qa.json").write_text(json.dumps({"status": "PASS", "figures": records}, indent=2) + "\n")
-    (out / "toc_text.txt").write_text("Source-aware label views turn a fixed crystal ranking into distinct discovery curves, exposing benchmark uncertainty in stable yield and recall without treating any diagnostic label as physical truth.\n")
+    (out / "toc_text.txt").write_text("Source-aware label views turn a fixed crystal ranking into distinct discovery curves, making label provenance visible in stable-yield and recall estimates.\n")
     return records
 
 

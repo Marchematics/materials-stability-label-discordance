@@ -1,0 +1,25 @@
+{
+  "fixed_support_n": 31872,
+  "consensus_selection_support_n": 24614,
+  "label_only_views": [
+    "mp_native",
+    "alexmp20_native",
+    "alex_pbe_native",
+    "common_pool",
+    "audit_view"
+  ],
+  "selection_policy_view": "consensus",
+  "classification_threshold": "fixed number of predicted positives equal to MP-native positives on fixed support",
+  "bootstrap": {
+    "cluster": "chemical_system",
+    "replicates": 1000,
+    "seed": 20260714,
+    "reported_quantities": [
+      "label-view bands",
+      "paired label-view differences",
+      "model winner probabilities"
+    ]
+  },
+  "raw_energy_scores": "excluded from primary evaluation",
+  "primary_scores": "negative predicted e_above_hull over fixed D2 subsystem phase pool"
+}

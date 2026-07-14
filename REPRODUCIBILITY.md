@@ -2,7 +2,7 @@
 
 ## Reproducing the submission release
 
-The submission release uses the frozen source-aware benchmark and model-facing
+The submission release uses the source-aware benchmark and model-facing
 evaluation outputs described in the article.
 
 Create the pinned environment with either:
@@ -34,9 +34,31 @@ metadata records the interval method, support threshold, seed and iterations.
 The clean-environment log is archived at
 `outputs/dd_submission_v2/logs/clean_environment_regeneration.log`.
 
-This repository contains public-safe scripts, derived tables, figure inputs and
-SHA256 manifests for the source-native stability-label audit. Raw third-party
-database exports are not redistributed here.
+This repository contains scripts, derived tables, figure inputs and SHA256
+manifests for the source-native stability-label audit. Raw third-party database
+exports remain with their original providers.
+
+## M1 model-evaluation archive
+
+The primary model-facing tables are in
+`outputs/repaired_model_evaluation_v1/`. The archive includes
+`score_construct_validity_audit.csv`, `evaluation_support_and_coverage.csv`,
+`metrics_fixed_support.csv`, `topk_fixed_support.csv`,
+`label_bands_cluster_bootstrap.csv`, paired bootstrap replicates,
+`elemental_reference_structures.jsonl`, and
+`fixed_subsystem_phase_pool_manifest.json`.
+
+Regenerate the figure files and verify the released archive with:
+
+```bash
+python scripts/build_repaired_model_figures.py
+python scripts/audit_repaired_model_claims.py
+pytest -q tests/test_repaired_model_evaluation.py tests/test_dd_submission_curves.py
+python scripts/build_repaired_release_manifest.py
+```
+
+The corresponding command logs and environment checksums are stored in
+`outputs/repaired_model_evaluation_v1/reproducibility/`.
 
 ## Environment
 
@@ -52,7 +74,7 @@ Run repository tests:
 pytest -q tests
 ```
 
-## Public-safe artifact checks
+## Integrity checks
 
 Each milestone directory contains a local SHA256 manifest. Verify a milestone
 from its directory, for example:
@@ -87,11 +109,11 @@ raw/official_alexandria_pbe/
 
 The `raw/` directory is intentionally ignored by Git. The script validates the
 complete PBE 3D snapshot, checks `entries[].data.e_above_hull` coverage and
-builds formula-prefiltered exact-structure matches to the public-safe
+builds formula-prefiltered exact-structure matches to the strict
 MP--alex-mp-20 denominator. It does not use MP identifiers to join official
 Alexandria-PBE records.
 
-2. Public-safe extension outputs:
+2. Extension outputs:
 
 ```bash
 python scripts/build_official_alexandria_pbe_extension_outputs.py
@@ -124,8 +146,8 @@ python scripts/run_full_mp_alex_denominator_43984.py
 ```
 
 Rebuilding this stage requires Materials Project API access via `MP_API_KEY`.
-Live API behavior and database contents can change, so the archived public-safe
-derived tables are the reference outputs for the submitted audit.
+Live API behaviour and database contents can change, so the archived derived
+tables are the reference outputs for the submitted analysis.
 
 ## JARVIS-DFT extension
 
@@ -135,13 +157,14 @@ The JARVIS extension can be rebuilt with:
 python scripts/build_jarvis_multisource_extension.py
 ```
 
-The script queries the public JARVIS OPTIMADE endpoint and writes public-safe
+The script queries the public JARVIS OPTIMADE endpoint and writes
 denominator, pairwise source-conflict and three-source label-composition
 tables. Formula matching is used only as a prefilter; reported rows require
 exact structure matches.
 
-## Scope
+## Interpretation
 
-The analyses are source-native public-label audits. They do not reconstruct a
-common hull, validate which source is physically correct, or claim prospective
-materials discovery.
+The analyses compare source-native public stability labels and report
+common-pool, consensus and audit views as benchmark evaluations. A homogeneous
+recalculation or prospective validation workflow can be layered onto these
+released denominators in future studies.

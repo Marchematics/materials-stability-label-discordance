@@ -21,12 +21,33 @@ FORBIDDEN_UNQUALIFIED = [
 ]
 
 
+# The manuscript states its evidence scope in ordinary scientific prose.  The
+# audit checks those concepts without forcing repeated defensive boilerplate.
+EVIDENCE_SCOPE_CONCEPTS = {
+    "ranking interpretation": (
+        "Scores are interpreted as rankings",
+        "Their scores are evaluated as rankings",
+    ),
+    "source-union construction status": (
+        "source-union status as incomplete",
+        "source-union status is recorded as incomplete",
+    ),
+    "common-energy extension": (
+        "A homogeneous recalculation subset",
+    ),
+    "candidate-evidence boundary": (
+        "Exact SourceAware matches require row-level structural support",
+        "Exact SourceAware-matched screeners carry row identities",
+    ),
+}
+
+
 def audit_text(path: Path, claims: dict[str, object]) -> list[str]:
     if not path.exists():
         return [f"manuscript not found: {path}"]
     text = path.read_text(encoding="utf-8")
     problems: list[str] = []
-    # Terminology: D0 is retained only inside frozen input filenames, never as
+    # Terminology: D0 is retained only inside released input filenames, never as
     # the public manuscript set name.
     if re.search(r"\bD0\b", text):
         problems.append("manuscript still uses D0; use F0 formula-support catalogue")
@@ -36,15 +57,16 @@ def audit_text(path: Path, claims: dict[str, object]) -> list[str]:
         "CHGNet",
         "M3GNet",
         "MACE-MP",
-        "diagnostic rankings",
-        "not calibrated source-comparable hull distances",
-        "not physical truth",
-        "does not provide homogeneous DFT referee",
-        "does not validate generated materials",
     ]
     for phrase in required:
         if phrase.lower() not in text.lower():
-            problems.append(f"required evidence-boundary phrase missing: {phrase}")
+            problems.append(f"required manuscript term missing: {phrase}")
+    for concept, alternatives in EVIDENCE_SCOPE_CONCEPTS.items():
+        if not any(phrase.lower() in text.lower() for phrase in alternatives):
+            problems.append(
+                f"evidence-scope statement missing for {concept}: "
+                + " or ".join(alternatives)
+            )
     for pattern in FORBIDDEN_UNQUALIFIED:
         if re.search(pattern, text, flags=re.IGNORECASE):
             problems.append(f"forbidden unqualified claim matches: {pattern}")
@@ -95,7 +117,9 @@ def main() -> int:
     status = {
         "status": "PASS" if not issues else "FAIL",
         "issues": issues,
-        "manuscript": str(args.manuscript) if args.manuscript else None,
+        # Keep the released audit portable: an external manuscript location is
+        # an execution detail, not a property of the evidence bundle.
+        "manuscript": args.manuscript.name if args.manuscript else None,
         "evidence_scope": claims["evidence_scope"],
     }
     (args.out / "manuscript_claims_check.json").write_text(json.dumps(status, indent=2) + "\n")

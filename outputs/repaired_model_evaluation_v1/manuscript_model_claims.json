@@ -1,0 +1,59 @@
+[
+  {
+    "claim": "M1 fixed-support cohort contains 31,872 rows.",
+    "value": 31872,
+    "source": "all_view_common_support_exclusion_audit.csv",
+    "status": "supported"
+  },
+  {
+    "claim": "Consensus is a separate 24,614-row selection policy.",
+    "value": 24614,
+    "source": "evaluation_support_and_coverage.csv",
+    "status": "supported"
+  },
+  {
+    "claim": "Archived raw energy rankings have MP-native AUROC below 0.5 for all four primary models.",
+    "value": [
+      0.465471,
+      0.468129,
+      0.480944,
+      0.489083
+    ],
+    "source": "score_construct_validity_audit.csv",
+    "status": "supported"
+  },
+  {
+    "claim": "Repaired predicted-hull rankings have MP-native AUROC above 0.5 for all four primary models.",
+    "value": [
+      0.684639,
+      0.780265,
+      0.773227,
+      0.839462
+    ],
+    "source": "score_construct_validity_audit.csv",
+    "status": "supported"
+  },
+  {
+    "claim": "MACE-MP has the highest point-estimate M1 AUROC for every fixed-support label view.",
+    "value": [
+      "MACE-MP",
+      "MACE-MP",
+      "MACE-MP",
+      "MACE-MP",
+      "MACE-MP"
+    ],
+    "source": "metrics_fixed_support.csv",
+    "status": "supported"
+  },
+  {
+    "claim": "MP-native minus audit stable yield at K=1000 is positive for all four models in every paired bootstrap replicate.",
+    "value": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "source": "paired_label_view_differences_cluster_bootstrap.csv",
+    "status": "supported"
+  }
+]

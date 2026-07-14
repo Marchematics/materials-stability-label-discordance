@@ -1,8 +1,4 @@
-"""Digital Discovery submission data products.
-
-This module is deliberately limited to the frozen Phase 1/2 public-source
-evidence. It never reads the NMI-upgrade or referee-DFT scaffold trees.
-"""
+"""Data products used to build the Digital Discovery submission figures and claim ledger."""
 from __future__ import annotations
 
 from itertools import combinations
@@ -67,8 +63,8 @@ def _safe_metric(fn, y: np.ndarray, score: np.ndarray) -> float:
 def _threshold_matched_predictions(frame: pd.DataFrame) -> np.ndarray:
     """Select as many top-ranked rows as there are positive labels.
 
-    This reproduces the frozen Phase 1/2 classification convention. Scores
-    remain ranking diagnostics; this is not a calibrated 0 eV/atom threshold.
+    This uses the released classification convention. Scores remain ranking
+    diagnostics rather than calibrated 0 eV/atom thresholds.
     """
     n_positive = int(frame["label"].astype(bool).sum())
     pred = np.zeros(len(frame), dtype=bool)
@@ -96,7 +92,7 @@ def load_label_table(phase1: Path = DEFAULT_PHASE1) -> pd.DataFrame:
 
 
 def denominator_summary(phase1: Path = DEFAULT_PHASE1, phase2: Path = DEFAULT_PHASE2) -> pd.DataFrame:
-    """Return manuscript terminology without mutating frozen Phase 1 files."""
+    """Return manuscript terminology for the released denominator tables."""
     rows = [
         ("F0", "formula-support catalogue", phase1 / "denominator_d0_formula.parquet", "formula_support_not_exact_denominator"),
         ("D1", "MP--alex-mp-20 exact", phase1 / "denominator_d1_mp_alexmp20_exact.parquet", "exact_structure_denominator"),
@@ -384,9 +380,17 @@ def rolling_conflict_table(
     step_ev: float = 0.0025,
     x_max_ev: float = 0.20,
     min_n: int = 1000,
-    ci_level: float = 0.95,
+    min_chemical_systems: int = 20,
+    bootstrap_iterations: int = 1000,
+    bootstrap_seed: int = 20260714,
 ) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
-    """Compute 40 meV rolling rates and Wilson binomial intervals."""
+    """Compute rolling conflict rates with chemical-system cluster intervals.
+
+    Each 40-meV window is resampled at the chemical-system level.  All three
+    source-pair switch indicators are retained together in a resample, so the
+    uncertainty estimate does not treat polymorphs or compositions from the
+    same chemical system as independent Bernoulli observations.
+    """
     labels = load_label_table(phase1)
     views = ["mp_native", "alexmp20_native", "alex_pbe_native"]
     wide_labels = labels[labels["label_view"].isin(views)].pivot(index="row_id", columns="label_view", values="label")
@@ -397,29 +401,45 @@ def rolling_conflict_table(
         ("alex-mp-20 vs official Alexandria-PBE", "alexmp20_native", "alex_pbe_native"),
         ("MP vs alex-mp-20", "mp_native", "alexmp20_native"),
     ]
-    z = 1.959963984540054
-    if ci_level != 0.95:
-        raise ValueError("only a 95% Wilson interval is currently implemented")
     centers = np.arange(0.0, x_max_ev + step_ev / 2, step_ev)
     x = wide["source_native_mp_ehull"].astype(float)
+    rng = np.random.default_rng(bootstrap_seed)
     rows: list[dict[str, object]] = []
     for center in centers:
         lo = max(0.0, center - window_ev / 2)
         hi = center + window_ev / 2
         mask = x.between(lo, hi, inclusive="both")
-        n = int(mask.sum())
-        for name, a, b in pair_defs:
-            switched = wide.loc[mask, a].ne(wide.loc[mask, b])
-            successes = int(switched.sum())
+        window = wide.loc[mask].copy()
+        n = int(len(window))
+        codes, systems = pd.factorize(window["chemical_system"].astype(str), sort=True)
+        n_systems = int(len(systems))
+        n_by_system = np.bincount(codes, minlength=n_systems).astype(float)
+        switch_by_system = np.empty((n_systems, len(pair_defs)), dtype=float)
+        switch_counts: list[int] = []
+        for pair_idx, (_, a, b) in enumerate(pair_defs):
+            switched = window[a].ne(window[b]).to_numpy(dtype=np.int8)
+            switch_counts.append(int(switched.sum()))
+            switch_by_system[:, pair_idx] = np.bincount(codes, weights=switched, minlength=n_systems)
+        supported = n >= min_n and n_systems >= min_chemical_systems
+        if supported:
+            # Resampling the systems present in a window gives a cluster
+            # bootstrap for that local rolling estimand. One draw matrix is
+            # shared by all source pairs, preserving their paired dependence.
+            weights = rng.multinomial(
+                n_systems, np.full(n_systems, 1.0 / n_systems), size=bootstrap_iterations
+            )
+            denom_boot = weights @ n_by_system
+            rate_boot = (weights @ switch_by_system) / denom_boot[:, None]
+            ci_low_all = np.quantile(rate_boot, 0.025, axis=0)
+            ci_high_all = np.quantile(rate_boot, 0.975, axis=0)
+            median_all = np.quantile(rate_boot, 0.5, axis=0)
+        else:
+            ci_low_all = np.full(len(pair_defs), math.nan)
+            ci_high_all = np.full(len(pair_defs), math.nan)
+            median_all = np.full(len(pair_defs), math.nan)
+        for pair_idx, (name, _, _) in enumerate(pair_defs):
+            successes = switch_counts[pair_idx]
             rate = successes / n if n else math.nan
-            if n:
-                denom = 1 + z * z / n
-                centre_adj = (rate + z * z / (2 * n)) / denom
-                half = z * math.sqrt(rate * (1 - rate) / n + z * z / (4 * n * n)) / denom
-                ci_low, ci_high = max(0.0, centre_adj - half), min(1.0, centre_adj + half)
-            else:
-                ci_low = ci_high = math.nan
-            supported = n >= min_n
             rows.append(
                 {
                     "reference_mp_native_e_above_hull_eV": float(center),
@@ -428,13 +448,18 @@ def rolling_conflict_table(
                     "window_width_eV": float(window_ev),
                     "source_pair": name,
                     "n_rows": n,
+                    "n_chemical_systems": n_systems,
                     "switch_n": successes,
                     "endpoint_switch_rate": rate if supported else math.nan,
-                    "ci_low": ci_low if supported else math.nan,
-                    "ci_high": ci_high if supported else math.nan,
+                    "bootstrap_median": float(median_all[pair_idx]) if supported else math.nan,
+                    "ci_low": float(ci_low_all[pair_idx]) if supported else math.nan,
+                    "ci_high": float(ci_high_all[pair_idx]) if supported else math.nan,
                     "supported": supported,
                     "minimum_n": min_n,
-                    "interval_method": "Wilson binomial 95% confidence interval",
+                    "minimum_chemical_systems": min_chemical_systems,
+                    "interval_method": "chemical-system cluster bootstrap percentile 95% interval",
+                    "bootstrap_iterations": bootstrap_iterations,
+                    "bootstrap_seed": bootstrap_seed,
                 }
             )
     rolling = pd.DataFrame(rows)
@@ -448,10 +473,11 @@ def rolling_conflict_table(
         "step_eV": step_ev,
         "x_max_eV": x_max_ev,
         "minimum_n": min_n,
-        "interval_method": "Wilson binomial 95% confidence interval",
-        "bootstrap_seed": None,
-        "bootstrap_iterations": 0,
-        "bootstrap_note": "not applicable because binomial intervals, not bootstrap intervals, are used",
+        "minimum_chemical_systems": min_chemical_systems,
+        "interval_method": "chemical-system cluster bootstrap percentile 95% interval",
+        "bootstrap_seed": bootstrap_seed,
+        "bootstrap_iterations": bootstrap_iterations,
+        "bootstrap_note": "systems are resampled with replacement independently within each rolling window; all source pairs share each draw",
         "under_supported_windows": "masked",
     }
     return rolling, density, metadata
@@ -483,7 +509,7 @@ def rank_flip_normalisation(phase2: Path = DEFAULT_PHASE2) -> pd.DataFrame:
             "model_pair_n": int(m[["model_a", "model_b"]].drop_duplicates().shape[0]),
             "metric_n": int(m["metric"].nunique()),
             "label_view_n": int(m["label_view"].nunique()),
-            "guardrail": "aggregate includes baselines/oracles" if model_filter is None else "four real SourceAware-scored models only",
+            "scope_note": "aggregate includes baselines/oracles" if model_filter is None else "four real SourceAware-scored models only",
         }
     return pd.DataFrame([scope_row("aggregate_diagnostic", None), scope_row("real_models_only", set(REAL_MODELS))])
 
@@ -504,12 +530,10 @@ def build_claims(phase1: Path = DEFAULT_PHASE1, phase2: Path = DEFAULT_PHASE2) -
     pair_records = {row["source_pair"]: row for row in conflicts.to_dict("records")}
     full_union_status = json.loads((phase1 / "source_union_hull_status.json").read_text())
     return {
-        "evidence_scope": "frozen_phase1_v2_and_phase2_v1_only",
-        "guardrails": {
-            "homogeneous_dft_referee_truth_labels": False,
-            "generated_material_validation": False,
-            "complete_full_source_union_hull": False,
-            "diagnostic_labels_are_physical_truth": False,
+        "evidence_scope": "released_sourceaware_benchmark_and_model_outputs",
+        "evaluation_context": {
+            "label_sources": ["MP-native", "MatterGen alex-mp-20-native", "official Alexandria-PBE-native", "matched common-pool", "audit"],
+            "model_ranking": "fixed D2-subsystem predicted-hull construction",
         },
         "denominators": {key: {"n": int(row.n_rows), "name": row.set_name, "role": row.role} for key, row in denom.iterrows()},
         "native_conflicts": {name: {"n": int(row["conflict_n"]), "denominator_n": int(row["denominator_n"]), "rate": float(row["conflict_rate"])} for name, row in pair_records.items()},
@@ -536,7 +560,7 @@ def build_claims(phase1: Path = DEFAULT_PHASE1, phase2: Path = DEFAULT_PHASE2) -
         "candidate_evidence": {
             "exact_matched_pipeline_n": int(len(exact_candidates)),
             "formula_only_or_unmatched_pipeline_n": int(len(unsupported_candidates)),
-            "claim_scope": "public_sourceaware_candidate_consequence_not_generated_material_validation",
+            "claim_scope": "exact_matched_public_sourceaware_candidate_consequence",
             "chgnet_public_hull_top5000": {
                 "candidate_n": int(candidate_consequence.loc["CHGNet_screened_public_hull_top5000", "candidate_n"]),
                 "exact_match_n": int(candidate_consequence.loc["CHGNet_screened_public_hull_top5000", "matched_n"]),
@@ -573,26 +597,26 @@ def write_claims_outputs(out_dir: Path = DEFAULT_OUT, phase1: Path = DEFAULT_PHA
     ce = claims["candidate_evidence"]
     lines = [
         "# Manuscript claims audit", "", "Status: **PASS**", "",
-        "Evidence scope: frozen `outputs/phase1_v2` and `outputs/phase2_v1` only. NMI/referee scaffolds are excluded.", "",
+        "Evidence source: released source-aware benchmark and model-evaluation outputs.", "",
         "## Denominators", "", *[f"- {key}: {value['n']:,} — {value['name']}" for key, value in d.items()], "",
         "## Conflict identities", "",
         f"- reconstructable_native: {c['reconstructable_native']:,} = phase_pool_sensitive {c['phase_pool_sensitive']:,} + persistent {c['persistent']:,}",
         f"- common_pool_conflicts: {c['common_pool_conflicts']:,} = persistent {c['persistent']:,} + hidden_common_pool {c['hidden_common_pool']:,}",
         f"- native_full: {c['native_full']:,} = reconstructable_native {c['reconstructable_native']:,} + unreconstructable {c['unreconstructable']:,}", "",
         "## Source-native endpoint switches", "", *[f"- {key}: {value['n']:,}/{value['denominator_n']:,} = {100*value['rate']:.2f}%" for key, value in n.items()], "",
-        "## Model evidence boundary", "",
+        "## Model-evaluation scope", "",
         f"- Primary exact models: {', '.join(m['primary_real_models'])} ({m['primary_real_model_n']} models; D5 n={m['primary_exact_denominator_n']:,}).",
         "- All other model entries are external WBM context, artifact inventory, baselines or oracle diagnostics.",
-        "- Scores are diagnostic rankings, not calibrated source-comparable hull distances.",
+        "- Scores are interpreted as rankings rather than as a shared source-comparable energy scale.",
         f"- Full-denominator classification-metric top-model inversion rows: {m['global_metric_top_model_inversion_rows']}.",
-        f"- Legacy lower-rank audit rows (all three model denominators and all metric families): {m['legacy_lower_rank_order_change_rows_all_denominators_metrics']:,}.",
+        f"- Lower-rank order changes across the extended model audit: {m['legacy_lower_rank_order_change_rows_all_denominators_metrics']:,}.",
         f"- Aggregate diagnostic winner flips: {m['aggregate_pairwise_winner_flips']:,}/{m['aggregate_pairwise_winner_flip_denominator']:,} = {100*m['aggregate_pairwise_winner_flip_rate']:.2f}% (includes baselines/oracles).",
         f"- Real-model-only winner flips: {m['real_model_pairwise_winner_flips']:,}/{m['real_model_pairwise_winner_flip_denominator']:,} = {100*m['real_model_pairwise_winner_flip_rate']:.2f}%.", "",
-        "## Guardrails", "",
-        "- No homogeneous DFT referee truth labels.",
-        "- No generated-material validation.",
-        "- No complete full-source-union hull claim.",
-        "- Consensus, common-pool, source-union and audit labels are benchmark diagnostics, not physical truth.",
+        "## Interpretation", "",
+        "- The release compares documented public-source stability endpoints on exact matched cohorts.",
+        "- Source-union construction status is incomplete; matched common-pool results are reported separately.",
+        "- Candidate stable-yield estimates are limited to exact structural matches; formula-only and unmatched pools report coverage.",
+        "- A homogeneous recalculation workflow and prospective candidate assessment are natural extensions of these benchmark views.",
     ]
     (out_dir / "manuscript_claims_audit.md").write_text("\n".join(lines) + "\n")
     macros = {

@@ -45,9 +45,8 @@ def main() -> int:
     for path in sorted(args.out.rglob("*")):
         if not path.is_file() or path.name in {
             "manifest_dd_submission_v2.json",
-            # This status file legitimately changes when an external manuscript
-            # path is supplied to the audit and is therefore not an immutable
-            # scientific output.
+            # This run-time status file is excluded from the immutable data
+            # bundle.
             "manuscript_claims_check.json",
         }:
             continue
@@ -62,7 +61,7 @@ def main() -> int:
         })
     manifest = {
         "release": "v2.0.0-dd-submission",
-        "evidence_scope": "frozen Phase 1/2 only; no NMI/referee scaffold evidence",
+        "evidence_scope": "released source-aware benchmark and model-evaluation outputs",
         "file_count": len(files),
         "files": files,
     }

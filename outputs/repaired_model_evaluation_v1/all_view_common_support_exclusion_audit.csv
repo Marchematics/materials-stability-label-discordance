@@ -1,0 +1,5 @@
+stage,n,excluded_vs_d2,excluded_vs_d5,rule
+D2 three-source exact rows,36802,0,,single strict MP--alex-mp-20--Alexandria-PBE structure match
+D5 archived four-score intersection,36801,1,0.0,all four archived raw score tables available
+Five-view label support,31873,4929,4929.0,"MP-native, alex-mp-20-native, Alexandria-PBE-native, common-pool and audit labels evaluable"
+M1 all-view common support,31872,4930,4929.0,intersection of D5 and five-view label support; corrected predicted-hull scores available

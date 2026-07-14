@@ -1,0 +1,8 @@
+evaluation_type,view,n,positive_rate
+label_only_fixed_support,mp_native,31872,0.41431350401606426
+label_only_fixed_support,alexmp20_native,31872,0.36759538152610444
+label_only_fixed_support,alex_pbe_native,31872,0.3258659638554217
+label_only_fixed_support,common_pool,31872,0.5172565261044176
+label_only_fixed_support,audit_view,31872,0.2976593875502008
+selection_policy,consensus,24614,0.3854310554968717
+selection_policy,consensus_excluded_from_label_only_band,7258,

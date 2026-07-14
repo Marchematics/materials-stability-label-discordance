@@ -1,0 +1,33 @@
+{
+  "construction": {
+    "formation_energy": "model-specific predicted formation energy per atom",
+    "ranking_score": "negative predicted energy above hull",
+    "rule": "For each target chemical system, include all D2 entries whose element set is a non-empty subset of that system, then add one zero-formation-energy elemental endpoint for each constituent element.",
+    "target_chemical_systems": 19361,
+    "target_element_count_distribution": {
+      "1": 120,
+      "2": 7259,
+      "3": 22108,
+      "4": 6312,
+      "5": 956,
+      "6": 44,
+      "7": 3
+    },
+    "target_rows": 36802
+  },
+  "elemental_reference_records": "elemental_reference_structures.jsonl and elemental_reference_summary_<model>.csv",
+  "name": "fixed_D2_subsystem_phase_pool",
+  "source_inputs": [
+    {
+      "path": "outputs/phase1_v2/labels_by_view.parquet",
+      "selection": "mp_native rows provide D2 row identifiers, formulae and chemical systems",
+      "sha256": "e51c61271a888bd524821842c4238ac86c6347bcfc683c15c5123643de71f934"
+    },
+    {
+      "path": "inputs/phase2_v1/sourceaware_model_scores_public_safe.parquet",
+      "selection": "four archived model energy tables",
+      "sha256": "1adb0f7e30735aa91e9df50814b619a78e64fb28f581e2d2d5fbdabfa948c1c3"
+    }
+  ],
+  "version": "M1_repaired_model_evaluation_v1"
+}

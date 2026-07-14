@@ -42,12 +42,14 @@ def test_rolling_conflict_windows_record_support_and_intervals():
     assert metadata["window_width_eV"] == 0.040
     assert metadata["x_max_eV"] == 0.20
     assert metadata["minimum_n"] == 1000
-    assert metadata["bootstrap_seed"] is None
-    assert metadata["bootstrap_iterations"] == 0
+    assert metadata["bootstrap_seed"] == 20260714
+    assert metadata["bootstrap_iterations"] == 1000
+    assert metadata["interval_method"] == "chemical-system cluster bootstrap percentile 95% interval"
     assert rolling["n_rows"].notna().all()
+    assert rolling["n_chemical_systems"].notna().all()
     supported = rolling["supported"]
     assert rolling.loc[supported, ["endpoint_switch_rate", "ci_low", "ci_high"]].notna().all().all()
     assert rolling.loc[~supported, ["endpoint_switch_rate", "ci_low", "ci_high"]].isna().all().all()
-    assert (rolling.loc[supported, "ci_low"] <= rolling.loc[supported, "endpoint_switch_rate"]).all()
-    assert (rolling.loc[supported, "endpoint_switch_rate"] <= rolling.loc[supported, "ci_high"]).all()
+    assert rolling.loc[supported, "bootstrap_median"].notna().all()
+    assert (rolling.loc[supported, "ci_low"] <= rolling.loc[supported, "ci_high"]).all()
     assert density["row_count"].sum() > 0

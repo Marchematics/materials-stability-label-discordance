@@ -1,0 +1,9 @@
+{
+  "model": "M3GNet",
+  "rows_input": 36802,
+  "rows_hull_ok": 36802,
+  "rows_hull_failed": 0,
+  "phase_pool": "fixed D2 subsystem pool",
+  "score_semantics": "negative predicted e_above_hull over fixed D2 subsystem phase pool",
+  "note": "This is a construct-validity ranking diagnostic, not a complete source-native hull reconstruction."
+}
