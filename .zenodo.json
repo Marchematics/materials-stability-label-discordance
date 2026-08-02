@@ -1,5 +1,5 @@
 {
-  "title": "SourceAware-Stability: source-aware stability endpoint revision",
+  "title": "SourceAware-Stability v2.1.1: source-aware stability endpoint revision",
   "description": "Source provenance cards, frozen denominators, physical endpoints, threshold and matching sensitivity analyses, batch-relative model rankings, figure-source tables and reproducibility tests for crystal-discovery benchmark evaluation.",
   "creators": [
     {
