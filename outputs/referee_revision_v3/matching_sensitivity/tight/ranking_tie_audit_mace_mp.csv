@@ -1,0 +1,6 @@
+model_name,K,row_n,unique_score_n,rows_in_non_singleton_ties_n,largest_tie_block_n,maximum_score_tie_block_n,boundary_score,strictly_before_boundary_n,boundary_tie_n,selected_from_boundary_n,tie_decimals,support_n
+MACE-MP,100,36650,36537,226,2,1,1.754118760427,99,1,1,12,36650
+MACE-MP,300,36650,36537,226,2,1,0.874098658562,299,1,1,12,36650
+MACE-MP,500,36650,36537,226,2,1,0.53250863817,499,1,1,12,36650
+MACE-MP,1000,36650,36537,226,2,1,0.293626475334,999,1,1,12,36650
+MACE-MP,5000,36650,36537,226,2,1,0.097941322327,4999,1,1,12,36650

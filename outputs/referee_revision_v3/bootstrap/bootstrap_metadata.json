@@ -1,0 +1,16 @@
+{
+  "cluster": "chemical_system",
+  "conditional_on": [
+    "fixed model-predicted scores",
+    "fixed D5 batch-relative reference phase pool",
+    "fixed structural-equivalence classes"
+  ],
+  "not_quantified": [
+    "model energy prediction uncertainty",
+    "DFT workflow uncertainty",
+    "reference phase pool uncertainty"
+  ],
+  "replicates": 1000,
+  "seed": 20260719,
+  "tie_policy_within_each_replicate": "analytic expectation at rounded-12-decimal score boundary"
+}

@@ -1,0 +1,6 @@
+property,value
+estimand,leave-one-tolerance-equivalence-class-out batch-relative transductive signed reference-hull margin
+compound_candidate_n,36681
+model_n,4
+candidate_model_audit_n,146724
+decomposition_simplex_overlap_n,0

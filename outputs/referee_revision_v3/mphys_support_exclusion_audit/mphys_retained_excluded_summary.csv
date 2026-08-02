@@ -1,0 +1,31 @@
+group,feature,feature_kind,n_group,n_evaluable,value,unit,statistic
+Mphys retained,MP source-coordinate stable fraction,stable_fraction,36650,36650,0.4093042291950887,fraction,mean
+Mphys retained,alex-mp-20 source-coordinate stable fraction,stable_fraction,36650,36650,0.36196452933151435,fraction,mean
+Mphys retained,Alexandria-PBE source-coordinate stable fraction,stable_fraction,36650,36650,0.3314597544338336,fraction,mean
+Mphys retained,MP matched-pool stable fraction,stable_fraction,36650,36650,0.48687585266030015,fraction,mean
+Mphys retained,Alexandria-PBE matched-pool stable fraction,stable_fraction,36650,36650,0.545293315143247,fraction,mean
+Mphys retained,Formula element count,numeric_mean,36650,36650,3.0302592087312417,count,mean
+Mphys retained,Formula atom count,numeric_mean,36650,36650,7.2524965893588,count,mean
+Mphys retained,Structure site count,numeric_mean,36650,36650,10.591541609822647,count,mean
+Mphys retained,Reference-hull phase count after target exclusion,numeric_mean,36650,36650,33.32673942701228,count,mean
+Mphys retained,Transition-metal-containing,composition_fraction,36650,36650,0.7516507503410641,fraction,mean
+Mphys retained,Lanthanide-containing,composition_fraction,36650,36650,0.36414733969986357,fraction,mean
+Mphys retained,Oxygen-containing,composition_fraction,36650,36650,0.2534788540245566,fraction,mean
+Mphys retained,Halogen-containing,composition_fraction,36650,36650,0.13495225102319236,fraction,mean
+candidate excluded,MP source-coordinate stable fraction,stable_fraction,31,31,0.22580645161290322,fraction,mean
+candidate excluded,alex-mp-20 source-coordinate stable fraction,stable_fraction,31,31,0.25806451612903225,fraction,mean
+candidate excluded,Alexandria-PBE source-coordinate stable fraction,stable_fraction,31,31,0.2903225806451613,fraction,mean
+candidate excluded,MP matched-pool stable fraction,stable_fraction,31,0,,fraction,mean
+candidate excluded,Alexandria-PBE matched-pool stable fraction,stable_fraction,31,31,0.3548387096774194,fraction,mean
+candidate excluded,Formula element count,numeric_mean,31,31,2.967741935483871,count,mean
+candidate excluded,Formula atom count,numeric_mean,31,31,6.645161290322581,count,mean
+candidate excluded,Structure site count,numeric_mean,31,31,12.096774193548388,count,mean
+candidate excluded,Reference-hull phase count after target exclusion,numeric_mean,31,31,47.096774193548384,count,mean
+candidate excluded,Transition-metal-containing,composition_fraction,31,31,0.6129032258064516,fraction,mean
+candidate excluded,Lanthanide-containing,composition_fraction,31,31,0.3870967741935484,fraction,mean
+candidate excluded,Oxygen-containing,composition_fraction,31,31,0.5161290322580645,fraction,mean
+candidate excluded,Halogen-containing,composition_fraction,31,31,0.0967741935483871,fraction,mean
+Mphys retained,Unique chemical-system count,numeric_mean,36650,36650,19294.0,count,count
+candidate excluded,Unique chemical-system count,numeric_mean,31,31,23.0,count,count
+Mphys retained,Chemical-system coverage of candidate universe,composition_fraction,36650,36650,0.9997409192186124,fraction,fraction
+candidate excluded,Chemical-system coverage of candidate universe,composition_fraction,31,31,0.0011917715943831288,fraction,fraction

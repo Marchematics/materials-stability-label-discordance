@@ -1,0 +1,3 @@
+group,row_n,unique_chemical_system_n,chemical_system_coverage_of_candidate_universe,systems_shared_with_other_group_n,systems_unique_to_group_n
+Mphys retained,36650,19294,0.9997409192186124,18,19276
+candidate excluded,31,23,0.0011917715943831288,18,5

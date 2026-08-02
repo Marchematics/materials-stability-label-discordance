@@ -1,0 +1,35 @@
+{
+  "candidate_pool_version": "D5-batch-candidate-pool-v1",
+  "compound_candidate_n": 36681,
+  "d5_row_n": 36801,
+  "elemental_target_n_not_ranked": 120,
+  "equivalence_version": "D5-StructureMatcher-default-ltol0.2-stol0.3-angle5.0-v1",
+  "estimand": "leave-one-structural-equivalence-class-out batch-relative signed reference-hull margin",
+  "exclusion_failed_n": 0,
+  "exclusion_verified_n": 36681,
+  "inputs": {
+    "d5": {
+      "path": "outputs/phase1_v2/denominator_d5_model_complete.parquet",
+      "sha256": "27cd6abe6cb3f855dc2bd2222749e5f5fa380acf2495b5a9884e46f7d878a2e5"
+    },
+    "model_energy_table": {
+      "path": "/root/materials-stability-label-discordance-dd/outputs/repaired_model_evaluation_v1/predicted_hull_scores_M3GNet.parquet",
+      "sha256": "16614f961382ce36929220a416cd07008e2e7724c32f89c8d06e876de11c84c0"
+    },
+    "structure_cache": {
+      "path": "/home/waas/paper_experiments/github/discordance-/outputs/milestones/materials_label_discordance_full_mp_alex_43984/mp_records_summary_structures.jsonl",
+      "sha256": "fe9763ec3d931cdb6e3095fe36dcd2d47be4f2e50935a015d63c70855e6565ef"
+    }
+  },
+  "largest_tie_block_n": 3,
+  "model_name": "M3GNet",
+  "prototype_physical_support_n": 36650,
+  "reference_pool_version": "D5-batch-relative-reference-pool-v1",
+  "score_ok_n": 36681,
+  "score_status_counts": {
+    "ok": 36681
+  },
+  "top1000_boundary_tie_n": 1,
+  "top1000_strictly_before_boundary_n": 999,
+  "transductive": true
+}

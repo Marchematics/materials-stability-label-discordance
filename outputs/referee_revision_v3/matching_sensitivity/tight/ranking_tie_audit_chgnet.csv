@@ -1,0 +1,6 @@
+model_name,K,row_n,unique_score_n,rows_in_non_singleton_ties_n,largest_tie_block_n,maximum_score_tie_block_n,boundary_score,strictly_before_boundary_n,boundary_tie_n,selected_from_boundary_n,tie_decimals,support_n
+CHGNet,100,36650,36391,514,4,1,1.951856791973,99,1,1,12,36650
+CHGNet,300,36650,36391,514,4,1,0.999785372189,299,1,1,12,36650
+CHGNet,500,36650,36391,514,4,1,0.634941526822,499,1,1,12,36650
+CHGNet,1000,36650,36391,514,4,1,0.328830438502,999,1,1,12,36650
+CHGNet,5000,36650,36391,514,4,1,0.104039101374,4999,1,1,12,36650

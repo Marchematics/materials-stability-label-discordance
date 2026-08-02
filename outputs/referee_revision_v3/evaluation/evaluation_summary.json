@@ -1,0 +1,36 @@
+{
+  "bootstrap_scope": "not_run_in_this_point_estimate_stage",
+  "candidate_universe": "D5 compounds",
+  "candidate_universe_n": 36681,
+  "coordinate_endpoints": [
+    "mp_source_coordinate",
+    "alexmp20_source_coordinate",
+    "alex_pbe_source_coordinate",
+    "mp_matched_pool_coordinate",
+    "alex_pbe_matched_pool_coordinate"
+  ],
+  "indeterminate_widths_meV_per_atom": [
+    10,
+    20,
+    25,
+    30,
+    50
+  ],
+  "models": [
+    "ALIGNN-FF",
+    "CHGNet",
+    "M3GNet",
+    "MACE-MP"
+  ],
+  "mphys_n": 36650,
+  "official_t0_mismatch_total": 0,
+  "ranking_fixed_across_all_endpoints_and_thresholds": true,
+  "thresholds_meV_per_atom": [
+    0,
+    10,
+    25,
+    50,
+    100
+  ],
+  "tie_uncertainty": "analytic hypergeometric at every K boundary"
+}

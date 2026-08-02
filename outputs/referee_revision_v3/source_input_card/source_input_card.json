@@ -1,0 +1,35 @@
+[
+  {
+    "source":"Materials Project",
+    "snapshot_or_query":"MP Summary API queried 2026-05-20",
+    "native_hull_input":"materials.summary.energy_above_hull",
+    "analysis_hull_field":"source_native_mp_ehull",
+    "native_label_field":"source_native_mp_label",
+    "formation_energy_input":"materials.summary.formation_energy_per_atom",
+    "formation_energy_available":true,
+    "unit":"eV\/atom",
+    "official_threshold":"e_above_hull <= 1e-8 eV\/atom"
+  },
+  {
+    "source":"MatterGen alex-mp-20",
+    "snapshot_or_query":"MatterGen data-release alex_mp_20.zip; train.csv + val.csv",
+    "native_hull_input":"energy_above_hull",
+    "analysis_hull_field":"source_native_mattergen_ehull",
+    "native_label_field":"source_native_mattergen_label",
+    "formation_energy_input":"not present in released score table",
+    "formation_energy_available":false,
+    "unit":"eV\/atom",
+    "official_threshold":"e_above_hull <= 1e-8 eV\/atom"
+  },
+  {
+    "source":"official Alexandria-PBE",
+    "snapshot_or_query":"PBE 3D snapshot 2025.07.02; retrieved 2026-07-05",
+    "native_hull_input":"entries[].data.e_above_hull",
+    "analysis_hull_field":"source_native_alexandria_ehull",
+    "native_label_field":"source_native_alexandria_label",
+    "formation_energy_input":"entries[].data.e_form",
+    "formation_energy_available":true,
+    "unit":"eV\/atom",
+    "official_threshold":"e_above_hull <= 1e-8 eV\/atom"
+  }
+]

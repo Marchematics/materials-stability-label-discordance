@@ -1,0 +1,6 @@
+model_name,K,row_n,unique_score_n,rows_in_non_singleton_ties_n,largest_tie_block_n,maximum_score_tie_block_n,boundary_score,strictly_before_boundary_n,boundary_tie_n,selected_from_boundary_n,tie_decimals,support_n
+M3GNet,100,36650,36534,228,3,1,1.754652756232,99,1,1,12,36650
+M3GNet,300,36650,36534,228,3,1,0.925812516894,299,1,1,12,36650
+M3GNet,500,36650,36534,228,3,1,0.568228340149,499,1,1,12,36650
+M3GNet,1000,36650,36534,228,3,1,0.320195028517,999,1,1,12,36650
+M3GNet,5000,36650,36534,228,3,1,0.10314065218,4999,1,1,12,36650

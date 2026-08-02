@@ -1,0 +1,151 @@
+threshold_meV_per_atom,metric,coordinate_endpoint,mp_selected_models_json,endpoint_best_value,regret_min,regret_max,regret_definition
+0,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9529643258216551,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",0.640328505679265,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,ap,alexmp20_source_coordinate,"[""MACE-MP""]",0.6871462750408757,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",0.8885254935934132,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,ap,mp_source_coordinate,"[""MACE-MP""]",0.759751245816223,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9370025028522367,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",0.8419048640892332,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",0.8489539935612578,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",0.8982317890146664,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,auroc,mp_source_coordinate,"[""MACE-MP""]",0.8672573798481336,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",454.706684856753,4.0,4.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,excess_hits_over_random,alex_pbe_source_coordinate,"[""MACE-MP""]",273.54024556616645,7.0,7.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,excess_hits_over_random,alexmp20_source_coordinate,"[""MACE-MP""]",315.03547066848563,10.0,10.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,excess_hits_over_random,mp_matched_pool_coordinate,"[""MACE-MP""]",486.12414733969985,3.0,3.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,excess_hits_over_random,mp_source_coordinate,"[""MACE-MP""]",349.6957708049113,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1000.0,4.0,4.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_hits,alex_pbe_source_coordinate,"[""MACE-MP""]",605.0,7.0,7.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_hits,alexmp20_source_coordinate,"[""MACE-MP""]",677.0,10.0,10.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_hits,mp_matched_pool_coordinate,"[""MACE-MP""]",973.0,3.0,3.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_hits,mp_source_coordinate,"[""MACE-MP""]",759.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1.0,0.0040000000000000036,0.0040000000000000036,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_yield,alex_pbe_source_coordinate,"[""MACE-MP""]",0.605,0.007000000000000006,0.007000000000000006,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_yield,alexmp20_source_coordinate,"[""MACE-MP""]",0.677,0.010000000000000009,0.010000000000000009,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_yield,mp_matched_pool_coordinate,"[""MACE-MP""]",0.973,0.0030000000000000027,0.0030000000000000027,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,expected_stable_yield,mp_source_coordinate,"[""MACE-MP""]",0.759,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.8965582083026499,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",0.4620047234162543,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,normalized_ap,alexmp20_source_coordinate,"[""MACE-MP""]",0.5096609211532711,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",0.7827533414973195,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+0,normalized_ap,mp_source_coordinate,"[""MACE-MP""]",0.5932783573913147,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9639251047535957,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",0.7714142208052451,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,ap,alexmp20_source_coordinate,"[""MACE-MP""]",0.7866699105934566,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",0.915064020470566,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,ap,mp_source_coordinate,"[""MACE-MP""]",0.8320233802153887,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9335085710377846,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",0.8387655918679668,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",0.8459603852255679,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",0.8911562204893437,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,auroc,mp_source_coordinate,"[""MACE-MP""]",0.8653389737298193,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",350.06821282401086,4.0,4.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,excess_hits_over_random,alex_pbe_source_coordinate,"[""MACE-MP""]",270.9536152796726,1.0,1.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,excess_hits_over_random,alexmp20_source_coordinate,"[""MACE-MP""]",264.5839017735334,5.0,5.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,excess_hits_over_random,mp_matched_pool_coordinate,"[""MACE-MP""]",410.60845839017736,3.0,3.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,excess_hits_over_random,mp_source_coordinate,"[""MACE-MP""]",302.2073669849932,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1000.0,4.0,4.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_hits,alex_pbe_source_coordinate,"[""MACE-MP""]",753.0,1.0,1.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_hits,alexmp20_source_coordinate,"[""MACE-MP""]",760.0,5.0,5.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_hits,mp_matched_pool_coordinate,"[""MACE-MP""]",992.0,3.0,3.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_hits,mp_source_coordinate,"[""MACE-MP""]",826.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1.0,0.0040000000000000036,0.0040000000000000036,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_yield,alex_pbe_source_coordinate,"[""MACE-MP""]",0.753,0.0010000000000000009,0.0010000000000000009,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_yield,alexmp20_source_coordinate,"[""MACE-MP""]",0.76,0.0050000000000000044,0.0050000000000000044,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_yield,mp_matched_pool_coordinate,"[""MACE-MP""]",0.992,0.0030000000000000027,0.0030000000000000027,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,expected_stable_yield,mp_source_coordinate,"[""MACE-MP""]",0.826,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.8969489547326019,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",0.5586751931998226,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,normalized_ap,alexmp20_source_coordinate,"[""MACE-MP""]",0.5772158234602381,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",0.7970992276265314,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+10,normalized_ap,mp_source_coordinate,"[""MACE-MP""]",0.6472616103187988,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9772114662111585,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",0.8649200368130932,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,ap,alexmp20_source_coordinate,"[""MACE-MP""]",0.8741435386245886,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",0.9370310231607856,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,ap,mp_source_coordinate,"[""MACE-MP""]",0.8940162172714998,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.935326884274555,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",0.8459917363898919,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",0.8545871024415409,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",0.8843021517321061,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,auroc,mp_source_coordinate,"[""MACE-MP""]",0.8691858217803784,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",246.52114597544335,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,excess_hits_over_random,alex_pbe_source_coordinate,"[""MACE-MP""]",216.96862210095492,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,excess_hits_over_random,alexmp20_source_coordinate,"[""MACE-MP""]",209.41064120054568,3.0,3.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,excess_hits_over_random,mp_matched_pool_coordinate,"[""MACE-MP""]",309.043656207367,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,excess_hits_over_random,mp_source_coordinate,"[""MACE-MP""]",233.47885402455654,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1000.0,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_hits,alex_pbe_source_coordinate,"[""MACE-MP""]",846.0,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_hits,alexmp20_source_coordinate,"[""MACE-MP""]",846.0,3.0,3.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_hits,mp_matched_pool_coordinate,"[""MACE-MP""]",993.0,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_hits,mp_source_coordinate,"[""MACE-MP""]",880.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1.0,0.0020000000000000018,0.0020000000000000018,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_yield,alex_pbe_source_coordinate,"[""MACE-MP""]",0.846,0.0020000000000000018,0.0020000000000000018,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_yield,alexmp20_source_coordinate,"[""MACE-MP""]",0.846,0.0030000000000000027,0.0030000000000000027,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_yield,mp_matched_pool_coordinate,"[""MACE-MP""]",0.993,0.0020000000000000018,0.0020000000000000018,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,expected_stable_yield,mp_source_coordinate,"[""MACE-MP""]",0.88,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9075595170602058,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",0.6358722675198487,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,normalized_ap,alexmp20_source_coordinate,"[""MACE-MP""]",0.6536797575336866,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",0.800758611658706,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+25,normalized_ap,mp_source_coordinate,"[""MACE-MP""]",0.7001693834813175,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9877407537202458,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",0.9346829529988546,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,ap,alexmp20_source_coordinate,"[""MACE-MP""]",0.9385614298439349,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",0.9627878685906963,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,ap,mp_source_coordinate,"[""MACE-MP""]",0.9443021438616771,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9330119586358245,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",0.8568778002021485,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",0.8637633192709371,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",0.8751104436138712,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,auroc,mp_source_coordinate,"[""MACE-MP""]",0.8715008878203006,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",135.57980900409268,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,excess_hits_over_random,alex_pbe_source_coordinate,"[""MACE-MP""]",119.07912687585258,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,excess_hits_over_random,alexmp20_source_coordinate,"[""MACE-MP""]",117.86903137789898,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,excess_hits_over_random,mp_matched_pool_coordinate,"[""MACE-MP""]",187.44065484311045,3.0,3.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,excess_hits_over_random,mp_source_coordinate,"[""MACE-MP""]",150.07912687585258,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1000.0,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_hits,alex_pbe_source_coordinate,"[""MACE-MP""]",905.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_hits,alexmp20_source_coordinate,"[""MACE-MP""]",906.0,2.0,2.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_hits,mp_matched_pool_coordinate,"[""MACE-MP""]",998.0,3.0,3.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_hits,mp_source_coordinate,"[""MACE-MP""]",936.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1.0,0.0020000000000000018,0.0020000000000000018,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_yield,alex_pbe_source_coordinate,"[""MACE-MP""]",0.905,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_yield,alexmp20_source_coordinate,"[""MACE-MP""]",0.906,0.0020000000000000018,0.0020000000000000018,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_yield,mp_matched_pool_coordinate,"[""MACE-MP""]",0.998,0.0030000000000000027,0.0030000000000000027,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,expected_stable_yield,mp_source_coordinate,"[""MACE-MP""]",0.936,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.9095791152841638,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",0.6948929680611804,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,normalized_ap,alexmp20_source_coordinate,"[""MACE-MP""]",0.7100162786581086,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",0.803568397500939,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+50,normalized_ap,mp_source_coordinate,"[""MACE-MP""]",0.7398258440645508,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,ap,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",0.9968527914530192,0.0008757181716814166,0.0008757181716814166,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,ap,alex_pbe_source_coordinate,"[""CHGNet""]",0.9906435153824691,0.0024023158421755397,0.0024023158421755397,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,ap,alexmp20_source_coordinate,"[""CHGNet""]",,,,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,ap,mp_matched_pool_coordinate,"[""CHGNet""]",0.9895402739139272,0.0001798661980388916,0.0001798661980388916,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,ap,mp_source_coordinate,"[""CHGNet""]",0.9886988230328482,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",0.8157650375098124,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",0.7985863193945915,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",,,,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",0.7236489317641817,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,auroc,mp_source_coordinate,"[""MACE-MP""]",0.7320628919298022,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""CHGNet"", ""MACE-MP""]",11.487039563437861,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,excess_hits_over_random,alex_pbe_source_coordinate,"[""CHGNet"", ""MACE-MP""]",13.020463847203246,0.0,1.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,excess_hits_over_random,alexmp20_source_coordinate,"[""CHGNet"", ""MACE-MP""]",0.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,excess_hits_over_random,mp_matched_pool_coordinate,"[""CHGNet"", ""MACE-MP""]",22.256480218281126,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,excess_hits_over_random,mp_source_coordinate,"[""CHGNet"", ""MACE-MP""]",7.0190995907230445,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""CHGNet"", ""MACE-MP""]",1000.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_hits,alex_pbe_source_coordinate,"[""CHGNet"", ""MACE-MP""]",988.0,0.0,1.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_hits,alexmp20_source_coordinate,"[""CHGNet"", ""MACE-MP""]",1000.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_hits,mp_matched_pool_coordinate,"[""CHGNet"", ""MACE-MP""]",998.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_hits,mp_source_coordinate,"[""CHGNet"", ""MACE-MP""]",985.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""CHGNet"", ""MACE-MP""]",1.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_yield,alex_pbe_source_coordinate,"[""CHGNet"", ""MACE-MP""]",0.988,0.0,0.0010000000000000009,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_yield,alexmp20_source_coordinate,"[""CHGNet"", ""MACE-MP""]",1.0,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_yield,mp_matched_pool_coordinate,"[""CHGNet"", ""MACE-MP""]",0.998,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,expected_stable_yield,mp_source_coordinate,"[""CHGNet"", ""MACE-MP""]",0.985,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,normalized_ap,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",0.7260209186535701,0.07623532302167224,0.07623532302167224,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,normalized_ap,alex_pbe_source_coordinate,"[""CHGNet""]",0.6260467162131861,0.09601404102042932,0.09601404102042932,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,normalized_ap,alexmp20_source_coordinate,"[""CHGNet""]",,,,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,normalized_ap,mp_matched_pool_coordinate,"[""CHGNet""]",0.5687863205235455,0.007415181280230998,0.007415181280230998,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold
+100,normalized_ap,mp_source_coordinate,"[""CHGNet""]",0.48675571766280634,0.0,0.0,endpoint best minus performance of a model selected as best on the MP coordinate at the same threshold

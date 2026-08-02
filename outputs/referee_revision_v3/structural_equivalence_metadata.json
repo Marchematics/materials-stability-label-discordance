@@ -1,0 +1,11 @@
+{
+  "candidate_pair_comparisons": 14043,
+  "component_rule": "connected components over identifier, canonical-hash, and StructureMatcher relations",
+  "equivalence_class_n": 35740,
+  "equivalence_version": "D5-StructureMatcher-ltol0.2-stol0.3-angle5-v1",
+  "failed_pair_comparisons": 0,
+  "largest_class_n": 6,
+  "non_singleton_class_n": 922,
+  "recorded_relation_edges": 2260,
+  "row_n": 36801
+}

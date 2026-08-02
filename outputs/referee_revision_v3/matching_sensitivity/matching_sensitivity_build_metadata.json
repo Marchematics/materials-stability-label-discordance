@@ -1,0 +1,26 @@
+{
+  "alexmp_structure_n": 43139,
+  "analysis_type": "survival audit of frozen D1/D2 mappings plus full D5 equivalence-graph rebuild",
+  "d1_frozen_n": 43139,
+  "d2_frozen_n": 36802,
+  "d5_frozen_n": 36801,
+  "does_not_search_new_cross_source_matches": true,
+  "official_alexandria_structure_n": 35748,
+  "tolerances": {
+    "default": {
+      "angle_tol": 5.0,
+      "ltol": 0.2,
+      "stol": 0.3
+    },
+    "loose": {
+      "angle_tol": 7.0,
+      "ltol": 0.3,
+      "stol": 0.4
+    },
+    "tight": {
+      "angle_tol": 3.0,
+      "ltol": 0.1,
+      "stol": 0.2
+    }
+  }
+}

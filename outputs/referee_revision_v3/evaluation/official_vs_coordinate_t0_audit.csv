@@ -1,0 +1,11 @@
+support,coordinate_endpoint,official_label_view,n_compared,official_positive_n,coordinate_t0_positive_n,mismatch_n,mismatch_rate,numerical_tolerance_eV_per_atom
+D2,mp_source_coordinate,mp_native,36802,15034,15034,0,0.0,1e-12
+D2,alexmp20_source_coordinate,alexmp20_native,36802,13300,13300,0,0.0,1e-12
+D2,alex_pbe_source_coordinate,alex_pbe_native,36802,12176,12176,0,0.0,1e-12
+D2,mp_matched_pool_coordinate,mp_common_pool,36770,17869,17869,0,0.0,1e-12
+D2,alex_pbe_matched_pool_coordinate,alex_pbe_common_pool,36802,20011,20011,0,0.0,1e-12
+D5_compounds,mp_source_coordinate,mp_native,36681,15008,15008,0,0.0,1e-12
+D5_compounds,alexmp20_source_coordinate,alexmp20_native,36681,13274,13274,0,0.0,1e-12
+D5_compounds,alex_pbe_source_coordinate,alex_pbe_native,36681,12157,12157,0,0.0,1e-12
+D5_compounds,mp_matched_pool_coordinate,mp_common_pool,36650,17844,17844,0,0.0,1e-12
+D5_compounds,alex_pbe_matched_pool_coordinate,alex_pbe_common_pool,36681,19996,19996,0,0.0,1e-12

@@ -1,0 +1,1241 @@
+{
+  "claims": [
+    {
+      "claim": "The previous self-included predicted-hull top-1000 results are withdrawn because every model's K=1000 boundary lay inside a large zero-score tie.",
+      "evidence": {
+        "ALIGNN-FF": 15688,
+        "CHGNet": 19190,
+        "M3GNet": 17178,
+        "MACE-MP": 17364
+      },
+      "id": "C1_previous_topk_withdrawn"
+    },
+    {
+      "claim": "The batch-relative equivalence-class-excluded signed reference-hull rankings have no tied K=1000 boundary on Mphys at 12-decimal score precision.",
+      "evidence": {
+        "k1000_boundary_tie_sizes": {
+          "ALIGNN-FF": 1,
+          "CHGNet": 1,
+          "M3GNet": 1,
+          "MACE-MP": 1
+        },
+        "largest_tie_block_across_models": 4,
+        "mphys_n": 36650
+      },
+      "id": "C2_repaired_ranking_ties"
+    },
+    {
+      "claim": "Native-coordinate disagreement decreases as a common stability tolerance is widened, but remains measurable at 25 and 50 meV per atom.",
+      "evidence": {
+        "0": {
+          "maximum_pair_rate": 0.1539590239660888,
+          "minimum_pair_rate": 0.1049399489158197
+        },
+        "25": {
+          "maximum_pair_rate": 0.1133905765990978,
+          "minimum_pair_rate": 0.0813814466605075
+        },
+        "50": {
+          "maximum_pair_rate": 0.0894244877995761,
+          "minimum_pair_rate": 0.065105157328406
+        }
+      },
+      "id": "C3_threshold_attenuation"
+    },
+    {
+      "claim": "Definite stable-versus-definite unstable MP/Alexandria-PBE conflicts remain after introducing an indeterminate near-hull zone, with the retained count and coverage reported jointly.",
+      "evidence": [
+        {
+          "decisive_n": 29095,
+          "indeterminate_width_meV_per_atom": 10,
+          "robust_conflict_n": 2484,
+          "robust_conflict_rate_decisive_support": 0.0853754940711462,
+          "robust_conflict_rate_full_support": 0.0675550720696219
+        },
+        {
+          "decisive_n": 24790,
+          "indeterminate_width_meV_per_atom": 20,
+          "robust_conflict_n": 1455,
+          "robust_conflict_rate_decisive_support": 0.0586930213795885,
+          "robust_conflict_rate_full_support": 0.0395703018765297
+        },
+        {
+          "decisive_n": 23160,
+          "indeterminate_width_meV_per_atom": 25,
+          "robust_conflict_n": 1163,
+          "robust_conflict_rate_decisive_support": 0.0502158894645941,
+          "robust_conflict_rate_full_support": 0.0316290454174598
+        },
+        {
+          "decisive_n": 21773,
+          "indeterminate_width_meV_per_atom": 30,
+          "robust_conflict_n": 954,
+          "robust_conflict_rate_decisive_support": 0.0438157350847379,
+          "robust_conflict_rate_full_support": 0.0259450639107968
+        },
+        {
+          "decisive_n": 17505,
+          "indeterminate_width_meV_per_atom": 50,
+          "robust_conflict_n": 512,
+          "robust_conflict_rate_decisive_support": 0.0292487860611253,
+          "robust_conflict_rate_full_support": 0.0139243948871362
+        }
+      ],
+      "id": "C4_indeterminate_robust_conflict"
+    },
+    {
+      "claim": "At the official zero-threshold endpoints, MACE-MP remains the point and bootstrap winner for AUROC, AP, and normalized AP across all five physical coordinates.",
+      "evidence": [
+        {
+          "coordinate_endpoint": "mp_source_coordinate",
+          "metric": "auroc",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "mp_source_coordinate",
+          "metric": "ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "mp_source_coordinate",
+          "metric": "normalized_ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "metric": "auroc",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "metric": "ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "metric": "normalized_ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alex_pbe_source_coordinate",
+          "metric": "auroc",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alex_pbe_source_coordinate",
+          "metric": "ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alex_pbe_source_coordinate",
+          "metric": "normalized_ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "metric": "auroc",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "metric": "ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "metric": "normalized_ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "metric": "auroc",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "metric": "ap",
+          "winner_frequency": 1.0
+        },
+        {
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "metric": "normalized_ap",
+          "winner_frequency": 1.0
+        }
+      ],
+      "id": "C5_global_ranking_winner"
+    },
+    {
+      "claim": "At K=1000, point winners change across physical endpoints, while MP-selected-model bootstrap regret is generally small and must be reported with its cohort interval.",
+      "evidence": {
+        "bootstrap_regret_t0": [
+          {
+            "bootstrap_replicates": 1000,
+            "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+            "metric": "expected_stable_hits_at_1000",
+            "positive_regret_frequency": 0.877,
+            "regret_max_ci_high_95": 7.0,
+            "regret_max_ci_low_95": 0.0,
+            "regret_max_median": 3.0,
+            "regret_min_ci_high_95": 7.0,
+            "regret_min_ci_low_95": 0.0,
+            "regret_min_median": 3.0,
+            "threshold_meV_per_atom": 0
+          },
+          {
+            "bootstrap_replicates": 1000,
+            "coordinate_endpoint": "alex_pbe_source_coordinate",
+            "metric": "expected_stable_hits_at_1000",
+            "positive_regret_frequency": 0.52,
+            "regret_max_ci_high_95": 17.0,
+            "regret_max_ci_low_95": 0.0,
+            "regret_max_median": 1.0,
+            "regret_min_ci_high_95": 17.0,
+            "regret_min_ci_low_95": 0.0,
+            "regret_min_median": 0.0,
+            "threshold_meV_per_atom": 0
+          },
+          {
+            "bootstrap_replicates": 1000,
+            "coordinate_endpoint": "alexmp20_source_coordinate",
+            "metric": "expected_stable_hits_at_1000",
+            "positive_regret_frequency": 0.597,
+            "regret_max_ci_high_95": 18.0,
+            "regret_max_ci_low_95": 0.0,
+            "regret_max_median": 3.0,
+            "regret_min_ci_high_95": 17.0,
+            "regret_min_ci_low_95": 0.0,
+            "regret_min_median": 2.0,
+            "threshold_meV_per_atom": 0
+          },
+          {
+            "bootstrap_replicates": 1000,
+            "coordinate_endpoint": "mp_matched_pool_coordinate",
+            "metric": "expected_stable_hits_at_1000",
+            "positive_regret_frequency": 0.539,
+            "regret_max_ci_high_95": 7.0,
+            "regret_max_ci_low_95": 0.0,
+            "regret_max_median": 1.0,
+            "regret_min_ci_high_95": 7.0,
+            "regret_min_ci_low_95": 0.0,
+            "regret_min_median": 1.0,
+            "threshold_meV_per_atom": 0
+          },
+          {
+            "bootstrap_replicates": 1000,
+            "coordinate_endpoint": "mp_source_coordinate",
+            "metric": "expected_stable_hits_at_1000",
+            "positive_regret_frequency": 0.0,
+            "regret_max_ci_high_95": 0.0,
+            "regret_max_ci_low_95": 0.0,
+            "regret_max_median": 0.0,
+            "regret_min_ci_high_95": 0.0,
+            "regret_min_ci_low_95": 0.0,
+            "regret_min_median": 0.0,
+            "threshold_meV_per_atom": 0
+          }
+        ],
+        "point_hits_t0": [
+          {
+            "coordinate_endpoint": "mp_source_coordinate",
+            "expected_stable_hits": 710.0,
+            "model_name": "ALIGNN-FF"
+          },
+          {
+            "coordinate_endpoint": "alexmp20_source_coordinate",
+            "expected_stable_hits": 615.0,
+            "model_name": "ALIGNN-FF"
+          },
+          {
+            "coordinate_endpoint": "alex_pbe_source_coordinate",
+            "expected_stable_hits": 554.0,
+            "model_name": "ALIGNN-FF"
+          },
+          {
+            "coordinate_endpoint": "mp_matched_pool_coordinate",
+            "expected_stable_hits": 929.0,
+            "model_name": "ALIGNN-FF"
+          },
+          {
+            "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+            "expected_stable_hits": 973.0,
+            "model_name": "ALIGNN-FF"
+          },
+          {
+            "coordinate_endpoint": "mp_source_coordinate",
+            "expected_stable_hits": 729.0,
+            "model_name": "CHGNet"
+          },
+          {
+            "coordinate_endpoint": "alexmp20_source_coordinate",
+            "expected_stable_hits": 645.0,
+            "model_name": "CHGNet"
+          },
+          {
+            "coordinate_endpoint": "alex_pbe_source_coordinate",
+            "expected_stable_hits": 576.0,
+            "model_name": "CHGNet"
+          },
+          {
+            "coordinate_endpoint": "mp_matched_pool_coordinate",
+            "expected_stable_hits": 970.0,
+            "model_name": "CHGNet"
+          },
+          {
+            "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+            "expected_stable_hits": 1000.0,
+            "model_name": "CHGNet"
+          },
+          {
+            "coordinate_endpoint": "mp_source_coordinate",
+            "expected_stable_hits": 754.0,
+            "model_name": "M3GNet"
+          },
+          {
+            "coordinate_endpoint": "alexmp20_source_coordinate",
+            "expected_stable_hits": 677.0,
+            "model_name": "M3GNet"
+          },
+          {
+            "coordinate_endpoint": "alex_pbe_source_coordinate",
+            "expected_stable_hits": 605.0,
+            "model_name": "M3GNet"
+          },
+          {
+            "coordinate_endpoint": "mp_matched_pool_coordinate",
+            "expected_stable_hits": 973.0,
+            "model_name": "M3GNet"
+          },
+          {
+            "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+            "expected_stable_hits": 999.0,
+            "model_name": "M3GNet"
+          },
+          {
+            "coordinate_endpoint": "mp_source_coordinate",
+            "expected_stable_hits": 759.0,
+            "model_name": "MACE-MP"
+          },
+          {
+            "coordinate_endpoint": "alexmp20_source_coordinate",
+            "expected_stable_hits": 667.0,
+            "model_name": "MACE-MP"
+          },
+          {
+            "coordinate_endpoint": "alex_pbe_source_coordinate",
+            "expected_stable_hits": 598.0,
+            "model_name": "MACE-MP"
+          },
+          {
+            "coordinate_endpoint": "mp_matched_pool_coordinate",
+            "expected_stable_hits": 970.0,
+            "model_name": "MACE-MP"
+          },
+          {
+            "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+            "expected_stable_hits": 996.0,
+            "model_name": "MACE-MP"
+          }
+        ]
+      },
+      "id": "C6_topk_selection_is_endpoint_dependent_but_regret_small"
+    },
+    {
+      "claim": "Fine-grained top-K ordering changes with the validation budget, while MP-selection regret remains reported in absolute stable hits at every predeclared K.",
+      "evidence": [
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "ALIGNN-FF",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "CHGNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 7.0,
+          "bootstrap_regret_max_median_hits": 1.0,
+          "bootstrap_winner_frequency": 0.679,
+          "coordinate_endpoint": "alex_pbe_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 2.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 6.0,
+          "bootstrap_regret_max_median_hits": 1.0,
+          "bootstrap_winner_frequency": 0.353,
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "model_name": "ALIGNN-FF",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 6.0,
+          "bootstrap_regret_max_median_hits": 1.0,
+          "bootstrap_winner_frequency": 0.421,
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 6.0,
+          "bootstrap_regret_max_median_hits": 1.0,
+          "bootstrap_winner_frequency": 0.4,
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "ALIGNN-FF",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "CHGNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.548,
+          "coordinate_endpoint": "mp_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 100,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.353,
+          "coordinate_endpoint": "mp_source_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 300,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "ALIGNN-FF",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 300,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "CHGNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 300,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 300,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 300,
+          "bootstrap_regret_max_ci_high_95_hits": 9.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.903,
+          "coordinate_endpoint": "alex_pbe_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 8.0
+        },
+        {
+          "K": 300,
+          "bootstrap_regret_max_ci_high_95_hits": 8.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.864,
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 8.0
+        },
+        {
+          "K": 300,
+          "bootstrap_regret_max_ci_high_95_hits": 3.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.383,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 1.0
+        },
+        {
+          "K": 300,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.783,
+          "coordinate_endpoint": "mp_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 7.0
+        },
+        {
+          "K": 500,
+          "bootstrap_regret_max_ci_high_95_hits": 2.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "CHGNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 500,
+          "bootstrap_regret_max_ci_high_95_hits": 2.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 500,
+          "bootstrap_regret_max_ci_high_95_hits": 2.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 500,
+          "bootstrap_regret_max_ci_high_95_hits": 12.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.608,
+          "coordinate_endpoint": "alex_pbe_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 1.0
+        },
+        {
+          "K": 500,
+          "bootstrap_regret_max_ci_high_95_hits": 9.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.368,
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 1.0
+        },
+        {
+          "K": 500,
+          "bootstrap_regret_max_ci_high_95_hits": 6.024999999999977,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.766,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 500,
+          "bootstrap_regret_max_ci_high_95_hits": 6.024999999999977,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.904,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 0.0
+        },
+        {
+          "K": 500,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.433,
+          "coordinate_endpoint": "mp_source_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 1.0
+        },
+        {
+          "K": 1000,
+          "bootstrap_regret_max_ci_high_95_hits": 7.0,
+          "bootstrap_regret_max_median_hits": 3.0,
+          "bootstrap_winner_frequency": 0.933,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "CHGNet",
+          "point_first_second_margin_hits": 1.0
+        },
+        {
+          "K": 1000,
+          "bootstrap_regret_max_ci_high_95_hits": 17.0,
+          "bootstrap_regret_max_median_hits": 1.0,
+          "bootstrap_winner_frequency": 0.764,
+          "coordinate_endpoint": "alex_pbe_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 7.0
+        },
+        {
+          "K": 1000,
+          "bootstrap_regret_max_ci_high_95_hits": 18.0,
+          "bootstrap_regret_max_median_hits": 3.0,
+          "bootstrap_winner_frequency": 0.857,
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 10.0
+        },
+        {
+          "K": 1000,
+          "bootstrap_regret_max_ci_high_95_hits": 7.0,
+          "bootstrap_regret_max_median_hits": 1.0,
+          "bootstrap_winner_frequency": 0.723,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "M3GNet",
+          "point_first_second_margin_hits": 3.0
+        },
+        {
+          "K": 1000,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.777,
+          "coordinate_endpoint": "mp_source_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 5.0
+        },
+        {
+          "K": 5000,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.993,
+          "coordinate_endpoint": "alex_pbe_matched_pool_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 19.0
+        },
+        {
+          "K": 5000,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alex_pbe_source_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 118.0
+        },
+        {
+          "K": 5000,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "alexmp20_source_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 129.0
+        },
+        {
+          "K": 5000,
+          "bootstrap_regret_max_ci_high_95_hits": 13.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 0.831,
+          "coordinate_endpoint": "mp_matched_pool_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 12.0
+        },
+        {
+          "K": 5000,
+          "bootstrap_regret_max_ci_high_95_hits": 0.0,
+          "bootstrap_regret_max_median_hits": 0.0,
+          "bootstrap_winner_frequency": 1.0,
+          "coordinate_endpoint": "mp_source_coordinate",
+          "model_name": "MACE-MP",
+          "point_first_second_margin_hits": 85.0
+        }
+      ],
+      "id": "C7_budget_specific_ordering"
+    },
+    {
+      "claim": "The default matching setting reproduces the frozen D1 and D2 cohorts; tight/default/loose sensitivity reports denominator survival, equivalence-class size, and independently recomputed top-1000 rankings.",
+      "evidence": [
+        {
+          "cross_source_estimand": "survival of frozen D1/D2 mappings; no search for new loose matches",
+          "d1_frozen_n": 43139,
+          "d1_gained_vs_default_n": 0,
+          "d1_lost_vs_default_n": 340,
+          "d1_retained_n": 42799,
+          "d1_structure_available_n": 43139,
+          "d2_frozen_n": 36802,
+          "d2_gained_vs_default_n": 0,
+          "d2_lost_vs_default_n": 925,
+          "d2_official_structure_available_n": 36802,
+          "d2_retained_n": 35877,
+          "default_ranking_max_abs_difference_vs_primary": NaN,
+          "default_ranking_reproduction_verified": NaN,
+          "equivalence_class_n": 35746,
+          "failed_equivalence_pair_comparisons": 0,
+          "largest_equivalence_class_n": 6,
+          "matching_tolerance": "tight",
+          "mphys_tolerance_specific_n": 35745,
+          "non_singleton_equivalence_class_n": 918,
+          "ranking_recomputed_with_tolerance_specific_equivalence_exclusions": true
+        },
+        {
+          "cross_source_estimand": "survival of frozen D1/D2 mappings; no search for new loose matches",
+          "d1_frozen_n": 43139,
+          "d1_gained_vs_default_n": 0,
+          "d1_lost_vs_default_n": 0,
+          "d1_retained_n": 43139,
+          "d1_structure_available_n": 43139,
+          "d2_frozen_n": 36802,
+          "d2_gained_vs_default_n": 0,
+          "d2_lost_vs_default_n": 0,
+          "d2_official_structure_available_n": 36802,
+          "d2_retained_n": 36802,
+          "default_ranking_max_abs_difference_vs_primary": 0.0,
+          "default_ranking_reproduction_verified": true,
+          "equivalence_class_n": 35740,
+          "failed_equivalence_pair_comparisons": 0,
+          "largest_equivalence_class_n": 6,
+          "matching_tolerance": "default",
+          "mphys_tolerance_specific_n": 36650,
+          "non_singleton_equivalence_class_n": 922,
+          "ranking_recomputed_with_tolerance_specific_equivalence_exclusions": true
+        },
+        {
+          "cross_source_estimand": "survival of frozen D1/D2 mappings; no search for new loose matches",
+          "d1_frozen_n": 43139,
+          "d1_gained_vs_default_n": 0,
+          "d1_lost_vs_default_n": 0,
+          "d1_retained_n": 43139,
+          "d1_structure_available_n": 43139,
+          "d2_frozen_n": 36802,
+          "d2_gained_vs_default_n": 0,
+          "d2_lost_vs_default_n": 0,
+          "d2_official_structure_available_n": 36802,
+          "d2_retained_n": 36802,
+          "default_ranking_max_abs_difference_vs_primary": NaN,
+          "default_ranking_reproduction_verified": NaN,
+          "equivalence_class_n": 35449,
+          "failed_equivalence_pair_comparisons": 0,
+          "largest_equivalence_class_n": 6,
+          "matching_tolerance": "loose",
+          "mphys_tolerance_specific_n": 36650,
+          "non_singleton_equivalence_class_n": 1155,
+          "ranking_recomputed_with_tolerance_specific_equivalence_exclusions": true
+        }
+      ],
+      "id": "C8_matching_sensitivity"
+    },
+    {
+      "claim": "Zero-threshold MP--Alexandria-PBE disagreement varies across broad, overlapping materials-chemistry descriptors; these descriptive strata do not identify a unique conflict mechanism.",
+      "evidence": [
+        {
+          "ci_high_95": 0.2151949448985718,
+          "ci_low_95": 0.0903687910348323,
+          "discordance_rate": 0.1416666666666666,
+          "discordant_n": 17,
+          "median_abs_hull_delta_mev": 7.481496749999501,
+          "row_n": 120,
+          "stratum": "Unary"
+        },
+        {
+          "ci_high_95": 0.1708008797001023,
+          "ci_low_95": 0.153843609951686,
+          "discordance_rate": 0.1621435459429673,
+          "discordant_n": 1177,
+          "median_abs_hull_delta_mev": 3.7685484,
+          "row_n": 7259,
+          "stratum": "Binary"
+        },
+        {
+          "ci_high_95": 0.1743517748337639,
+          "ci_low_95": 0.1644640344588675,
+          "discordance_rate": 0.1693504613714492,
+          "discordant_n": 3744,
+          "median_abs_hull_delta_mev": 2.197855645831999,
+          "row_n": 22108,
+          "stratum": "Ternary"
+        },
+        {
+          "ci_high_95": 0.1065933406313076,
+          "ci_low_95": 0.0928701218626487,
+          "discordance_rate": 0.0995215311004784,
+          "discordant_n": 728,
+          "median_abs_hull_delta_mev": 2.9904998333330006,
+          "row_n": 7315,
+          "stratum": "Quaternary+"
+        },
+        {
+          "ci_high_95": 0.1587910211032969,
+          "ci_low_95": 0.1502629809476685,
+          "discordance_rate": 0.1544789099869546,
+          "discordant_n": 4263,
+          "median_abs_hull_delta_mev": 2.876353708331504,
+          "row_n": 27596,
+          "stratum": "Transition metal"
+        },
+        {
+          "ci_high_95": 0.1598872721602857,
+          "ci_low_95": 0.1452039144127012,
+          "discordance_rate": 0.1524006082989354,
+          "discordant_n": 1403,
+          "median_abs_hull_delta_mev": 1.889909403570999,
+          "row_n": 9206,
+          "stratum": "No transition metal"
+        },
+        {
+          "ci_high_95": 0.1831063310586305,
+          "ci_low_95": 0.17018747462088,
+          "discordance_rate": 0.1765540944411237,
+          "discordant_n": 2363,
+          "median_abs_hull_delta_mev": 1.969360682533,
+          "row_n": 13384,
+          "stratum": "Lanthanide"
+        },
+        {
+          "ci_high_95": 0.1455622213668379,
+          "ci_low_95": 0.1366462237053329,
+          "discordance_rate": 0.1410453497309761,
+          "discordant_n": 3303,
+          "median_abs_hull_delta_mev": 3.0419174722185,
+          "row_n": 23418,
+          "stratum": "No lanthanide"
+        },
+        {
+          "ci_high_95": 0.1059516927962685,
+          "ci_low_95": 0.0937769502487597,
+          "discordance_rate": 0.0996991834980661,
+          "discordant_n": 928,
+          "median_abs_hull_delta_mev": 3.659492750003002,
+          "row_n": 9308,
+          "stratum": "Oxygen"
+        },
+        {
+          "ci_high_95": 0.1768383352646364,
+          "ci_low_95": 0.1679102324735695,
+          "discordance_rate": 0.1723285080381174,
+          "discordant_n": 4738,
+          "median_abs_hull_delta_mev": 2.327622583330496,
+          "row_n": 27494,
+          "stratum": "No oxygen"
+        },
+        {
+          "ci_high_95": 0.1817107135378671,
+          "ci_low_95": 0.1607450654382831,
+          "discordance_rate": 0.1709729511505854,
+          "discordant_n": 847,
+          "median_abs_hull_delta_mev": 3.9102142666655,
+          "row_n": 4954,
+          "stratum": "Halogen"
+        },
+        {
+          "ci_high_95": 0.1552901913023456,
+          "ci_low_95": 0.1474188835022004,
+          "discordance_rate": 0.151312484300427,
+          "discordant_n": 4819,
+          "median_abs_hull_delta_mev": 2.452289575884504,
+          "row_n": 31848,
+          "stratum": "No halogen"
+        }
+      ],
+      "id": "C9_materials_chemistry_strata"
+    },
+    {
+      "claim": "The manuscript-visible source card identifies the continuous native hull field, formation-energy availability, unit and declared threshold for MP, MatterGen alex-mp-20 and official Alexandria-PBE.",
+      "evidence": [
+        {
+          "analysis_hull_field": "source_native_mp_ehull",
+          "formation_energy_available": true,
+          "formation_energy_input": "materials.summary.formation_energy_per_atom",
+          "native_hull_input": "materials.summary.energy_above_hull",
+          "native_label_field": "source_native_mp_label",
+          "official_threshold": "e_above_hull <= 1e-8 eV/atom",
+          "snapshot_or_query": "MP Summary API queried 2026-05-20",
+          "source": "Materials Project",
+          "unit": "eV/atom"
+        },
+        {
+          "analysis_hull_field": "source_native_mattergen_ehull",
+          "formation_energy_available": false,
+          "formation_energy_input": "not present in released score table",
+          "native_hull_input": "energy_above_hull",
+          "native_label_field": "source_native_mattergen_label",
+          "official_threshold": "e_above_hull <= 1e-8 eV/atom",
+          "snapshot_or_query": "MatterGen data-release alex_mp_20.zip; train.csv + val.csv",
+          "source": "MatterGen alex-mp-20",
+          "unit": "eV/atom"
+        },
+        {
+          "analysis_hull_field": "source_native_alexandria_ehull",
+          "formation_energy_available": true,
+          "formation_energy_input": "entries[].data.e_form",
+          "native_hull_input": "entries[].data.e_above_hull",
+          "native_label_field": "source_native_alexandria_label",
+          "official_threshold": "e_above_hull <= 1e-8 eV/atom",
+          "snapshot_or_query": "PBE 3D snapshot 2025.07.02; retrieved 2026-07-05",
+          "source": "official Alexandria-PBE",
+          "unit": "eV/atom"
+        }
+      ],
+      "id": "C10_source_input_card"
+    },
+    {
+      "claim": "All model conclusions are conditional on the fixed Mphys support, with labels, size, reference-hull phase count, chemical-system coverage and element-family composition compared against excluded compound candidates.",
+      "evidence": [
+        {
+          "feature": "MP source-coordinate stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.4093042291950887
+        },
+        {
+          "feature": "alex-mp-20 source-coordinate stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.3619645293315143
+        },
+        {
+          "feature": "Alexandria-PBE source-coordinate stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.3314597544338336
+        },
+        {
+          "feature": "MP matched-pool stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.4868758526603001
+        },
+        {
+          "feature": "Alexandria-PBE matched-pool stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.545293315143247
+        },
+        {
+          "feature": "Formula element count",
+          "feature_kind": "numeric_mean",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "count",
+          "value": 3.0302592087312417
+        },
+        {
+          "feature": "Formula atom count",
+          "feature_kind": "numeric_mean",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "count",
+          "value": 7.2524965893588
+        },
+        {
+          "feature": "Structure site count",
+          "feature_kind": "numeric_mean",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "count",
+          "value": 10.591541609822649
+        },
+        {
+          "feature": "Reference-hull phase count after target exclusion",
+          "feature_kind": "numeric_mean",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "count",
+          "value": 33.32673942701228
+        },
+        {
+          "feature": "Transition-metal-containing",
+          "feature_kind": "composition_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.7516507503410641
+        },
+        {
+          "feature": "Lanthanide-containing",
+          "feature_kind": "composition_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.3641473396998635
+        },
+        {
+          "feature": "Oxygen-containing",
+          "feature_kind": "composition_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.2534788540245566
+        },
+        {
+          "feature": "Halogen-containing",
+          "feature_kind": "composition_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.1349522510231923
+        },
+        {
+          "feature": "MP source-coordinate stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.2258064516129032
+        },
+        {
+          "feature": "alex-mp-20 source-coordinate stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.2580645161290322
+        },
+        {
+          "feature": "Alexandria-PBE source-coordinate stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.2903225806451613
+        },
+        {
+          "feature": "MP matched-pool stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 0,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": NaN
+        },
+        {
+          "feature": "Alexandria-PBE matched-pool stable fraction",
+          "feature_kind": "stable_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.3548387096774194
+        },
+        {
+          "feature": "Formula element count",
+          "feature_kind": "numeric_mean",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "count",
+          "value": 2.967741935483871
+        },
+        {
+          "feature": "Formula atom count",
+          "feature_kind": "numeric_mean",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "count",
+          "value": 6.645161290322581
+        },
+        {
+          "feature": "Structure site count",
+          "feature_kind": "numeric_mean",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "count",
+          "value": 12.096774193548388
+        },
+        {
+          "feature": "Reference-hull phase count after target exclusion",
+          "feature_kind": "numeric_mean",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "count",
+          "value": 47.096774193548384
+        },
+        {
+          "feature": "Transition-metal-containing",
+          "feature_kind": "composition_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.6129032258064516
+        },
+        {
+          "feature": "Lanthanide-containing",
+          "feature_kind": "composition_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.3870967741935484
+        },
+        {
+          "feature": "Oxygen-containing",
+          "feature_kind": "composition_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.5161290322580645
+        },
+        {
+          "feature": "Halogen-containing",
+          "feature_kind": "composition_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "mean",
+          "unit": "fraction",
+          "value": 0.0967741935483871
+        },
+        {
+          "feature": "Unique chemical-system count",
+          "feature_kind": "numeric_mean",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "count",
+          "unit": "count",
+          "value": 19294.0
+        },
+        {
+          "feature": "Unique chemical-system count",
+          "feature_kind": "numeric_mean",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "count",
+          "unit": "count",
+          "value": 23.0
+        },
+        {
+          "feature": "Chemical-system coverage of candidate universe",
+          "feature_kind": "composition_fraction",
+          "group": "Mphys retained",
+          "n_evaluable": 36650,
+          "n_group": 36650,
+          "statistic": "fraction",
+          "unit": "fraction",
+          "value": 0.9997409192186124
+        },
+        {
+          "feature": "Chemical-system coverage of candidate universe",
+          "feature_kind": "composition_fraction",
+          "group": "candidate excluded",
+          "n_evaluable": 31,
+          "n_group": 31,
+          "statistic": "fraction",
+          "unit": "fraction",
+          "value": 0.0011917715943831
+        }
+      ],
+      "id": "C11_mphys_retained_excluded_audit"
+    }
+  ],
+  "status": "core_analysis_complete_figure_and_claim_lock_complete_manuscript_revision_in_progress"
+}

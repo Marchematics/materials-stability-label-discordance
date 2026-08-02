@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Evaluate predicted-hull model ranks on fixed label support.
+"""Evaluate predicted-hull model ranks on fixed SourceAware support.
 
-This analysis reports two distinct estimands:
+The analysis keeps three endpoint layers distinct on the same M1 rows:
 
-* label-only variation: five evaluable stability views on one fixed row set;
-* selection/coverage variation: the consensus view, whose definition removes
-  discordant rows and is therefore reported as a cohort-selection policy.
+* source-native sensitivity: MP, MatterGen alex-mp-20 and Alexandria-PBE;
+* hull-construction sensitivity: the three native endpoints plus the
+  matched-common-pool agreement endpoint;
+* audit-policy consequence: the audit assignment reported separately.
+
+Consensus is an agreement-selection policy and uses its own retained cohort.
 
 Scores are D2-subsystem predicted-hull ranks written by
 ``build_predicted_hull_scores.py``.  Every label-only metric uses the same
@@ -30,8 +33,16 @@ RAW_SCORES = ROOT / "inputs" / "phase2_v1" / "sourceaware_model_scores_public_sa
 DEFAULT_IN = ROOT / "outputs" / "repaired_model_evaluation_v1"
 MODELS = ("ALIGNN-FF", "CHGNet", "M3GNet", "MACE-MP")
 FIXED_VIEWS = ("mp_native", "alexmp20_native", "alex_pbe_native", "common_pool", "audit_view")
+SOURCE_NATIVE_VIEWS = ("mp_native", "alexmp20_native", "alex_pbe_native")
+HULL_CONSTRUCTION_VIEWS = ("mp_native", "alexmp20_native", "alex_pbe_native", "common_pool")
+AUDIT_POLICY_VIEWS = ("mp_native", "audit_view")
+SENSITIVITY_VIEWSETS = {
+    "source_native_sensitivity": SOURCE_NATIVE_VIEWS,
+    "hull_construction_sensitivity": HULL_CONSTRUCTION_VIEWS,
+    "audit_policy_consequence": AUDIT_POLICY_VIEWS,
+}
 K_GRID = (100, 300, 500, 1000, 5000, 10000)
-DISCOVERY_VIEWS = ("mp_native", "common_pool", "audit_view")
+DISCOVERY_VIEWS = ("mp_native", "alex_pbe_native", "common_pool")
 BOOT_METRICS = ("f1_fixed_threshold", "auroc", "auprc", "ap_lift", "stable_yield_at_1000")
 
 
@@ -56,7 +67,7 @@ def frame(input_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
         x = labels[(labels["label_view"].eq(view)) & labels["is_evaluable"].astype(bool)][["row_id", "label"]].drop_duplicates("row_id")
         label_frames.append(x.rename(columns={"label": view}).set_index("row_id"))
     joined = chemistry.join(pd.concat(label_frames, axis=1, join="outer"), how="left")
-    # The first five views form the label-only, all-view common support.
+    # M1 keeps the row and model-score support fixed for all endpoint layers.
     fixed = joined.dropna(subset=list(FIXED_VIEWS)).copy()
     score_frames = []
     for model in MODELS:
@@ -184,10 +195,51 @@ def raw_score_audit(fixed: pd.DataFrame) -> pd.DataFrame:
 def coverage_table(fixed: pd.DataFrame, consensus: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for view in FIXED_VIEWS:
-        rows.append({"evaluation_type": "label_only_fixed_support", "view": view, "n": len(fixed), "positive_rate": float(fixed[view].mean())})
+        layer = (
+            "source_native" if view in SOURCE_NATIVE_VIEWS
+            else "hull_construction" if view == "common_pool"
+            else "audit_policy"
+        )
+        rows.append({"evaluation_type": layer, "view": view, "n": len(fixed), "positive_rate": float(fixed[view].mean())})
     rows.append({"evaluation_type": "selection_policy", "view": "consensus", "n": len(consensus), "positive_rate": float(consensus["consensus"].mean())})
     rows.append({"evaluation_type": "selection_policy", "view": "consensus_excluded_from_label_only_band", "n": len(fixed) - len(consensus), "positive_rate": np.nan})
     return pd.DataFrame(rows)
+
+
+def endpoint_definition_table(fixed: pd.DataFrame, consensus: pd.DataFrame) -> pd.DataFrame:
+    """Machine-readable counterpart of the manuscript endpoint-definition table."""
+    return pd.DataFrame([
+        {
+            "endpoint": "mp_native", "layer": "source_native", "energy_source": "Materials Project source-native stability field",
+            "phase_inventory": "Materials Project native inventory", "binary_rule": "source-card stability threshold",
+            "conflict_or_missing_handling": "source-native assignment", "support_n": len(fixed),
+        },
+        {
+            "endpoint": "alexmp20_native", "layer": "source_native", "energy_source": "MatterGen alex-mp-20 source-native stability field",
+            "phase_inventory": "MatterGen alex-mp-20 native inventory", "binary_rule": "source-card stability threshold",
+            "conflict_or_missing_handling": "source-native assignment", "support_n": len(fixed),
+        },
+        {
+            "endpoint": "alex_pbe_native", "layer": "source_native", "energy_source": "official Alexandria-PBE source-native stability field",
+            "phase_inventory": "Alexandria-PBE native inventory", "binary_rule": "source-card stability threshold",
+            "conflict_or_missing_handling": "source-native assignment", "support_n": len(fixed),
+        },
+        {
+            "endpoint": "common_pool", "layer": "hull_construction", "energy_source": "MP and Alexandria-PBE formation energies evaluated separately",
+            "phase_inventory": "frozen matched D2 chemical-system/subsystem inventory", "binary_rule": "stable only if both reconstructed labels are stable; unstable only if both are unstable",
+            "conflict_or_missing_handling": "reconstructed disagreement or incomplete reconstruction is unevaluable", "support_n": len(fixed),
+        },
+        {
+            "endpoint": "audit_view", "layer": "audit_policy", "energy_source": "declared source-native and reconstruction statuses",
+            "phase_inventory": "status aggregation", "binary_rule": "stable iff consensus_label equals consensus_stable",
+            "conflict_or_missing_handling": "consensus-unstable, discordant and incomplete outcomes assigned unstable", "support_n": len(fixed),
+        },
+        {
+            "endpoint": "consensus", "layer": "selection_policy", "energy_source": "declared source-native and reconstruction statuses",
+            "phase_inventory": "status aggregation", "binary_rule": "consensus_stable or consensus_unstable",
+            "conflict_or_missing_handling": "uncertain rows excluded", "support_n": len(consensus),
+        },
+    ])
 
 
 def common_support_exclusion_audit(fixed: pd.DataFrame) -> pd.DataFrame:
@@ -203,8 +255,8 @@ def common_support_exclusion_audit(fixed: pd.DataFrame) -> pd.DataFrame:
     rows = [
         {"stage": "D2 three-source exact rows", "n": len(d2), "excluded_vs_d2": 0, "excluded_vs_d5": np.nan, "rule": "single strict MP--alex-mp-20--Alexandria-PBE structure match"},
         {"stage": "D5 archived four-score intersection", "n": len(raw_score_support), "excluded_vs_d2": len(d2 - raw_score_support), "excluded_vs_d5": 0, "rule": "all four archived raw score tables available"},
-        {"stage": "Five-view label support", "n": len(all_label_support), "excluded_vs_d2": len(d2 - all_label_support), "excluded_vs_d5": len(raw_score_support - all_label_support), "rule": "MP-native, alex-mp-20-native, Alexandria-PBE-native, common-pool and audit labels evaluable"},
-        {"stage": "M1 all-view common support", "n": len(fixed), "excluded_vs_d2": len(d2 - set(fixed.row_id)), "excluded_vs_d5": len(raw_score_support - set(fixed.row_id)), "rule": "intersection of D5 and five-view label support; corrected predicted-hull scores available"},
+        {"stage": "Endpoint support", "n": len(all_label_support), "excluded_vs_d2": len(d2 - all_label_support), "excluded_vs_d5": len(raw_score_support - all_label_support), "rule": "three source-native labels and matched-common-pool agreement endpoint evaluable; audit assignment available"},
+        {"stage": "M1 fixed support", "n": len(fixed), "excluded_vs_d2": len(d2 - set(fixed.row_id)), "excluded_vs_d5": len(raw_score_support - set(fixed.row_id)), "rule": "intersection of D5 and endpoint support; corrected predicted-hull scores available"},
     ]
     return pd.DataFrame(rows)
 
@@ -215,10 +267,12 @@ def bands(metrics: pd.DataFrame, topk: pd.DataFrame) -> pd.DataFrame:
     t["metric"] = "stable_yield_at_1000"
     values = pd.concat([values, t], ignore_index=True)
     out = []
-    for (model, metric), g in values.groupby(["model_name", "metric"]):
-        out.append({"scope": "label_view_band", "model_name": model, "metric": metric, "minimum": g.value.min(), "maximum": g.value.max(), "spread": g.value.max() - g.value.min(), "n_views": len(g)})
-    for (view, metric), g in values.groupby(["label_view", "metric"]):
-        out.append({"scope": "between_model_spread", "label_view": view, "metric": metric, "minimum": g.value.min(), "maximum": g.value.max(), "spread": g.value.max() - g.value.min(), "n_models": len(g)})
+    for scope, views in SENSITIVITY_VIEWSETS.items():
+        subset = values[values["label_view"].isin(views)]
+        for (model, metric), g in subset.groupby(["model_name", "metric"]):
+            out.append({"scope": scope, "model_name": model, "metric": metric, "minimum": g.value.min(), "maximum": g.value.max(), "spread": g.value.max() - g.value.min(), "n_views": len(g)})
+        for (view, metric), g in subset.groupby(["label_view", "metric"]):
+            out.append({"scope": f"{scope}_between_model_spread", "label_view": view, "metric": metric, "minimum": g.value.min(), "maximum": g.value.max(), "spread": g.value.max() - g.value.min(), "n_models": len(g)})
     return pd.DataFrame(out)
 
 
@@ -248,7 +302,7 @@ def cluster_bootstrap(fixed: pd.DataFrame, n_boot: int, seed: int) -> tuple[pd.D
             rank_ascending = rankdata(score, method="average")
             pred = np.zeros(len(idx), dtype=bool)
             pred[order[:reference_n]] = True
-            values = {"f1_fixed_threshold": [], "auroc": [], "auprc": [], "ap_lift": [], "stable_yield_at_1000": []}
+            values = {"f1_fixed_threshold": {}, "auroc": {}, "auprc": {}, "ap_lift": {}, "stable_yield_at_1000": {}}
             for view in FIXED_VIEWS:
                 y = labels[view][idx]
                 n_pos = int(y.sum())
@@ -261,18 +315,40 @@ def cluster_bootstrap(fixed: pd.DataFrame, n_boot: int, seed: int) -> tuple[pd.D
                 ap = float(np.sum((cumulative_pos / cumulative_n) * group_pos) / n_pos) if n_pos else np.nan
                 auc = float((rank_ascending[y.astype(bool)].sum() - n_pos * (n_pos + 1) / 2) / (n_pos * n_neg)) if n_pos and n_neg else np.nan
                 true_positive = int(y[pred].sum())
-                values["f1_fixed_threshold"].append(float(2 * true_positive / (n_pos + reference_n)) if n_pos + reference_n else np.nan)
-                values["auroc"].append(auc)
-                values["auprc"].append(ap)
-                values["ap_lift"].append(ap - float(y.mean()))
-                values["stable_yield_at_1000"].append(float(y[order[: min(1000, len(y))]].mean()))
-            for metric, vals in values.items():
-                band_rows.append({"scope": "label_view_band", "model_name": model, "metric": metric, "spread": float(np.nanmax(vals) - np.nanmin(vals)), "replicate": rep})
-                for view, value in zip(FIXED_VIEWS, vals):
+                values["f1_fixed_threshold"][view] = float(2 * true_positive / (n_pos + reference_n)) if n_pos + reference_n else np.nan
+                values["auroc"][view] = auc
+                values["auprc"][view] = ap
+                values["ap_lift"][view] = ap - float(y.mean())
+                values["stable_yield_at_1000"][view] = float(y[order[: min(1000, len(y))]].mean())
+            for metric, by_view in values.items():
+                for scope, views in SENSITIVITY_VIEWSETS.items():
+                    vals = [by_view[view] for view in views]
+                    band_rows.append({"scope": scope, "model_name": model, "metric": metric, "spread": float(np.nanmax(vals) - np.nanmin(vals)), "replicate": rep})
+                for view, value in by_view.items():
                     metric_rows.append({"replicate": rep, "model_name": model, "label_view": view, "metric": metric, "value": float(value)})
         if (rep + 1) % 100 == 0 or rep + 1 == n_boot:
             print(f"cluster bootstrap {rep + 1}/{n_boot}", flush=True)
     return pd.DataFrame(band_rows), pd.DataFrame(metric_rows)
+
+
+def bootstrap_endpoint_to_model_spread_ratio(boot_metrics: pd.DataFrame) -> pd.DataFrame:
+    """Calculate the complete ratio within each paired bootstrap replicate."""
+    rows = []
+    for scope, views in SENSITIVITY_VIEWSETS.items():
+        subset = boot_metrics[boot_metrics["label_view"].isin(views)]
+        for (replicate, metric), g in subset.groupby(["replicate", "metric"]):
+            by_model = g.pivot(index="model_name", columns="label_view", values="value").reindex(index=MODELS, columns=views)
+            model_ranges = by_model.max(axis=1) - by_model.min(axis=1)
+            view_spreads = by_model.max(axis=0) - by_model.min(axis=0)
+            median_spread = float(view_spreads.median())
+            for model, label_band in model_ranges.items():
+                rows.append({
+                    "replicate": int(replicate), "scope": scope, "model_name": model,
+                    "metric": metric, "label_band": float(label_band),
+                    "median_between_model_spread": median_spread,
+                    "endpoint_sensitivity_to_model_spread_ratio": float(label_band / median_spread) if median_spread else np.nan,
+                })
+    return pd.DataFrame(rows)
 
 
 def paired_differences_and_winners(
@@ -340,6 +416,7 @@ def main() -> None:
     a.out.mkdir(parents=True, exist_ok=True)
     fixed, consensus = frame(a.input_dir)
     support = coverage_table(fixed, consensus)
+    endpoint_definitions = endpoint_definition_table(fixed, consensus)
     exclusion_audit = common_support_exclusion_audit(fixed)
     metrics, topk = evaluate_fixed(fixed)
     selection_metrics, selection_topk = evaluate_selection(consensus)
@@ -347,13 +424,20 @@ def main() -> None:
     band = bands(metrics, topk)
     curves = exact_discovery_curves(fixed)
     boot, boot_metric_values = cluster_bootstrap(fixed, a.bootstrap, a.seed)
-    ci = boot.groupby(["model_name", "metric"])["spread"].quantile([0.025, 0.5, 0.975]).unstack().reset_index()
-    ci.columns = ["model_name", "metric", "ci_low_95", "median", "ci_high_95"]
-    label_bands = band[band["scope"].eq("label_view_band")].merge(ci, on=["model_name", "metric"], how="left")
+    ci = boot.groupby(["scope", "model_name", "metric"])["spread"].quantile([0.025, 0.5, 0.975]).unstack().reset_index()
+    ci.columns = ["scope", "model_name", "metric", "ci_low_95", "median", "ci_high_95"]
+    label_bands = band[band["scope"].isin(SENSITIVITY_VIEWSETS)].merge(ci, on=["scope", "model_name", "metric"], how="left")
+    ratio_replicates = bootstrap_endpoint_to_model_spread_ratio(boot_metric_values)
+    ratio_summary = (
+        ratio_replicates.groupby(["scope", "model_name", "metric"])["endpoint_sensitivity_to_model_spread_ratio"]
+        .quantile([0.025, 0.5, 0.975]).unstack().reset_index()
+    )
+    ratio_summary.columns = ["scope", "model_name", "metric", "ratio_ci_low_95", "ratio_median", "ratio_ci_high_95"]
     paired_deltas, winner_probabilities = paired_differences_and_winners(metrics, topk, boot_metric_values)
 
     fixed.to_parquet(a.out / "denominator_all_view_common_support.parquet", index=False)
     support.to_csv(a.out / "evaluation_support_and_coverage.csv", index=False)
+    endpoint_definitions.to_csv(a.out / "endpoint_definition_table.csv", index=False)
     exclusion_audit.to_csv(a.out / "all_view_common_support_exclusion_audit.csv", index=False)
     metrics.to_csv(a.out / "metrics_fixed_support.csv", index=False)
     topk.to_csv(a.out / "topk_fixed_support.csv", index=False)
@@ -366,15 +450,18 @@ def main() -> None:
     label_bands.to_csv(a.out / "label_bands_cluster_bootstrap.csv", index=False)
     boot.to_parquet(a.out / "label_bands_cluster_bootstrap_replicates.parquet", index=False)
     boot_metric_values.to_parquet(a.out / "paired_metric_values_cluster_bootstrap_replicates.parquet", index=False)
+    ratio_replicates.to_parquet(a.out / "endpoint_sensitivity_to_model_spread_ratio_bootstrap_replicates.parquet", index=False)
+    ratio_summary.to_csv(a.out / "endpoint_sensitivity_to_model_spread_ratio_bootstrap.csv", index=False)
     paired_deltas.to_csv(a.out / "paired_label_view_differences_cluster_bootstrap.csv", index=False)
     winner_probabilities.to_csv(a.out / "model_winner_probabilities_cluster_bootstrap.csv", index=False)
     status = {
         "fixed_support_n": int(len(fixed)),
         "consensus_selection_support_n": int(len(consensus)),
-        "label_only_views": list(FIXED_VIEWS),
+        "m1_endpoint_views": list(FIXED_VIEWS),
+        "endpoint_layers": {key: list(value) for key, value in SENSITIVITY_VIEWSETS.items()},
         "selection_policy_view": "consensus",
         "classification_threshold": "fixed number of predicted positives equal to MP-native positives on fixed support",
-        "bootstrap": {"cluster": "chemical_system", "replicates": int(a.bootstrap), "seed": int(a.seed), "reported_quantities": ["label-view bands", "paired label-view differences", "model winner probabilities"]},
+        "bootstrap": {"cluster": "chemical_system", "replicates": int(a.bootstrap), "seed": int(a.seed), "reported_quantities": ["endpoint-layer bands", "endpoint-sensitivity-to-model-spread ratios", "paired label-view differences", "model winner frequencies"]},
         "raw_energy_scores": "excluded from primary evaluation",
         "primary_scores": "negative predicted e_above_hull over fixed D2 subsystem phase pool",
     }

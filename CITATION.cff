@@ -2,19 +2,21 @@ cff-version: 1.2.0
 message: "If you use SourceAware-Stability, please cite the software release and the associated article."
 title: "SourceAware-Stability: source-aware crystal-stability benchmark evaluation"
 type: software
-version: 2.0.3
-date-released: 2026-07-14
+version: 2.1.0
+date-released: 2026-08-03
 authors:
   - family-names: Wen
     given-names: Xinling
   - family-names: Zhang
     given-names: Jiahao
+  - family-names: Wang
+    given-names: Naibang
   - family-names: Hou
     given-names: Yawei
   - family-names: Chen
     given-names: Yu
 repository-code: "https://github.com/Marchematics/materials-stability-label-discordance"
-url: "https://github.com/Marchematics/materials-stability-label-discordance/releases/tag/v2.0.3-dd-submission"
+url: "https://github.com/Marchematics/materials-stability-label-discordance/releases/tag/v2.1.0-sourceaware-stability-revision"
 license: MIT
 keywords:
   - crystal discovery

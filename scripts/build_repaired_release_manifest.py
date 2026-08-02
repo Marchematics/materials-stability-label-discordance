@@ -13,21 +13,27 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "outputs" / "repaired_model_evaluation_v1"
+OUT = ROOT / "outputs" / "repaired_model_evaluation_v2"
 
 REQUIRED = (
     "score_construct_validity_audit.csv",
+    "endpoint_definition_table.csv",
     "evaluation_support_and_coverage.csv",
+    "all_view_common_support_exclusion_audit.csv",
     "metrics_fixed_support.csv",
     "topk_fixed_support.csv",
     "label_bands_cluster_bootstrap.csv",
     "label_bands_cluster_bootstrap_replicates.parquet",
     "paired_metric_values_cluster_bootstrap_replicates.parquet",
+    "endpoint_sensitivity_to_model_spread_ratio_bootstrap.csv",
+    "endpoint_sensitivity_to_model_spread_ratio_bootstrap_replicates.parquet",
+    "paired_label_view_differences_cluster_bootstrap.csv",
+    "model_winner_probabilities_cluster_bootstrap.csv",
     "elemental_reference_structures.jsonl",
     "fixed_subsystem_phase_pool_manifest.json",
     "reproducibility/environment_manifest.json",
-    "reproducibility/pytest_repaired_model_evaluation.log",
-    "reproducibility/figure_regeneration.log",
+    "reproducibility/pytest_endpoint_layer_revision.log",
+    "reproducibility/figure_regeneration_endpoint_layer_revision.log",
 )
 
 
@@ -86,16 +92,16 @@ def main() -> None:
             "sha256": sha256(path),
         })
     payload = {
-        "release_series": "v2.0.3-dd-submission",
-        "analysis": "M1 repaired fixed-support model evaluation",
+        "release_series": "v2.0.4-dd-revision-candidate",
+        "analysis": "M1 endpoint-layer fixed-support model evaluation",
         "generated_on": str(date.today()),
         "file_count": len(files),
         "files": files,
     }
-    (OUT / "manifest_repaired_model_evaluation_v1.json").write_text(
+    (OUT / "manifest_repaired_model_evaluation_v2.json").write_text(
         json.dumps(payload, indent=2) + "\n", encoding="utf-8"
     )
-    print(OUT / "manifest_repaired_model_evaluation_v1.json")
+    print(OUT / "manifest_repaired_model_evaluation_v2.json")
 
 
 if __name__ == "__main__":

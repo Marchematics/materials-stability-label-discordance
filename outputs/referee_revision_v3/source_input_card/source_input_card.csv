@@ -1,0 +1,4 @@
+source,snapshot_or_query,native_hull_input,analysis_hull_field,native_label_field,formation_energy_input,formation_energy_available,unit,official_threshold
+Materials Project,MP Summary API queried 2026-05-20,materials.summary.energy_above_hull,source_native_mp_ehull,source_native_mp_label,materials.summary.formation_energy_per_atom,True,eV/atom,e_above_hull <= 1e-8 eV/atom
+MatterGen alex-mp-20,MatterGen data-release alex_mp_20.zip; train.csv + val.csv,energy_above_hull,source_native_mattergen_ehull,source_native_mattergen_label,not present in released score table,False,eV/atom,e_above_hull <= 1e-8 eV/atom
+official Alexandria-PBE,PBE 3D snapshot 2025.07.02; retrieved 2026-07-05,entries[].data.e_above_hull,source_native_alexandria_ehull,source_native_alexandria_label,entries[].data.e_form,True,eV/atom,e_above_hull <= 1e-8 eV/atom

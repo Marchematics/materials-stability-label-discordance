@@ -1,0 +1,7 @@
+{
+  "cluster": "chemical_system",
+  "indeterminate_definition": "stable E<=0; indeterminate 0<E<w; unstable E>=w",
+  "paired_source_coordinates_retained_together": true,
+  "replicates": 1000,
+  "seed": 20260719
+}

@@ -1,0 +1,35 @@
+{
+  "candidate_pool_version": "D5-batch-candidate-pool-v1",
+  "compound_candidate_n": 36681,
+  "d5_row_n": 36801,
+  "elemental_target_n_not_ranked": 120,
+  "equivalence_version": "D5-StructureMatcher-tight-ltol0.1-stol0.2-angle3.0-v1",
+  "estimand": "leave-one-structural-equivalence-class-out batch-relative signed reference-hull margin",
+  "exclusion_failed_n": 0,
+  "exclusion_verified_n": 36681,
+  "inputs": {
+    "d5": {
+      "path": "outputs/phase1_v2/denominator_d5_model_complete.parquet",
+      "sha256": "27cd6abe6cb3f855dc2bd2222749e5f5fa380acf2495b5a9884e46f7d878a2e5"
+    },
+    "model_energy_table": {
+      "path": "/root/materials-stability-label-discordance-dd/outputs/repaired_model_evaluation_v1/predicted_hull_scores_CHGNet.parquet",
+      "sha256": "8ddf0cadf8d7ea4ef5afe2f3eab22b98e6dcda08fd2e3e6511d59ec60f2c629f"
+    },
+    "structure_cache": {
+      "path": "/home/waas/paper_experiments/github/discordance-/outputs/milestones/materials_label_discordance_full_mp_alex_43984/mp_records_summary_structures.jsonl",
+      "sha256": "fe9763ec3d931cdb6e3095fe36dcd2d47be4f2e50935a015d63c70855e6565ef"
+    }
+  },
+  "largest_tie_block_n": 4,
+  "model_name": "CHGNet",
+  "prototype_physical_support_n": 36650,
+  "reference_pool_version": "D5-batch-relative-reference-pool-v1",
+  "score_ok_n": 36681,
+  "score_status_counts": {
+    "ok": 36681
+  },
+  "top1000_boundary_tie_n": 1,
+  "top1000_strictly_before_boundary_n": 999,
+  "transductive": true
+}

@@ -51,8 +51,9 @@ The analysis uses `train.csv` and `val.csv`. Relevant fields include:
 - `cif`
 - `energy_above_hull`
 
-The `energy_above_hull` field is interpreted as eV atom^-1. Binary stability is
-defined source-natively as `energy_above_hull <= 0`.
+The `energy_above_hull` field is interpreted as eV atom^-1. The operational
+binary label uses `energy_above_hull <= 1e-8` eV atom^-1, where the $10^{-8}$
+tolerance implements the nominal zero-hull threshold.
 
 ## Materials Project source
 
@@ -71,7 +72,8 @@ The queried fields used for this audit were:
 - `structure`
 
 The Materials Project `energy_above_hull` field is interpreted as eV atom^-1.
-Binary stability is defined source-natively as `energy_above_hull <= 0`.
+The operational binary label uses `energy_above_hull <= 1e-8` eV atom^-1,
+where the $10^{-8}$ tolerance implements the nominal zero-hull threshold.
 
 ## Official Alexandria-PBE source
 
@@ -104,8 +106,9 @@ Relevant fields include:
 - `entries[].data.prototype_id`
 - `entries[].data.run_timestamp`
 
-The `entries[].data.e_above_hull` field is interpreted as eV atom^-1. Binary
-stability is defined source-natively as `e_above_hull <= 0`.
+The `entries[].data.e_above_hull` field is interpreted as eV atom^-1. The
+operational binary label uses `e_above_hull <= 1e-8` eV atom^-1, where the
+$10^{-8}$ tolerance implements the nominal zero-hull threshold.
 
 Official Alexandria-PBE is audited as a separate source from MatterGen
 alex-mp-20. The public outputs therefore distinguish:
@@ -138,8 +141,9 @@ The extension retains records with:
 
 The cached retrieval contains 79,637 raw OPTIMADE records and 75,993 usable
 JARVIS-DFT 3D records with structures and hull values. The `_jarvis_ehull`
-field is interpreted as eV atom^-1. Binary stability is defined source-natively
-as `_jarvis_ehull <= 0`.
+field is interpreted as eV atom^-1. The operational binary label uses
+`_jarvis_ehull <= 1e-8` eV atom^-1, where the $10^{-8}$ tolerance implements
+the nominal zero-hull threshold.
 
 ## Matching denominator
 

@@ -1,0 +1,11 @@
+support,threshold_meV_per_atom,n_all_native_complete,n_reconstructable,all_native_conflict_n,reconstructable_native_conflict_n,unreconstructable_native_conflict_n,phase_pool_sensitive_n,persistent_conflict_n,hidden_common_pool_conflict_n,common_pool_conflict_n,all_native_identity_verified,reconstructable_native_identity_verified,common_pool_identity_verified
+D2,0,36802,36770,5666,5661,5,3659,2002,2895,4897,True,True,True
+D2,10,36802,36770,4886,4881,5,2946,1935,2858,4793,True,True,True
+D2,25,36802,36770,4173,4169,4,2343,1826,2485,4311,True,True,True
+D2,50,36802,36770,3291,3285,6,1612,1673,1748,3421,True,True,True
+D2,100,36802,36770,1516,1514,2,650,864,412,1276,True,True,True
+Mphys,0,36650,36650,5645,5645,0,3658,1987,2892,4879,True,True,True
+Mphys,10,36650,36650,4856,4856,0,2946,1910,2858,4768,True,True,True
+Mphys,25,36650,36650,4151,4151,0,2343,1808,2484,4292,True,True,True
+Mphys,50,36650,36650,3268,3268,0,1611,1657,1747,3404,True,True,True
+Mphys,100,36650,36650,1504,1504,0,650,854,412,1266,True,True,True

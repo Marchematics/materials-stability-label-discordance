@@ -1,0 +1,151 @@
+threshold_meV_per_atom,metric,coordinate_endpoint,winner_models_json,winner_n,winner_changes_vs_mp
+0,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+0,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+0,ap,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+0,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+0,ap,mp_source_coordinate,"[""MACE-MP""]",1,False
+0,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+0,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+0,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+0,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+0,auroc,mp_source_coordinate,"[""MACE-MP""]",1,False
+0,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+0,excess_hits_over_random,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+0,excess_hits_over_random,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+0,excess_hits_over_random,mp_matched_pool_coordinate,"[""M3GNet""]",1,True
+0,excess_hits_over_random,mp_source_coordinate,"[""MACE-MP""]",1,False
+0,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+0,expected_stable_hits,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+0,expected_stable_hits,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+0,expected_stable_hits,mp_matched_pool_coordinate,"[""M3GNet""]",1,True
+0,expected_stable_hits,mp_source_coordinate,"[""MACE-MP""]",1,False
+0,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+0,expected_stable_yield,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+0,expected_stable_yield,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+0,expected_stable_yield,mp_matched_pool_coordinate,"[""M3GNet""]",1,True
+0,expected_stable_yield,mp_source_coordinate,"[""MACE-MP""]",1,False
+0,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+0,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+0,normalized_ap,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+0,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+0,normalized_ap,mp_source_coordinate,"[""MACE-MP""]",1,False
+10,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+10,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+10,ap,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+10,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+10,ap,mp_source_coordinate,"[""MACE-MP""]",1,False
+10,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+10,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+10,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+10,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+10,auroc,mp_source_coordinate,"[""MACE-MP""]",1,False
+10,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+10,excess_hits_over_random,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+10,excess_hits_over_random,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+10,excess_hits_over_random,mp_matched_pool_coordinate,"[""M3GNet""]",1,True
+10,excess_hits_over_random,mp_source_coordinate,"[""MACE-MP""]",1,False
+10,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+10,expected_stable_hits,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+10,expected_stable_hits,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+10,expected_stable_hits,mp_matched_pool_coordinate,"[""M3GNet""]",1,True
+10,expected_stable_hits,mp_source_coordinate,"[""MACE-MP""]",1,False
+10,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+10,expected_stable_yield,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+10,expected_stable_yield,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+10,expected_stable_yield,mp_matched_pool_coordinate,"[""M3GNet""]",1,True
+10,expected_stable_yield,mp_source_coordinate,"[""MACE-MP""]",1,False
+10,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+10,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+10,normalized_ap,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+10,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+10,normalized_ap,mp_source_coordinate,"[""MACE-MP""]",1,False
+25,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+25,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+25,ap,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+25,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+25,ap,mp_source_coordinate,"[""MACE-MP""]",1,False
+25,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+25,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+25,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+25,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+25,auroc,mp_source_coordinate,"[""MACE-MP""]",1,False
+25,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+25,excess_hits_over_random,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+25,excess_hits_over_random,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+25,excess_hits_over_random,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+25,excess_hits_over_random,mp_source_coordinate,"[""MACE-MP""]",1,False
+25,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+25,expected_stable_hits,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+25,expected_stable_hits,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+25,expected_stable_hits,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+25,expected_stable_hits,mp_source_coordinate,"[""MACE-MP""]",1,False
+25,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""CHGNet""]",1,True
+25,expected_stable_yield,alex_pbe_source_coordinate,"[""M3GNet""]",1,True
+25,expected_stable_yield,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+25,expected_stable_yield,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+25,expected_stable_yield,mp_source_coordinate,"[""MACE-MP""]",1,False
+25,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+25,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+25,normalized_ap,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+25,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+25,normalized_ap,mp_source_coordinate,"[""MACE-MP""]",1,False
+50,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+50,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+50,ap,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+50,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+50,ap,mp_source_coordinate,"[""MACE-MP""]",1,False
+50,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+50,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+50,auroc,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+50,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+50,auroc,mp_source_coordinate,"[""MACE-MP""]",1,False
+50,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+50,excess_hits_over_random,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+50,excess_hits_over_random,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+50,excess_hits_over_random,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+50,excess_hits_over_random,mp_source_coordinate,"[""MACE-MP""]",1,False
+50,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+50,expected_stable_hits,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+50,expected_stable_hits,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+50,expected_stable_hits,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+50,expected_stable_hits,mp_source_coordinate,"[""MACE-MP""]",1,False
+50,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+50,expected_stable_yield,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+50,expected_stable_yield,alexmp20_source_coordinate,"[""M3GNet""]",1,True
+50,expected_stable_yield,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet""]",2,True
+50,expected_stable_yield,mp_source_coordinate,"[""MACE-MP""]",1,False
+50,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+50,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+50,normalized_ap,alexmp20_source_coordinate,"[""MACE-MP""]",1,False
+50,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+50,normalized_ap,mp_source_coordinate,"[""MACE-MP""]",1,False
+100,ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,True
+100,ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,True
+100,ap,alexmp20_source_coordinate,[],0,True
+100,ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,True
+100,ap,mp_source_coordinate,"[""CHGNet""]",1,False
+100,auroc,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,False
+100,auroc,alex_pbe_source_coordinate,"[""MACE-MP""]",1,False
+100,auroc,alexmp20_source_coordinate,[],0,True
+100,auroc,mp_matched_pool_coordinate,"[""MACE-MP""]",1,False
+100,auroc,mp_source_coordinate,"[""MACE-MP""]",1,False
+100,excess_hits_over_random,alex_pbe_matched_pool_coordinate,"[""ALIGNN-FF"", ""CHGNet"", ""M3GNet"", ""MACE-MP""]",4,True
+100,excess_hits_over_random,alex_pbe_source_coordinate,"[""CHGNet""]",1,True
+100,excess_hits_over_random,alexmp20_source_coordinate,"[""ALIGNN-FF"", ""CHGNet"", ""M3GNet"", ""MACE-MP""]",4,True
+100,excess_hits_over_random,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet"", ""MACE-MP""]",3,True
+100,excess_hits_over_random,mp_source_coordinate,"[""CHGNet"", ""MACE-MP""]",2,False
+100,expected_stable_hits,alex_pbe_matched_pool_coordinate,"[""ALIGNN-FF"", ""CHGNet"", ""M3GNet"", ""MACE-MP""]",4,True
+100,expected_stable_hits,alex_pbe_source_coordinate,"[""CHGNet""]",1,True
+100,expected_stable_hits,alexmp20_source_coordinate,"[""ALIGNN-FF"", ""CHGNet"", ""M3GNet"", ""MACE-MP""]",4,True
+100,expected_stable_hits,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet"", ""MACE-MP""]",3,True
+100,expected_stable_hits,mp_source_coordinate,"[""CHGNet"", ""MACE-MP""]",2,False
+100,expected_stable_yield,alex_pbe_matched_pool_coordinate,"[""ALIGNN-FF"", ""CHGNet"", ""M3GNet"", ""MACE-MP""]",4,True
+100,expected_stable_yield,alex_pbe_source_coordinate,"[""CHGNet""]",1,True
+100,expected_stable_yield,alexmp20_source_coordinate,"[""ALIGNN-FF"", ""CHGNet"", ""M3GNet"", ""MACE-MP""]",4,True
+100,expected_stable_yield,mp_matched_pool_coordinate,"[""CHGNet"", ""M3GNet"", ""MACE-MP""]",3,True
+100,expected_stable_yield,mp_source_coordinate,"[""CHGNet"", ""MACE-MP""]",2,False
+100,normalized_ap,alex_pbe_matched_pool_coordinate,"[""MACE-MP""]",1,True
+100,normalized_ap,alex_pbe_source_coordinate,"[""MACE-MP""]",1,True
+100,normalized_ap,alexmp20_source_coordinate,[],0,True
+100,normalized_ap,mp_matched_pool_coordinate,"[""MACE-MP""]",1,True
+100,normalized_ap,mp_source_coordinate,"[""CHGNet""]",1,False

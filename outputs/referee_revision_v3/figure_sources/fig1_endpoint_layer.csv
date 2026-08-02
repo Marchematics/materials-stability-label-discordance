@@ -1,0 +1,9 @@
+layer,endpoint,label
+physical,mp_source_coordinate,MP native
+physical,alexmp20_source_coordinate,alex-mp-20 native
+physical,alex_pbe_source_coordinate,Alexandria-PBE native
+physical,mp_matched_pool_coordinate,MP matched pool
+physical,alex_pbe_matched_pool_coordinate,Alexandria-PBE matched pool
+derived_policy,agreement,agreement filter
+derived_policy,consensus,consensus selection
+derived_policy,audit,audit policy

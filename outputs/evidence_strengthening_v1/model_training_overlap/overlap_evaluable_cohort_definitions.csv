@@ -1,0 +1,5 @@
+cohort,row_n,definition
+M1_fixed_support,31872,M1 score-and-label common support
+model_specific_direct_nonmember,,M1 excluding model-specific direct training members; populated from membership tables
+release_cutoff,,M1 restricted using record-level source snapshot or release dates
+source_balanced,,M1 stratified by source-native endpoint configuration and chemical system

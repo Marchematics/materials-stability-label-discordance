@@ -1,0 +1,13 @@
+{
+  "angle_tol": 3.0,
+  "candidate_pair_comparisons": 14043,
+  "equivalence_class_n": 35746,
+  "failed_pair_comparisons": 0,
+  "largest_class_n": 6,
+  "ltol": 0.1,
+  "non_singleton_class_n": 918,
+  "recorded_relation_edges": 2129,
+  "row_n": 36801,
+  "stol": 0.2,
+  "tolerance": "tight"
+}

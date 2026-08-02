@@ -1,0 +1,4 @@
+tolerance,ltol,stol,angle_tol,row_n,equivalence_class_n,non_singleton_class_n,largest_class_n,candidate_pair_comparisons,failed_pair_comparisons,recorded_relation_edges
+tight,0.1,0.2,3.0,36801,35746,918,6,14043,0,2129
+default,0.2,0.3,5.0,36801,35740,922,6,14043,0,2260
+loose,0.3,0.4,7.0,36801,35449,1155,6,14043,0,2599

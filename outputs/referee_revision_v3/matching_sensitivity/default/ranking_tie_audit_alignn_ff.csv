@@ -1,0 +1,6 @@
+model_name,K,row_n,unique_score_n,rows_in_non_singleton_ties_n,largest_tie_block_n,maximum_score_tie_block_n,boundary_score,strictly_before_boundary_n,boundary_tie_n,selected_from_boundary_n,tie_decimals,support_n
+ALIGNN-FF,100,36650,36605,90,2,1,1.810661280155,99,1,1,12,36650
+ALIGNN-FF,300,36650,36605,90,2,1,0.956046740214,299,1,1,12,36650
+ALIGNN-FF,500,36650,36605,90,2,1,0.631121110916,499,1,1,12,36650
+ALIGNN-FF,1000,36650,36605,90,2,1,0.39319832325,999,1,1,12,36650
+ALIGNN-FF,5000,36650,36605,90,2,1,0.133380598492,4999,1,1,12,36650
