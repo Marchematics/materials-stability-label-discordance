@@ -4,7 +4,7 @@
 
 This repository uses structure-matched records from Materials Project,
 MatterGen alex-mp-20 and official Alexandria-PBE. The tables record
-source-native labels and derived benchmark views for the exact matched rows.
+source-native labels and derived benchmark views for the structurally matched rows.
 
 `denominator_d0_formula.parquet` is referred to in the article as the **F0
 formula-support catalogue**; its filename is retained for compatibility with
@@ -64,7 +64,7 @@ Project API. The relevant endpoint was:
 MPRester.materials.summary.search
 ```
 
-The queried fields used for this audit were:
+The queried fields were:
 
 - `material_id`
 - `formula_pretty`

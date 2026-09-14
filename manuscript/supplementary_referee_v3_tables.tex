@@ -1,0 +1,395 @@
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Frozen cohort construction for the revised physical-endpoint evaluation.}
+\label{tab:v3-support}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Stage & Rows \\
+\midrule
+D5 frozen four-score intersection & 36,801 \\
+D5 compound candidate universe & 36,681 \\
+five physical hull coordinates complete & 36,650 \\
+four batch-relative rankings complete & 36,681 \\
+Mphys fixed physical evaluation support & 36,650 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Failure audit for the withdrawn self-included hull construction at $K=1000$. Every boundary lies inside the zero-distance tie block.}
+\label{tab:v3-old-ties}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Model & Boundary tie & Strictly before & Largest tie block \\
+\midrule
+ALIGNN-FF & 15,688 & 0 & 15,688 \\
+CHGNet & 19,190 & 0 & 19,190 \\
+M3GNet & 17,178 & 0 & 17,178 \\
+MACE-MP & 17,364 & 0 & 17,364 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Illustrative consequence of row-identifier ordering in the withdrawn MACE-MP MP-native top-1000 analysis.}
+\label{tab:v3-old-mace}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Row-ID hits & Tie expectation & 95\% low & 95\% high & Worst & Best \\
+\midrule
+802 & 706.2 & 679 & 733 & 0 & 1,000 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Construct-validity audit of archived energy-per-atom scores. The withdrawn self-included predicted-hull column from the earlier output is intentionally omitted.}
+\label{tab:v3-raw}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Model & Rows & Raw AUROC & Reverse AUROC \\
+\midrule
+ALIGNN-FF & 31,872 & 0.4655 & 0.5345 \\
+CHGNet & 31,872 & 0.4681 & 0.5319 \\
+M3GNet & 31,872 & 0.4809 & 0.5191 \\
+MACE-MP & 31,872 & 0.4891 & 0.5109 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Tight/default/loose matching sensitivity. Cross-source counts measure survival of frozen mappings; each D5 equivalence graph and all model rankings are rebuilt.}
+\label{tab:v3-match}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Tolerance & D1 & D2 & $M_{\mathrm{phys}}$ & Classes & Non-singleton & Largest & Default score max diff \\
+\midrule
+tight & 42,799 & 35,877 & 35,745 & 35,746 & 918 & 6 & -- \\
+default & 43,139 & 36,802 & 36,650 & 35,740 & 922 & 6 & 0.0000 \\
+loose & 43,139 & 36,802 & 36,650 & 35,449 & 1,155 & 6 & -- \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Chemical systems with the largest loss under tight matching relative to default matching.}
+\label{tab:v3-match-chem}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Tolerance & Direction & Chemical system & Rows & All changed \\
+\midrule
+tight & lost\_vs\_default & F-O-V & 11 & 925 \\
+tight & lost\_vs\_default & Ga-Mg & 11 & 925 \\
+tight & lost\_vs\_default & Li-Mg & 11 & 925 \\
+tight & lost\_vs\_default & F-Li-V & 8 & 925 \\
+tight & lost\_vs\_default & Ca-Mg & 7 & 925 \\
+tight & lost\_vs\_default & Mo-S-Te-W & 7 & 925 \\
+tight & lost\_vs\_default & Li-Mn-O & 7 & 925 \\
+tight & lost\_vs\_default & F-Li-O-V & 7 & 925 \\
+tight & lost\_vs\_default & F-Li-Mn & 6 & 925 \\
+tight & lost\_vs\_default & Cu-F-O & 6 & 925 \\
+tight & lost\_vs\_default & F-Li-Mn-O & 5 & 925 \\
+tight & lost\_vs\_default & K-N-O & 5 & 925 \\
+tight & lost\_vs\_default & H-Li-N & 5 & 925 \\
+tight & lost\_vs\_default & Cu-F-Li & 5 & 925 \\
+tight & lost\_vs\_default & O-Si & 5 & 925 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Native-coordinate threshold scan on the full D2 support.}
+\label{tab:v3-threshold}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Threshold (meV atom$^{-1}$) & Pair & Rows & Switches & Switch rate (\%) \\
+\midrule
+0 & mp--alexmp20 & 36,802 & 4,244 & 11.53 \\
+0 & mp--alex\_pbe & 36,802 & 5,666 & 15.40 \\
+0 & alexmp20--alex\_pbe & 36,802 & 3,862 & 10.49 \\
+10 & mp--alexmp20 & 36,802 & 3,923 & 10.66 \\
+10 & mp--alex\_pbe & 36,802 & 4,886 & 13.28 \\
+10 & alexmp20--alex\_pbe & 36,802 & 3,315 & 9.01 \\
+25 & mp--alexmp20 & 36,802 & 3,258 & 8.85 \\
+25 & mp--alex\_pbe & 36,802 & 4,173 & 11.34 \\
+25 & alexmp20--alex\_pbe & 36,802 & 2,995 & 8.14 \\
+50 & mp--alexmp20 & 36,802 & 2,396 & 6.51 \\
+50 & mp--alex\_pbe & 36,802 & 3,291 & 8.94 \\
+50 & alexmp20--alex\_pbe & 36,802 & 2,425 & 6.59 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{MP--Alexandria-PBE indeterminate-zone analysis on reconstructable D2 rows.}
+\label{tab:v3-indeterminate}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Width (meV atom$^{-1}$) & All rows & Decisive rows & Robust conflicts & All-support (\%) & Decisive-support (\%) \\
+\midrule
+10 & 36,770 & 29,095 & 2,484 & 6.76 & 8.54 \\
+20 & 36,770 & 24,790 & 1,455 & 3.96 & 5.87 \\
+25 & 36,770 & 23,160 & 1,163 & 3.16 & 5.02 \\
+30 & 36,770 & 21,773 & 954 & 2.59 & 4.38 \\
+50 & 36,770 & 17,505 & 512 & 1.39 & 2.92 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Threshold-dependent MP--Alexandria-PBE operational conflict components.}
+\label{tab:v3-common}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Threshold & All native & Reconstructable & Incomplete & Phase-pool-sensitive & Persistent & Hidden & Matched-pool \\
+\midrule
+0 & 5,666 & 5,661 & 5 & 3,659 & 2,002 & 2,895 & 4,897 \\
+10 & 4,886 & 4,881 & 5 & 2,946 & 1,935 & 2,858 & 4,793 \\
+25 & 4,173 & 4,169 & 4 & 2,343 & 1,826 & 2,485 & 4,311 \\
+50 & 3,291 & 3,285 & 6 & 1,612 & 1,673 & 1,748 & 3,421 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Full-ranking metrics at the official zero-threshold physical endpoints. AP and prevalence are reported with normalised AP.}
+\label{tab:v3-metrics}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Model & Endpoint & Rows & Positive & Prevalence & AUROC & AP & nAP \\
+\midrule
+ALIGNN-FF & mp\_source & 36,650 & 15,001 & 0.4093 & 0.6987 & 0.6037 & 0.3291 \\
+ALIGNN-FF & alexmp20\_source & 36,650 & 13,266 & 0.3620 & 0.6836 & 0.5321 & 0.2666 \\
+ALIGNN-FF & alex\_pbe\_source & 36,650 & 12,148 & 0.3315 & 0.6805 & 0.4893 & 0.2361 \\
+ALIGNN-FF & mp\_matched\_pool & 36,650 & 17,844 & 0.4869 & 0.7263 & 0.7321 & 0.4779 \\
+ALIGNN-FF & alex\_pbe\_matched\_pool & 36,650 & 19,985 & 0.5453 & 0.7374 & 0.7880 & 0.5339 \\
+CHGNet & mp\_source & 36,650 & 15,001 & 0.4093 & 0.8313 & 0.7208 & 0.5273 \\
+CHGNet & alexmp20\_source & 36,650 & 13,266 & 0.3620 & 0.8121 & 0.6450 & 0.4435 \\
+CHGNet & alex\_pbe\_source & 36,650 & 12,148 & 0.3315 & 0.8024 & 0.5954 & 0.3948 \\
+CHGNet & mp\_matched\_pool & 36,650 & 17,844 & 0.4869 & 0.8721 & 0.8635 & 0.7341 \\
+CHGNet & alex\_pbe\_matched\_pool & 36,650 & 19,985 & 0.5453 & 0.9107 & 0.9282 & 0.8421 \\
+M3GNet & mp\_source & 36,650 & 15,001 & 0.4093 & 0.8019 & 0.7035 & 0.4980 \\
+M3GNet & alexmp20\_source & 36,650 & 13,266 & 0.3620 & 0.7844 & 0.6299 & 0.4199 \\
+M3GNet & alex\_pbe\_source & 36,650 & 12,148 & 0.3315 & 0.7767 & 0.5841 & 0.3779 \\
+M3GNet & mp\_matched\_pool & 36,650 & 17,844 & 0.4869 & 0.8363 & 0.8362 & 0.6807 \\
+M3GNet & alex\_pbe\_matched\_pool & 36,650 & 19,985 & 0.5453 & 0.8679 & 0.8999 & 0.7798 \\
+MACE-MP & mp\_source & 36,650 & 15,001 & 0.4093 & 0.8673 & 0.7598 & 0.5933 \\
+MACE-MP & alexmp20\_source & 36,650 & 13,266 & 0.3620 & 0.8490 & 0.6871 & 0.5097 \\
+MACE-MP & alex\_pbe\_source & 36,650 & 12,148 & 0.3315 & 0.8419 & 0.6403 & 0.4620 \\
+MACE-MP & mp\_matched\_pool & 36,650 & 17,844 & 0.4869 & 0.8982 & 0.8885 & 0.7828 \\
+MACE-MP & alex\_pbe\_matched\_pool & 36,650 & 19,985 & 0.5453 & 0.9370 & 0.9530 & 0.8966 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Tie-aware stable hits and yield at $K=1000$.}
+\label{tab:v3-top1000}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & Endpoint & Hits & Yield & Random hits & Excess hits & Boundary tie \\
+\midrule
+ALIGNN-FF & mp\_source & 710.0 & 0.7100 & 409.3 & 300.7 & 1 \\
+ALIGNN-FF & alexmp20\_source & 615.0 & 0.6150 & 362.0 & 253.0 & 1 \\
+ALIGNN-FF & alex\_pbe\_source & 554.0 & 0.5540 & 331.5 & 222.5 & 1 \\
+ALIGNN-FF & mp\_matched\_pool & 929.0 & 0.9290 & 486.9 & 442.1 & 1 \\
+ALIGNN-FF & alex\_pbe\_matched\_pool & 973.0 & 0.9730 & 545.3 & 427.7 & 1 \\
+CHGNet & mp\_source & 729.0 & 0.7290 & 409.3 & 319.7 & 1 \\
+CHGNet & alexmp20\_source & 645.0 & 0.6450 & 362.0 & 283.0 & 1 \\
+CHGNet & alex\_pbe\_source & 576.0 & 0.5760 & 331.5 & 244.5 & 1 \\
+CHGNet & mp\_matched\_pool & 970.0 & 0.9700 & 486.9 & 483.1 & 1 \\
+CHGNet & alex\_pbe\_matched\_pool & 1,000.0 & 1.00 & 545.3 & 454.7 & 1 \\
+M3GNet & mp\_source & 754.0 & 0.7540 & 409.3 & 344.7 & 1 \\
+M3GNet & alexmp20\_source & 677.0 & 0.6770 & 362.0 & 315.0 & 1 \\
+M3GNet & alex\_pbe\_source & 605.0 & 0.6050 & 331.5 & 273.5 & 1 \\
+M3GNet & mp\_matched\_pool & 973.0 & 0.9730 & 486.9 & 486.1 & 1 \\
+M3GNet & alex\_pbe\_matched\_pool & 999.0 & 0.9990 & 545.3 & 453.7 & 1 \\
+MACE-MP & mp\_source & 759.0 & 0.7590 & 409.3 & 349.7 & 1 \\
+MACE-MP & alexmp20\_source & 667.0 & 0.6670 & 362.0 & 305.0 & 1 \\
+MACE-MP & alex\_pbe\_source & 598.0 & 0.5980 & 331.5 & 266.5 & 1 \\
+MACE-MP & mp\_matched\_pool & 970.0 & 0.9700 & 486.9 & 483.1 & 1 \\
+MACE-MP & alex\_pbe\_matched\_pool & 996.0 & 0.9960 & 545.3 & 450.7 & 1 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Budget-dependent point winners, margins and conservative MP-selection regret. Tied point winners occupy separate rows.}
+\label{tab:v3-budget}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+$K$ & Endpoint & Point winner & Margin & Winner freq. & Regret median & Regret 95\% high & Boundary tie \\
+\midrule
+100 & alex\_pbe\_matched\_pool & ALIGNN-FF & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+100 & alex\_pbe\_matched\_pool & CHGNet & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+100 & alex\_pbe\_matched\_pool & M3GNet & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+100 & alex\_pbe\_matched\_pool & MACE-MP & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+100 & alex\_pbe\_source & M3GNet & 2.00 & 0.6790 & 1.00 & 7.00 & 1 \\
+100 & alexmp20\_source & ALIGNN-FF & 0.0000 & 0.3530 & 1.00 & 6.00 & 1 \\
+100 & alexmp20\_source & M3GNet & 0.0000 & 0.4210 & 1.00 & 6.00 & 1 \\
+100 & alexmp20\_source & MACE-MP & 0.0000 & 0.4000 & 1.00 & 6.00 & 1 \\
+100 & mp\_matched\_pool & ALIGNN-FF & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+100 & mp\_matched\_pool & CHGNet & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+100 & mp\_matched\_pool & M3GNet & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+100 & mp\_matched\_pool & MACE-MP & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+100 & mp\_source & M3GNet & 0.0000 & 0.5480 & 0.0000 & 0.0000 & 1 \\
+100 & mp\_source & MACE-MP & 0.0000 & 0.3530 & 0.0000 & 0.0000 & 1 \\
+300 & alex\_pbe\_matched\_pool & ALIGNN-FF & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+300 & alex\_pbe\_matched\_pool & CHGNet & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+300 & alex\_pbe\_matched\_pool & M3GNet & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+300 & alex\_pbe\_matched\_pool & MACE-MP & 0.0000 & 1.00 & 0.0000 & 0.0000 & 1 \\
+300 & alex\_pbe\_source & M3GNet & 8.00 & 0.9030 & 0.0000 & 9.00 & 1 \\
+300 & alexmp20\_source & M3GNet & 8.00 & 0.8640 & 0.0000 & 8.00 & 1 \\
+300 & mp\_matched\_pool & M3GNet & 1.00 & 0.3830 & 0.0000 & 3.00 & 1 \\
+300 & mp\_source & M3GNet & 7.00 & 0.7830 & 0.0000 & 0.0000 & 1 \\
+500 & alex\_pbe\_matched\_pool & CHGNet & 0.0000 & 1.00 & 0.0000 & 2.00 & 1 \\
+500 & alex\_pbe\_matched\_pool & M3GNet & 0.0000 & 1.00 & 0.0000 & 2.00 & 1 \\
+500 & alex\_pbe\_matched\_pool & MACE-MP & 0.0000 & 1.00 & 0.0000 & 2.00 & 1 \\
+500 & alex\_pbe\_source & M3GNet & 1.00 & 0.6080 & 0.0000 & 12.00 & 1 \\
+500 & alexmp20\_source & MACE-MP & 1.00 & 0.3680 & 0.0000 & 9.00 & 1 \\
+500 & mp\_matched\_pool & M3GNet & 0.0000 & 0.7660 & 0.0000 & 6.02 & 1 \\
+500 & mp\_matched\_pool & MACE-MP & 0.0000 & 0.9040 & 0.0000 & 6.02 & 1 \\
+500 & mp\_source & MACE-MP & 1.00 & 0.4330 & 0.0000 & 0.0000 & 1 \\
+1,000 & alex\_pbe\_matched\_pool & CHGNet & 1.00 & 0.9330 & 3.00 & 7.00 & 1 \\
+1,000 & alex\_pbe\_source & M3GNet & 7.00 & 0.7640 & 1.00 & 17.00 & 1 \\
+1,000 & alexmp20\_source & M3GNet & 10.00 & 0.8570 & 3.00 & 18.00 & 1 \\
+1,000 & mp\_matched\_pool & M3GNet & 3.00 & 0.7230 & 1.00 & 7.00 & 1 \\
+1,000 & mp\_source & MACE-MP & 5.00 & 0.7770 & 0.0000 & 0.0000 & 1 \\
+5,000 & alex\_pbe\_matched\_pool & MACE-MP & 19.00 & 0.9930 & 0.0000 & 0.0000 & 1 \\
+5,000 & alex\_pbe\_source & MACE-MP & 118.0 & 1.00 & 0.0000 & 0.0000 & 1 \\
+5,000 & alexmp20\_source & MACE-MP & 129.0 & 1.00 & 0.0000 & 0.0000 & 1 \\
+5,000 & mp\_matched\_pool & MACE-MP & 12.00 & 0.8310 & 0.0000 & 13.00 & 1 \\
+5,000 & mp\_source & MACE-MP & 85.00 & 1.00 & 0.0000 & 0.0000 & 1 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{MACE-MP winner frequencies for full-ranking metrics at zero threshold.}
+\label{tab:v3-global-winner}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Endpoint & Metric & Winning replicates & Frequency & Replicates \\
+\midrule
+mp\_source & auroc & 1,000 & 1.00 & 1,000 \\
+mp\_source & ap & 1,000 & 1.00 & 1,000 \\
+mp\_source & normalized\_ap & 1,000 & 1.00 & 1,000 \\
+alexmp20\_source & auroc & 1,000 & 1.00 & 1,000 \\
+alexmp20\_source & ap & 1,000 & 1.00 & 1,000 \\
+alexmp20\_source & normalized\_ap & 1,000 & 1.00 & 1,000 \\
+alex\_pbe\_source & auroc & 1,000 & 1.00 & 1,000 \\
+alex\_pbe\_source & ap & 1,000 & 1.00 & 1,000 \\
+alex\_pbe\_source & normalized\_ap & 1,000 & 1.00 & 1,000 \\
+mp\_matched\_pool & auroc & 1,000 & 1.00 & 1,000 \\
+mp\_matched\_pool & ap & 1,000 & 1.00 & 1,000 \\
+mp\_matched\_pool & normalized\_ap & 1,000 & 1.00 & 1,000 \\
+alex\_pbe\_matched\_pool & auroc & 1,000 & 1.00 & 1,000 \\
+alex\_pbe\_matched\_pool & ap & 1,000 & 1.00 & 1,000 \\
+alex\_pbe\_matched\_pool & normalized\_ap & 1,000 & 1.00 & 1,000 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Bootstrap MP-selection regret at $K=1000$. Minimum and maximum columns retain MP-winner ties within a replicate.}
+\label{tab:v3-regret}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Endpoint & Min median & Min 95\% high & Max median & Max 95\% high & Positive freq. \\
+\midrule
+alex\_pbe\_matched\_pool & 3.00 & 7.00 & 3.00 & 7.00 & 0.8770 \\
+alex\_pbe\_source & 0.0000 & 17.00 & 1.00 & 17.00 & 0.5200 \\
+alexmp20\_source & 2.00 & 17.00 & 3.00 & 18.00 & 0.5970 \\
+mp\_matched\_pool & 1.00 & 7.00 & 1.00 & 7.00 & 0.5390 \\
+mp\_source & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\sitablefont
+\caption{Model checkpoint and published training-corpus provenance.}
+\label{tab:v3-training}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}P{0.11\textwidth}P{0.29\textwidth}P{0.22\textwidth}P{0.30\textwidth}@{}}
+\toprule
+Model & Checkpoint & Published training corpus & Membership note \\
+\midrule
+ALIGNN-FF & v12.2.2024\_dft\_3d\_307k & JARVIS-DFT 3D & JARVIS-linked identifiers audited separately \\
+CHGNet & CHGNet.load() & MPtrj & Materials Project-derived trajectories \\
+M3GNet & M3GNet-PES-\allowbreak MatPES-PBE-2025.2 & MatPES-PBE & Release-specific membership identifiers required \\
+MACE-MP & mace-mp small & Materials Project trajectories & Materials Project-derived trajectories \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

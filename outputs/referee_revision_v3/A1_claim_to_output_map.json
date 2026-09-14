@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "source": "alternative clustering bootstrap outputs",
+    "replicates": 1000,
+    "seed": 20260826,
+    "units": ["chemical_system", "reduced_formula", "equivalence_class_id"]
+  },
+  "claims": [
+    {
+      "claim_id": "A1_SWITCH_T0_RANGE",
+      "claim_scope": "results",
+      "quantity": "MP--Alexandria-PBE alternative-unit switch-rate median range",
+      "value": "0.1538--0.1540",
+      "unit": "fraction",
+      "denominator": "three resampling units at 0 meV atom-1",
+      "source_file": "analysis_outputs/alternative_clustering_bootstrap/switch_rate_ci.csv",
+      "selector": "threshold_meV_per_atom == 0 and endpoint_a == mp_source_coordinate and endpoint_b == alex_pbe_source_coordinate",
+      "source_column": "switch_rate_median",
+      "interpretation": "Median range across chemical-system reduced-formula and equivalence-family resampling.",
+      "lock_status": "locked_to_unique_machine_readable_source"
+    },
+    {
+      "claim_id": "A1_SWITCH_T50_RANGE",
+      "claim_scope": "results",
+      "quantity": "MP--Alexandria-PBE alternative-unit switch-rate median range",
+      "value": "0.0893--0.0895",
+      "unit": "fraction",
+      "denominator": "three resampling units at 50 meV atom-1",
+      "source_file": "analysis_outputs/alternative_clustering_bootstrap/switch_rate_ci.csv",
+      "selector": "threshold_meV_per_atom == 50 and endpoint_a == mp_source_coordinate and endpoint_b == alex_pbe_source_coordinate",
+      "source_column": "switch_rate_median",
+      "interpretation": "Median range across chemical-system reduced-formula and equivalence-family resampling.",
+      "lock_status": "locked_to_unique_machine_readable_source"
+    },
+    {
+      "claim_id": "A1_GLOBAL_WINNER_ALL_UNITS",
+      "claim_scope": "results",
+      "quantity": "MACE-MP full-ranking winner frequency",
+      "value": 1.0,
+      "unit": "fraction",
+      "denominator": "45 unit-endpoint-metric combinations",
+      "source_file": "analysis_outputs/alternative_clustering_bootstrap/metric_winner_frequency.csv",
+      "selector": "threshold_meV_per_atom == 0 and winner_frequency == 1.0",
+      "source_column": "winner_frequency",
+      "interpretation": "MACE-MP wins AUROC AP and normalized AP at all five physical endpoints for all three resampling units.",
+      "lock_status": "locked_to_unique_machine_readable_source"
+    },
+    {
+      "claim_id": "A1_TOP1000_UNIT_SENSITIVITY",
+      "claim_scope": "results",
+      "quantity": "nonzero top-1000 point-winner frequencies",
+      "value": "unit-sensitive",
+      "unit": "qualitative",
+      "denominator": "three resampling units and five endpoints",
+      "source_file": "analysis_outputs/alternative_clustering_bootstrap/topk_winner_frequency.csv",
+      "selector": "threshold_meV_per_atom == 0 and K == 1000 and winner_frequency > 0",
+      "source_column": "winner_frequency",
+      "interpretation": "Closely separated point-winner frequencies vary with the resampling unit.",
+      "lock_status": "locked_to_unique_machine_readable_source"
+    },
+    {
+      "claim_id": "A1_TOP1000_REGRET_RANGE",
+      "claim_scope": "results",
+      "quantity": "maximum MP-selection regret range",
+      "value": "1--3 median and 7--18 upper",
+      "unit": "stable hits per 1000",
+      "denominator": "four non-MP endpoints at K=1000",
+      "source_file": "analysis_outputs/alternative_clustering_bootstrap/topk_regret_max_ci.csv",
+      "selector": "threshold_meV_per_atom == 0 and K == 1000 and endpoint != mp_source_coordinate",
+      "source_column": "regret_max_hits_median;regret_max_hits_ci_high_95",
+      "interpretation": "Regret scale remains small across all three alternative resampling units.",
+      "lock_status": "locked_to_unique_machine_readable_source"
+    }
+  ]
+}

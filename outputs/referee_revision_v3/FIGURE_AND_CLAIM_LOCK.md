@@ -1,8 +1,6 @@
-# Figure and claim lock
+# Model-evaluation summaries
 
-**Status:** `figure_and_claim_lock_complete`
-
-Ranking, matching, denominator, and claim-source decisions were locked before manuscript rewriting. The post-write zero-context paper-to-evidence audit passed with no unresolved claim mismatch.
+The tables below describe model selection across validation budgets and structural-matching settings. Full data are in the adjacent evaluation and matching-sensitivity directories.
 
 ## K-dependent model-decision audit (0 meV physical coordinates)
 
@@ -42,7 +40,7 @@ Ranking, matching, denominator, and claim-source decisions were locked before ma
 | default              |           43139 |           36802 |                        36650 |                 35740 |                                 922 |                             6 |                                               0 |
 | loose                |           43139 |           36802 |                        36650 |                 35449 |                                1155 |                             6 |                                             nan |
 
-Cross-source counts are survival counts on the frozen D1/D2 mappings; they do not search for new loose-tolerance matches. Rankings were independently recomputed with each tolerance-specific equivalence graph.
+Cross-source counts track retention of the same D1/D2 mappings as the matching tolerance changes. Rankings were independently recomputed with each tolerance-specific equivalence graph.
 
 ### Zero-threshold D2 switch burden
 
@@ -78,7 +76,7 @@ Cross-source counts are survival counts on the frozen D1/D2 mappings; they do no
 | loose                | mp_matched_pool_coordinate       | ["M3GNet"]                 |                          5 |                              0 |                                      1 |
 | loose                | mp_source_coordinate             | ["M3GNet"]                 |                          1 |                              0 |                                      1 |
 
-## Common-pool count lock
+## Shared-inventory counts
 
 - All native MP--Alexandria-PBE conflicts: **5,666**.
 - Reconstructable native conflicts: **5,661**.
@@ -88,16 +86,15 @@ Cross-source counts are survival counts on the frozen D1/D2 mappings; they do no
 - Hidden common-pool: **2,895**.
 - Common-pool conflicts: **4,897**.
 
-## Claim-source lock
+## Source tables
 
 - Machine-readable claims: **45**.
 - Unique source files: **11**.
 - Every claim ID is unique and every source path resolves.
-- Abstract regret wording is locked as **1--3 stable hits per 1000 across the four non-MP endpoints**, or **0--3 across all five endpoints including the MP anchor**.
 
-## Interpretation lock
+## Model comparisons
 
 - Full-ranking AUROC/AP/nAP selection remains stable: MACE-MP wins all five 0-meV physical endpoints in all 1,000 cluster-bootstrap replicates.
 - Top-K point ordering is budget-, endpoint-, and matching-tolerance-specific among closely performing models.
 - Model-selection consequences are reported with point winners, bootstrap winner frequencies, first--second margins, and regret in stable hits.
-- The previous self-included predicted-hull discovery curves and row-ID-derived binary metrics remain withdrawn.
+- Earlier score-construction comparisons are recorded in the Supplementary Information.

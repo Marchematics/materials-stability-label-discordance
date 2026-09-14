@@ -1,0 +1,350 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Digital Discovery Full Paper submission version
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[twoside,twocolumn,9pt]{article}
+\usepackage{extsizes}
+\usepackage[super,sort&compress,comma]{natbib}
+\usepackage[version=3]{mhchem}
+\usepackage[left=1.5cm,right=1.5cm,top=1.785cm,bottom=2.0cm]{geometry}
+\usepackage{balance}
+\usepackage{mathptmx}
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage[format=plain,justification=justified,singlelinecheck=false,font={stretch=1.125,small,sf},labelfont=bf,labelsep=space]{caption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{fnpos}
+\usepackage[english]{babel}
+\addto{\captionsenglish}{\renewcommand{\refname}{References}}
+\usepackage{array}
+\usepackage{droidsans}
+\usepackage{charter}
+\usepackage[T1]{fontenc}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{setspace}
+\usepackage[compact]{titlesec}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\usepackage{epstopdf}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{url}
+
+\definecolor{cream}{RGB}{222,217,201}
+\def\bibpreamble{}
+\newcommand{\botrule}{\bottomrule}
+\newcommand{\sourceaware}{SourceAware-Stability}
+\input{manuscript_claims_generated.tex}
+
+\begin{document}
+\pagestyle{fancy}
+\thispagestyle{plain}
+\fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}}
+\makeFNbottom
+\makeatletter
+\renewcommand\LARGE{\@setfontsize\LARGE{15pt}{17}}
+\renewcommand\Large{\@setfontsize\Large{12pt}{14}}
+\renewcommand\large{\@setfontsize\large{10pt}{12}}
+\renewcommand\footnotesize{\@setfontsize\footnotesize{7pt}{10}}
+\renewcommand\@biblabel[1]{#1}
+\renewcommand\@makefntext[1]{\noindent\makebox[0pt][r]{\@thefnmark\,}#1}
+\makeatother
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\footnoterule{\vspace*{1pt}\color{cream}\hrule width 3.5in height 0.4pt\color{black}\vspace*{5pt}}
+\setcounter{secnumdepth}{5}
+\renewcommand{\figurename}{\small{Fig.}~}
+\sectionfont{\sffamily\Large}
+\subsectionfont{\normalsize}
+\subsubsectionfont{\bf}
+\setstretch{1.125}
+\setlength{\skip\footins}{0.8cm}
+\setlength{\footnotesep}{0.25cm}
+\setlength{\jot}{10pt}
+\titlespacing*{\section}{0pt}{4pt}{4pt}
+\titlespacing*{\subsection}{0pt}{15pt}{1pt}
+\fancyfoot{}
+\fancyfoot[LO,RE]{\footnotesize{\sffamily{Digital Discovery, 2026, \textbf{5}, 1--\pageref{LastPage}}}}
+\fancyfoot[RO]{\footnotesize{\sffamily{1--\pageref{LastPage} ~\textbar\hspace{2pt}\thepage}}}
+\fancyfoot[LE]{\footnotesize{\sffamily{\thepage~\textbar\hspace{3.45cm} 1--\pageref{LastPage}}}}
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\arrayrulewidth}{1pt}
+\setlength{\columnsep}{6.5mm}
+\setlength\bibsep{1pt}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+{{\sffamily\bfseries\Large Digital Discovery}\hfill\raisebox{0pt}[0pt][0pt]{\includegraphics[height=55pt]{head_foot/RSC_LOGO_CMYK}}\\[1ex]
+\includegraphics[width=\textwidth]{head_foot/header_bar}}\par
+\vspace{1em}
+\sffamily
+\begin{tabular}{m{4.5cm} p{13.25cm}}
+\includegraphics{head_foot/DOI} & \noindent\LARGE{\textbf{The choice of stability reference changes what crystal-discovery benchmarks count as success}} \\
+\vspace{0.3cm} & \vspace{0.3cm} \\
+& \noindent\large{Xinling Wen,\textit{$^{a\ddag}$} Jiahao Zhang,$^{\ast}$\textit{$^{a,b\ddag}$} Naibang Wang,\textit{$^{b}$} Yawei Hou,\textit{$^{a}$} and Yu Chen$^{\ast}$\textit{$^{a}$}} \\
+\includegraphics{head_foot/dates} & \noindent\normalsize{Crystal-discovery benchmarks usually treat thermodynamic stability as a fixed ground-truth label. We show that the same crystal can be labelled stable in one materials database and unstable in another. We match structures across Materials Project, MatterGen alex-mp-20 and Alexandria-PBE, and evaluate four fixed model rankings on 36,650 of these structures. Across the three-source matched set, 10.5--15.4\% of structures change stability label between sources at the conventional zero-meV threshold; even at 50~meV atom$^{-1}$, 6.5--8.9\% still change. Recomputing the Materials Project and Alexandria hulls with the same competing-phase inventory resolves 64.6\% of their original conflicts for which both hulls can be rebuilt, identifying phase coverage as a major contributor to disagreement. At a validation budget of 1,000 candidates, the four fixed rankings yield 554--759 database-defined stable candidates across the three references. Leaderboard stability can coexist with substantial uncertainty in what a benchmark counts as a successful discovery. The stability reference is therefore part of the benchmark definition.} \\
+\end{tabular}
+\end{@twocolumnfalse}\vspace{0.6cm}
+]
+
+\renewcommand*\rmdefault{bch}\normalfont\upshape
+\rmfamily
+\section*{}\vspace{-1cm}
+\footnotetext{\textit{$^{a}$~School of Electronics and Information, Zhengzhou University of Aeronautics, Zhengzhou, Henan, China. E-mail: marchematics@gmail.com; chenyu@zua.edu.cn}}
+\footnotetext{\textit{$^{b}$~State Key Laboratory of Intelligent Green Vehicle and Mobility, School of Vehicle and Mobility, Tsinghua University, Beijing 100084, China. E-mail: 7788521wnb@gmail.com}}
+\footnotetext{\ddag~These authors contributed equally to this work.}
+
+\section{Introduction}\label{sec:introduction}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.90\textwidth]{figures/fig1_sourceaware_discovery_curves.pdf}
+\caption{\textbf{The database changes how many stable candidates a fixed ranking recovers.} \textbf{a}, Cumulative stable yield as the validation budget increases. \textbf{b}, Cumulative recall of the stable set defined by each database. Colours denote the four models; line styles denote MP, alex-mp-20 and official Alexandria-PBE source-native endpoints. Every curve uses the same 36,650 candidates and the same ranking for its model. Expectations within score ties are computed analytically, and the vertical line marks a 1,000-candidate validation budget. The curves use the stability values released by each database.}
+\label{fig:source-native-discovery}
+\end{figure*}
+
+Thermodynamic stability is often treated as the ground truth of crystal-discovery benchmarks. A stability label is assigned relative to a convex hull built from a particular database, with a particular set of competing phases and calculation choices.\cite{sun2016thermodynamic,riebesell2025framework} As a result, the same crystal can be counted as a successful discovery in one benchmark and a failure in another.
+
+This raises a simple question: if the candidates and model predictions are held fixed, how much can a benchmark conclusion change solely because the stability reference changes? The answer matters for AI-guided discovery, where model rankings determine which structures receive expensive validation and stability labels determine how many are counted as successes.\cite{merchant2023scaling,zeni2025generative} This use of prediction to guide materials design builds on a broader effort to connect computation, data and experiment.\cite{butler2018machine,schmidt2019recent,de2019new} Generative approaches propose crystal structures directly, making the definition of a successful discovery central to their evaluation.\cite{noh2019inverse,xie2022crystal,jiao2023crystal,zeni2025generative}
+
+Previous work has established two reasons to examine benchmark labels closely. Comparisons of AFLOW, MP and OQMD document differences in calculated properties across databases.\cite{hegde2023quantifying} Separately, accurate formation-energy predictions can still give poor stability predictions, motivating evaluation against the discovery task itself.\cite{bartel2020critical,riebesell2025framework} Matbench and JARVIS-Leaderboard provide established infrastructure for comparing materials prediction methods.\cite{dunn2020benchmarking,choudhary2024jarvis} Here we examine what happens to discovery counts when the stability reference changes while the candidates and predictions remain fixed.
+
+We answer this question by matching the same structures across Materials Project (MP), MatterGen alex-mp-20 and Alexandria-PBE, and comparing their database-specific stability values. We then hold a 36,650-structure analysis cohort and four model rankings fixed while changing the reference used to assign stability. To examine why labels disagree, we rebuild the MP and Alexandria hulls on a shared inventory of competing phases. A threshold scan tests whether disagreement persists beyond the conventional zero-meV boundary.
+
+The central finding is that stability labels are source-dependent, and this dependence changes reported discovery yield. Across the three matched sources, 10.5--15.4\% of structures switch labels at zero threshold. The same four rankings produce 554--759 stable candidates per 1,000 selections across database references, even though the leading model under global ranking metrics remains unchanged. By \emph{endpoint provenance}, we mean the database, phase inventory and threshold used to assign a stability label. Our \sourceaware\ release records these choices together with the matching rules and model scores needed to reproduce their evaluation consequences.
+
+\section{Results}\label{sec:results}
+
+\subsection{The same structures receive different stability labels across databases}\label{subsec:analysis-object}
+
+The same crystal can receive different stability labels depending on the database used to evaluate it. We compare structures matched across MP, MatterGen alex-mp-20 and Alexandria-PBE. The three sources disagree on 10.5--15.4\% of these structures at the zero-meV threshold, so changing the reference changes which candidates a benchmark counts as stable.
+
+To measure the consequence for discovery, we retain 36,650 compounds with complete stability values and scores from ALIGNN-FF, CHGNet, M3GNet and MACE-MP. Each model ranks this cohort once, and we evaluate that ranking unchanged against every stability reference. Figure~\ref{fig:source-native-discovery} shows that the database changes both the number of stable candidates recovered and the fraction of its stable set recovered as the validation budget grows. Structural matching, cohort construction and ranking details are given in Methods.
+
+
+
+
+
+\subsection{Label disagreement persists beyond the zero-meV boundary}\label{subsec:threshold}
+
+Label disagreement extends beyond small differences at the stability boundary. Raising the common threshold from zero to 50~meV atom$^{-1}$ reduces pairwise switching from 10.5--15.4\% to 6.5--8.9\% (Fig.~\ref{fig:threshold}d--f). A more permissive screening threshold still leaves a substantial fraction of structures with database-dependent labels.
+
+Matching-tolerance and bootstrap analyses preserve the overall disagreement pattern (Supplementary Notes 3, 4 and 7).
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig2_near_threshold_discordance.pdf}
+\caption{\textbf{The same three source pairs show label disagreement and threshold sensitivity.} \textbf{a--c}, Database-specific energy above hull for MP versus alex-mp-20, MP versus Alexandria-PBE, and alex-mp-20 versus Alexandria-PBE, respectively. All panels use the same 36,802 matched structures, axis limits and logarithmic density scale. Orange points mark structures whose zero-threshold labels disagree; dotted lines mark equal values. The alex-mp-20 values in this matched cohort are all below 100~meV atom$^{-1}$; dashed lines in a and c mark this observed upper range. Values above 120~meV atom$^{-1}$ are displayed at the boundary. \textbf{d--f}, Corresponding pairwise label-switch rates at 0, 10, 25 and 50~meV atom$^{-1}$. Points show observed rates; shaded bands are 95\% intervals from 1,000 paired chemical-system bootstrap resamples.}
+\label{fig:threshold}
+\end{figure*}
+
+\subsection{Disagreement is concentrated in specific chemical regimes}\label{subsec:materials-chemistry}
+
+The stability reference matters most in particular chemical regimes. MP--Alexandria label disagreement is highest among binary and ternary compounds and among lanthanide-containing, halogen-containing and oxygen-free systems (Fig.~\ref{fig:materials-chemistry}). Rates in these groups are about 16--18\%, compared with 10\% in oxygen-containing compounds. These patterns identify where changes in the stability reference most often change a benchmark label.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig3_sourceaware_benchmark_layer.pdf}
+\caption{\textbf{Chemical regimes differ in sensitivity to the stability reference.} MP--Alexandria-PBE zero-threshold label-switch rates grouped by \textbf{a}, number of elements; \textbf{b}, oxygen; \textbf{c}, halogens; \textbf{d}, lanthanides; and \textbf{e}, transition metals. Points show rates and whiskers show 95\% Wilson intervals. All panels share the same horizontal scale; dashed lines mark the overall 15.4\% rate. Orange and blue distinguish groups above and below that rate. Group sizes and rates are shown beside the data. Element-family groups overlap.}
+\label{fig:materials-chemistry}
+\end{figure*}
+
+\subsection{A shared phase inventory resolves most original MP--Alexandria conflicts}\label{subsec:common-pool}
+
+Competing-phase coverage is a major contributor to the disagreement. We rebuild the MP and Alexandria hulls using the same inventory of matched phases, while retaining each database's formation energies. At zero threshold, this alignment resolves 64.6\% of the original conflicts for which both hulls can be rebuilt (Fig.~\ref{fig:phase-inventory}e): the two labels become consistent once they use the same competing-phase inventory.
+
+The shared inventory also exposes disagreements among structures whose original labels agree. Comparisons across chemical complexity and stability thresholds show that the net change in disagreement varies across groups (Fig.~\ref{fig:phase-inventory}a--d). Phase coverage thus changes both which structures conflict and the total conflict burden. The remaining disagreements show that database-specific energy and workflow differences continue to matter after phase coverage is aligned. The conflict components evolve with the stability threshold (Fig.~\ref{fig:phase-inventory}e; Supplementary Table S11). Leaving values between zero and 50~meV atom$^{-1}$ unclassified still leaves several hundred definite MP--Alexandria conflicts (Fig.~\ref{fig:phase-inventory}f).
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig4_phase_inventory.pdf}
+\caption{\textbf{The effect of phase-inventory alignment varies across chemical complexity and stability thresholds.} \textbf{a--d}, MP--Alexandria-PBE label-disagreement rates before and after alignment at thresholds of 0, 10, 25 and 50~meV atom$^{-1}$. Each paired comparison uses the same reconstructable structures; solid and hatched bars denote the original and shared inventories. Colours distinguish one-, two-, three- and four-or-more-element systems, containing 119, 7,248, 22,095 and 7,308 structures, respectively. \textbf{e}, Resolved, persistent and newly exposed conflicts across thresholds. At zero threshold, 3,659 of 5,661 original conflicts become consistent (64.6\%), 2,002 persist, and 2,895 conflicts are newly exposed. \textbf{f}, Definite stable-versus-unstable conflicts as the indeterminate zone widens, using all reconstructable or only decisive rows as the denominator. At a 50~meV width, 512 definite conflicts remain. All panels use the 36,770 structures with both hull reconstructions.}
+\label{fig:phase-inventory}
+\end{figure*}
+
+\subsection{The stability reference changes how many discoveries a model appears to make}\label{subsec:model-consequence}
+
+Changing the stability reference changes how many of the same selected candidates count as discoveries. At a budget of 1,000 candidates, the four fixed rankings produce 554--759 stable hits across the three database references. The same 1,000 MACE-MP selections count as 759 discoveries under MP and 598 under Alexandria-PBE: a difference of 161 apparent successes without changing a single model prediction. The within-model gap changes with validation budget (Fig.~\ref{fig:model-consequence}c). Rebuilding the hulls on a shared phase inventory shifts these yields further (Fig.~\ref{fig:model-consequence}a--d).
+
+Despite these large changes in discovery yield, global model ranking is remarkably stable. MACE-MP leads all five stability definitions for AUROC, average precision and normalised average precision. This result persists across bootstrap analyses using chemical systems, reduced formulas and structural-equivalence families. Global ranking metrics can remain stable even when the apparent number of successful discoveries changes substantially (Fig.~\ref{fig:model-consequence}f).
+
+Recovering a fixed number of stable candidates also requires different validation budgets under different references. Along the same MACE-MP ranking, the first 500 stable hits require 683 selections under MP and 852 under Alexandria-PBE (Fig.~\ref{fig:model-consequence}e).
+
+At finite validation budgets, closely performing models exchange the lead, with small differences in recovered hits. These local changes are secondary to the shift in absolute yield. Winner frequencies, selection regret, budget sensitivity and matching-tolerance checks are reported in Supplementary Notes 3, 6 and 7.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig5_discovery_consequence.pdf}
+\caption{\textbf{Discovery counts and validation budgets change substantially while the leading model remains stable.} \textbf{a}, Stable hits among the top 1,000 candidates for each model under the three database references and two shared-inventory definitions. Points show analytic tie-aware hit counts; whiskers show 95\% chemical-system bootstrap intervals. Dashed segments mark random-ranking expectations. \textbf{b}, The same observed hit counts for all model--reference combinations. \textbf{c}, Within-model differences in cumulative stable hits between MP and Alexandria-PBE over validation budgets up to 5,000, computed from the archived curves. Markers indicate the five declared budgets. \textbf{d}, Within-model hit differences relative to MP at a budget of 1,000. \textbf{e}, The smallest validation budget reaching 500 expected stable hits under each database reference. Bar colours denote references. \textbf{f}, Normalised average precision across the five definitions. MACE-MP also leads every definition for AUROC and average precision (Supplementary Table S12). Model colours are shared by panels a, c, d and f. All panels use the fixed 36,650-structure cohort at zero threshold.}
+\label{fig:model-consequence}
+\end{figure*}
+
+\section{Discussion}\label{sec:discussion}
+
+The same crystal can be counted as stable or unstable depending on the reference database, and this changes how many discoveries a fixed model appears to make. Stability-label provenance is part of the benchmark outcome. On the 36,650-structure analysis cohort, changing the database reference produces substantial differences in validation yield while preserving the leading model under global ranking metrics. A stable leaderboard can conceal an unstable estimate of discovery success.
+
+Phase coverage provides a concrete explanation for much of this sensitivity. Aligning the competing-phase inventory resolves 64.6\% of the original MP--Alexandria conflicts that can be reconstructed. Disagreement also persists at a 50~meV atom$^{-1}$ threshold, placing it beyond a purely zero-boundary effect. Together, these observations make the database and its competing phases central to interpreting a stability label.
+
+Benchmarks should report the database, phase inventory and threshold that define success, then show how many stable candidates each model recovers at the intended validation budget. Pairing those counts with global ranking metrics reveals whether a robust model comparison also supports a robust estimate of discovery yield. We provide a reporting checklist in Supplementary Table S22 and a row-level release for reproducing the comparison.
+
+Predictive uncertainty, probability calibration and set-valued prediction describe reliability relative to a specified target.\cite{gal2016dropout,lakshminarayanan2017simple,guo2017calibration,vovk2005algorithmic,romano2019conformalized,angelopoulos2023conformal,geifman2017selective,sadinle2019least} For crystal stability, that target includes the reference used to assign its labels (Supplementary Note 11).
+
+Our analysis is retrospective and is strongest for structures already represented across public databases. The public CHGNet screening cohort contains \CHGNetPublicMatchedN\ structurally matched candidates for which label-sensitive yields can be compared (Fig.~\ref{fig:candidate}a). The MatterGen and PGCGM pools primarily measure current reference-data coverage (Fig.~\ref{fig:candidate}b). Extending this comparison to new generated crystals requires source-specific calculations and a historical reference library; experimental synthesis also depends on kinetics and synthesis routes.\cite{aykol2019network} Supplementary Note 8 gives the coverage counts. The unresolved label conflicts reflect differences beyond phase coverage, including the underlying energy workflows.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.84\textwidth]{figures/fig6_candidate_scope.pdf}
+\caption{\textbf{Structural overlap enables source-aware evaluation of screened candidates.} \textbf{a}, Point-range summary of MP-native, consensus-selection and audit-policy stable yields, together with the source-uncertain fraction, for tolerance-matched screened structures. \textbf{b}, Tolerance-matched, formula-only and unmatched fractions for the MatterGen 5,000-candidate public formula cohort and the PGCGM 3,000-candidate public generated-crystal cohort.}
+\label{fig:candidate}
+\end{figure*}
+
+\section{Conclusions}\label{sec:conclusions}
+
+Stability labels are source-dependent in crystal-discovery benchmarks. Across matched structures, 10.5--15.4\% change labels between sources at zero threshold, and 6.5--8.9\% still change at 50~meV atom$^{-1}$. A shared competing-phase inventory resolves 64.6\% of the original MP--Alexandria conflicts that can be reconstructed. On a fixed 36,650-structure analysis cohort, the four model rankings yield 554--759 database-defined stable candidates per 1,000 selections. Global model ranking remains stable while reported discovery yield changes. Reporting the provenance of stability labels makes this dependence visible in benchmark claims.
+
+\section{Methods}\label{sec:methods}
+
+\subsection{Sources, tolerance-based matching and frozen cohorts}
+
+Materials Project and Alexandria provide large collections of calculated crystal structures and energies.\cite{jain2013commentary,schmidt2023machine} Related resources include OQMD,\cite{saal2013materials,kirklin2015open} JARVIS\cite{choudhary2020joint} and the AFLOW framework and repository.\cite{curtarolo2012aflow,curtarolo2012aflowlib} These database papers describe the computational and data infrastructure from which stability references are constructed.
+
+The Computational Materials Repository, NOMAD and Materials Cloud provide infrastructure for storing, sharing and tracing computational materials data; OPTIMADE defines a common interface for exchanging materials records.\cite{landis2012computational,draxl2019nomad,talirz2020materials,andersen2021optimade} Matminer supplies tools for data retrieval and materials feature construction.\cite{ward2018matminer} In the present comparison, source cards and frozen row mappings record which data enter each stability definition.
+
+The source layer uses MP, MatterGen alex-mp-20 and the official Alexandria-PBE 3D snapshot. MatterGen alex-mp-20 is the Alex-MP dataset distributed with MatterGen; official Alexandria-PBE is retrieved independently from the Alexandria PBE database. Table~S1 exposes the actual continuous hull and formation-energy inputs behind those cards. MP uses \texttt{energy\_above\_hull} and \texttt{formation\_energy\_per\_atom}; MatterGen alex-mp-20 supplies \texttt{energy\_above\_hull} but no released formation-energy input; official Alexandria-PBE supplies \texttt{entries[].data.e\_above\_hull} and \texttt{entries[].data.e\_form}. Source cards additionally record snapshot or query date, native label field, units, threshold, corrections, duplicate handling and phase-pool eligibility.
+
+Structures are filtered by reduced formula and compared with \texttt{pymatgen.analysis.structure\_matcher.\allowbreak StructureMatcher}.\cite{ong2013python} The default setting uses \texttt{ltol}=0.2, \texttt{stol}=0.3, \texttt{angle\_tol}=5$^\circ$, \texttt{primitive\_cell=True}, \texttt{scale=True}, \texttt{attempt\_supercell=True} and \texttt{allow\_subset=False}. D1 retains a single unambiguous MP--alex-mp-20 tolerance-based match. D2 requires a single unambiguous match across all three sources. D4 records source-union inventory status, and D5 intersects D2 with all four archived model-energy tables. The matching audit re-evaluates every frozen D1 and D2 mapping under tight $(0.1,0.2,3^\circ)$, default $(0.2,0.3,5^\circ)$ and loose $(0.3,0.4,7^\circ)$ settings. This audit measures survival of the frozen mappings and does not search outside them for new loose-tolerance matches.
+
+D5 contains 36,801 rows. The 120 elemental targets are excluded from candidate ranking, leaving 36,681 compounds. Candidate-pool, reference-pool and evaluation-support manifests are generated independently. Four ranking scores are computed before endpoint completeness is imposed. $M_{\mathrm{phys}}$ is then defined as the 36,650 compounds with all four scores and all five physical hull coordinates. Endpoint or threshold choice changes labels only; it never changes a model ranking within a declared matching setting.
+
+\begin{table*}[!t]
+\centering
+\caption{Stability definitions used for model evaluation. The five definitions are evaluated on the 36,650-structure analysis cohort ($M_{\mathrm{phys}}$).}
+\label{tab:endpoint-definitions}
+\small
+\begin{tabular}{@{}p{0.17\textwidth}p{0.20\textwidth}p{0.22\textwidth}p{0.27\textwidth}@{}}
+\toprule
+Stability definition & Energy input & Phase inventory & Use \\
+\midrule
+MP & MP source-native hull field & MP native inventory & Database stability label \\
+alex-mp-20 & MatterGen alex-mp-20 hull field & alex-mp-20 native inventory & Database stability label \\
+Alexandria-PBE & Official Alexandria-PBE hull field & Alexandria-PBE native inventory & Database stability label \\
+MP shared inventory & MP formation energies & Frozen matched D2 subsystem inventory & Shared-inventory stability label \\
+Alexandria-PBE shared inventory & Alexandria-PBE formation energies & The same frozen matched D2 subsystem inventory & Shared-inventory stability label \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Calculation choices behind the source energies}
+
+Database energies inherit choices of electronic-structure approximation and ionic-core treatment,\cite{perdew1996generalized,blochl1994projector,kresse1999ultrasoft} together with numerical algorithms and convergence settings.\cite{kresse1996efficient,calderon2015aflow,lejaeghere2016reproducibility} Energy corrections and reference conventions also affect calculated formation and reaction energies.\cite{wang2006oxidation,jain2011formation,stevanovic2012correcting,hautier2012accuracy} Our reconstruction preserves each source's released energies and changes only the competing-phase inventory. Supplementary Note 9 gives further background.
+
+\subsection{Stability definitions, thresholds and conflict categories}
+
+The physical comparison uses the five stability definitions in Table~\ref{tab:endpoint-definitions}: three database references and two hulls rebuilt on a shared phase inventory. Derived agreement and selection rules are listed in Supplementary Table S21. Official/native endpoints use each database's released stability assignment at its source-card threshold. Analyst-defined source-coordinate endpoints apply
+\[
+y_s(t)=\mathbf{1}\!\left[E_{\mathrm{hull},s}\leq t\right]
+\]
+with $t=0$, 10, 25, 50 or 100~meV atom$^{-1}$. At $t=0$, a numerical tolerance of $10^{-12}$~eV atom$^{-1}$ is used; the generated coordinate endpoints reproduce every available official binary label in D2 and the D5 compound cohort.
+
+The matched-pool coordinates retain MP and Alexandria-PBE formation energies separately. Each source is reconstructed on the same frozen D2 chemical-system and subsystem inventory. A matched-pool agreement target is assigned only when the reconstructed binary labels agree. Both stable gives stable, both unstable gives unstable, and reconstruction disagreement or incompleteness gives no agreement target. Consensus and audit outputs aggregate source and reconstruction statuses and remain outside the physical-coordinate comparison.
+
+For an indeterminate width $w$ at base threshold zero, stable rows have $E_{\mathrm{hull}}\leq0$, indeterminate rows have $0<E_{\mathrm{hull}}<w$, and unstable rows have $E_{\mathrm{hull}}\geq w$. A robust conflict requires one source to be definitely stable and the other definitely unstable. Rates are reported against all reconstructable rows and against decisive rows, for which neither source is indeterminate.
+
+The MP--Alexandria-PBE decomposition first counts all native conflicts. Rows with both matched-pool coordinates form the reconstructable subset; other native conflicts are unreconstructable. A reconstructable native conflict is phase-pool-sensitive when the matched-pool binary coordinates agree and persistent when they disagree. A hidden matched-pool conflict has native agreement and matched-pool disagreement. Machine tests verify
+\[
+N_{\mathrm{native}}=N_{\mathrm{reconstructable\ native}}+N_{\mathrm{unreconstructable}},
+\]
+\[
+N_{\mathrm{reconstructable\ native}}
+=N_{\mathrm{phase\ pool}}+N_{\mathrm{persistent}},
+\]
+\[
+N_{\mathrm{matched\ pool}}
+=N_{\mathrm{persistent}}+N_{\mathrm{hidden}}.
+\]
+
+At zero threshold, 5,666 native MP--Alexandria conflicts occur among the 36,802 three-source matched structures. Both hulls can be reconstructed for 5,661 conflicts: 3,659 become consistent and 2,002 persist, giving $3,659/5,661\simeq64.6\%$ resolved original conflicts. Across the 36,770 rows with both reconstructions, 2,895 additional disagreements arise among previously agreeing labels, giving 4,897 shared-inventory conflicts. At 50~meV atom$^{-1}$, the corresponding counts are 3,291 original conflicts, 1,612 resolved, 1,673 persistent, six unreconstructable and 1,748 newly exposed conflicts. With an indeterminate width of 50~meV atom$^{-1}$, 512 definite MP--Alexandria conflicts remain: 1.39\% of all 36,770 reconstructable rows and 2.92\% of the 17,505 decisive rows.
+
+\subsection{Batch-relative signed reference-hull ranking}
+
+Materials predictors use both composition-based descriptors and learned structural representations.\cite{ward2016general,zou2025predicting,xie2018crystal,chen2019graph,schutt2018schnet,choudhary2021atomistic} Equivariant architectures and large-scale pretraining extend these representations to interatomic potentials.\cite{batzner20223,musaelian2023learning,deng2023chgnet,chen2022universal,batatia2025foundation} Training-data coverage and transfer across chemical and computational domains remain active areas of development.\cite{deng2025systematic,kuner2025mp,kim2026optimizing,lysogorskiy2026graph}
+
+We evaluate archived predictions from ALIGNN-FF, CHGNet, M3GNet and MACE-MP. Their exact checkpoints and training-resource records are listed in Supplementary Table S17, with model background in Supplementary Note 10.
+
+The archived raw scores are predicted energies per atom and are composition dependent. Model-specific elemental references are subtracted to obtain predicted formation energies. The D5 compound batch supplies candidate and competing-phase energies; zero-formation elemental entries anchor every target chemical system.
+
+A structural-equivalence graph is built before scoring. Edges join rows with a shared canonical hash, shared source identifier or a tolerance-based \texttt{StructureMatcher} relation. Connected components define the exclusion classes. For target $i$, every member of its component is removed from the compatible D5 subsystem pool. The remaining predicted formation energies and elemental anchors define a reference phase diagram. The score is the negative signed reference-hull margin
+\[
+S_i=-\Delta E_i^{\mathrm{ref}},\qquad
+\Delta E_i^{\mathrm{ref}}=E_i^{\mathrm{pred}}-E_{\mathrm{hull},-C(i)}^{\mathrm{pred}}(x_i),
+\]
+where $C(i)$ is the complete target equivalence class. Negative margins are allowed, so $\Delta E_i^{\mathrm{ref}}$ is not conventional non-negative energy above hull. Other candidates remain in the reference pool. The score is batch-relative and transductive.
+
+Each candidate--model audit row records the candidate, pool versions, excluded row, hash and equivalence-class identifiers, phase counts before and after exclusion, decomposition simplex, score status and incomplete reason. A score passes only when the target row and its full class are absent from the hull and simplex. Tight/default/loose matching sensitivity rebuilds the complete D5 equivalence graph and all four model rankings independently. The default rebuild reproduces the primary scores exactly.
+
+\subsection{Tie-aware budget metrics and model decisions}
+
+Scores are rounded to 12 decimal places for tie detection. If a top-$K$ boundary intersects a tie block, let $a$ rows and $h$ stable outcomes occur before the block, let the block contain $b$ rows and $s$ stable outcomes, and let $r=K-a$ rows be selected from it. The reported expectation is
+\[
+\mathbb{E}[H@K]=h+r\frac{s}{b}.
+\]
+The tie-only interval is the exact hypergeometric interval. Best and worst bounds are
+\[
+H_{\min}=h+\max[0,r-(b-s)],\qquad
+H_{\max}=h+\min(r,s).
+\]
+These statistics are invariant to row-identifier permutation. A concrete within-tie ordering is not treated as a scientific result.
+
+The cumulative discovery curves evaluate the same analytic expectation at every $K\leq10{,}000$. The main discovery figure is restricted to the three source-native coordinates; matched-pool coordinates and derived policies do not enter its line-style comparison. The fixed-target readout in Fig.~\ref{fig:model-consequence}e takes the smallest $K$ at which the recorded cumulative expectation reaches 500 stable hits.
+
+For model $m$, endpoint $v$ and budget $K$, the main quantities are stable hits $H_{m,v,K}$, yield $H_{m,v,K}/K$ and excess hits $H_{m,v,K}-K\pi_v$, where $\pi_v$ is endpoint prevalence. Enrichment is reported in the Supplementary Information. Full-ranking metrics are AUROC, average precision (AP) and normalised AP,
+\[
+\mathrm{nAP}=\frac{\mathrm{AP}-\pi_v}{1-\pi_v},
+\]
+which may be negative. Prevalence and raw AP are always reported with nAP. Budgets are fixed in advance at $K=100$, 300, 500, 1,000 and 5,000.
+
+A point winner maximises the relevant quantity at a declared endpoint and budget. First--second margins are reported in stable hits. Pairwise endpoint interaction is described by the range of each model-pair margin across endpoints and by difference-in-differences relative to MP. If $m^*_{\mathrm{MP}}$ is selected on the MP coordinate, endpoint regret is
+\[
+\mathrm{Regret}_{v,K}=\max_m H_{m,v,K}-H_{m^*_{\mathrm{MP}},v,K}.
+\]
+When the MP winner is tied, minimum and maximum regret across the selected set are retained. Point winners, bootstrap winner frequencies, margins and regret are reported together.
+
+\subsection{Paired bootstrap and resampling-unit sensitivity}
+
+Chemical systems are resampled with replacement 1,000 times using seed 20260719. Every draw retains all rows, model scores and endpoint coordinates from the selected systems. Within each replicate, tie expectations, metric values, winners, margins and regret are recomputed. The 2.5th, 50th and 97.5th percentiles give the reported quantiles. Threshold and indeterminate-zone analyses use the same paired cluster principle.
+
+As a resampling-unit sensitivity analysis, the same procedure is repeated 1,000 times using reduced formulas and the available structural-equivalence families, with seed 20260826. For conflict rates, all endpoint columns within a replicate use the same resampled D2 units. For model metrics, hits, winners, margins and regret within a replicate use the same resampled $M_{\mathrm{phys}}$ units. The structural-equivalence family is the connected component used by the ranking exclusion audit. Prototype labels and element-family superclusters are not available in the archived inputs and are not inferred.
+
+Cohort uncertainty and tie uncertainty are kept separate. The primary point estimate uses the analytic tie expectation. Bootstrap intervals describe chemical-system cohort variation conditional on fixed model predictions, D5 reference pool and structural-equivalence classes. They do not quantify model-energy uncertainty, DFT-workflow uncertainty or reference-pool uncertainty. Tie-only hypergeometric intervals and best--worst bounds are reported separately.
+
+
+
+\subsection{Candidate matching and consequence}
+
+Candidate tables are cleaned and deduplicated before matching. A screened candidate receives endpoint assignments only when it has a single unambiguous tolerance-based structural match to a SourceAware row. Formula-only overlap records chemistry support, and rows without formula overlap are unmatched. Stable-yield estimates use tolerance-matched screened structures. Generated pools contribute matching-coverage counts and require new source-specific calculations for prospective stability evaluation.
+
+\section*{Author contributions}
+
+Xinling Wen: conceptualisation, methodology, investigation, data curation and writing--original draft. Jiahao Zhang: conceptualisation, software, formal analysis, visualisation and writing--original draft. Naibang Wang: validation and writing--review and editing. Yawei Hou: validation, resources and writing--review and editing. Yu Chen: supervision, project administration, funding acquisition and writing--review and editing. All authors approved the submitted manuscript.
+
+\section*{Conflicts of interest}
+
+The authors declare no competing financial or non-financial interests.
+
+\section*{Data availability}
+
+Data, code, manuscript sources and figures are available in the GitHub release \href{https://github.com/Marchematics/materials-stability-label-discordance/releases/tag/v2.1.2-sourceaware-stability}{\texttt{v2.1.2-sourceaware-stability}}. The release includes the matched structure labels, fixed model scores, shared-inventory calculations, threshold and chemical-group summaries, cumulative discovery curves, and bootstrap summaries for chemical systems, reduced formulas and structural-equivalence families. Source versions, acquisition routes and data terms are documented in \texttt{DATA\_PROVENANCE.md}.
+
+The software's release history includes v2.0.3\cite{sourceaware2026release} and the v2.1.1 archive at \href{https://doi.org/10.5281/zenodo.21762996}{10.5281/zenodo.21762996}. The continuing Zenodo record is \href{https://doi.org/10.5281/zenodo.21313779}{10.5281/zenodo.21313779}.
+
+\section*{Acknowledgements}
+
+This work was supported in part by the Henan Province Key Research and Development Project (Grant No. 241111213000), the Henan Province University Science and Technology Innovation Team (Grant No. 26IRTSTHN036), the Scientific Research Team Plan of Zhengzhou University of Aeronautics (Grant No. 23ZHTD01007), and the Postgraduate Education Reform and Quality Improvement Project of Henan Province (Grant No. YJS2024JD48). Generative AI tools were used for language editing and software assistance under author direction.
+
+\balance
+\bibliography{references}
+\bibliographystyle{rsc}
+\end{document}

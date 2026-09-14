@@ -1,0 +1,13 @@
+model_name,endpoint,target_hits,required_K,achieved_expected_hits
+ALIGNN-FF,mp_source_coordinate,500,708,500.0
+ALIGNN-FF,alexmp20_source_coordinate,500,811,500.0
+ALIGNN-FF,alex_pbe_source_coordinate,500,907,500.0
+CHGNet,mp_source_coordinate,500,703,500.0
+CHGNet,alexmp20_source_coordinate,500,791,500.0
+CHGNet,alex_pbe_source_coordinate,500,870,500.0
+M3GNet,mp_source_coordinate,500,686,500.0
+M3GNet,alexmp20_source_coordinate,500,761,500.0
+M3GNet,alex_pbe_source_coordinate,500,843,500.0
+MACE-MP,mp_source_coordinate,500,683,500.0
+MACE-MP,alexmp20_source_coordinate,500,754,500.0
+MACE-MP,alex_pbe_source_coordinate,500,852,500.0

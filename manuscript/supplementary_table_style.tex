@@ -1,0 +1,13 @@
+% Compact tables: keep a readable fixed size and shrink only when necessary.
+\usepackage{adjustbox,float,caption,makecell}
+\captionsetup[table]{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false,skip=5pt}
+\newcommand{\sitablefont}{\fontsize{8}{10}\selectfont}
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+\setlength{\intextsep}{9pt plus 2pt minus 2pt}
+\setlength{\LTpre}{8pt}
+\setlength{\LTpost}{8pt}
+\setlength{\LTcapwidth}{\textwidth}
+\setlength{\emergencystretch}{1em}
+\raggedbottom
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}

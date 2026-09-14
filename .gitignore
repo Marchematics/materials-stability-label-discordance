@@ -18,13 +18,6 @@ paper_bootstrap/
 data/private/
 manuscript/figures/*.png
 manuscript/figures/*.tiff
-manuscript/figures/*.svg
-manuscript/*.tex
-manuscript/*.bib
-manuscript/*.bst
-manuscript/*.bbl
-manuscript/*.pdf
-manuscript/head_foot/
 outputs/repaired_model_evaluation_v1/fixed_support/
 outputs/repaired_model_evaluation_v1/manuscript_figures/
 outputs/repaired_model_evaluation_v1/exact_discovery_curves_fixed_support.csv
@@ -32,3 +25,7 @@ outputs/repaired_model_evaluation_v1/*_build.log
 outputs/milestones/materials_label_discordance_full_mp_alex_43984/mp_records_summary_structures.jsonl
 outputs/milestones/materials_label_discordance_full_mp_alex_43984/mp_formation_energy_cache.jsonl
 outputs/milestones/model_facing_benchmark_sensitivity_check/mp_formation_energy_chgnet_5000.jsonl
+dist/
+
+manuscript/figures/*.csv
+manuscript/figures/expanded_figure_checks.json

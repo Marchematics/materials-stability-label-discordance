@@ -1,0 +1,105 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[super,sort&compress,comma]{natbib}
+\newcommand{\sourceaware}{SourceAware-Stability}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\large\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\input{supplementary_table_style.tex}
+\usepackage[hidelinks]{hyperref}
+\setlength{\LTpre}{6pt}
+\setlength{\LTpost}{6pt}
+\begin{document}
+\renewcommand{\thetable}{S\arabic{table}}
+
+\begin{center}
+{\Large\bfseries Supplementary Information}\\[3pt]
+{\large The choice of stability reference changes what crystal-discovery benchmarks count as success}
+\end{center}
+
+\section*{Supplementary Note 1 | Frozen support and physical endpoint layer}
+D2 is the 36,802-row cohort with a single unambiguous tolerance-based structural match across MP, MatterGen alex-mp-20 and official Alexandria-PBE. D5 intersects D2 with the four archived model-energy tables. D5 contains 36,801 rows, of which 120 are elemental targets. The remaining 36,681 compounds form the candidate and transductive reference batch. Four rankings and five physical coordinates are complete for 36,650 compounds, defining $M_{\mathrm{phys}}$ (Table~\ref{tab:v3-support}). Candidate, reference-pool and evaluation-support manifests are frozen separately.
+
+The physical layer has three source coordinates and two matched-pool coordinates. MP and Alexandria-PBE formation energies are reconstructed separately on the same matched D2 subsystem inventory. Matched-pool agreement, source consensus and the conservative audit assignment are derived outputs outside the five-coordinate model comparison.
+
+
+
+
+\section*{Supplementary Note 2 | Withdrawn ranking construction and adopted estimand}
+A self-included predicted-hull construction places every structure that supports the predicted hull at zero distance. The four archived rankings produced zero-distance tie blocks of 15,688--19,190 structures, and every top-1000 boundary fell inside one of those blocks (Table~\ref{tab:v3-old-ties}). Row-identifier ordering consequently affected stable hits. The MACE-MP MP-native top-1000 result was 802 hits under row-identifier ordering; the analytic tie expectation is 706.23 with a 95\% hypergeometric interval of 679--733 (Table~\ref{tab:v3-old-mace}). The associated self-included discovery curves, fixed top-$K$ binary metrics and winner claims are withdrawn. The revised discovery curves are independently recomputed from the adopted equivalence-class-excluded score and use analytic expectations within every score tie.
+
+The adopted score is a leave-one-tolerance-equivalence-class-out signed reference-hull margin. The candidate's complete connected equivalence component is removed from its compatible subsystem. The remaining D5 batch phases and elemental anchors form the predicted reference hull. Other candidates may enter that hull, making the score retrospective, batch-relative and transductive. Across 146,724 primary candidate--model evaluations, the complete exclusion class is absent from the reference pool and decomposition simplex. The largest primary score tie is four, and every top-1000 boundary tie has size one.
+
+The archived raw energies per atom remain excluded from primary ranking because their MP-native AUROCs are 0.465--0.489; reversing direction gives 0.511--0.535 (Table~\ref{tab:v3-raw}). The previous self-included predicted-hull column in the historical audit file is superseded and intentionally omitted.
+
+\section*{Supplementary Note 3 | Matching sensitivity}
+Cross-source matching uses reduced-formula prefiltering followed by \texttt{StructureMatcher}. The default parameters are \texttt{ltol}=0.2, \texttt{stol}=0.3 and \texttt{angle\_tol}=5$^\circ$, with primitive reduction, scaling and supercell attempts enabled and subset matching disabled. Tight parameters are $(0.1,0.2,3^\circ)$ and loose parameters are $(0.3,0.4,7^\circ)$.
+
+The cross-source sensitivity is a survival audit of the frozen D1 and D2 mappings. It does not search for new loose-tolerance matches. Tight matching retains 42,799 D1 rows and 35,877 D2 rows; default and loose matching retain all 43,139 D1 and 36,802 D2 rows (Table~\ref{tab:v3-match}). The tight losses are distributed across many chemical systems; the largest individual systems contribute 11 rows each (Table~\ref{tab:v3-match-chem}).
+
+The D5 equivalence graph is rebuilt across all three settings. Tight, default and loose matching yield 35,746, 35,740 and 35,449 components, respectively. Non-singleton components increase from 918 to 1,155, while the largest class remains six. All four rankings are recomputed for every setting. The default scores reproduce the primary ranking exactly. No setting produces a top-1000 boundary tie. Matching tolerance can change a close point ordering: under loose matching, M3GNet is the top-1000 point winner for all five physical coordinates, with first--second margins of 1--11 hits.
+
+\section*{Supplementary Note 4 | Threshold and indeterminate-zone estimands}
+The official/native endpoint uses each source's released binary field. The source-coordinate threshold scan regenerates labels as $y_s(t)=\mathbf{1}[E_{\mathrm{hull},s}\leq t]$. The $t=0$ coordinate labels reproduce all available official labels. Thresholds of 10, 25 and 50~meV atom$^{-1}$ ask how a screening tolerance changes the same source-coordinate comparison (Table~\ref{tab:v3-threshold}).
+
+The indeterminate analysis keeps the base threshold at zero and changes the width $w$. Stable rows satisfy $E_{\mathrm{hull}}\leq0$, indeterminate rows satisfy $0<E_{\mathrm{hull}}<w$, and unstable rows satisfy $E_{\mathrm{hull}}\geq w$. Robust conflicts require definite stable and definite unstable assignments across a source pair. Full-support and decisive-support rates use different denominators and are reported together (Table~\ref{tab:v3-indeterminate}).
+
+\section*{Supplementary Note 5 | Matched-pool operational categories}
+All native MP--Alexandria-PBE conflicts, reconstructable native conflicts and unreconstructable conflicts are separate columns. Reconstructable native conflicts equal phase-pool-sensitive plus persistent rows. Matched-pool conflicts equal persistent plus hidden rows. Table~\ref{tab:v3-common} retains these identities at every threshold. The categories describe outcome changes after phase-inventory alignment; they do not assign a unique computational or physical mechanism.
+
+\section*{Supplementary Note 6 | Metrics, budgets and model decisions}
+Full-ranking evaluation reports AUROC, average precision (AP), prevalence and normalised AP, $\mathrm{nAP}=(\mathrm{AP}-\pi)/(1-\pi)$ (Table~\ref{tab:v3-metrics}). Stable hits, yield and excess hits are reported at fixed budgets. When a boundary intersects a tie, the point estimate is the analytic hypergeometric expectation; the tie-only exact interval and best--worst bounds remain separate. The primary top-1000 table is shown in Table~\ref{tab:v3-top1000}.
+
+Budget sensitivity is evaluated at $K=100$, 300, 500, 1,000 and 5,000. Table~\ref{tab:v3-budget} reports point winners, first--second margins, bootstrap winner frequencies, conservative MP-selection regret and boundary tie occupancy. MACE-MP remains the winner for all three full-ranking metrics and all five physical coordinates in every bootstrap replicate (Table~\ref{tab:v3-global-winner}). At $K=1000$, conservative median MP-selection regret is 0--3 hits across all five coordinates, or 1--3 hits across the four non-MP coordinates; 95\% upper limits are 7--18 hits outside the MP anchor (Table~\ref{tab:v3-regret}).
+
+\section*{Supplementary Note 7 | Bootstrap scope}
+Chemical systems are sampled with replacement 1,000 times using seed 20260719. Every selected cluster retains all rows, models and coordinates. Tie expectations, metrics, winners, margins and regret are recomputed within each replicate. The intervals describe cohort variation conditional on fixed model predictions, fixed D5 reference pool and fixed structural-equivalence classes. They do not quantify model-energy error, DFT-workflow uncertainty or reference-pool uncertainty.
+
+The alternative-unit audit repeats the same calculations with reduced-formula and structural-equivalence-family units using seed 20260826. Switch-rate intervals use paired endpoint labels within each D2 replicate; model metrics and decision quantities use paired endpoints and models within each $M_{\mathrm{phys}}$ replicate. The available structural-equivalence family is used as the related-structure unit. Prototype and element-family supercluster labels are not available. Table~\ref{tab:a1-switch} gives all switch-rate intervals, and Table~\ref{tab:a1-decisions} gives the complete zero-threshold $K=1000$ winner, margin and regret summary. MACE-MP has frequency 1.00 for every full-ranking metric, endpoint and resampling unit (Table~\ref{tab:a1-global}).
+
+Complete CSV summaries for all four thresholds and all four budgets are included in the alternative-unit bootstrap source-data directory of the release package.
+
+\section*{Supplementary Note 8 | Model and candidate provenance}
+Generative approaches construct candidate crystals using learned continuous representations,\cite{noh2019inverse} variational and equivariant diffusion models,\cite{xie2022crystal,jiao2023crystal} and property-conditioned generation.\cite{zeni2025generative}
+
+
+ALIGNN-FF, CHGNet, M3GNet and MACE-MP enter the primary comparison because all four archived energy tables cover D5. Their checkpoints and published training resources are listed in Table~\ref{tab:v3-training}. Materials Project-derived trajectories contribute to CHGNet and MACE-MP training; the comparison is a retrospective benchmark audit and is not presented as out-of-distribution generalisation.
+
+SourceAware endpoint assignments require one unambiguous tolerance-based structural match. Formula-only overlap reports chemistry support. Most MatterGen and PGCGM candidates have no structural match, so these outputs quantify matching coverage instead of source-specific stability success.
+
+Among the 4,291 structurally matched candidates in the public CHGNet top-5,000 screening cohort, MP-native stable yield is 0.406, audit-policy stable yield is 0.260 and the source-uncertain fraction is 0.334. The MatterGen 5,000-candidate public formula cohort contains 421 formula-only overlaps and 4,579 unmatched rows. The PGCGM 3,000-candidate generated-crystal cohort contains 39 formula-only overlaps and 2,961 unmatched rows. Neither generated cohort has a tolerance-based structural match in this analysis.
+
+
+\section*{Supplementary Note 9 | Source-energy workflow background}
+A source energy inherits the electronic-structure approximation and numerical settings used to calculate it. Relevant methodological foundations include the PBE generalized-gradient approximation,\cite{perdew1996generalized} the projector augmented-wave method and its plane-wave implementation,\cite{blochl1994projector,kresse1999ultrasoft} and iterative algorithms for plane-wave total-energy calculations.\cite{kresse1996efficient} The AFLOW standard documents how such settings are specified for high-throughput calculations.\cite{calderon2015aflow} Cross-code comparisons of elemental equations of state demonstrate that numerical reproducibility can be assessed under controlled computational choices.\cite{lejaeghere2016reproducibility}
+
+Energy corrections address additional sources of error. Work on transition-metal oxides examines GGA oxidation-energy errors and Hubbard-$U$ corrections;\cite{wang2006oxidation} GGA/GGA+$U$ mixing and fitted elemental-phase reference energies provide different approaches to improving formation enthalpies.\cite{jain2011formation,stevanovic2012correcting} Reaction-energy comparisons for ternary oxides connect the accuracy of relative energies to phase-stability assessment.\cite{hautier2012accuracy} These studies motivate retaining each source's energy convention when rebuilding a hull. Our reconstruction uses the released source energies and changes the competing-phase inventory.
+
+\section*{Supplementary Note 10 | Predictive model background}
+Materials prediction methods use both composition and structure. Composition-based descriptors support general property prediction,\cite{ward2016general} and electron-configuration ensembles have been developed for stability classification.\cite{zou2025predicting} CGCNN and MEGNet learn properties from crystal graphs,\cite{xie2018crystal,chen2019graph} while SchNet uses continuous-filter convolutions and ALIGNN explicitly incorporates bond angles through a line graph.\cite{schutt2018schnet,choudhary2021atomistic} NequIP and Allegro develop equivariant representations for interatomic potentials.\cite{batzner20223,musaelian2023learning}
+
+The present evaluation uses archived predictions from ALIGNN-FF, CHGNet, M3GNet and MACE-MP. CHGNet, M3GNet and MACE foundation-model publications describe the corresponding model families.\cite{deng2023chgnet,chen2022universal,batatia2025foundation} The ALIGNN citation above describes its architectural basis; the exact force-field checkpoint and all four training-resource records are given in Supplementary Table S17.
+
+Training-data coverage and transfer are active areas of model development. Systematic softening has been reported for M3GNet, CHGNet and MACE-MP-0 in out-of-distribution atomistic tasks.\cite{deng2025systematic} MP-ALOE expands off-equilibrium training data at the r$^2$SCAN level,\cite{kuner2025mp} SevenNet-Omni addresses transfer across heterogeneous databases,\cite{kim2026optimizing} and GRACE provides a further family of foundational interatomic potentials.\cite{lysogorskiy2026graph} These developments provide context for future model comparisons; the present label-source comparison keeps its four archived predictions fixed.
+
+\section*{Supplementary Note 11 | Predictive uncertainty and target definition}
+Stability-label provenance also matters when reporting predictive uncertainty. Monte Carlo dropout and deep ensembles estimate model uncertainty,\cite{gal2016dropout,lakshminarayanan2017simple} while calibration methods assess the correspondence between confidence and observed correctness.\cite{guo2017calibration} Conformal prediction constructs prediction sets or intervals with coverage guarantees under assumptions such as exchangeability; conformalized quantile regression adapts intervals to variation across inputs.\cite{vovk2005algorithmic,angelopoulos2023conformal,romano2019conformalized} Selective classification trades prediction coverage for error control, and set-valued classification allows multiple plausible labels.\cite{geifman2017selective,sadinle2019least} Applying these tools to crystal stability requires declaring which database-defined outcome is being predicted. Our comparison supplies evidence about the sensitivity of that outcome to its reference.
+
+\clearpage
+\section*{Supplementary tables}
+\input{supplementary_source_input_card.tex}
+\input{supplementary_mphys_exclusion_audit.tex}
+
+\input{supplementary_referee_v3_tables.tex}
+
+\input{supplementary_alternative_bootstrap_tables.tex}
+
+\input{supplementary_reporting_tables.tex}
+
+\bibliographystyle{rsc}
+\bibliography{references}
+\end{document}

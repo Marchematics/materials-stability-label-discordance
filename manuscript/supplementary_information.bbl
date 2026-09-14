@@ -1,0 +1,317 @@
+\providecommand*{\mcitethebibliography}{\thebibliography}
+\csname @ifundefined\endcsname{endmcitethebibliography}
+{\let\endmcitethebibliography\endthebibliography}{}
+\begin{mcitethebibliography}{37}
+\providecommand*{\natexlab}[1]{#1}
+\providecommand*{\mciteSetBstSublistMode}[1]{}
+\providecommand*{\mciteSetBstMaxWidthForm}[2]{}
+\providecommand*{\mciteBstWouldAddEndPuncttrue}
+  {\def\EndOfBibitem{\unskip.}}
+\providecommand*{\mciteBstWouldAddEndPunctfalse}
+  {\let\EndOfBibitem\relax}
+\providecommand*{\mciteSetBstMidEndSepPunct}[3]{}
+\providecommand*{\mciteSetBstSublistLabelBeginEnd}[3]{}
+\providecommand*{\EndOfBibitem}{}
+\mciteSetBstSublistMode{f}
+\mciteSetBstMaxWidthForm{subitem}
+{(\emph{\alph{mcitesubitemcount}})}
+\mciteSetBstSublistLabelBeginEnd{\mcitemaxwidthsubitemform\space}
+{\relax}{\relax}
+
+\bibitem[Noh \emph{et~al.}(2019)Noh, Kim, Stein, Sanchez-Lengeling, Gregoire,
+  Aspuru-Guzik, and Jung]{noh2019inverse}
+J.~Noh, J.~Kim, H.~S. Stein, B.~Sanchez-Lengeling, J.~M. Gregoire,
+  A.~Aspuru-Guzik and Y.~Jung, \emph{Matter}, 2019, \textbf{1},
+  1370--1384\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Xie \emph{et~al.}(2022)Xie, Fu, Ganea, Barzilay, and
+  Jaakkola]{xie2022crystal}
+T.~Xie, X.~Fu, O.-E. Ganea, R.~Barzilay and T.~S. Jaakkola, International
+  Conference on Learning Representations, 2022\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Jiao \emph{et~al.}(2023)Jiao, Huang, Lin, Han, Chen, Lu, and
+  Liu]{jiao2023crystal}
+R.~Jiao, W.~Huang, P.~Lin, J.~Han, P.~Chen, Y.~Lu and Y.~Liu, Advances in
+  Neural Information Processing Systems, 2023, pp. 17464--17497\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Zeni \emph{et~al.}(2025)Zeni, Pinsler, Z{\"u}gner, Fowler, Horton, Fu,
+  Wang, Shysheya, Crabb{\'e}, Ueda,\emph{et~al.}]{zeni2025generative}
+C.~Zeni, R.~Pinsler, D.~Z{\"u}gner, A.~Fowler, M.~Horton, X.~Fu, Z.~Wang,
+  A.~Shysheya, J.~Crabb{\'e}, S.~Ueda \emph{et~al.}, \emph{Nature}, 2025,
+  \textbf{639}, 624--632\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Perdew \emph{et~al.}(1996)Perdew, Burke, and
+  Ernzerhof]{perdew1996generalized}
+J.~P. Perdew, K.~Burke and M.~Ernzerhof, \emph{Physical review letters}, 1996,
+  \textbf{77}, 3865\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Bl{\"o}chl(1994)]{blochl1994projector}
+P.~E. Bl{\"o}chl, \emph{Physical review B}, 1994, \textbf{50}, 17953\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Kresse and Joubert(1999)]{kresse1999ultrasoft}
+G.~Kresse and D.~Joubert, \emph{Physical review b}, 1999, \textbf{59},
+  1758\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Kresse and Furthm{\"u}ller(1996)]{kresse1996efficient}
+G.~Kresse and J.~Furthm{\"u}ller, \emph{Physical review B}, 1996, \textbf{54},
+  11169\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Calderon \emph{et~al.}(2015)Calderon, Plata, Toher, Oses, Levy,
+  Fornari, Natan, Mehl, Hart, Nardelli,\emph{et~al.}]{calderon2015aflow}
+C.~E. Calderon, J.~J. Plata, C.~Toher, C.~Oses, O.~Levy, M.~Fornari, A.~Natan,
+  M.~J. Mehl, G.~Hart, M.~B. Nardelli \emph{et~al.}, \emph{Computational
+  Materials Science}, 2015, \textbf{108}, 233--238\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Lejaeghere \emph{et~al.}(2016)Lejaeghere, Bihlmayer, Bj{\"o}rkman,
+  Blaha, Bl{\"u}gel, Blum, Caliste, Castelli, Clark,
+  Dal~Corso,\emph{et~al.}]{lejaeghere2016reproducibility}
+K.~Lejaeghere, G.~Bihlmayer, T.~Bj{\"o}rkman, P.~Blaha, S.~Bl{\"u}gel, V.~Blum,
+  D.~Caliste, I.~E. Castelli, S.~J. Clark, A.~Dal~Corso \emph{et~al.},
+  \emph{Science}, 2016, \textbf{351}, aad3000\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Wang \emph{et~al.}(2006)Wang, Maxisch, and Ceder]{wang2006oxidation}
+L.~Wang, T.~Maxisch and G.~Ceder, \emph{Physical Review B--Condensed Matter and
+  Materials Physics}, 2006, \textbf{73}, 195107\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Jain \emph{et~al.}(2011)Jain, Hautier, Ong, Moore, Fischer, Persson,
+  and Ceder]{jain2011formation}
+A.~Jain, G.~Hautier, S.~P. Ong, C.~J. Moore, C.~C. Fischer, K.~A. Persson and
+  G.~Ceder, \emph{Physical Review B--Condensed Matter and Materials Physics},
+  2011, \textbf{84}, 045115\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Stevanovi{\'c} \emph{et~al.}(2012)Stevanovi{\'c}, Lany, Zhang, and
+  Zunger]{stevanovic2012correcting}
+V.~Stevanovi{\'c}, S.~Lany, X.~Zhang and A.~Zunger, \emph{Physical Review
+  B--Condensed Matter and Materials Physics}, 2012, \textbf{85}, 115104\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Hautier \emph{et~al.}(2012)Hautier, Ong, Jain, Moore, and
+  Ceder]{hautier2012accuracy}
+G.~Hautier, S.~P. Ong, A.~Jain, C.~J. Moore and G.~Ceder, \emph{Physical Review
+  B--Condensed Matter and Materials Physics}, 2012, \textbf{85}, 155208\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Ward \emph{et~al.}(2016)Ward, Agrawal, Choudhary, and
+  Wolverton]{ward2016general}
+L.~Ward, A.~Agrawal, A.~Choudhary and C.~Wolverton, \emph{npj Computational
+  Materials}, 2016, \textbf{2}, 16028\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Zou \emph{et~al.}(2025)Zou, Zhao, Lu, Wang, Deng, and
+  Wang]{zou2025predicting}
+H.~Zou, H.~Zhao, M.~Lu, J.~Wang, Z.~Deng and J.~Wang, \emph{Nature
+  Communications}, 2025, \textbf{16}, 203\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Xie and Grossman(2018)]{xie2018crystal}
+T.~Xie and J.~C. Grossman, \emph{Physical review letters}, 2018, \textbf{120},
+  145301\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Chen \emph{et~al.}(2019)Chen, Ye, Zuo, Zheng, and Ong]{chen2019graph}
+C.~Chen, W.~Ye, Y.~Zuo, C.~Zheng and S.~P. Ong, \emph{Chemistry of Materials},
+  2019, \textbf{31}, 3564--3572\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Sch{\"u}tt \emph{et~al.}(2018)Sch{\"u}tt, Sauceda, Kindermans,
+  Tkatchenko, and M{\"u}ller]{schutt2018schnet}
+K.~T. Sch{\"u}tt, H.~E. Sauceda, P.-J. Kindermans, A.~Tkatchenko and K.-R.
+  M{\"u}ller, \emph{The Journal of chemical physics}, 2018, \textbf{148},
+  241722\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Choudhary and DeCost(2021)]{choudhary2021atomistic}
+K.~Choudhary and B.~DeCost, \emph{npj Computational Materials}, 2021,
+  \textbf{7}, 185\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Batzner \emph{et~al.}(2022)Batzner, Musaelian, Sun, Geiger, Mailoa,
+  Kornbluth, Molinari, Smidt, and Kozinsky]{batzner20223}
+S.~Batzner, A.~Musaelian, L.~Sun, M.~Geiger, J.~P. Mailoa, M.~Kornbluth,
+  N.~Molinari, T.~E. Smidt and B.~Kozinsky, \emph{Nature communications}, 2022,
+  \textbf{13}, 2453\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Musaelian \emph{et~al.}(2023)Musaelian, Batzner, Johansson, Sun, Owen,
+  Kornbluth, and Kozinsky]{musaelian2023learning}
+A.~Musaelian, S.~Batzner, A.~Johansson, L.~Sun, C.~J. Owen, M.~Kornbluth and
+  B.~Kozinsky, \emph{Nature Communications}, 2023, \textbf{14}, 579\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Deng \emph{et~al.}(2023)Deng, Zhong, Jun, Riebesell, Han, Bartel, and
+  Ceder]{deng2023chgnet}
+B.~Deng, P.~Zhong, K.~Jun, J.~Riebesell, K.~Han, C.~J. Bartel and G.~Ceder,
+  \emph{Nature Machine Intelligence}, 2023, \textbf{5}, 1031--1041\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Chen and Ong(2022)]{chen2022universal}
+C.~Chen and S.~P. Ong, \emph{Nature Computational Science}, 2022, \textbf{2},
+  718--728\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Batatia \emph{et~al.}(2025)Batatia, Benner, Chiang, Elena, Kov{\'a}cs,
+  Riebesell, Advincula, Asta, Avaylon,
+  Baldwin,\emph{et~al.}]{batatia2025foundation}
+I.~Batatia, P.~Benner, Y.~Chiang, A.~M. Elena, D.~P. Kov{\'a}cs, J.~Riebesell,
+  X.~R. Advincula, M.~Asta, M.~Avaylon, W.~J. Baldwin \emph{et~al.}, \emph{The
+  Journal of chemical physics}, 2025, \textbf{163}, 184110\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Deng \emph{et~al.}(2025)Deng, Choi, Zhong, Riebesell, Anand, Li, Jun,
+  Persson, and Ceder]{deng2025systematic}
+B.~Deng, Y.~Choi, P.~Zhong, J.~Riebesell, S.~Anand, Z.~Li, K.~Jun, K.~A.
+  Persson and G.~Ceder, \emph{npj Computational Materials}, 2025, \textbf{11},
+  9\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Kuner \emph{et~al.}(2025)Kuner, Kaplan, Persson, Asta, and
+  Chrzan]{kuner2025mp}
+M.~C. Kuner, A.~D. Kaplan, K.~A. Persson, M.~Asta and D.~C. Chrzan, \emph{npj
+  Computational Materials}, 2025, \textbf{11}, 352\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Kim \emph{et~al.}(2026)Kim, You, Park, Lim, Kang, Kim, Jeon, Ju, Hong,
+  Lee,\emph{et~al.}]{kim2026optimizing}
+J.~Kim, J.~You, Y.~Park, Y.~Lim, Y.~Kang, J.~Kim, H.~Jeon, S.~Ju, D.~Hong,
+  S.~Y. Lee \emph{et~al.}, \emph{Nature Communications}, 2026, \textbf{17},
+  3432\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Lysogorskiy \emph{et~al.}(2026)Lysogorskiy, Bochkarev, and
+  Drautz]{lysogorskiy2026graph}
+Y.~Lysogorskiy, A.~Bochkarev and R.~Drautz, \emph{npj Computational Materials},
+  2026, \textbf{12}, 114\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Gal and Ghahramani(2016)]{gal2016dropout}
+Y.~Gal and Z.~Ghahramani, international conference on machine learning, 2016,
+  pp. 1050--1059\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Lakshminarayanan \emph{et~al.}(2017)Lakshminarayanan, Pritzel, and
+  Blundell]{lakshminarayanan2017simple}
+B.~Lakshminarayanan, A.~Pritzel and C.~Blundell, Advances in Neural Information
+  Processing Systems, 2017\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Guo \emph{et~al.}(2017)Guo, Pleiss, Sun, and
+  Weinberger]{guo2017calibration}
+C.~Guo, G.~Pleiss, Y.~Sun and K.~Q. Weinberger, International conference on
+  machine learning, 2017, pp. 1321--1330\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Vovk \emph{et~al.}(2005)Vovk, Gammerman, and
+  Shafer]{vovk2005algorithmic}
+V.~Vovk, A.~Gammerman and G.~Shafer, \emph{Algorithmic learning in a random
+  world}, Springer, 2005\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Angelopoulos and Bates(2023)]{angelopoulos2023conformal}
+A.~N. Angelopoulos and S.~Bates, \emph{Foundations and Trends in Machine
+  Learning}, 2023, \textbf{16}, 494--591\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Romano \emph{et~al.}(2019)Romano, Patterson, and
+  Candes]{romano2019conformalized}
+Y.~Romano, E.~Patterson and E.~Candes, Advances in Neural Information
+  Processing Systems, 2019\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Geifman and El-Yaniv(2017)]{geifman2017selective}
+Y.~Geifman and R.~El-Yaniv, Advances in Neural Information Processing Systems,
+  2017\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Sadinle \emph{et~al.}(2019)Sadinle, Lei, and
+  Wasserman]{sadinle2019least}
+M.~Sadinle, J.~Lei and L.~Wasserman, \emph{Journal of the American Statistical
+  Association}, 2019, \textbf{114}, 223--234\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\end{mcitethebibliography}

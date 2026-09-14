@@ -1,18 +1,13 @@
-# Reproducibility guide
+# Reproduce the paper and figures
 
-## Reproducing the submission release
-
-The submission release uses the source-aware benchmark and model-facing
-evaluation outputs described in the article.
-
-Create the pinned environment with either:
+## Environment
 
 ```bash
 conda env create -f environment.yml
 conda activate sourceaware-dd-2.0.0
 ```
 
-or:
+The Python alternative is:
 
 ```bash
 python -m venv .venv
@@ -21,150 +16,44 @@ python -m pip install -r requirements-lock.txt
 python -m pip install --no-deps -e .
 ```
 
-Regenerate cards, figures, claims, manifests and tests with:
+## Figures and evaluation tests
 
 ```bash
 bash run_all.sh
 ```
 
-Every quantitative panel has a source CSV (and, for all-rank discovery
-curves, parquet) under `outputs/dd_submission_v2/figure_source_data/`.
-Submission figures are vector PDF plus 600-dpi TIFF. The rolling-window
-metadata records the interval method, support threshold, seed and iterations.
-The clean-environment log is archived at
-`outputs/dd_submission_v2/logs/clean_environment_regeneration.log`.
+The figure generator reads `outputs/publication/figure_source_tables/` and `outputs/referee_revision_v3/`, and writes Figures 2–5 to `manuscript/figures/`. Figure 1's full cumulative curves and Figure 6's candidate summaries are included in the source tables. PDF and SVG figures are tracked alongside the paper; the generator also exports PNG and TIFF.
 
-This repository contains scripts, derived tables, figure inputs and SHA256
-manifests for the source-native stability-label audit. Raw third-party database
-exports remain with their original providers.
-
-## M1 model-evaluation archive
-
-The primary model-facing tables are in
-`outputs/repaired_model_evaluation_v1/`. The archive includes
-`score_construct_validity_audit.csv`, `evaluation_support_and_coverage.csv`,
-`metrics_fixed_support.csv`, `topk_fixed_support.csv`,
-`label_bands_cluster_bootstrap.csv`, paired bootstrap replicates,
-`elemental_reference_structures.jsonl`, and
-`fixed_subsystem_phase_pool_manifest.json`.
-
-Regenerate the figure files and verify the released archive with:
+Run the checks separately with:
 
 ```bash
-python scripts/build_repaired_model_figures.py
-python scripts/audit_repaired_model_claims.py
-pytest -q tests/test_repaired_model_evaluation.py tests/test_dd_submission_curves.py
-python scripts/build_repaired_release_manifest.py
+pytest -q tests/test_referee_revision_v3.py tests/test_tie_aware_ranking.py
 ```
 
-The corresponding command logs and environment checksums are stored in
-`outputs/repaired_model_evaluation_v1/reproducibility/`.
+## Manuscript
 
-## Environment
-
-Install the analysis dependencies:
+With TeX Live and latexmk installed:
 
 ```bash
-pip install -r requirements.txt
+cd manuscript
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error supplementary_information.tex
 ```
 
-Run repository tests:
+The main paper cites all 62 bibliography entries. The Supplementary Information contains Tables S1–S22 and detailed methods.
+
+## Alternative bootstrap units
+
+The completed summaries are in `outputs/referee_revision_v3/alternative_clustering_bootstrap/`. To regenerate them from the matched labels and fixed model scores:
 
 ```bash
-pytest -q tests
+python scripts/run_alternative_clustering_bootstrap.py \
+  --root . --replicates 1000 --seed 20260826 \
+  --output /tmp/sourceaware-bootstrap
 ```
 
-## Integrity checks
+## Analysis inputs
 
-Each milestone directory contains a local SHA256 manifest. Verify a milestone
-from its directory, for example:
+The primary evaluation uses 36,650 compounds with complete model scores and stability definitions. The three-source label comparison uses 36,802 matched structures. MP and Alexandria shared-inventory calculations retain each source's formation-energy convention.
 
-```bash
-cd outputs/milestones/official_alexandria_pbe_extension
-sha256sum -c MANIFEST_SHA256.txt
-```
-
-The root manifest can be checked from the repository root:
-
-```bash
-sha256sum -c MANIFEST_SHA256.txt
-```
-
-## Official Alexandria-PBE extension
-
-The official Alexandria-PBE extension has two stages.
-
-1. Feasibility and denominator construction:
-
-```bash
-python scripts/build_official_alexandria_pbe_feasibility.py
-```
-
-This stage requires the official Alexandria-PBE complete 3D JSON snapshot
-`2025.07.02` under:
-
-```text
-raw/official_alexandria_pbe/
-```
-
-The `raw/` directory is intentionally ignored by Git. The script validates the
-complete PBE 3D snapshot, checks `entries[].data.e_above_hull` coverage and
-builds formula-prefiltered exact-structure matches to the strict
-MP--alex-mp-20 denominator. It does not use MP identifiers to join official
-Alexandria-PBE records.
-
-2. Extension outputs:
-
-```bash
-python scripts/build_official_alexandria_pbe_extension_outputs.py
-```
-
-This stage reads the feasibility outputs and writes:
-
-- cutoff-grid pairwise source-conflict burdens;
-- source-conflict directionality;
-- three-source label composition;
-- alex-mp-20--official Alexandria-PBE source-native hull-value differences;
-- chemistry-stratified chemical-system bootstrap intervals;
-- fixed source-native ranking uncertainty bands;
-- fixed CHGNet score ranking uncertainty bands when the optional score table is present;
-- figure-source inputs;
-- SHA256 manifest.
-
-Verify the generated outputs:
-
-```bash
-sha256sum -c outputs/milestones/official_alexandria_pbe_extension/MANIFEST_SHA256.txt
-```
-
-## Main MP--alex-mp-20 denominator
-
-The primary MP--alex-mp-20 denominator can be rebuilt with:
-
-```bash
-python scripts/run_full_mp_alex_denominator_43984.py
-```
-
-Rebuilding this stage requires Materials Project API access via `MP_API_KEY`.
-Live API behaviour and database contents can change, so the archived derived
-tables are the reference outputs for the submitted analysis.
-
-## JARVIS-DFT extension
-
-The JARVIS extension can be rebuilt with:
-
-```bash
-python scripts/build_jarvis_multisource_extension.py
-```
-
-The script queries the public JARVIS OPTIMADE endpoint and writes
-denominator, pairwise source-conflict and three-source label-composition
-tables. Formula matching is used only as a prefilter; reported rows require
-exact structure matches.
-
-## Interpretation
-
-The analyses compare source-native public stability labels and report
-common-pool, consensus and audit views as benchmark evaluations. A homogeneous
-recalculation or prospective validation workflow can be layered onto these
-released denominators in future studies.
+Source acquisition and structural matching are described in `DATA_PROVENANCE.md`. The scripts in `scripts/` implement matching, hull construction, score calculation, threshold scans and bootstrap summaries. Earlier model-evaluation tables remain in their versioned output directories; `CHANGELOG.md` identifies the corresponding releases.

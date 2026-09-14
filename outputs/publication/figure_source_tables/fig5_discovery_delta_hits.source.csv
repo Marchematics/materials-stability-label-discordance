@@ -1,0 +1,17 @@
+model_name,endpoint,delta_hits_vs_mp,K
+ALIGNN-FF,alexmp20_source_coordinate,-95.0,1000
+ALIGNN-FF,alex_pbe_source_coordinate,-156.0,1000
+ALIGNN-FF,mp_matched_pool_coordinate,219.0,1000
+ALIGNN-FF,alex_pbe_matched_pool_coordinate,263.0,1000
+CHGNet,alexmp20_source_coordinate,-84.0,1000
+CHGNet,alex_pbe_source_coordinate,-153.0,1000
+CHGNet,mp_matched_pool_coordinate,241.0,1000
+CHGNet,alex_pbe_matched_pool_coordinate,271.0,1000
+M3GNet,alexmp20_source_coordinate,-77.0,1000
+M3GNet,alex_pbe_source_coordinate,-149.0,1000
+M3GNet,mp_matched_pool_coordinate,219.0,1000
+M3GNet,alex_pbe_matched_pool_coordinate,245.0,1000
+MACE-MP,alexmp20_source_coordinate,-92.0,1000
+MACE-MP,alex_pbe_source_coordinate,-161.0,1000
+MACE-MP,mp_matched_pool_coordinate,211.0,1000
+MACE-MP,alex_pbe_matched_pool_coordinate,237.0,1000

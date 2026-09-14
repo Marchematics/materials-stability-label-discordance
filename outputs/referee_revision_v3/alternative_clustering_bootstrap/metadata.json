@@ -1,0 +1,51 @@
+{
+  "experiment": "A1_alternative_clustering_bootstrap",
+  "seed": 20260826,
+  "replicates": 1000,
+  "cluster_units": [
+    "chemical_system",
+    "reduced_formula",
+    "equivalence_class_id"
+  ],
+  "thresholds_meV_per_atom": [
+    0,
+    10,
+    25,
+    50
+  ],
+  "K_values": [
+    100,
+    300,
+    500,
+    1000
+  ],
+  "models": [
+    "ALIGNN-FF",
+    "CHGNet",
+    "M3GNet",
+    "MACE-MP"
+  ],
+  "endpoints": [
+    "mp_source_coordinate",
+    "alexmp20_source_coordinate",
+    "alex_pbe_source_coordinate",
+    "mp_matched_pool_coordinate",
+    "alex_pbe_matched_pool_coordinate"
+  ],
+  "conditional_on": [
+    "fixed model scores",
+    "fixed endpoint coordinates",
+    "fixed candidate cohort",
+    "fixed structural-equivalence classes"
+  ],
+  "structural_prototype_available": false,
+  "element_family_supercluster_available": false,
+  "notes": "equivalence_class_id is the available structural-equivalence family; no prototype labels are archived",
+  "support_n": 36650,
+  "d2_n": 36802,
+  "cluster_counts": {
+    "chemical_system": 19361,
+    "reduced_formula": 30853,
+    "equivalence_class_id": 35741
+  }
+}
